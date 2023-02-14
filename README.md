@@ -4,7 +4,7 @@ A tool to trace nextflow workflow executions and produce WfFormat workflow insta
 ## Modifications to Nextflow
 
 We were unable to find a way to enable trace level logging in Nextflow, hence, small modifications to the source code were made in order to trace all necessary information.
-In particular, the file `TraceProcessor.groovy`, located in directory `/modules/nextflow/src/main/groovy/nextflow/processor/`, is modified. 
+In particular, the file `TaskProcessor.groovy`, located in directory `/modules/nextflow/src/main/groovy/nextflow/processor/`, is modified. 
 We reference the following version:
 * https://github.com/nextflow-io/nextflow/blob/master/modules/nextflow/src/main/groovy/nextflow/processor/TaskProcessor.groovy
 * commit: a5df62f6efffc24e0395ef05e9a43461174b453c
@@ -58,3 +58,6 @@ to output to `log.debug`
 ```groovy
 log.debug "<${taskName}> Message arrived -- ${channelName} => ${message}"
 ```
+### Build and Run the modified Nextflow
+
+Follow the Nextflow build from source instructions, i.e., `make compile`, after which `./launch.sh` can be used while in the build directory to start the modified Nextflow.
