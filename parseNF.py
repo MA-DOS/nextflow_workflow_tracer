@@ -1,8 +1,12 @@
 import os
+import sys
 import re
 import networkx as nx
 import json
 from datetime import datetime, timezone
+import subprocess
+
+##################################################################################################################
 
 #Parse filepath_stdout
 def parse_stdout(filepath_stdout, workflow):
@@ -140,14 +144,13 @@ def parse_log(filepath_log, processes, files, file_bytes_read, file_bytes_write)
         files[process] = []
         remote_files   = {}     #stores (path, index in files) for files that are not stored locally on the computer
 
-        file_bytes_read [process] = 0
-        file_bytes_write[process] = 0 
+        file_bytes_read [process] = 0.
+        file_bytes_write[process] = 0.
 
         with open(filepath_log, "r") as fp:
             for count, line in enumerate(fp):
                 if process in line:
                     if "Message arrived" in line:
-                        #print("Line {}:\n{}".format(count, line))
                         x = ((line.split("--"))[1].split("=>"))[1].split(",")
 
                         for item in x:
@@ -158,32 +161,41 @@ def parse_log(filepath_log, processes, files, file_bytes_read, file_bytes_write)
 
                                 x = temp.split("/")
                                 curr_file["name"] = x[len(x)-1]
-
                                 curr_file["path"] = "/".join(x[:len(x)-1]) + "/"
-                                #print("temp = {}".format(temp))
-                                # if work_dir[process] in temp:
-                                #     curr_file["path"] = "/".join(x[:len(x)-1]) + "/"
-                                # else:
-                                #     curr_file["path"] = "/".join(x[:len(x)-1]) + "/"
 
-                                curr_file["size"] = "TODO"
                                 if not os.path.exists(temp):
+                                    curr_file["path"] = "/".join(x[:len(x)-1]) + "/"
                                     remote_files[temp] = len(files[process])        #input file pulled from nf-core test-datasets
-
-                                elif os.path.isfile(temp):
-                                    file_bytes_read[process] += os.path.getsize(temp)
-                                    curr_file["size"] = float(os.path.getsize(temp))/1000.      #in KB (not KiB!)
-                                    
-                                elif os.path.isdir(temp):
-                                    #print("{} is a directory".format(temp))
-                                    curr_file["size"] = "TODO - Directory"
-
-                                elif os.path.islink(temp):
-                                    #print("{} is a symbolic link".format(temp))
-                                    curr_file["size"] = "TODO - Symbolic link"
-
+                                    curr_file["size"] = "TODO - Remote file"
                                 else:
-                                    print("{} exists! (but dunno what it is)".format(temp))
+                                    curr_file["path"] = "/" + "/".join(x[len(x)-3:len(x)-1]) + "/"
+
+                                    if os.path.isfile(temp):
+                                        curr_file["size"] = float(os.path.getsize(temp))/1000.      #in KB (not KiB!)
+                                        file_bytes_read[process] += float(curr_file["size"])
+                                        
+                                    elif os.path.isdir(temp):
+                                        #print("{} is a directory".format(temp))
+                                        total_size = 0
+                                        for dpath, dname, fnames in os.walk(temp):
+                                            for f in fnames:
+                                                x = os.path.join(dpath, f)
+
+                                                if os.path.isfile(x):
+                                                    total_size += os.path.getsize(x)
+                                                elif os.path.islink(x):
+                                                    total_size += os.path.getsize(os.readlink(x))
+
+                                        curr_file["size"] = float(total_size)/1000.      #in KB (not KiB!)
+                                        file_bytes_read[process] += float(curr_file["size"])
+
+                                    elif os.path.islink(temp):
+                                        #print("{} is a symbolic link".format(temp))
+                                        curr_file["size"] = os.path.getsize(os.readlink(temp))
+                                        file_bytes_read[process] += float(curr_file["size"])
+
+                                    else:
+                                        print("{} exists! (but dunno what it is)".format(temp))
 
                                 files[process].append(curr_file)
 
@@ -200,7 +212,7 @@ def parse_log(filepath_log, processes, files, file_bytes_read, file_bytes_write)
                                 x = temp.split("/")
                                 curr_file["name"] = x[len(x)-1]
 
-                                curr_file["path"] = "/".join(x[:len(x)-1]) + "/"
+                                curr_file["path"] = "/" + "/".join(x[len(x)-3:len(x)-1]) + "/"
                                 # if work_dir[process] in temp:
                                 #     print("trimmed path = {}".format(temp[temp.find(work_dir[process]):]))
                                 #     curr_file["path"] = temp[temp.find(work_dir[process]):]#"/".join(x[:len(x)-1]) + "/"
@@ -210,16 +222,28 @@ def parse_log(filepath_log, processes, files, file_bytes_read, file_bytes_write)
                                 #note output files should always be written to tasks work dir (i.e., no remote files)
                                 if os.path.exists(temp):
                                     if os.path.isfile(temp):
-                                        file_bytes_write[process] += os.path.getsize(temp)
                                         curr_file["size"] = float(os.path.getsize(temp))/1000.      #in KB (not KiB!)
+                                        file_bytes_write[process] += float(curr_file["size"])
                                         
                                     elif os.path.isdir(temp):
                                         #print("{} is a directory".format(temp))
-                                        curr_file["size"] = "TODO - Directory"
+                                        total_size = 0
+                                        for dpath, dname, fnames in os.walk(temp):
+                                            for f in fnames:
+                                                x = os.path.join(dpath, f)
+
+                                                if os.path.isfile(x):
+                                                    total_size += os.path.getsize(x)
+                                                elif os.path.islink(x):
+                                                    total_size += os.path.getsize(os.readlink(x))
+
+                                        curr_file["size"] = float(total_size)/1000.      #in KB (not KiB!)
+                                        file_bytes_write[process] += float(curr_file["size"])
 
                                     elif os.path.islink(temp):
                                         #print("{} is a symbolic link".format(temp))
-                                        curr_file["size"] = "TODO - Symbolic link"
+                                        curr_file["size"] = os.path.getsize(os.readlink(temp))
+                                        file_bytes_write[process] += float(curr_file["size"])
 
                                     else:
                                         print("{} exists! (but dunno what it is)".format(temp))
@@ -238,42 +262,74 @@ def parse_log(filepath_log, processes, files, file_bytes_read, file_bytes_write)
 
                                 if os.path.exists(temp):
                                     if os.path.isfile(temp):
-                                        file_bytes_read[process] += os.path.getsize(temp)
                                         files[process][remote_files[rfile]]["size"] = float(os.path.getsize(temp))/1000.      #in KB (not KiB!)
                                         
+                                        if files[process][remote_files[rfile]]["link"] == "input":
+                                            file_bytes_read[process] += float(curr_file["size"])
+                                        else:
+                                            file_bytes_write[process] += float(curr_file["size"])
+
                                     elif os.path.isdir(temp):
-                                        print("{} is a directory".format(temp))
+                                        #print("{} is a directory".format(temp))
+                                        total_size = 0
+                                        for dpath, dname, fnames in os.walk(temp):
+                                            for f in fnames:
+                                                x = os.path.join(dpath, f)
+
+                                                if os.path.isfile(x):
+                                                    total_size += os.path.getsize(x)
+                                                elif os.path.islink(x):
+                                                    total_size += os.path.getsize(os.readlink(x))
+
+                                        files[process][remote_files[rfile]]["size"] = float(total_size)/1000.      #in KB (not KiB!)
+                                        if files[process][remote_files[rfile]]["link"] == "input":
+                                            file_bytes_read[process] += float(curr_file["size"])
+                                        else:
+                                            file_bytes_write[process] += float(curr_file["size"])
 
                                     elif os.path.islink(temp):
-                                        print("{} is a symbolic link".format(temp))
+                                        #print("{} is a symbolic link".format(temp))
+                                        files[process][remote_files[rfile]]["size"] = os.path.getsize(os.readlink(temp))
+                                        if files[process][remote_files[rfile]]["link"] == "input":
+                                            file_bytes_read[process] += float(curr_file["size"])
+                                        else:
+                                            file_bytes_write[process] += float(curr_file["size"])
 
                                     else:
                                         print("{} exists! (but dunno what it is)".format(temp))
 
+##################################################################################################################
 
-workflow_name    = 'hlatyping'
-filepath_log     = 'hlatyping-log.txt'
-filepath_trace   = 'hlatyping-trace.txt'
-filepath_scripts = 'hlatyping-scripts.txt'
-filepath_dag     = 'hlatyping-dag.dot'
-filepath_stdout  = 'hlatyping-stdout.txt'
+#0. Command line arguments
+argc = len(sys.argv)
+if (argc != 8):
+    print(f"Usage: python3 {sys.argv[0]} <workflow name> <log file> <trace file> <scripts file> <dag file> <stdout file> <output file>")
+    quit()
 
-print("Workflow:\n\t{}\nLogs:\n\tlog:\t{}\n\ttrace:\t{}\n\tscripts:\t{}\n\tdag:\t{}\n\tstdout:\t{}".format(workflow_name, filepath_log, filepath_trace, filepath_scripts, filepath_dag, filepath_stdout))
+workflow_name    = str(sys.argv[1]) #'hlatyping'
+filepath_log     = str(sys.argv[2]) #'hlatyping-log.txt'
+filepath_trace   = str(sys.argv[3]) #'hlatyping-trace.txt'
+filepath_scripts = str(sys.argv[4]) #'hlatyping-scripts.txt'
+filepath_dag     = str(sys.argv[5]) #'hlatyping-dag.dot'
+filepath_stdout  = str(sys.argv[6]) #'hlatyping-stdout.txt'
+outfile          = str(sys.argv[7]) #"wfcommons-" + workflow_name + ".json"
+
+print(f"Command line arguments:\n\t{workflow_name=}\n\t{filepath_log=}\n\t{filepath_trace=}\n\t{filepath_scripts=}\n\t{filepath_dag=}\n\t{filepath_stdout=}\n\t{outfile=}")
 
 if not os.path.isfile(filepath_log):
-    print("ERROR: file path {} does not exist!".format(filepath_log))
+    print(f"ERROR: log file '{filepath_log}' does not exist!")
     quit()
 if not os.path.isfile(filepath_trace):
-    print("ERROR: file path {} does not exist!".format(filepath_trace))
+    print(f"ERROR: trace file '{filepath_trace}' does not exist!")
     quit()
 if not os.path.isfile(filepath_scripts):
-    print("ERROR: file path {} does not exist!".format(filepath_scripts))
+    print(f"ERROR: scripts file '{filepath_scripts}' does not exist!")
     quit()
 if not os.path.isfile(filepath_dag):
-    print("ERROR: file path {} does not exist!".format(filepath_dag))
+    print(f"ERROR: dag file '{filepath_dag}' does not exist!")
     quit()
 if not os.path.isfile(filepath_stdout):
-    print("ERROR: file path {} does not exist!".format(filepath_stdout))
+    print(f"ERROR: stdout file '{filepath_stdout}' does not exist!")
     quit()
 
 #1. Parse files into various dictionaries (and list)
@@ -319,8 +375,8 @@ for i, process in enumerate(processes):
     curr_task["avgCPU"]           = pct_cpu[process]
     curr_task["bytesRead"]        = float(rchar[process])/1000.            #in KB (not KiB!)
     curr_task["bytesWritten"]     = float(wchar[process])/1000.            #in KB (not KiB!)
-    curr_task["filebytesRead"]    = float(file_bytes_read[process])/1000.  #in KB (not KiB!)
-    curr_task["filebytesWritten"] = float(file_bytes_read[process])/1000.  #in KB (not KiB!)
+    curr_task["inputFilesBytes"]  = float(file_bytes_read[process])
+    curr_task["outputFilesBytes"] = float(file_bytes_write[process])
     curr_task["memory"]           = float(rss[process])/1000.              #in KB (not KiB!)
 
     tasks.append(curr_task)
@@ -340,9 +396,27 @@ wms["url"]  = "https://www.nextflow.io/"
 
 wfcommons["wms"]      = wms
 wfcommons["workflow"] = workflow
-#wfcommons["machines"] = "TODO"
+
+wfcommons["machines"] = []
+
+#Get machine info
+single_machine = {}
+
+completed_process = subprocess.run(["uname", "-n"], capture_output=True, encoding="utf-8")
+single_machine["nodeName"] = str(completed_process.stdout).strip()
+
+completed_process = subprocess.run(["uname", "-s"], capture_output=True, encoding="utf-8")
+single_machine["system"] = str(completed_process.stdout).strip()
+
+completed_process = subprocess.run(["uname", "-r"], capture_output=True, encoding="utf-8")
+single_machine["release"] = str(completed_process.stdout).strip()
+
+completed_process = subprocess.run(["uname", "-m"], capture_output=True, encoding="utf-8")
+single_machine["architecture"] = str(completed_process.stdout).strip()
+
+wfcommons["machines"].append(single_machine)
+
 
 #4. Write JSON to output file
-outfile = "wfcommons-" + workflow_name + ".json"
 with open(outfile, "w") as fp:
     fp.write(json.dumps(wfcommons, indent=4))
