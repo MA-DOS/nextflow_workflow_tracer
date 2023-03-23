@@ -143,7 +143,7 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
                                     if not os.path.exists(temp):
                                         curr_file["path"] = "/".join(x[:len(x)-1]) + "/"
                                         remote_files[temp] = len(files[i])        #input file pulled from nf-core test-datasets
-                                        curr_file["size"] = "TODO - Remote file"
+                                        curr_file["size"] = "Unknown file location"
                                     else:
                                         curr_file["path"] = "/" + "/".join(x[len(x)-3:len(x)-1]) + "/"
 
@@ -315,6 +315,7 @@ def parse_dag(filepath_dag, parents, children):
                 #print("succ {} = {}".format(succ, G.nodes[succ]["label"]))
                 children[process].append(G.nodes[succ]["label"])
 
+##################################################################################################################
 
 nextflow_path = "./nextflow-22.10.7/launch.sh"
 

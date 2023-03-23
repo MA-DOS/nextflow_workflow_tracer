@@ -325,20 +325,20 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
 ##################################################################################################################
 
 #0. Command line arguments
-# argc = len(sys.argv)
-# if (argc != 8):
-#     print(f"Usage: python3 {sys.argv[0]} <workflow name> <log file> <trace file> <scripts file> <dag file> <stdout file> <output file>")
-#     quit()
+argc = len(sys.argv)
+if (argc != 8):
+    print(f"Usage: python3 {sys.argv[0]} <workflow name> <log file> <trace file> <scripts file> <dag file> <stdout file> <output file>")
+    quit()
 
-workflow_name    = 'rnaseq' #str(sys.argv[1]) #'hlatyping'
-filepath_log     = 'log.txt' #str(sys.argv[2]) #'hlatyping-log.txt'
-filepath_trace   = 'trace.txt' #str(sys.argv[3]) #'hlatyping-trace.txt'
-#filepath_scripts = #str(sys.argv[4]) #'hlatyping-scripts.txt'
-filepath_dag     = 'dag.dot' #str(sys.argv[5]) #'hlatyping-dag.dot'
-#filepath_stdout  = #str(sys.argv[6]) #'hlatyping-stdout.txt'
-outfile          = 'test.json' #str(sys.argv[7]) #"wfcommons-" + workflow_name + ".json"
+workflow_name    = str(sys.argv[1])
+filepath_log     = str(sys.argv[2])
+filepath_trace   = str(sys.argv[3])
+filepath_scripts = str(sys.argv[4])
+filepath_dag     = str(sys.argv[5])
+filepath_stdout  = str(sys.argv[6])
+outfile          = str(sys.argv[7])
 
-#print(f"Command line arguments:\n\t{workflow_name=}\n\t{filepath_log=}\n\t{filepath_trace=}\n\t{filepath_scripts=}\n\t{filepath_dag=}\n\t{filepath_stdout=}\n\t{outfile=}")
+print(f"Command line arguments:\n\t{workflow_name=}\n\t{filepath_log=}\n\t{filepath_trace=}\n\t{filepath_scripts=}\n\t{filepath_dag=}\n\t{filepath_stdout=}\n\t{outfile=}")
 
 if not os.path.isfile(filepath_log):
     print(f"ERROR: log file '{filepath_log}' does not exist!")
@@ -346,19 +346,19 @@ if not os.path.isfile(filepath_log):
 if not os.path.isfile(filepath_trace):
     print(f"ERROR: trace file '{filepath_trace}' does not exist!")
     quit()
-# if not os.path.isfile(filepath_scripts):
-#     print(f"ERROR: scripts file '{filepath_scripts}' does not exist!")
-#     quit()
+if not os.path.isfile(filepath_scripts):
+    print(f"ERROR: scripts file '{filepath_scripts}' does not exist!")
+    quit()
 if not os.path.isfile(filepath_dag):
     print(f"ERROR: dag file '{filepath_dag}' does not exist!")
     quit()
-# if not os.path.isfile(filepath_stdout):
-#     print(f"ERROR: stdout file '{filepath_stdout}' does not exist!")
-#     quit()
+if not os.path.isfile(filepath_stdout):
+    print(f"ERROR: stdout file '{filepath_stdout}' does not exist!")
+    quit()
 
 #1. Parse files into various dictionaries (and list)
 workflow = {}
-#parse_stdout(filepath_stdout, workflow)
+parse_stdout(filepath_stdout, workflow)
 
 task_id     = []
 processes   = {}
@@ -408,7 +408,7 @@ for i in task_id:
     curr_task["name"]             = processes[i].replace(':', '.')
     curr_task["id"]               = i
     curr_task["type"]             = "compute"
-    #curr_task["command"]          = scripts[i]                       #TODO: change to dictionary object?
+    curr_task["command"]          = scripts[i]                       #TODO: change to dictionary object?
     curr_task["parents"]          = rep_parents[processes[i]] #parents[processes[i]]
     curr_task["children"]         = rep_children[processes[i]] #children[processes[i]]
     curr_task["files"]            = files[i]
@@ -425,14 +425,6 @@ for i in task_id:
                 sum_r += file["size"]
             else:
                 sum_w += file["size"]
-
-    # sum_r = 0.
-    # sum_w = 0.
-    # for file in files[i]:
-    #     if file["link"] == "input":
-    #         sum_r += file["size"]
-    #     else:
-    #         sum_w += file["size"]
 
     curr_task["inputFilesBytes"]  = sum_r #float(file_bytes_read[i])
     curr_task["outputFilesBytes"] = sum_w #float(file_bytes_write[i])
