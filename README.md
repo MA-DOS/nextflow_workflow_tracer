@@ -192,7 +192,7 @@ List<Object> beforeRun(final DataflowProcessor processor, final List<Object> mes
     return result
 }
 ```
-add a single `log.debug` statement before the `return` statement, as follows:
+save the `TaskId.next()` and add a `log.debug` statement before the `return` statement, as follows:
 ```groovy
 @Override
 List<Object> beforeRun(final DataflowProcessor processor, final List<Object> messages) {
@@ -201,7 +201,8 @@ List<Object> beforeRun(final DataflowProcessor processor, final List<Object> mes
     state.update { StateObj it -> it.incSubmitted() }
     // task index must be created here to guarantee consistent ordering
     // with the sequence of messages arrival since this method is executed in a thread safe manner
-    final params = new TaskStartParams(TaskId.next(), indexCount.incrementAndGet())
+    def id = TaskId.next()
+    final params = new TaskStartParams(id, indexCount.incrementAndGet())
     final result = new ArrayList(2)
     result[0] = params
     result[1] = messages
