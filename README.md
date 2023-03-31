@@ -1,4 +1,5 @@
-# nextflow_workflow_tracer
+# WfCommons Nextflow workflow tracer
+
 A tool to trace Nextflow workflow executions and produce WfFormat workflow instances.
 
 ## Modifications to Nextflow
