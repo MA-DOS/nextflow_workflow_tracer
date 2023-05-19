@@ -462,7 +462,9 @@ single_machine["architecture"] = str(completed_process.stdout).strip()
 
 cpu={}
 cpu["count"]=1
-cpu["speed"]=2400
+cpu["speed"]=2400  # This is HARDCODED for now, which is not great
+                   # One option is:  cat /proc/cpuinfo | grep "model name" | sed "s/.* //" | sed "s/G.*//" | sed "s/\.//" | sed "s/$/0/"
+
 
 single_machine["cpu"]=cpu
 
