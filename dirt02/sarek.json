@@ -2,7 +2,7 @@
     "name": "sarek",
     "description": "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)",
     "createdAt": "2023-03-21T23:21:11.240833+00:00",
-    "schemaVersion": "1.4",
+    "schemaVersion": "1.3",
     "wms": {
         "name": "Nextflow",
         "url": "https://www.nextflow.io/"
@@ -11,6 +11,7 @@
         "repo": "https://github.com/nf-core/sarek",
         "runName": "marvelous_perlman",
         "executedAt": "2023-03-21T13:21:06-10:00",
+        "makespan": 518,
         "tasks": [
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.GATK4_CREATESEQUENCEDICTIONARY",
@@ -34,31 +35,28 @@
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "output",
                         "name": "genome.dict",
                         "path": "/c7/fffe3aa55aea5327ee863512d16a8c/",
-                        "sizeInBytes": 0.085
+                        "size": 0.085
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/c7/fffe3aa55aea5327ee863512d16a8c/",
-                        "sizeInBytes": 0.087
+                        "size": 0.087
                     }
                 ],
+                "runtime": 25.0,
                 "avgCPU": 90.3,
                 "bytesRead": 105672.936,
                 "bytesWritten": 697.57,
                 "inputFilesBytes": 40.675,
                 "outputFilesBytes": 0.172,
-                "memory": 275070.976,
-                "runtimeInSeconds": 25.0,
-                "readBytes": 105672936.0,
-                "writtenBytes": 697570.0,
-                "memoryInBytes": 275070976.0
+                "memory": 275070.976
             },
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
@@ -77,31 +75,28 @@
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "output",
                         "name": "bwa",
                         "path": "/23/b30127ac6112c96ba1201b711e2bae/",
-                        "sizeInBytes": 70.212
+                        "size": 70.212
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/23/b30127ac6112c96ba1201b711e2bae/",
-                        "sizeInBytes": 0.074
+                        "size": 0.074
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 24.7,
                 "bytesRead": 221.412,
                 "bytesWritten": 113.177,
                 "inputFilesBytes": 40.675,
                 "outputFilesBytes": 70.286,
-                "memory": 2879.488,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 221412.0,
-                "writtenBytes": 113177.0,
-                "memoryInBytes": 2879488.0
+                "memory": 2879.488
             },
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.SAMTOOLS_FAIDX",
@@ -126,31 +121,28 @@
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "output",
                         "name": "genome.fasta.fai",
                         "path": "/22/6faae149041906e9687df3b54bc96e/",
-                        "sizeInBytes": 0.02
+                        "size": 0.02
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/22/6faae149041906e9687df3b54bc96e/",
-                        "sizeInBytes": 0.074
+                        "size": 0.074
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 18.2,
                 "bytesRead": 148.475,
                 "bytesWritten": 4.921,
                 "inputFilesBytes": 40.675,
                 "outputFilesBytes": 0.094,
-                "memory": 3497.984,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 148475.0,
-                "writtenBytes": 4921.0,
-                "memoryInBytes": 3497984.0
+                "memory": 3497.984
             },
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.TABIX_KNOWN_INDELS",
@@ -167,31 +159,28 @@
                         "link": "input",
                         "name": "mills_and_1000G.indels.vcf.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/vcf/",
-                        "sizeInBytes": 4.133
+                        "size": 4.133
                     },
                     {
                         "link": "output",
                         "name": "mills_and_1000G.indels.vcf.gz.tbi",
                         "path": "/ff/5265e7baec78fd1367e00bcd23e3f5/",
-                        "sizeInBytes": 0.132
+                        "size": 0.132
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/ff/5265e7baec78fd1367e00bcd23e3f5/",
-                        "sizeInBytes": 0.072
+                        "size": 0.072
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 33.9,
                 "bytesRead": 80.802,
                 "bytesWritten": 3.149,
                 "inputFilesBytes": 4.133,
                 "outputFilesBytes": 0.20400000000000001,
-                "memory": 3477.504,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 80802.0,
-                "writtenBytes": 3149.0,
-                "memoryInBytes": 3477504.0
+                "memory": 3477.504
             },
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED",
@@ -212,31 +201,28 @@
                         "link": "input",
                         "name": "genome.interval_list",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 0.197
+                        "size": 0.197
                     },
                     {
                         "link": "output",
                         "name": "genome.bed",
                         "path": "/e0/3cdf465c17c414675c3b4b4e01ade2/",
-                        "sizeInBytes": 0.022
+                        "size": 0.022
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/e0/3cdf465c17c414675c3b4b4e01ade2/",
-                        "sizeInBytes": 0.083
+                        "size": 0.083
                     }
                 ],
+                "runtime": 24.0,
                 "avgCPU": 90.2,
                 "bytesRead": 105696.035,
                 "bytesWritten": 697.336,
                 "inputFilesBytes": 0.197,
                 "outputFilesBytes": 0.10500000000000001,
-                "memory": 321519.616,
-                "runtimeInSeconds": 24.0,
-                "readBytes": 105696035.0,
-                "writtenBytes": 697336.0,
-                "memoryInBytes": 321519616.0
+                "memory": 321519.616
             },
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_INTERVALS.CREATE_INTERVALS_BED",
@@ -255,31 +241,28 @@
                         "link": "input",
                         "name": "genome.interval_list",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 0.197
+                        "size": 0.197
                     },
                     {
                         "link": "output",
                         "name": "chr22_1-40001.bed",
                         "path": "/e4/0a09c8403c22f0388251708b23a25e/",
-                        "sizeInBytes": 0.014
+                        "size": 0.014
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/e4/0a09c8403c22f0388251708b23a25e/",
-                        "sizeInBytes": 0.077
+                        "size": 0.077
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 45.7,
                 "bytesRead": 50.186,
                 "bytesWritten": 1.097,
                 "inputFilesBytes": 0.197,
                 "outputFilesBytes": 0.091,
-                "memory": 0.0,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 50186.0,
-                "writtenBytes": 1097.0,
-                "memoryInBytes": 0.0
+                "memory": 0.0
             },
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.TABIX_DBSNP",
@@ -296,31 +279,28 @@
                         "link": "input",
                         "name": "dbsnp_146.hg38.vcf.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/vcf/",
-                        "sizeInBytes": 54.037
+                        "size": 54.037
                     },
                     {
                         "link": "output",
                         "name": "dbsnp_146.hg38.vcf.gz.tbi",
                         "path": "/b5/68f7f32ec735378ef695396c1303ba/",
-                        "sizeInBytes": 0.137
+                        "size": 0.137
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/b5/68f7f32ec735378ef695396c1303ba/",
-                        "sizeInBytes": 0.065
+                        "size": 0.065
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 27.7,
                 "bytesRead": 130.677,
                 "bytesWritten": 3.14,
                 "inputFilesBytes": 54.037,
                 "outputFilesBytes": 0.202,
-                "memory": 3399.68,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 130676.99999999999,
-                "writtenBytes": 3140.0,
-                "memoryInBytes": 3399680.0
+                "memory": 3399.68
             },
             {
                 "name": "NFCORE_SAREK.SAREK.FASTQC",
@@ -339,55 +319,52 @@
                         "link": "input",
                         "name": "test_1.fastq.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/illumina/fastq/",
-                        "sizeInBytes": 16013.759
+                        "size": 16013.759
                     },
                     {
                         "link": "input",
                         "name": "test_2.fastq.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/illumina/fastq/",
-                        "sizeInBytes": 16698.858
+                        "size": 16698.858
                     },
                     {
                         "link": "output",
                         "name": "test-test_L1_test_1_fastqc.html",
                         "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
-                        "sizeInBytes": 600.187
+                        "size": 600.187
                     },
                     {
                         "link": "output",
                         "name": "test-test_L1_test_2_fastqc.html",
                         "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
-                        "sizeInBytes": 583.377
+                        "size": 583.377
                     },
                     {
                         "link": "output",
                         "name": "test-test_L1_test_1_fastqc.zip",
                         "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
-                        "sizeInBytes": 333.966
+                        "size": 333.966
                     },
                     {
                         "link": "output",
                         "name": "test-test_L1_test_2_fastqc.zip",
                         "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
-                        "sizeInBytes": 308.677
+                        "size": 308.677
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
-                        "sizeInBytes": 0.048
+                        "size": 0.048
                     }
                 ],
+                "runtime": 30.0,
                 "avgCPU": 93.6,
                 "bytesRead": 54510.859,
                 "bytesWritten": 3591.778,
                 "inputFilesBytes": 32712.617,
                 "outputFilesBytes": 1826.2549999999999,
-                "memory": 367382.528,
-                "runtimeInSeconds": 30.0,
-                "readBytes": 54510859.0,
-                "writtenBytes": 3591778.0,
-                "memoryInBytes": 367382528.0
+                "memory": 367382.528
             },
             {
                 "name": "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP.BWAMEM1_MEM",
@@ -407,43 +384,40 @@
                         "link": "input",
                         "name": "test_1.fastq.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/illumina/fastq/",
-                        "sizeInBytes": 16013.759
+                        "size": 16013.759
                     },
                     {
                         "link": "input",
                         "name": "test_2.fastq.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/illumina/fastq/",
-                        "sizeInBytes": 16698.858
+                        "size": 16698.858
                     },
                     {
                         "link": "input",
                         "name": "bwa",
                         "path": "/23/b30127ac6112c96ba1201b711e2bae/",
-                        "sizeInBytes": 70.212
+                        "size": 70.212
                     },
                     {
                         "link": "output",
                         "name": "test.sorted.bam",
                         "path": "/d7/7993bc2cef3243b81bf426e358b1d6/",
-                        "sizeInBytes": 34370.487
+                        "size": 34370.487
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/d7/7993bc2cef3243b81bf426e358b1d6/",
-                        "sizeInBytes": 0.111
+                        "size": 0.111
                     }
                 ],
+                "runtime": 42.0,
                 "avgCPU": 94.3,
                 "bytesRead": 182666.542,
                 "bytesWritten": 184151.744,
                 "inputFilesBytes": 32782.829,
                 "outputFilesBytes": 34370.598,
-                "memory": 605876.224,
-                "runtimeInSeconds": 42.0,
-                "readBytes": 182666542.0,
-                "writtenBytes": 184151744.0,
-                "memoryInBytes": 605876224.0
+                "memory": 605876.224
             },
             {
                 "name": "NFCORE_SAREK.SAREK.PREPARE_INTERVALS.TABIX_BGZIPTABIX_INTERVAL_SPLIT",
@@ -464,37 +438,34 @@
                         "link": "input",
                         "name": "chr22_1-40001.bed",
                         "path": "/e4/0a09c8403c22f0388251708b23a25e/",
-                        "sizeInBytes": 0.014
+                        "size": 0.014
                     },
                     {
                         "link": "output",
                         "name": "chr22_1-40001.bed.gz",
                         "path": "/07/6c1777387768a23c3dced135bc84d1/",
-                        "sizeInBytes": 0.073
+                        "size": 0.073
                     },
                     {
                         "link": "output",
                         "name": "chr22_1-40001.bed.gz.tbi",
                         "path": "/07/6c1777387768a23c3dced135bc84d1/",
-                        "sizeInBytes": 0.107
+                        "size": 0.107
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/07/6c1777387768a23c3dced135bc84d1/",
-                        "sizeInBytes": 0.088
+                        "size": 0.088
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 17.3,
                 "bytesRead": 86.056,
                 "bytesWritten": 3.244,
                 "inputFilesBytes": 0.014,
                 "outputFilesBytes": 0.268,
-                "memory": 3420.16,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 86056.0,
-                "writtenBytes": 3244.0,
-                "memoryInBytes": 3420160.0
+                "memory": 3420.16
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.GATK4_MARKDUPLICATES",
@@ -522,55 +493,52 @@
                         "link": "input",
                         "name": "test.sorted.bam",
                         "path": "/d7/7993bc2cef3243b81bf426e358b1d6/",
-                        "sizeInBytes": 34370.487
+                        "size": 34370.487
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta.fai",
                         "path": "/22/6faae149041906e9687df3b54bc96e/",
-                        "sizeInBytes": 0.02
+                        "size": 0.02
                     },
                     {
                         "link": "output",
                         "name": "test.md.cram",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 22930.382
+                        "size": 22930.382
                     },
                     {
                         "link": "output",
                         "name": "test.md.cram.crai",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 0.495
+                        "size": 0.495
                     },
                     {
                         "link": "output",
                         "name": "test.md.cram.metrics",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 1.821
+                        "size": 1.821
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 0.103
+                        "size": 0.103
                     }
                 ],
+                "runtime": 62.0,
                 "avgCPU": 93.1,
                 "bytesRead": 212014.681,
                 "bytesWritten": 69660.873,
                 "inputFilesBytes": 34411.182,
                 "outputFilesBytes": 22932.801,
-                "memory": 2507993.088,
-                "runtimeInSeconds": 62.0,
-                "readBytes": 212014681.0,
-                "writtenBytes": 69660873.0,
-                "memoryInBytes": 2507993088.0
+                "memory": 2507993.088
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.INDEX_MARKDUPLICATES",
@@ -593,31 +561,28 @@
                         "link": "input",
                         "name": "test.md.cram",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 22930.382
+                        "size": 22930.382
                     },
                     {
                         "link": "output",
                         "name": "test.md.cram.crai",
                         "path": "/91/b39c44cdf1b31aaad46c3aaa1d7ad6/",
-                        "sizeInBytes": 0.495
+                        "size": 0.495
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/91/b39c44cdf1b31aaad46c3aaa1d7ad6/",
-                        "sizeInBytes": 0.084
+                        "size": 0.084
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 19.3,
                 "bytesRead": 23038.223,
                 "bytesWritten": 5.416,
                 "inputFilesBytes": 22930.382,
                 "outputFilesBytes": 0.579,
-                "memory": 3375.104,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 23038223.0,
-                "writtenBytes": 5416.0,
-                "memoryInBytes": 3375104.0
+                "memory": 3375.104
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.MOSDEPTH",
@@ -637,67 +602,64 @@
                         "link": "input",
                         "name": "test.md.cram",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 22930.382
+                        "size": 22930.382
                     },
                     {
                         "link": "input",
                         "name": "test.md.cram.crai",
                         "path": "/91/b39c44cdf1b31aaad46c3aaa1d7ad6/",
-                        "sizeInBytes": 0.495
+                        "size": 0.495
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "output",
                         "name": "test.md.mosdepth.global.dist.txt",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 5.84
+                        "size": 5.84
                     },
                     {
                         "link": "output",
                         "name": "test.md.mosdepth.summary.txt",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 0.166
+                        "size": 0.166
                     },
                     {
                         "link": "output",
                         "name": "test.md.mosdepth.region.dist.txt",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 1.996
+                        "size": 1.996
                     },
                     {
                         "link": "output",
                         "name": "test.md.regions.bed.gz",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 0.534
+                        "size": 0.534
                     },
                     {
                         "link": "output",
                         "name": "test.md.regions.bed.gz.csi",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 0.106
+                        "size": 0.106
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 0.096
+                        "size": 0.096
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 97.0,
                 "bytesRead": 1164.102,
                 "bytesWritten": 9.075,
                 "inputFilesBytes": 22971.552,
                 "outputFilesBytes": 8.738000000000001,
-                "memory": 3158.016,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 1164102.0,
-                "writtenBytes": 9075.0,
-                "memoryInBytes": 3158016.0
+                "memory": 3158.016
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.SAMTOOLS_STATS",
@@ -717,43 +679,40 @@
                         "link": "input",
                         "name": "test.md.cram",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 22930.382
+                        "size": 22930.382
                     },
                     {
                         "link": "input",
                         "name": "test.md.cram.crai",
                         "path": "/91/b39c44cdf1b31aaad46c3aaa1d7ad6/",
-                        "sizeInBytes": 0.495
+                        "size": 0.495
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "output",
                         "name": "test.md.cram.stats",
                         "path": "/8c/15c5e0f0aefb204d45065e98980f2b/",
-                        "sizeInBytes": 182.809
+                        "size": 182.809
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/8c/15c5e0f0aefb204d45065e98980f2b/",
-                        "sizeInBytes": 0.104
+                        "size": 0.104
                     }
                 ],
+                "runtime": 4.0,
                 "avgCPU": 90.4,
                 "bytesRead": 23119.717,
                 "bytesWritten": 187.792,
                 "inputFilesBytes": 22971.552,
                 "outputFilesBytes": 182.913,
-                "memory": 28672.0,
-                "runtimeInSeconds": 4.0,
-                "readBytes": 23119717.0,
-                "writtenBytes": 187792.0,
-                "memoryInBytes": 28672000.0
+                "memory": 28672.0
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_BASERECALIBRATOR.GATK4_BASERECALIBRATOR",
@@ -780,85 +739,82 @@
                         "link": "input",
                         "name": "test.md.cram",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 22930.382
+                        "size": 22930.382
                     },
                     {
                         "link": "input",
                         "name": "test.md.cram.crai",
                         "path": "/91/b39c44cdf1b31aaad46c3aaa1d7ad6/",
-                        "sizeInBytes": 0.495
+                        "size": 0.495
                     },
                     {
                         "link": "input",
                         "name": "chr22_1-40001.bed",
                         "path": "/e4/0a09c8403c22f0388251708b23a25e/",
-                        "sizeInBytes": 0.014
+                        "size": 0.014
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta.fai",
                         "path": "/22/6faae149041906e9687df3b54bc96e/",
-                        "sizeInBytes": 0.02
+                        "size": 0.02
                     },
                     {
                         "link": "input",
                         "name": "genome.dict",
                         "path": "/c7/fffe3aa55aea5327ee863512d16a8c/",
-                        "sizeInBytes": 0.085
+                        "size": 0.085
                     },
                     {
                         "link": "input",
                         "name": "dbsnp_146.hg38.vcf.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/vcf/",
-                        "sizeInBytes": 54.037
+                        "size": 54.037
                     },
                     {
                         "link": "input",
                         "name": "mills_and_1000G.indels.vcf.gz",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/vcf/",
-                        "sizeInBytes": 4.133
+                        "size": 4.133
                     },
                     {
                         "link": "input",
                         "name": "dbsnp_146.hg38.vcf.gz.tbi",
                         "path": "/b5/68f7f32ec735378ef695396c1303ba/",
-                        "sizeInBytes": 0.137
+                        "size": 0.137
                     },
                     {
                         "link": "input",
                         "name": "mills_and_1000G.indels.vcf.gz.tbi",
                         "path": "/ff/5265e7baec78fd1367e00bcd23e3f5/",
-                        "sizeInBytes": 0.132
+                        "size": 0.132
                     },
                     {
                         "link": "output",
                         "name": "test.recal.table",
                         "path": "/6d/af9b1caa02c85b02641b93d40c746a/",
-                        "sizeInBytes": 160.277
+                        "size": 160.277
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/6d/af9b1caa02c85b02641b93d40c746a/",
-                        "sizeInBytes": 0.085
+                        "size": 0.085
                     }
                 ],
+                "runtime": 63.0,
                 "avgCPU": 93.6,
                 "bytesRead": 108607.447,
                 "bytesWritten": 863.111,
                 "inputFilesBytes": 23030.11,
                 "outputFilesBytes": 160.362,
-                "memory": 524218.368,
-                "runtimeInSeconds": 63.0,
-                "readBytes": 108607447.0,
-                "writtenBytes": 863111.0,
-                "memoryInBytes": 524218368.0
+                "memory": 524218.368
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.GATK4_APPLYBQSR",
@@ -890,67 +846,64 @@
                         "link": "input",
                         "name": "test.md.cram",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 22930.382
+                        "size": 22930.382
                     },
                     {
                         "link": "input",
                         "name": "test.md.cram.crai",
                         "path": "/91/b39c44cdf1b31aaad46c3aaa1d7ad6/",
-                        "sizeInBytes": 0.495
+                        "size": 0.495
                     },
                     {
                         "link": "input",
                         "name": "test.recal.table",
                         "path": "/6d/af9b1caa02c85b02641b93d40c746a/",
-                        "sizeInBytes": 160.277
+                        "size": 160.277
                     },
                     {
                         "link": "input",
                         "name": "chr22_1-40001.bed",
                         "path": "/e4/0a09c8403c22f0388251708b23a25e/",
-                        "sizeInBytes": 0.014
+                        "size": 0.014
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta.fai",
                         "path": "/22/6faae149041906e9687df3b54bc96e/",
-                        "sizeInBytes": 0.02
+                        "size": 0.02
                     },
                     {
                         "link": "input",
                         "name": "genome.dict",
                         "path": "/c7/fffe3aa55aea5327ee863512d16a8c/",
-                        "sizeInBytes": 0.085
+                        "size": 0.085
                     },
                     {
                         "link": "output",
                         "name": "test.recal.cram",
                         "path": "/63/445abea905ae1242b0ec0ce15f3dd7/",
-                        "sizeInBytes": 1182.666
+                        "size": 1182.666
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/63/445abea905ae1242b0ec0ce15f3dd7/",
-                        "sizeInBytes": 0.071
+                        "size": 0.071
                     }
                 ],
+                "runtime": 59.0,
                 "avgCPU": 94.0,
                 "bytesRead": 108660.675,
                 "bytesWritten": 1883.051,
                 "inputFilesBytes": 23131.947999999997,
                 "outputFilesBytes": 1182.7369999999999,
-                "memory": 583708.672,
-                "runtimeInSeconds": 59.0,
-                "readBytes": 108660675.0,
-                "writtenBytes": 1883051.0,
-                "memoryInBytes": 583708672.0
+                "memory": 583708.672
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.CRAM_MERGE_INDEX_SAMTOOLS.INDEX_CRAM",
@@ -975,31 +928,28 @@
                         "link": "input",
                         "name": "test.recal.cram",
                         "path": "/63/445abea905ae1242b0ec0ce15f3dd7/",
-                        "sizeInBytes": 1182.666
+                        "size": 1182.666
                     },
                     {
                         "link": "output",
                         "name": "test.recal.cram.crai",
                         "path": "/37/741818f8f8d33c64d68b0ce374e284/",
-                        "sizeInBytes": 0.066
+                        "size": 0.066
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/37/741818f8f8d33c64d68b0ce374e284/",
-                        "sizeInBytes": 0.095
+                        "size": 0.095
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 57.8,
                 "bytesRead": 1290.543,
                 "bytesWritten": 5.009,
                 "inputFilesBytes": 1182.666,
                 "outputFilesBytes": 0.161,
-                "memory": 7249.92,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 1290543.0,
-                "writtenBytes": 5009.0,
-                "memoryInBytes": 7249920.0
+                "memory": 7249.92
             },
             {
                 "name": "NFCORE_SAREK.SAREK.CRAM_QC_RECAL.MOSDEPTH",
@@ -1020,67 +970,64 @@
                         "link": "input",
                         "name": "test.recal.cram",
                         "path": "/63/445abea905ae1242b0ec0ce15f3dd7/",
-                        "sizeInBytes": 1182.666
+                        "size": 1182.666
                     },
                     {
                         "link": "input",
                         "name": "test.recal.cram.crai",
                         "path": "/37/741818f8f8d33c64d68b0ce374e284/",
-                        "sizeInBytes": 0.066
+                        "size": 0.066
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "output",
                         "name": "test.recal.mosdepth.global.dist.txt",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 5.84
+                        "size": 5.84
                     },
                     {
                         "link": "output",
                         "name": "test.recal.mosdepth.summary.txt",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 0.166
+                        "size": 0.166
                     },
                     {
                         "link": "output",
                         "name": "test.recal.mosdepth.region.dist.txt",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 1.996
+                        "size": 1.996
                     },
                     {
                         "link": "output",
                         "name": "test.recal.regions.bed.gz",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 0.534
+                        "size": 0.534
                     },
                     {
                         "link": "output",
                         "name": "test.recal.regions.bed.gz.csi",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 0.106
+                        "size": 0.106
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 0.065
+                        "size": 0.065
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 62.4,
                 "bytesRead": 1287.396,
                 "bytesWritten": 9.013,
                 "inputFilesBytes": 1223.407,
                 "outputFilesBytes": 8.707,
-                "memory": 6205.44,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 1287396.0,
-                "writtenBytes": 9013.0,
-                "memoryInBytes": 6205440.0
+                "memory": 6205.44
             },
             {
                 "name": "NFCORE_SAREK.SAREK.BAM_VARIANT_CALLING_GERMLINE_ALL.BAM_VARIANT_CALLING_SINGLE_STRELKA.STRELKA_SINGLE",
@@ -1108,79 +1055,76 @@
                         "link": "input",
                         "name": "test.recal.cram",
                         "path": "/63/445abea905ae1242b0ec0ce15f3dd7/",
-                        "sizeInBytes": 1182.666
+                        "size": 1182.666
                     },
                     {
                         "link": "input",
                         "name": "test.recal.cram.crai",
                         "path": "/37/741818f8f8d33c64d68b0ce374e284/",
-                        "sizeInBytes": 0.066
+                        "size": 0.066
                     },
                     {
                         "link": "input",
                         "name": "chr22_1-40001.bed.gz",
                         "path": "/07/6c1777387768a23c3dced135bc84d1/",
-                        "sizeInBytes": 0.073
+                        "size": 0.073
                     },
                     {
                         "link": "input",
                         "name": "chr22_1-40001.bed.gz.tbi",
                         "path": "/07/6c1777387768a23c3dced135bc84d1/",
-                        "sizeInBytes": 0.107
+                        "size": 0.107
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta.fai",
                         "path": "/22/6faae149041906e9687df3b54bc96e/",
-                        "sizeInBytes": 0.02
+                        "size": 0.02
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.variants.vcf.gz",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 2.18
+                        "size": 2.18
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.variants.vcf.gz.tbi",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 0.132
+                        "size": 0.132
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.genome.vcf.gz",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 4.028
+                        "size": 4.028
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.genome.vcf.gz.tbi",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 0.114
+                        "size": 0.114
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 0.125
+                        "size": 0.125
                     }
                 ],
+                "runtime": 11.0,
                 "avgCPU": 38.7,
                 "bytesRead": 51711.741,
                 "bytesWritten": 192.034,
                 "inputFilesBytes": 1223.607,
                 "outputFilesBytes": 6.579,
-                "memory": 127111.168,
-                "runtimeInSeconds": 11.0,
-                "readBytes": 51711741.0,
-                "writtenBytes": 192034.0,
-                "memoryInBytes": 127111168.0
+                "memory": 127111.168
             },
             {
                 "name": "NFCORE_SAREK.SAREK.CRAM_QC_RECAL.SAMTOOLS_STATS",
@@ -1201,43 +1145,40 @@
                         "link": "input",
                         "name": "test.recal.cram",
                         "path": "/63/445abea905ae1242b0ec0ce15f3dd7/",
-                        "sizeInBytes": 1182.666
+                        "size": 1182.666
                     },
                     {
                         "link": "input",
                         "name": "test.recal.cram.crai",
                         "path": "/37/741818f8f8d33c64d68b0ce374e284/",
-                        "sizeInBytes": 0.066
+                        "size": 0.066
                     },
                     {
                         "link": "input",
                         "name": "genome.fasta",
                         "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
-                        "sizeInBytes": 40.675
+                        "size": 40.675
                     },
                     {
                         "link": "output",
                         "name": "test.recal.cram.stats",
                         "path": "/4a/89a7a5d5726aade58235f74ee5b43e/",
-                        "sizeInBytes": 173.721
+                        "size": 173.721
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/4a/89a7a5d5726aade58235f74ee5b43e/",
-                        "sizeInBytes": 0.073
+                        "size": 0.073
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 70.4,
                 "bytesRead": 1371.91,
                 "bytesWritten": 178.641,
                 "inputFilesBytes": 1223.407,
                 "outputFilesBytes": 173.794,
-                "memory": 13172.736,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 1371910.0,
-                "writtenBytes": 178641.0,
-                "memoryInBytes": 13172736.0
+                "memory": 13172.736
             },
             {
                 "name": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.BCFTOOLS_STATS",
@@ -1262,31 +1203,28 @@
                         "link": "input",
                         "name": "test.strelka.variants.vcf.gz",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 2.18
+                        "size": 2.18
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.variants.bcftools_stats.txt",
                         "path": "/e6/7df0bde2b93a0699dd0f0e1176b153/",
-                        "sizeInBytes": 2.842
+                        "size": 2.842
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/e6/7df0bde2b93a0699dd0f0e1176b153/",
-                        "sizeInBytes": 0.081
+                        "size": 0.081
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 73.7,
                 "bytesRead": 92.648,
                 "bytesWritten": 3.495,
                 "inputFilesBytes": 2.18,
                 "outputFilesBytes": 2.923,
-                "memory": 3211.264,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 92648.0,
-                "writtenBytes": 3495.0,
-                "memoryInBytes": 3211264.0
+                "memory": 3211.264
             },
             {
                 "name": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_TSTV_COUNT",
@@ -1312,37 +1250,34 @@
                         "link": "input",
                         "name": "test.strelka.variants.vcf.gz",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 2.18
+                        "size": 2.18
                     },
                     {
                         "link": "input",
                         "name": "genome.bed",
                         "path": "/e0/3cdf465c17c414675c3b4b4e01ade2/",
-                        "sizeInBytes": 0.022
+                        "size": 0.022
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.variants.TsTv.count",
                         "path": "/e8/c1dd5ec3aa54d120a7b3adb4d2954a/",
-                        "sizeInBytes": 0.055
+                        "size": 0.055
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/e8/c1dd5ec3aa54d120a7b3adb4d2954a/",
-                        "sizeInBytes": 0.088
+                        "size": 0.088
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 81.4,
                 "bytesRead": 47.393,
                 "bytesWritten": 4.088,
                 "inputFilesBytes": 2.202,
                 "outputFilesBytes": 0.143,
-                "memory": 0.0,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 47393.0,
-                "writtenBytes": 4088.0,
-                "memoryInBytes": 0.0
+                "memory": 0.0
             },
             {
                 "name": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_TSTV_QUAL",
@@ -1367,37 +1302,34 @@
                         "link": "input",
                         "name": "test.strelka.variants.vcf.gz",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 2.18
+                        "size": 2.18
                     },
                     {
                         "link": "input",
                         "name": "genome.bed",
                         "path": "/e0/3cdf465c17c414675c3b4b4e01ade2/",
-                        "sizeInBytes": 0.022
+                        "size": 0.022
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.variants.TsTv.qual",
                         "path": "/ef/01f8490e1bcda218c8196f96d94515/",
-                        "sizeInBytes": 0.155
+                        "size": 0.155
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/ef/01f8490e1bcda218c8196f96d94515/",
-                        "sizeInBytes": 0.087
+                        "size": 0.087
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 136.2,
                 "bytesRead": 47.374,
                 "bytesWritten": 4.157,
                 "inputFilesBytes": 2.202,
                 "outputFilesBytes": 0.242,
-                "memory": 2981.888,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 47374.0,
-                "writtenBytes": 4157.0,
-                "memoryInBytes": 2981888.0
+                "memory": 2981.888
             },
             {
                 "name": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_SUMMARY",
@@ -1422,37 +1354,34 @@
                         "link": "input",
                         "name": "test.strelka.variants.vcf.gz",
                         "path": "/ab/d4480c82d4e82ee97500b16b514ee6/",
-                        "sizeInBytes": 2.18
+                        "size": 2.18
                     },
                     {
                         "link": "input",
                         "name": "genome.bed",
                         "path": "/e0/3cdf465c17c414675c3b4b4e01ade2/",
-                        "sizeInBytes": 0.022
+                        "size": 0.022
                     },
                     {
                         "link": "output",
                         "name": "test.strelka.variants.FILTER.summary",
                         "path": "/18/264a7f3ff25558f36395be124ab32f/",
-                        "sizeInBytes": 0.172
+                        "size": 0.172
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/18/264a7f3ff25558f36395be124ab32f/",
-                        "sizeInBytes": 0.085
+                        "size": 0.085
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 102.1,
                 "bytesRead": 47.37,
                 "bytesWritten": 4.197,
                 "inputFilesBytes": 2.202,
                 "outputFilesBytes": 0.257,
-                "memory": 2809.856,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 47370.0,
-                "writtenBytes": 4197.0,
-                "memoryInBytes": 2809856.0
+                "memory": 2809.856
             },
             {
                 "name": "NFCORE_SAREK.SAREK.CUSTOM_DUMPSOFTWAREVERSIONS",
@@ -1521,37 +1450,34 @@
                         "link": "input",
                         "name": "collated_versions.yml",
                         "path": "/64/a30bbef8b421303803b84ab9070263/",
-                        "sizeInBytes": 1.849
+                        "size": 1.849
                     },
                     {
                         "link": "output",
                         "name": "software_versions.yml",
                         "path": "/f4/1b259656e5fe9f667d5268ada632da/",
-                        "sizeInBytes": 0.878
+                        "size": 0.878
                     },
                     {
                         "link": "output",
                         "name": "software_versions_mqc.yml",
                         "path": "/f4/1b259656e5fe9f667d5268ada632da/",
-                        "sizeInBytes": 4.421
+                        "size": 4.421
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/f4/1b259656e5fe9f667d5268ada632da/",
-                        "sizeInBytes": 0.079
+                        "size": 0.079
                     }
                 ],
+                "runtime": 0.569,
                 "avgCPU": 34.1,
                 "bytesRead": 861.891,
                 "bytesWritten": 5.594,
                 "inputFilesBytes": 1.849,
                 "outputFilesBytes": 5.378,
-                "memory": 5328.896,
-                "runtimeInSeconds": 0.569,
-                "readBytes": 861891.0,
-                "writtenBytes": 5594.0,
-                "memoryInBytes": 5328896.0
+                "memory": 5328.896
             },
             {
                 "name": "NFCORE_SAREK.SAREK.MULTIQC",
@@ -1579,159 +1505,151 @@
                         "link": "input",
                         "name": "methods_description_mqc.yaml",
                         "path": "/77/269a87f67a3793184f22e617db9ac0/",
-                        "sizeInBytes": 4.104
+                        "size": 4.104
                     },
                     {
                         "link": "input",
                         "name": "workflow_summary_mqc.yaml",
                         "path": "/f2/6f0818d7bd12f82271c0354cbeca64/",
-                        "sizeInBytes": 3.66
+                        "size": 3.66
                     },
                     {
                         "link": "input",
                         "name": "test-test_L1_test_1_fastqc.zip",
                         "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
-                        "sizeInBytes": 333.966
+                        "size": 333.966
                     },
                     {
                         "link": "input",
                         "name": "test-test_L1_test_2_fastqc.zip",
                         "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
-                        "sizeInBytes": 308.677
+                        "size": 308.677
                     },
                     {
                         "link": "input",
                         "name": "test.md.cram.metrics",
                         "path": "/49/a0a348931ee86adced192d3d932180/",
-                        "sizeInBytes": 1.821
+                        "size": 1.821
                     },
                     {
                         "link": "input",
                         "name": "test.md.mosdepth.global.dist.txt",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 5.84
+                        "size": 5.84
                     },
                     {
                         "link": "input",
                         "name": "test.md.mosdepth.region.dist.txt",
                         "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
-                        "sizeInBytes": 1.996
+                        "size": 1.996
                     },
                     {
                         "link": "input",
                         "name": "test.md.cram.stats",
                         "path": "/8c/15c5e0f0aefb204d45065e98980f2b/",
-                        "sizeInBytes": 182.809
+                        "size": 182.809
                     },
                     {
                         "link": "input",
                         "name": "test.recal.table",
                         "path": "/6d/af9b1caa02c85b02641b93d40c746a/",
-                        "sizeInBytes": 160.277
+                        "size": 160.277
                     },
                     {
                         "link": "input",
                         "name": "test.recal.mosdepth.global.dist.txt",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 5.84
+                        "size": 5.84
                     },
                     {
                         "link": "input",
                         "name": "test.recal.mosdepth.region.dist.txt",
                         "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
-                        "sizeInBytes": 1.996
+                        "size": 1.996
                     },
                     {
                         "link": "input",
                         "name": "test.recal.cram.stats",
                         "path": "/4a/89a7a5d5726aade58235f74ee5b43e/",
-                        "sizeInBytes": 173.721
+                        "size": 173.721
                     },
                     {
                         "link": "input",
                         "name": "test.strelka.variants.bcftools_stats.txt",
                         "path": "/e6/7df0bde2b93a0699dd0f0e1176b153/",
-                        "sizeInBytes": 2.842
+                        "size": 2.842
                     },
                     {
                         "link": "input",
                         "name": "test.strelka.variants.TsTv.count",
                         "path": "/e8/c1dd5ec3aa54d120a7b3adb4d2954a/",
-                        "sizeInBytes": 0.055
+                        "size": 0.055
                     },
                     {
                         "link": "input",
                         "name": "test.strelka.variants.TsTv.qual",
                         "path": "/ef/01f8490e1bcda218c8196f96d94515/",
-                        "sizeInBytes": 0.155
+                        "size": 0.155
                     },
                     {
                         "link": "input",
                         "name": "test.strelka.variants.FILTER.summary",
                         "path": "/18/264a7f3ff25558f36395be124ab32f/",
-                        "sizeInBytes": 0.172
+                        "size": 0.172
                     },
                     {
                         "link": "input",
                         "name": "software_versions_mqc.yml",
                         "path": "/f4/1b259656e5fe9f667d5268ada632da/",
-                        "sizeInBytes": 4.421
+                        "size": 4.421
                     },
                     {
                         "link": "input",
                         "name": "multiqc_config.yml",
                         "path": "/sarek/assets/",
-                        "sizeInBytes": 1.761
+                        "size": 1.761
                     },
                     {
                         "link": "output",
                         "name": "multiqc_report.html",
                         "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
-                        "sizeInBytes": 1257.51
+                        "size": 1257.51
                     },
                     {
                         "link": "output",
                         "name": "multiqc_data",
                         "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
-                        "sizeInBytes": 713.401
+                        "size": 713.401
                     },
                     {
                         "link": "output",
                         "name": "multiqc_plots",
                         "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
-                        "sizeInBytes": 1605.744
+                        "size": 1605.744
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
-                        "sizeInBytes": 0.048
+                        "size": 0.048
                     }
                 ],
+                "runtime": 72.657,
                 "avgCPU": 92.9,
                 "bytesRead": 701418.999,
                 "bytesWritten": 6895.943,
                 "inputFilesBytes": 1194.1130000000003,
                 "outputFilesBytes": 3576.7029999999995,
-                "memory": 155283.456,
-                "runtimeInSeconds": 72.657,
-                "readBytes": 701418999.0,
-                "writtenBytes": 6895943.0,
-                "memoryInBytes": 155283456.0
+                "memory": 155283.456
             }
-        ],
-        "machines": [
-            {
-                "nodeName": "dirt02",
-                "system": "Linux",
-                "release": "5.15.0-48-generic",
-                "architecture": "x86_64",
-                "cpu": {
-                    "count": 1,
-                    "speed": 2400
-                }
-            }
-        ],
-        "makespanInSeconds": 518
-    }
+        ]
+    },
+    "machines": [
+        {
+            "nodeName": "dirt02",
+            "system": "Linux",
+            "release": "5.15.0-48-generic",
+            "architecture": "x86_64"
+        }
+    ]
 }

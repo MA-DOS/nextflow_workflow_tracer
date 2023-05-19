@@ -2,7 +2,7 @@
     "name": "scrnaseq",
     "description": "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)",
     "createdAt": "2023-03-28T07:24:05.561277+00:00",
-    "schemaVersion": "1.4",
+    "schemaVersion": "1.3",
     "wms": {
         "name": "Nextflow",
         "url": "https://www.nextflow.io/"
@@ -11,6 +11,7 @@
         "repo": "https://github.com/nf-core/scrnaseq",
         "runName": "fervent_lattes",
         "executedAt": "2023-03-27T21:24:00-10:00",
+        "makespan": 2126,
         "tasks": [
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.INPUT_CHECK.SAMPLESHEET_CHECK",
@@ -28,31 +29,28 @@
                         "link": "input",
                         "name": "samplesheet-2-0.csv",
                         "path": "/nf-core/test-datasets/raw/scrnaseq/",
-                        "sizeInBytes": 0.854
+                        "size": 0.854
                     },
                     {
                         "link": "output",
                         "name": "samplesheet.valid.csv",
                         "path": "/11/8233f4bf9453431be241ff4a240c4a/",
-                        "sizeInBytes": 0.86
+                        "size": 0.86
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/11/8233f4bf9453431be241ff4a240c4a/",
-                        "sizeInBytes": 0.076
+                        "size": 0.076
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 76.2,
                 "bytesRead": 919.736,
                 "bytesWritten": 1.247,
                 "inputFilesBytes": 0.854,
                 "outputFilesBytes": 0.9359999999999999,
-                "memory": 2895.872,
-                "runtimeInSeconds": 0.0,
-                "readBytes": 919736.0,
-                "writtenBytes": 1247.0,
-                "memoryInBytes": 2895872.0
+                "memory": 2895.872
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.GTF_GENE_FILTER",
@@ -69,37 +67,34 @@
                         "link": "input",
                         "name": "GRCm38.p6.genome.chr19.fa",
                         "path": "/nf-core/test-datasets/raw/scrnaseq/reference/",
-                        "sizeInBytes": 62455.433
+                        "size": 62455.433
                     },
                     {
                         "link": "input",
                         "name": "gencode.vM19.annotation.chr19.gtf",
                         "path": "/nf-core/test-datasets/raw/scrnaseq/reference/",
-                        "sizeInBytes": 20994.92
+                        "size": 20994.92
                     },
                     {
                         "link": "output",
                         "name": "GRCm38.p6.genome.chr19_genes.gtf",
                         "path": "/6f/9c8353cf67bf1c1c3a2063ab01feee/",
-                        "sizeInBytes": 20994.92
+                        "size": 20994.92
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/6f/9c8353cf67bf1c1c3a2063ab01feee/",
-                        "sizeInBytes": 0.062
+                        "size": 0.062
                     }
                 ],
+                "runtime": 1.0,
                 "avgCPU": 59.8,
                 "bytesRead": 84294.634,
                 "bytesWritten": 20996.166,
                 "inputFilesBytes": 83450.353,
                 "outputFilesBytes": 20994.982,
-                "memory": 3194.88,
-                "runtimeInSeconds": 1.0,
-                "readBytes": 84294634.0,
-                "writtenBytes": 20996166.0,
-                "memoryInBytes": 3194880.0
+                "memory": 3194.88
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE",
@@ -119,37 +114,34 @@
                         "link": "input",
                         "name": "GRCm38.p6.genome.chr19.fa",
                         "path": "/nf-core/test-datasets/raw/scrnaseq/reference/",
-                        "sizeInBytes": 62455.433
+                        "size": 62455.433
                     },
                     {
                         "link": "input",
                         "name": "GRCm38.p6.genome.chr19_genes.gtf",
                         "path": "/6f/9c8353cf67bf1c1c3a2063ab01feee/",
-                        "sizeInBytes": 20994.92
+                        "size": 20994.92
                     },
                     {
                         "link": "output",
                         "name": "star",
                         "path": "/39/87cc00e7b6777b129afd5249a721e0/",
-                        "sizeInBytes": 656330.974
+                        "size": 656330.974
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/39/87cc00e7b6777b129afd5249a721e0/",
-                        "sizeInBytes": 0.112
+                        "size": 0.112
                     }
                 ],
+                "runtime": 128.0,
                 "avgCPU": 97.4,
                 "bytesRead": 1160784.025,
                 "bytesWritten": 1587632.378,
                 "inputFilesBytes": 83450.353,
                 "outputFilesBytes": 656331.086,
-                "memory": 1778008.064,
-                "runtimeInSeconds": 128.0,
-                "readBytes": 1160784025.0,
-                "writtenBytes": 1587632378.0,
-                "memoryInBytes": 1778008064.0
+                "memory": 1778008.064
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.FASTQC_CHECK.FASTQC",
@@ -168,55 +160,52 @@
                         "link": "input",
                         "name": "Sample_X_S1_L001_R1_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 1727.503
+                        "size": 1727.503
                     },
                     {
                         "link": "input",
                         "name": "Sample_X_S1_L001_R2_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 4259.756
+                        "size": 4259.756
                     },
                     {
                         "link": "output",
                         "name": "Sample_X_1_fastqc.html",
                         "path": "/cb/ba1676bb9477ce934fb901ca805a28/",
-                        "sizeInBytes": 494.553
+                        "size": 494.553
                     },
                     {
                         "link": "output",
                         "name": "Sample_X_2_fastqc.html",
                         "path": "/cb/ba1676bb9477ce934fb901ca805a28/",
-                        "sizeInBytes": 599.715
+                        "size": 599.715
                     },
                     {
                         "link": "output",
                         "name": "Sample_X_1_fastqc.zip",
                         "path": "/cb/ba1676bb9477ce934fb901ca805a28/",
-                        "sizeInBytes": 307.494
+                        "size": 307.494
                     },
                     {
                         "link": "output",
                         "name": "Sample_X_2_fastqc.zip",
                         "path": "/cb/ba1676bb9477ce934fb901ca805a28/",
-                        "sizeInBytes": 347.596
+                        "size": 347.596
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/cb/ba1676bb9477ce934fb901ca805a28/",
-                        "sizeInBytes": 0.067
+                        "size": 0.067
                     }
                 ],
+                "runtime": 22.0,
                 "avgCPU": 86.0,
                 "bytesRead": 27614.706,
                 "bytesWritten": 3381.179,
                 "inputFilesBytes": 5987.259,
                 "outputFilesBytes": 1749.4250000000002,
-                "memory": 240242.688,
-                "runtimeInSeconds": 22.0,
-                "readBytes": 27614706.0,
-                "writtenBytes": 3381179.0,
-                "memoryInBytes": 240242688.0
+                "memory": 240242.688
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.FASTQC_CHECK.FASTQC",
@@ -235,91 +224,88 @@
                         "link": "input",
                         "name": "Sample_Y_S1_L001_R1_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 1727.503
+                        "size": 1727.503
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_S1_L001_R2_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 4259.756
+                        "size": 4259.756
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_S1_L002_R1_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 737.653
+                        "size": 737.653
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_S1_L002_R2_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 1981.608
+                        "size": 1981.608
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_1_fastqc.html",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 494.553
+                        "size": 494.553
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_2_fastqc.html",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 599.715
+                        "size": 599.715
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_3_fastqc.html",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 496.207
+                        "size": 496.207
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_4_fastqc.html",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 595.808
+                        "size": 595.808
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_1_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 307.496
+                        "size": 307.496
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_2_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 347.598
+                        "size": 347.598
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_3_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 310.419
+                        "size": 310.419
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_4_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 365.294
+                        "size": 365.294
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 0.067
+                        "size": 0.067
                     }
                 ],
+                "runtime": 29.0,
                 "avgCPU": 92.4,
                 "bytesRead": 32064.709,
                 "bytesWritten": 6775.446,
                 "inputFilesBytes": 8706.52,
                 "outputFilesBytes": 3517.1569999999997,
-                "memory": 314175.488,
-                "runtimeInSeconds": 29.0,
-                "readBytes": 32064709.0,
-                "writtenBytes": 6775446.0,
-                "memoryInBytes": 314175488.0
+                "memory": 314175.488
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
@@ -342,91 +328,88 @@
                         "link": "input",
                         "name": "Sample_X_S1_L001_R1_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 1727.503
+                        "size": 1727.503
                     },
                     {
                         "link": "input",
                         "name": "Sample_X_S1_L001_R2_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 4259.756
+                        "size": 4259.756
                     },
                     {
                         "link": "input",
                         "name": "star",
                         "path": "/39/87cc00e7b6777b129afd5249a721e0/",
-                        "sizeInBytes": 656330.974
+                        "size": 656330.974
                     },
                     {
                         "link": "input",
                         "name": "GRCm38.p6.genome.chr19_genes.gtf",
                         "path": "/6f/9c8353cf67bf1c1c3a2063ab01feee/",
-                        "sizeInBytes": 20994.92
+                        "size": 20994.92
                     },
                     {
                         "link": "input",
                         "name": "10x_V2_barcode_whitelist.txt.gz",
                         "path": "/assets/whitelist/",
-                        "sizeInBytes": 2238.617
+                        "size": 2238.617
                     },
                     {
                         "link": "output",
                         "name": "Sample_X.Aligned.sortedByCoord.out.bam",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 923.543
+                        "size": 923.543
                     },
                     {
                         "link": "output",
                         "name": "Sample_X.Solo.out",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 2334.256
+                        "size": 2334.256
                     },
                     {
                         "link": "output",
                         "name": "Sample_X.Log.final.out",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 1.995
+                        "size": 1.995
                     },
                     {
                         "link": "output",
                         "name": "Sample_X.Log.out",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 11.325
+                        "size": 11.325
                     },
                     {
                         "link": "output",
                         "name": "Sample_X.Log.progress.out",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 0.801
+                        "size": 0.801
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 0.066
+                        "size": 0.066
                     },
                     {
                         "link": "output",
                         "name": "Sample_X.Aligned.sortedByCoord.out.bam",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 923.543
+                        "size": 923.543
                     },
                     {
                         "link": "output",
                         "name": "Sample_X.SJ.out.tab",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 10.069
+                        "size": 10.069
                     }
                 ],
+                "runtime": 491.0,
                 "avgCPU": 93.3,
                 "bytesRead": 803823.153,
                 "bytesWritten": 38155.447,
                 "inputFilesBytes": 685551.77,
                 "outputFilesBytes": 4205.598,
-                "memory": 2315010.048,
-                "runtimeInSeconds": 491.0,
-                "readBytes": 803823153.0,
-                "writtenBytes": 38155447.0,
-                "memoryInBytes": 2315010048.0
+                "memory": 2315010.048
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
@@ -449,103 +432,100 @@
                         "link": "input",
                         "name": "Sample_Y_S1_L001_R1_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 1727.503
+                        "size": 1727.503
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_S1_L001_R2_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 4259.756
+                        "size": 4259.756
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_S1_L002_R1_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 737.653
+                        "size": 737.653
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_S1_L002_R2_001.fastq.gz",
                         "path": "/nf-core/test-datasets/scrnaseq/testdata/cellranger/",
-                        "sizeInBytes": 1981.608
+                        "size": 1981.608
                     },
                     {
                         "link": "input",
                         "name": "star",
                         "path": "/39/87cc00e7b6777b129afd5249a721e0/",
-                        "sizeInBytes": 656330.974
+                        "size": 656330.974
                     },
                     {
                         "link": "input",
                         "name": "GRCm38.p6.genome.chr19_genes.gtf",
                         "path": "/6f/9c8353cf67bf1c1c3a2063ab01feee/",
-                        "sizeInBytes": 20994.92
+                        "size": 20994.92
                     },
                     {
                         "link": "input",
                         "name": "10x_V2_barcode_whitelist.txt.gz",
                         "path": "/assets/whitelist/",
-                        "sizeInBytes": 2238.617
+                        "size": 2238.617
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y.Aligned.sortedByCoord.out.bam",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 1143.152
+                        "size": 1143.152
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y.Solo.out",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 2343.561
+                        "size": 2343.561
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y.Log.final.out",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 1.996
+                        "size": 1.996
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y.Log.out",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 12.391
+                        "size": 12.391
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y.Log.progress.out",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 0.801
+                        "size": 0.801
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 0.066
+                        "size": 0.066
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y.Aligned.sortedByCoord.out.bam",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 1143.152
+                        "size": 1143.152
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y.SJ.out.tab",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 11.499
+                        "size": 11.499
                     }
                 ],
+                "runtime": 637.0,
                 "avgCPU": 94.1,
                 "bytesRead": 830783.9,
                 "bytesWritten": 39380.835,
                 "inputFilesBytes": 688271.0310000001,
                 "outputFilesBytes": 4656.618,
-                "memory": 1936621.568,
-                "runtimeInSeconds": 637.0,
-                "readBytes": 830783900.0,
-                "writtenBytes": 39380835.0,
-                "memoryInBytes": 1936621568.0
+                "memory": 1936621.568
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_SEURAT",
@@ -561,31 +541,28 @@
                         "link": "input",
                         "name": "Sample_X.Solo.out",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 2334.256
+                        "size": 2334.256
                     },
                     {
                         "link": "output",
                         "name": "Sample_X_matrix.rds",
                         "path": "/fa00207e5792e4a4e9ff6d39349b41/Sample_X/",
-                        "sizeInBytes": 157.44
+                        "size": 157.44
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/0c/fa00207e5792e4a4e9ff6d39349b41/",
-                        "sizeInBytes": 0.031
+                        "size": 0.031
                     }
                 ],
+                "runtime": 9.439,
                 "avgCPU": 88.9,
                 "bytesRead": 37899.037,
                 "bytesWritten": 158.056,
                 "inputFilesBytes": 2334.256,
                 "outputFilesBytes": 157.471,
-                "memory": 375816.192,
-                "runtimeInSeconds": 9.439,
-                "readBytes": 37899037.0,
-                "writtenBytes": 158056.0,
-                "memoryInBytes": 375816192.0
+                "memory": 375816.192
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD",
@@ -604,61 +581,58 @@
                         "link": "input",
                         "name": "Sample_X.Solo.out",
                         "path": "/34/70728da3904d6e998a35b67037b43b/",
-                        "sizeInBytes": 2334.256
+                        "size": 2334.256
                     },
                     {
                         "link": "input",
                         "name": "star",
                         "path": "/39/87cc00e7b6777b129afd5249a721e0/",
-                        "sizeInBytes": 656330.974
+                        "size": 656330.974
                     },
                     {
                         "link": "output",
                         "name": "Sample_X_matrix.h5ad",
                         "path": "/88cdbaa494a09ba62447cf2a82c8fe/Sample_X/",
-                        "sizeInBytes": 259.571
+                        "size": 259.571
                     },
                     {
                         "link": "output",
                         "name": "Sample_X_matrix.h5ad",
                         "path": "/88cdbaa494a09ba62447cf2a82c8fe/Sample_X/",
-                        "sizeInBytes": 259.571
+                        "size": 259.571
                     },
                     {
                         "link": "output",
                         "name": "barcodes.tsv",
                         "path": "/88cdbaa494a09ba62447cf2a82c8fe/Sample_X/",
-                        "sizeInBytes": 67.949
+                        "size": 67.949
                     },
                     {
                         "link": "output",
                         "name": "features.tsv",
                         "path": "/88cdbaa494a09ba62447cf2a82c8fe/Sample_X/",
-                        "sizeInBytes": 31.754
+                        "size": 31.754
                     },
                     {
                         "link": "output",
                         "name": "matrix.mtx",
                         "path": "/88cdbaa494a09ba62447cf2a82c8fe/Sample_X/",
-                        "sizeInBytes": 70.885
+                        "size": 70.885
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/80/88cdbaa494a09ba62447cf2a82c8fe/",
-                        "sizeInBytes": 1.404
+                        "size": 1.404
                     }
                 ],
+                "runtime": 4.0,
                 "avgCPU": 87.2,
                 "bytesRead": 25180.836,
                 "bytesWritten": 431.328,
                 "inputFilesBytes": 658665.2300000001,
                 "outputFilesBytes": 691.134,
-                "memory": 197947.392,
-                "runtimeInSeconds": 4.0,
-                "readBytes": 25180836.0,
-                "writtenBytes": 431328.0,
-                "memoryInBytes": 197947392.0
+                "memory": 197947.392
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_SEURAT",
@@ -674,31 +648,28 @@
                         "link": "input",
                         "name": "Sample_Y.Solo.out",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 2343.561
+                        "size": 2343.561
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_matrix.rds",
                         "path": "/4227fbef4ddaefca8ecbae2f807c13/Sample_Y/",
-                        "sizeInBytes": 177.75
+                        "size": 177.75
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/77/4227fbef4ddaefca8ecbae2f807c13/",
-                        "sizeInBytes": 0.031
+                        "size": 0.031
                     }
                 ],
+                "runtime": 10.838,
                 "avgCPU": 85.2,
                 "bytesRead": 37903.987,
                 "bytesWritten": 178.363,
                 "inputFilesBytes": 2343.561,
                 "outputFilesBytes": 177.781,
-                "memory": 379764.736,
-                "runtimeInSeconds": 10.838,
-                "readBytes": 37903987.0,
-                "writtenBytes": 178363.0,
-                "memoryInBytes": 379764736.0
+                "memory": 379764.736
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD",
@@ -717,61 +688,58 @@
                         "link": "input",
                         "name": "Sample_Y.Solo.out",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 2343.561
+                        "size": 2343.561
                     },
                     {
                         "link": "input",
                         "name": "star",
                         "path": "/39/87cc00e7b6777b129afd5249a721e0/",
-                        "sizeInBytes": 656330.974
+                        "size": 656330.974
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_matrix.h5ad",
                         "path": "/3f90605073080dd6f79265cdfac8f1/Sample_Y/",
-                        "sizeInBytes": 287.373
+                        "size": 287.373
                     },
                     {
                         "link": "output",
                         "name": "Sample_Y_matrix.h5ad",
                         "path": "/3f90605073080dd6f79265cdfac8f1/Sample_Y/",
-                        "sizeInBytes": 287.373
+                        "size": 287.373
                     },
                     {
                         "link": "output",
                         "name": "barcodes.tsv",
                         "path": "/3f90605073080dd6f79265cdfac8f1/Sample_Y/",
-                        "sizeInBytes": 79.475
+                        "size": 79.475
                     },
                     {
                         "link": "output",
                         "name": "features.tsv",
                         "path": "/3f90605073080dd6f79265cdfac8f1/Sample_Y/",
-                        "sizeInBytes": 31.754
+                        "size": 31.754
                     },
                     {
                         "link": "output",
                         "name": "matrix.mtx",
                         "path": "/3f90605073080dd6f79265cdfac8f1/Sample_Y/",
-                        "sizeInBytes": 78.908
+                        "size": 78.908
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/6e/3f90605073080dd6f79265cdfac8f1/",
-                        "sizeInBytes": 1.404
+                        "size": 1.404
                     }
                 ],
+                "runtime": 4.0,
                 "avgCPU": 90.0,
                 "bytesRead": 25185.79,
                 "bytesWritten": 478.745,
                 "inputFilesBytes": 658674.535,
                 "outputFilesBytes": 766.287,
-                "memory": 199163.904,
-                "runtimeInSeconds": 4.0,
-                "readBytes": 25185790.0,
-                "writtenBytes": 478745.0,
-                "memoryInBytes": 199163904.0
+                "memory": 199163.904
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
@@ -792,37 +760,34 @@
                         "link": "input",
                         "name": "collated_versions.yml",
                         "path": "/5d/57f6ea0be4d7dc405f65b8f307aecd/",
-                        "sizeInBytes": 0.454
+                        "size": 0.454
                     },
                     {
                         "link": "output",
                         "name": "software_versions.yml",
                         "path": "/f8/9b326a7a0f87d149fdcb6ca0d4092e/",
-                        "sizeInBytes": 0.273
+                        "size": 0.273
                     },
                     {
                         "link": "output",
                         "name": "software_versions_mqc.yml",
                         "path": "/f8/9b326a7a0f87d149fdcb6ca0d4092e/",
-                        "sizeInBytes": 1.942
+                        "size": 1.942
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/f8/9b326a7a0f87d149fdcb6ca0d4092e/",
-                        "sizeInBytes": 0.085
+                        "size": 0.085
                     }
                 ],
+                "runtime": 0.199,
                 "avgCPU": 64.8,
                 "bytesRead": 860.548,
                 "bytesWritten": 2.516,
                 "inputFilesBytes": 0.454,
                 "outputFilesBytes": 2.3,
-                "memory": 9052.16,
-                "runtimeInSeconds": 0.199,
-                "readBytes": 860548.0,
-                "writtenBytes": 2516.0,
-                "memoryInBytes": 9052160.0
+                "memory": 9052.16
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.CONCAT_H5AD",
@@ -838,37 +803,34 @@
                         "link": "input",
                         "name": "Sample_X_matrix.h5ad",
                         "path": "/88cdbaa494a09ba62447cf2a82c8fe/Sample_X/",
-                        "sizeInBytes": 259.571
+                        "size": 259.571
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_matrix.h5ad",
                         "path": "/3f90605073080dd6f79265cdfac8f1/Sample_Y/",
-                        "sizeInBytes": 287.373
+                        "size": 287.373
                     },
                     {
                         "link": "input",
                         "name": "samplesheet-2-0.csv",
                         "path": "/nf-core/test-datasets/raw/scrnaseq/",
-                        "sizeInBytes": 0.854
+                        "size": 0.854
                     },
                     {
                         "link": "output",
                         "name": "combined_matrix.h5ad",
                         "path": "/4b/83d885f127330f384a135643a15721/",
-                        "sizeInBytes": 594.55
+                        "size": 594.55
                     }
                 ],
+                "runtime": 4.0,
                 "avgCPU": 91.1,
                 "bytesRead": 25440.751,
                 "bytesWritten": 595.105,
                 "inputFilesBytes": 547.798,
                 "outputFilesBytes": 594.55,
-                "memory": 207249.408,
-                "runtimeInSeconds": 4.0,
-                "readBytes": 25440751.0,
-                "writtenBytes": 595105.0,
-                "memoryInBytes": 207249408.0
+                "memory": 207249.408
             },
             {
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MULTIQC",
@@ -886,117 +848,109 @@
                         "link": "input",
                         "name": "methods_description_mqc.yaml",
                         "path": "/84/5dfbcc8a230526d4d8863173658d45/",
-                        "sizeInBytes": 3.95
+                        "size": 3.95
                     },
                     {
                         "link": "input",
                         "name": "workflow_summary_mqc.yaml",
                         "path": "/eb/c26f145981db3f7cf2d52d68d758d0/",
-                        "sizeInBytes": 2.879
+                        "size": 2.879
                     },
                     {
                         "link": "input",
                         "name": "Sample_X_1_fastqc.zip",
                         "path": "/cb/ba1676bb9477ce934fb901ca805a28/",
-                        "sizeInBytes": 307.494
+                        "size": 307.494
                     },
                     {
                         "link": "input",
                         "name": "Sample_X_2_fastqc.zip",
                         "path": "/cb/ba1676bb9477ce934fb901ca805a28/",
-                        "sizeInBytes": 347.596
+                        "size": 347.596
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_1_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 307.496
+                        "size": 307.496
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_2_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 347.598
+                        "size": 347.598
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_3_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 310.419
+                        "size": 310.419
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y_4_fastqc.zip",
                         "path": "/87/3e985bf93f62b7c53d20e4043ba52c/",
-                        "sizeInBytes": 365.294
+                        "size": 365.294
                     },
                     {
                         "link": "input",
                         "name": "Sample_Y.Log.final.out",
                         "path": "/b4/a10fe2c8497160a04e25e58348dcac/",
-                        "sizeInBytes": 1.996
+                        "size": 1.996
                     },
                     {
                         "link": "input",
                         "name": "software_versions_mqc.yml",
                         "path": "/f8/9b326a7a0f87d149fdcb6ca0d4092e/",
-                        "sizeInBytes": 1.942
+                        "size": 1.942
                     },
                     {
                         "link": "input",
                         "name": "multiqc_config.yml",
                         "path": "/scrnaseq/assets/",
-                        "sizeInBytes": 0.49
+                        "size": 0.49
                     },
                     {
                         "link": "output",
                         "name": "multiqc_report.html",
                         "path": "/89/f99c10e23e999efb6270da0381217d/",
-                        "sizeInBytes": 1213.029
+                        "size": 1213.029
                     },
                     {
                         "link": "output",
                         "name": "multiqc_data",
                         "path": "/89/f99c10e23e999efb6270da0381217d/",
-                        "sizeInBytes": 343.05
+                        "size": 343.05
                     },
                     {
                         "link": "output",
                         "name": "multiqc_plots",
                         "path": "/89/f99c10e23e999efb6270da0381217d/",
-                        "sizeInBytes": 791.522
+                        "size": 791.522
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/89/f99c10e23e999efb6270da0381217d/",
-                        "sizeInBytes": 0.054
+                        "size": 0.054
                     }
                 ],
+                "runtime": 33.868,
                 "avgCPU": 87.4,
                 "bytesRead": 346742.028,
                 "bytesWritten": 4481.751,
                 "inputFilesBytes": 1997.1540000000002,
                 "outputFilesBytes": 2347.655,
-                "memory": 153034.752,
-                "runtimeInSeconds": 33.868,
-                "readBytes": 346742028.0,
-                "writtenBytes": 4481751.0,
-                "memoryInBytes": 153034752.0
+                "memory": 153034.752
             }
-        ],
-        "machines": [
-            {
-                "nodeName": "dirt02",
-                "system": "Linux",
-                "release": "5.15.0-48-generic",
-                "architecture": "x86_64",
-                "cpu": {
-                    "count": 1,
-                    "speed": 2400
-                }
-            }
-        ],
-        "makespanInSeconds": 2126
-    }
+        ]
+    },
+    "machines": [
+        {
+            "nodeName": "dirt02",
+            "system": "Linux",
+            "release": "5.15.0-48-generic",
+            "architecture": "x86_64"
+        }
+    ]
 }
