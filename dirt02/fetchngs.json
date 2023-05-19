@@ -2,7 +2,7 @@
     "name": "fetchngs",
     "description": "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)",
     "createdAt": "2023-03-28T08:39:00.191081+00:00",
-    "schemaVersion": "1.3",
+    "schemaVersion": "1.4",
     "wms": {
         "name": "Nextflow",
         "url": "https://www.nextflow.io/"
@@ -11,7 +11,6 @@
         "repo": "https://github.com/nf-core/fetchngs",
         "runName": "thirsty_legentil",
         "executedAt": "2023-03-27T22:38:56-10:00",
-        "makespan": 246,
         "tasks": [
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -28,22 +27,25 @@
                         "link": "output",
                         "name": "ERR1160846.runinfo.tsv",
                         "path": "/73/632374ef333ede37bfdd1ce1ee4a76/",
-                        "size": 1.299
+                        "sizeInBytes": 1.299
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/73/632374ef333ede37bfdd1ce1ee4a76/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 5.0,
                 "avgCPU": 4.3,
                 "bytesRead": 2462.795,
                 "bytesWritten": 4.846,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.359,
-                "memory": 23695.36
+                "memory": 23695.36,
+                "runtimeInSeconds": 5.0,
+                "readBytes": 2462795.0,
+                "writtenBytes": 4846.0,
+                "memoryInBytes": 23695360.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -60,22 +62,25 @@
                         "link": "output",
                         "name": "SRR14593545.runinfo.tsv",
                         "path": "/f5/2f3ad09ab5c25f44134fb5fe5ce383/",
-                        "size": 1.062
+                        "sizeInBytes": 1.062
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/f5/2f3ad09ab5c25f44134fb5fe5ce383/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 7.0,
                 "avgCPU": 3.8,
                 "bytesRead": 2462.556,
                 "bytesWritten": 4.609,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.122,
-                "memory": 23625.728
+                "memory": 23625.728,
+                "runtimeInSeconds": 7.0,
+                "readBytes": 2462556.0,
+                "writtenBytes": 4609.0,
+                "memoryInBytes": 23625728.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS",
@@ -93,22 +98,25 @@
                         "link": "output",
                         "name": "user-settings.mkfg",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.098
+                        "sizeInBytes": 0.098
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.117
+                        "sizeInBytes": 0.117
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 83.1,
                 "bytesRead": 76.986,
                 "bytesWritten": 0.682,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 0.21500000000000002,
-                "memory": 3256.32
+                "memory": 3256.32,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 76986.0,
+                "writtenBytes": 682.0,
+                "memoryInBytes": 3256320.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -125,22 +133,25 @@
                         "link": "output",
                         "name": "DRR028935.runinfo.tsv",
                         "path": "/a3/a95ef879741d0772bdfe7806b1afbc/",
-                        "size": 1.67
+                        "sizeInBytes": 1.67
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/a3/a95ef879741d0772bdfe7806b1afbc/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 4.0,
                 "avgCPU": 6.5,
                 "bytesRead": 2463.139,
                 "bytesWritten": 5.199,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.73,
-                "memory": 23728.128
+                "memory": 23728.128,
+                "runtimeInSeconds": 4.0,
+                "readBytes": 2463139.0,
+                "writtenBytes": 5199.0,
+                "memoryInBytes": 23728128.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -157,22 +168,25 @@
                         "link": "output",
                         "name": "SRR9984183.runinfo.tsv",
                         "path": "/cc/07e69e7b3513ce422f09905e4e810c/",
-                        "size": 1.605
+                        "sizeInBytes": 1.605
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/cc/07e69e7b3513ce422f09905e4e810c/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 4.0,
                 "avgCPU": 5.3,
                 "bytesRead": 2463.07,
                 "bytesWritten": 5.152,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.665,
-                "memory": 23760.896
+                "memory": 23760.896,
+                "runtimeInSeconds": 4.0,
+                "readBytes": 2463070.0,
+                "writtenBytes": 5152.0,
+                "memoryInBytes": 23760896.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -189,22 +203,25 @@
                         "link": "output",
                         "name": "ERR1109373.runinfo.tsv",
                         "path": "/57/2e9e778ed7effce72b1af3a870bea6/",
-                        "size": 1.967
+                        "sizeInBytes": 1.967
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/57/2e9e778ed7effce72b1af3a870bea6/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 4.0,
                 "avgCPU": 6.9,
                 "bytesRead": 2463.428,
                 "bytesWritten": 5.511,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.027,
-                "memory": 23666.688
+                "memory": 23666.688,
+                "runtimeInSeconds": 4.0,
+                "readBytes": 2463428.0,
+                "writtenBytes": 5511.0,
+                "memoryInBytes": 23666688.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -221,22 +238,25 @@
                         "link": "output",
                         "name": "DRR026872.runinfo.tsv",
                         "path": "/4c/a2220aa84722879906b2501043f4b4/",
-                        "size": 1.343
+                        "sizeInBytes": 1.343
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/4c/a2220aa84722879906b2501043f4b4/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 4.0,
                 "avgCPU": 5.1,
                 "bytesRead": 2462.828,
                 "bytesWritten": 4.884,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.403,
-                "memory": 23379.968
+                "memory": 23379.968,
+                "runtimeInSeconds": 4.0,
+                "readBytes": 2462828.0,
+                "writtenBytes": 4884.0,
+                "memoryInBytes": 23379968.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -253,22 +273,25 @@
                         "link": "output",
                         "name": "SRR13191702.runinfo.tsv",
                         "path": "/0e/ee314897b92d2095423baf424428b9/",
-                        "size": 1.848
+                        "sizeInBytes": 1.848
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/0e/ee314897b92d2095423baf424428b9/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 5.0,
                 "avgCPU": 4.8,
                 "bytesRead": 2463.313,
                 "bytesWritten": 5.394,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.9080000000000001,
-                "memory": 23691.264
+                "memory": 23691.264,
+                "runtimeInSeconds": 5.0,
+                "readBytes": 2463313.0,
+                "writtenBytes": 5394.0,
+                "memoryInBytes": 23691264.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -285,22 +308,25 @@
                         "link": "output",
                         "name": "SRR14709033.runinfo.tsv",
                         "path": "/1a/bfc20d052e638a9f332b7f696618ae/",
-                        "size": 1.036
+                        "sizeInBytes": 1.036
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/1a/bfc20d052e638a9f332b7f696618ae/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 5.0,
                 "avgCPU": 4.8,
                 "bytesRead": 2462.506,
                 "bytesWritten": 4.586,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.096,
-                "memory": 23486.464
+                "memory": 23486.464,
+                "runtimeInSeconds": 5.0,
+                "readBytes": 2462506.0,
+                "writtenBytes": 4586.0,
+                "memoryInBytes": 23486464.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
@@ -317,22 +343,25 @@
                         "link": "output",
                         "name": "SRR12848126.runinfo.tsv",
                         "path": "/cb/09005363218a16925987febe95c1b1/",
-                        "size": 1.172
+                        "sizeInBytes": 1.172
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/cb/09005363218a16925987febe95c1b1/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 4.0,
                 "avgCPU": 6.8,
                 "bytesRead": 2462.667,
                 "bytesWritten": 4.718,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.232,
-                "memory": 23547.904
+                "memory": 23547.904,
+                "runtimeInSeconds": 4.0,
+                "readBytes": 2462667.0,
+                "writtenBytes": 4718.0,
+                "memoryInBytes": 23547904.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -352,28 +381,31 @@
                         "link": "input",
                         "name": "ERR1160846.runinfo.tsv",
                         "path": "/73/632374ef333ede37bfdd1ce1ee4a76/",
-                        "size": 1.299
+                        "sizeInBytes": 1.299
                     },
                     {
                         "link": "output",
                         "name": "ERR1160846.runinfo_ftp.tsv",
                         "path": "/47/912e21cc050a6f402a82dbfa57e0e8/",
-                        "size": 1.474
+                        "sizeInBytes": 1.474
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/47/912e21cc050a6f402a82dbfa57e0e8/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 51.3,
                 "bytesRead": 956.558,
                 "bytesWritten": 1.829,
                 "inputFilesBytes": 1.299,
                 "outputFilesBytes": 1.534,
-                "memory": 3637.248
+                "memory": 3637.248,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 956558.0,
+                "writtenBytes": 1829.0,
+                "memoryInBytes": 3637248.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -393,28 +425,31 @@
                         "link": "input",
                         "name": "SRR14593545.runinfo.tsv",
                         "path": "/f5/2f3ad09ab5c25f44134fb5fe5ce383/",
-                        "size": 1.062
+                        "sizeInBytes": 1.062
                     },
                     {
                         "link": "output",
                         "name": "SRR14593545.runinfo_ftp.tsv",
                         "path": "/de/922084d2387e728fd731529438ff98/",
-                        "size": 1.138
+                        "sizeInBytes": 1.138
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/de/922084d2387e728fd731529438ff98/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 48.4,
                 "bytesRead": 956.302,
                 "bytesWritten": 1.478,
                 "inputFilesBytes": 1.062,
                 "outputFilesBytes": 1.198,
-                "memory": 11468.8
+                "memory": 11468.8,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 956302.0,
+                "writtenBytes": 1478.0,
+                "memoryInBytes": 11468800.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -434,28 +469,31 @@
                         "link": "input",
                         "name": "DRR028935.runinfo.tsv",
                         "path": "/a3/a95ef879741d0772bdfe7806b1afbc/",
-                        "size": 1.67
+                        "sizeInBytes": 1.67
                     },
                     {
                         "link": "output",
                         "name": "DRR028935.runinfo_ftp.tsv",
                         "path": "/9b/c26da539d331447c4a8d14d0784daf/",
-                        "size": 1.938
+                        "sizeInBytes": 1.938
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/9b/c26da539d331447c4a8d14d0784daf/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 58.4,
                 "bytesRead": 956.906,
                 "bytesWritten": 2.278,
                 "inputFilesBytes": 1.67,
                 "outputFilesBytes": 1.998,
-                "memory": 12365.824
+                "memory": 12365.824,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 956906.0,
+                "writtenBytes": 2278.0,
+                "memoryInBytes": 12365824.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -475,28 +513,31 @@
                         "link": "input",
                         "name": "SRR9984183.runinfo.tsv",
                         "path": "/cc/07e69e7b3513ce422f09905e4e810c/",
-                        "size": 1.605
+                        "sizeInBytes": 1.605
                     },
                     {
                         "link": "output",
                         "name": "SRR9984183.runinfo_ftp.tsv",
                         "path": "/94/1af3e9241514b985f16c1150f004ac/",
-                        "size": 1.78
+                        "sizeInBytes": 1.78
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/94/1af3e9241514b985f16c1150f004ac/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 50.1,
                 "bytesRead": 956.864,
                 "bytesWritten": 2.135,
                 "inputFilesBytes": 1.605,
                 "outputFilesBytes": 1.84,
-                "memory": 9736.192
+                "memory": 9736.192,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 956864.0,
+                "writtenBytes": 2135.0,
+                "memoryInBytes": 9736192.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -516,28 +557,31 @@
                         "link": "input",
                         "name": "ERR1109373.runinfo.tsv",
                         "path": "/57/2e9e778ed7effce72b1af3a870bea6/",
-                        "size": 1.967
+                        "sizeInBytes": 1.967
                     },
                     {
                         "link": "output",
                         "name": "ERR1109373.runinfo_ftp.tsv",
                         "path": "/f3/6cbbbb7097f59f07407af2a626cced/",
-                        "size": 2.249
+                        "sizeInBytes": 2.249
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/f3/6cbbbb7097f59f07407af2a626cced/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 51.6,
                 "bytesRead": 957.225,
                 "bytesWritten": 2.604,
                 "inputFilesBytes": 1.967,
                 "outputFilesBytes": 2.309,
-                "memory": 9764.864
+                "memory": 9764.864,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 957225.0,
+                "writtenBytes": 2604.0,
+                "memoryInBytes": 9764864.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -557,28 +601,31 @@
                         "link": "input",
                         "name": "DRR026872.runinfo.tsv",
                         "path": "/4c/a2220aa84722879906b2501043f4b4/",
-                        "size": 1.343
+                        "sizeInBytes": 1.343
                     },
                     {
                         "link": "output",
                         "name": "DRR026872.runinfo_ftp.tsv",
                         "path": "/2f/0223b5527b255dd36400cd75a59f2a/",
-                        "size": 1.51
+                        "sizeInBytes": 1.51
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/2f/0223b5527b255dd36400cd75a59f2a/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 59.6,
                 "bytesRead": 956.579,
                 "bytesWritten": 1.85,
                 "inputFilesBytes": 1.343,
                 "outputFilesBytes": 1.57,
-                "memory": 11665.408
+                "memory": 11665.408,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 956579.0,
+                "writtenBytes": 1850.0,
+                "memoryInBytes": 11665408.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -598,28 +645,31 @@
                         "link": "input",
                         "name": "SRR13191702.runinfo.tsv",
                         "path": "/0e/ee314897b92d2095423baf424428b9/",
-                        "size": 1.848
+                        "sizeInBytes": 1.848
                     },
                     {
                         "link": "output",
                         "name": "SRR13191702.runinfo_ftp.tsv",
                         "path": "/15/5db8ded50994d67eb89f7eeaeb1a80/",
-                        "size": 2.135
+                        "sizeInBytes": 2.135
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/15/5db8ded50994d67eb89f7eeaeb1a80/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 49.8,
                 "bytesRead": 957.087,
                 "bytesWritten": 2.475,
                 "inputFilesBytes": 1.848,
                 "outputFilesBytes": 2.195,
-                "memory": 12722.176
+                "memory": 12722.176,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 957087.0,
+                "writtenBytes": 2475.0,
+                "memoryInBytes": 12722176.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -639,28 +689,31 @@
                         "link": "input",
                         "name": "SRR14709033.runinfo.tsv",
                         "path": "/1a/bfc20d052e638a9f332b7f696618ae/",
-                        "size": 1.036
+                        "sizeInBytes": 1.036
                     },
                     {
                         "link": "output",
                         "name": "SRR14709033.runinfo_ftp.tsv",
                         "path": "/a7/6171417b989c7a29e75f8dff74eaf3/",
-                        "size": 1.111
+                        "sizeInBytes": 1.111
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/a7/6171417b989c7a29e75f8dff74eaf3/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 1.0,
                 "avgCPU": 58.8,
                 "bytesRead": 956.276,
                 "bytesWritten": 1.451,
                 "inputFilesBytes": 1.036,
                 "outputFilesBytes": 1.171,
-                "memory": 11886.592
+                "memory": 11886.592,
+                "runtimeInSeconds": 1.0,
+                "readBytes": 956276.0,
+                "writtenBytes": 1451.0,
+                "memoryInBytes": 11886592.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
@@ -680,28 +733,31 @@
                         "link": "input",
                         "name": "SRR12848126.runinfo.tsv",
                         "path": "/cb/09005363218a16925987febe95c1b1/",
-                        "size": 1.172
+                        "sizeInBytes": 1.172
                     },
                     {
                         "link": "output",
                         "name": "SRR12848126.runinfo_ftp.tsv",
                         "path": "/cb/32926084f10b9fa2b4417ed1096e9e/",
-                        "size": 1.247
+                        "sizeInBytes": 1.247
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/cb/32926084f10b9fa2b4417ed1096e9e/",
-                        "size": 0.06
+                        "sizeInBytes": 0.06
                     }
                 ],
-                "runtime": 1.0,
                 "avgCPU": 73.9,
                 "bytesRead": 956.412,
                 "bytesWritten": 1.587,
                 "inputFilesBytes": 1.172,
                 "outputFilesBytes": 1.3070000000000002,
-                "memory": 11440.128
+                "memory": 11440.128,
+                "runtimeInSeconds": 1.0,
+                "readBytes": 956412.0,
+                "writtenBytes": 1587.0,
+                "memoryInBytes": 11440128.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
@@ -720,34 +776,37 @@
                         "link": "input",
                         "name": "ERR1160846.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/ERR116/006/ERR1160846/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "output",
                         "name": "ERX1234253_ERR1160846.fastq.gz",
                         "path": "/a5/d59864f17f16ee67e67817f4da7be6/",
-                        "size": 18.077
+                        "sizeInBytes": 18.077
                     },
                     {
                         "link": "output",
                         "name": "ERX1234253_ERR1160846.fastq.gz.md5",
                         "path": "/a5/d59864f17f16ee67e67817f4da7be6/",
-                        "size": 0.065
+                        "sizeInBytes": 0.065
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/a5/d59864f17f16ee67e67817f4da7be6/",
-                        "size": 0.054
+                        "sizeInBytes": 0.054
                     }
                 ],
-                "runtime": 5.0,
                 "avgCPU": 1.5,
                 "bytesRead": 144.49,
                 "bytesWritten": 19.648,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 18.196,
-                "memory": 9981.952
+                "memory": 9981.952,
+                "runtimeInSeconds": 5.0,
+                "readBytes": 144490.0,
+                "writtenBytes": 19648.0,
+                "memoryInBytes": 9981952.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
@@ -767,28 +826,31 @@
                         "link": "input",
                         "name": "user-settings.mkfg",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.098
+                        "sizeInBytes": 0.098
                     },
                     {
                         "link": "output",
                         "name": "SRR14593545",
                         "path": "/ad/e7b8553c66dbe16dd12d6011fa258b/",
-                        "size": 52.65
+                        "sizeInBytes": 52.65
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/ad/e7b8553c66dbe16dd12d6011fa258b/",
-                        "size": 0.107
+                        "sizeInBytes": 0.107
                     }
                 ],
-                "runtime": 3.0,
                 "avgCPU": 4.3,
                 "bytesRead": 889.174,
                 "bytesWritten": 55.164,
                 "inputFilesBytes": 0.098,
                 "outputFilesBytes": 52.757,
-                "memory": 8187.904
+                "memory": 8187.904,
+                "runtimeInSeconds": 3.0,
+                "readBytes": 889174.0,
+                "writtenBytes": 55164.0,
+                "memoryInBytes": 8187904.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
@@ -807,52 +869,55 @@
                         "link": "input",
                         "name": "DRR028935_1.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/DRR028/DRR028935/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "input",
                         "name": "DRR028935_2.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/DRR028/DRR028935/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "output",
                         "name": "DRX026011_DRR028935_1.fastq.gz",
                         "path": "/0f/6b0784f640e98841a1c680c6b90f19/",
-                        "size": 60.275
+                        "sizeInBytes": 60.275
                     },
                     {
                         "link": "output",
                         "name": "DRX026011_DRR028935_2.fastq.gz",
                         "path": "/0f/6b0784f640e98841a1c680c6b90f19/",
-                        "size": 61.61
+                        "sizeInBytes": 61.61
                     },
                     {
                         "link": "output",
                         "name": "DRX026011_DRR028935_1.fastq.gz.md5",
                         "path": "/0f/6b0784f640e98841a1c680c6b90f19/",
-                        "size": 0.065
+                        "sizeInBytes": 0.065
                     },
                     {
                         "link": "output",
                         "name": "DRX026011_DRR028935_2.fastq.gz.md5",
                         "path": "/0f/6b0784f640e98841a1c680c6b90f19/",
-                        "size": 0.065
+                        "sizeInBytes": 0.065
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/0f/6b0784f640e98841a1c680c6b90f19/",
-                        "size": 0.054
+                        "sizeInBytes": 0.054
                     }
                 ],
-                "runtime": 7.0,
                 "avgCPU": 0.9,
                 "bytesRead": 285.074,
                 "bytesWritten": 124.109,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 122.06899999999999,
-                "memory": 10190.848
+                "memory": 10190.848,
+                "runtimeInSeconds": 7.0,
+                "readBytes": 285074.0,
+                "writtenBytes": 124109.0,
+                "memoryInBytes": 10190848.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
@@ -871,34 +936,37 @@
                         "link": "input",
                         "name": "SRR9984183.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/SRR998/003/SRR9984183/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "output",
                         "name": "SRX6725035_SRR9984183.fastq.gz",
                         "path": "/db/d451dd264440cc775bca14b253a14d/",
-                        "size": 605.358
+                        "sizeInBytes": 605.358
                     },
                     {
                         "link": "output",
                         "name": "SRX6725035_SRR9984183.fastq.gz.md5",
                         "path": "/db/d451dd264440cc775bca14b253a14d/",
-                        "size": 0.065
+                        "sizeInBytes": 0.065
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/db/d451dd264440cc775bca14b253a14d/",
-                        "size": 0.054
+                        "sizeInBytes": 0.054
                     }
                 ],
-                "runtime": 5.0,
                 "avgCPU": 1.3,
                 "bytesRead": 731.755,
                 "bytesWritten": 606.996,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 605.477,
-                "memory": 9994.24
+                "memory": 9994.24,
+                "runtimeInSeconds": 5.0,
+                "readBytes": 731755.0,
+                "writtenBytes": 606996.0,
+                "memoryInBytes": 9994240.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
@@ -917,52 +985,55 @@
                         "link": "input",
                         "name": "ERR1109373_1.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/ERR110/003/ERR1109373/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "input",
                         "name": "ERR1109373_2.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/ERR110/003/ERR1109373/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "output",
                         "name": "ERX1188904_ERR1109373_1.fastq.gz",
                         "path": "/b9/ef21c5eb1ba49bb0a0d22b9ef68654/",
-                        "size": 8.151
+                        "sizeInBytes": 8.151
                     },
                     {
                         "link": "output",
                         "name": "ERX1188904_ERR1109373_2.fastq.gz",
                         "path": "/b9/ef21c5eb1ba49bb0a0d22b9ef68654/",
-                        "size": 8.118
+                        "sizeInBytes": 8.118
                     },
                     {
                         "link": "output",
                         "name": "ERX1188904_ERR1109373_1.fastq.gz.md5",
                         "path": "/b9/ef21c5eb1ba49bb0a0d22b9ef68654/",
-                        "size": 0.067
+                        "sizeInBytes": 0.067
                     },
                     {
                         "link": "output",
                         "name": "ERX1188904_ERR1109373_2.fastq.gz.md5",
                         "path": "/b9/ef21c5eb1ba49bb0a0d22b9ef68654/",
-                        "size": 0.067
+                        "sizeInBytes": 0.067
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/b9/ef21c5eb1ba49bb0a0d22b9ef68654/",
-                        "size": 0.054
+                        "sizeInBytes": 0.054
                     }
                 ],
-                "runtime": 7.0,
                 "avgCPU": 1.2,
                 "bytesRead": 179.531,
                 "bytesWritten": 18.423,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 16.456999999999997,
-                "memory": 10182.656
+                "memory": 10182.656,
+                "runtimeInSeconds": 7.0,
+                "readBytes": 179531.0,
+                "writtenBytes": 18423.0,
+                "memoryInBytes": 10182656.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
@@ -981,34 +1052,37 @@
                         "link": "input",
                         "name": "DRR026872.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/DRR026/DRR026872/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "output",
                         "name": "DRX024467_DRR026872.fastq.gz",
                         "path": "/c4/390db13fc6e7b0f7d55e7597dfe377/",
-                        "size": 38.447
+                        "sizeInBytes": 38.447
                     },
                     {
                         "link": "output",
                         "name": "DRX024467_DRR026872.fastq.gz.md5",
                         "path": "/c4/390db13fc6e7b0f7d55e7597dfe377/",
-                        "size": 0.063
+                        "sizeInBytes": 0.063
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/c4/390db13fc6e7b0f7d55e7597dfe377/",
-                        "size": 0.054
+                        "sizeInBytes": 0.054
                     }
                 ],
-                "runtime": 7.0,
                 "avgCPU": 1.0,
                 "bytesRead": 164.839,
                 "bytesWritten": 40.251,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 38.56400000000001,
-                "memory": 9916.416
+                "memory": 9916.416,
+                "runtimeInSeconds": 7.0,
+                "readBytes": 164839.0,
+                "writtenBytes": 40251.0,
+                "memoryInBytes": 9916416.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
@@ -1027,52 +1101,55 @@
                         "link": "input",
                         "name": "SRR13191702_1.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/002/SRR13191702/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "input",
                         "name": "SRR13191702_2.fastq.gz",
                         "path": "ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/002/SRR13191702/",
-                        "size": "TODO - Remote file"
+                        "sizeInBytes": "TODO - Remote file"
                     },
                     {
                         "link": "output",
                         "name": "SRX9626017_SRR13191702_1.fastq.gz",
                         "path": "/7c/9f2c63da2e11ba12a9fc25fb55880a/",
-                        "size": 15.42
+                        "sizeInBytes": 15.42
                     },
                     {
                         "link": "output",
                         "name": "SRX9626017_SRR13191702_2.fastq.gz",
                         "path": "/7c/9f2c63da2e11ba12a9fc25fb55880a/",
-                        "size": 16.324
+                        "sizeInBytes": 16.324
                     },
                     {
                         "link": "output",
                         "name": "SRX9626017_SRR13191702_1.fastq.gz.md5",
                         "path": "/7c/9f2c63da2e11ba12a9fc25fb55880a/",
-                        "size": 0.068
+                        "sizeInBytes": 0.068
                     },
                     {
                         "link": "output",
                         "name": "SRX9626017_SRR13191702_2.fastq.gz.md5",
                         "path": "/7c/9f2c63da2e11ba12a9fc25fb55880a/",
-                        "size": 0.068
+                        "sizeInBytes": 0.068
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/7c/9f2c63da2e11ba12a9fc25fb55880a/",
-                        "size": 0.054
+                        "sizeInBytes": 0.054
                     }
                 ],
-                "runtime": 8.0,
                 "avgCPU": 1.2,
                 "bytesRead": 195.038,
                 "bytesWritten": 33.902,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 31.934,
-                "memory": 9986.048
+                "memory": 9986.048,
+                "runtimeInSeconds": 8.0,
+                "readBytes": 195038.0,
+                "writtenBytes": 33902.0,
+                "memoryInBytes": 9986048.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
@@ -1092,28 +1169,31 @@
                         "link": "input",
                         "name": "user-settings.mkfg",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.098
+                        "sizeInBytes": 0.098
                     },
                     {
                         "link": "output",
                         "name": "SRR14709033",
                         "path": "/5d/79882c116d531dd682b3947cd1ab6a/",
-                        "size": 50.128
+                        "sizeInBytes": 50.128
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/5d/79882c116d531dd682b3947cd1ab6a/",
-                        "size": 0.107
+                        "sizeInBytes": 0.107
                     }
                 ],
-                "runtime": 3.0,
                 "avgCPU": 5.5,
                 "bytesRead": 884.132,
                 "bytesWritten": 52.642,
                 "inputFilesBytes": 0.098,
                 "outputFilesBytes": 50.235,
-                "memory": 8384.512
+                "memory": 8384.512,
+                "runtimeInSeconds": 3.0,
+                "readBytes": 884132.0,
+                "writtenBytes": 52642.0,
+                "memoryInBytes": 8384512.000000001
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
@@ -1133,28 +1213,31 @@
                         "link": "input",
                         "name": "user-settings.mkfg",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.098
+                        "sizeInBytes": 0.098
                     },
                     {
                         "link": "output",
                         "name": "SRR12848126",
                         "path": "/7a/9225690e4279d6eb3c2d41d70f438c/",
-                        "size": 39610.306
+                        "sizeInBytes": 39610.306
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/7a/9225690e4279d6eb3c2d41d70f438c/",
-                        "size": 0.107
+                        "sizeInBytes": 0.107
                     }
                 ],
-                "runtime": 7.0,
                 "avgCPU": 21.4,
                 "bytesRead": 1575.82,
                 "bytesWritten": 39617.417,
                 "inputFilesBytes": 0.098,
                 "outputFilesBytes": 39610.413,
-                "memory": 9658.368
+                "memory": 9658.368,
+                "runtimeInSeconds": 7.0,
+                "readBytes": 1575820.0,
+                "writtenBytes": 39617417.0,
+                "memoryInBytes": 9658368.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1173,22 +1256,25 @@
                         "link": "output",
                         "name": "ERX1234253_ERR1160846.samplesheet.csv",
                         "path": "/21/569a8de33abe3551b41dac6272cb19/",
-                        "size": 1.535
+                        "sizeInBytes": 1.535
                     },
                     {
                         "link": "output",
                         "name": "ERX1234253_ERR1160846.mappings.csv",
                         "path": "/21/569a8de33abe3551b41dac6272cb19/",
-                        "size": 0.546
+                        "sizeInBytes": 0.546
                     }
                 ],
-                "runtime": 0.001,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.081,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.001,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
@@ -1208,40 +1294,43 @@
                         "link": "input",
                         "name": "SRR14593545",
                         "path": "/ad/e7b8553c66dbe16dd12d6011fa258b/",
-                        "size": 52.65
+                        "sizeInBytes": 52.65
                     },
                     {
                         "link": "input",
                         "name": "user-settings.mkfg",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.098
+                        "sizeInBytes": 0.098
                     },
                     {
                         "link": "output",
                         "name": "SRX10940790_SRR14593545_1.fastq.gz",
                         "path": "/fc/738fc1eab1c480b51b8763ab39a5ac/",
-                        "size": 0.459
+                        "sizeInBytes": 0.459
                     },
                     {
                         "link": "output",
                         "name": "SRX10940790_SRR14593545_2.fastq.gz",
                         "path": "/fc/738fc1eab1c480b51b8763ab39a5ac/",
-                        "size": 0.473
+                        "sizeInBytes": 0.473
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/fc/738fc1eab1c480b51b8763ab39a5ac/",
-                        "size": 0.124
+                        "sizeInBytes": 0.124
                     }
                 ],
-                "runtime": 1.0,
                 "avgCPU": 19.5,
                 "bytesRead": 691.518,
                 "bytesWritten": 3.384,
                 "inputFilesBytes": 52.748,
                 "outputFilesBytes": 1.056,
-                "memory": 8372.224
+                "memory": 8372.224,
+                "runtimeInSeconds": 1.0,
+                "readBytes": 691518.0,
+                "writtenBytes": 3384.0,
+                "memoryInBytes": 8372224.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1260,22 +1349,25 @@
                         "link": "output",
                         "name": "DRX026011_DRR028935.samplesheet.csv",
                         "path": "/1f/20dba4d617147bf140964cb043e19d/",
-                        "size": 1.96
+                        "sizeInBytes": 1.96
                     },
                     {
                         "link": "output",
                         "name": "DRX026011_DRR028935.mappings.csv",
                         "path": "/1f/20dba4d617147bf140964cb043e19d/",
-                        "size": 0.638
+                        "sizeInBytes": 0.638
                     }
                 ],
-                "runtime": 0.002,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.598,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.002,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1294,22 +1386,25 @@
                         "link": "output",
                         "name": "SRX6725035_SRR9984183.samplesheet.csv",
                         "path": "/b3/6fc3f7d7a881a220540cbef18ead83/",
-                        "size": 1.841
+                        "sizeInBytes": 1.841
                     },
                     {
                         "link": "output",
                         "name": "SRX6725035_SRR9984183.mappings.csv",
                         "path": "/b3/6fc3f7d7a881a220540cbef18ead83/",
-                        "size": 0.729
+                        "sizeInBytes": 0.729
                     }
                 ],
-                "runtime": 0.001,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.57,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.001,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1328,22 +1423,25 @@
                         "link": "output",
                         "name": "ERX1188904_ERR1109373.samplesheet.csv",
                         "path": "/c0/9fb06129eb281e755cbae3c82a7591/",
-                        "size": 2.262
+                        "sizeInBytes": 2.262
                     },
                     {
                         "link": "output",
                         "name": "ERX1188904_ERR1109373.mappings.csv",
                         "path": "/c0/9fb06129eb281e755cbae3c82a7591/",
-                        "size": 0.548
+                        "sizeInBytes": 0.548
                     }
                 ],
-                "runtime": 0.001,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.81,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.001,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1362,22 +1460,25 @@
                         "link": "output",
                         "name": "DRX024467_DRR026872.samplesheet.csv",
                         "path": "/8f/840e1f854883c82d1f5871d16010f3/",
-                        "size": 1.576
+                        "sizeInBytes": 1.576
                     },
                     {
                         "link": "output",
                         "name": "DRX024467_DRR026872.mappings.csv",
                         "path": "/8f/840e1f854883c82d1f5871d16010f3/",
-                        "size": 0.585
+                        "sizeInBytes": 0.585
                     }
                 ],
-                "runtime": 0.002,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.161,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.002,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1396,22 +1497,25 @@
                         "link": "output",
                         "name": "SRX9626017_SRR13191702.samplesheet.csv",
                         "path": "/dd/2b1317e3db7eb5806599fd75b6d5f1/",
-                        "size": 2.145
+                        "sizeInBytes": 2.145
                     },
                     {
                         "link": "output",
                         "name": "SRX9626017_SRR13191702.mappings.csv",
                         "path": "/dd/2b1317e3db7eb5806599fd75b6d5f1/",
-                        "size": 0.746
+                        "sizeInBytes": 0.746
                     }
                 ],
-                "runtime": 0.002,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.891,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.002,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
@@ -1431,34 +1535,37 @@
                         "link": "input",
                         "name": "SRR14709033",
                         "path": "/5d/79882c116d531dd682b3947cd1ab6a/",
-                        "size": 50.128
+                        "sizeInBytes": 50.128
                     },
                     {
                         "link": "input",
                         "name": "user-settings.mkfg",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.098
+                        "sizeInBytes": 0.098
                     },
                     {
                         "link": "output",
                         "name": "SRX11047067_SRR14709033.fastq.gz",
                         "path": "/f3/1ceb88b37ce40b4c9e87e814198a4f/",
-                        "size": 0.15
+                        "sizeInBytes": 0.15
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/f3/1ceb88b37ce40b4c9e87e814198a4f/",
-                        "size": 0.124
+                        "sizeInBytes": 0.124
                     }
                 ],
-                "runtime": 1.0,
                 "avgCPU": 18.8,
                 "bytesRead": 690.025,
                 "bytesWritten": 1.105,
                 "inputFilesBytes": 50.226,
                 "outputFilesBytes": 0.274,
-                "memory": 8601.6
+                "memory": 8601.6,
+                "runtimeInSeconds": 1.0,
+                "readBytes": 690025.0,
+                "writtenBytes": 1105.0,
+                "memoryInBytes": 8601600.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
@@ -1478,40 +1585,43 @@
                         "link": "input",
                         "name": "SRR12848126",
                         "path": "/7a/9225690e4279d6eb3c2d41d70f438c/",
-                        "size": 39610.306
+                        "sizeInBytes": 39610.306
                     },
                     {
                         "link": "input",
                         "name": "user-settings.mkfg",
                         "path": "/62/c0f1cde4e81e15795b96f3749428ba/",
-                        "size": 0.098
+                        "sizeInBytes": 0.098
                     },
                     {
                         "link": "output",
                         "name": "SRX9315476_SRR12848126_1.fastq.gz",
                         "path": "/1f/cea7077b28cfcd74530f5aa590ed49/",
-                        "size": 123.467
+                        "sizeInBytes": 123.467
                     },
                     {
                         "link": "output",
                         "name": "SRX9315476_SRR12848126_2.fastq.gz",
                         "path": "/1f/cea7077b28cfcd74530f5aa590ed49/",
-                        "size": 131.539
+                        "sizeInBytes": 131.539
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/1f/cea7077b28cfcd74530f5aa590ed49/",
-                        "size": 0.124
+                        "sizeInBytes": 0.124
                     }
                 ],
-                "runtime": 6.0,
                 "avgCPU": 11.5,
                 "bytesRead": 4513.81,
                 "bytesWritten": 2354.715,
                 "inputFilesBytes": 39610.403999999995,
                 "outputFilesBytes": 255.12999999999997,
-                "memory": 20307.968
+                "memory": 20307.968,
+                "runtimeInSeconds": 6.0,
+                "readBytes": 4513810.0,
+                "writtenBytes": 2354715.0,
+                "memoryInBytes": 20307968.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1530,22 +1640,25 @@
                         "link": "output",
                         "name": "SRX10940790_SRR14593545.samplesheet.csv",
                         "path": "/0e/3f00277e1a94043189897a8f514168/",
-                        "size": 1.362
+                        "sizeInBytes": 1.362
                     },
                     {
                         "link": "output",
                         "name": "SRX10940790_SRR14593545.mappings.csv",
                         "path": "/0e/3f00277e1a94043189897a8f514168/",
-                        "size": 0.551
+                        "sizeInBytes": 0.551
                     }
                 ],
-                "runtime": 0.002,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.9130000000000003,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.002,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1564,22 +1677,25 @@
                         "link": "output",
                         "name": "SRX11047067_SRR14709033.samplesheet.csv",
                         "path": "/39/ebfd9c15f8bf73be8c667dd98e4f99/",
-                        "size": 1.275
+                        "sizeInBytes": 1.275
                     },
                     {
                         "link": "output",
                         "name": "SRX11047067_SRR14709033.mappings.csv",
                         "path": "/39/ebfd9c15f8bf73be8c667dd98e4f99/",
-                        "size": 0.471
+                        "sizeInBytes": 0.471
                     }
                 ],
-                "runtime": 0.002,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 1.746,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.002,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
@@ -1598,22 +1714,25 @@
                         "link": "output",
                         "name": "SRX9315476_SRR12848126.samplesheet.csv",
                         "path": "/07/30cbfc3c8641a13705d4df4601c2cd/",
-                        "size": 1.469
+                        "sizeInBytes": 1.469
                     },
                     {
                         "link": "output",
                         "name": "SRX9315476_SRR12848126.mappings.csv",
                         "path": "/07/30cbfc3c8641a13705d4df4601c2cd/",
-                        "size": 0.588
+                        "sizeInBytes": 0.588
                     }
                 ],
-                "runtime": 0.002,
                 "avgCPU": 0.0,
                 "bytesRead": 0.0,
                 "bytesWritten": 0.0,
                 "inputFilesBytes": 0.0,
                 "outputFilesBytes": 2.057,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.002,
+                "readBytes": 0.0,
+                "writtenBytes": 0.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET",
@@ -1632,136 +1751,139 @@
                         "link": "input",
                         "name": "ERX1234253_ERR1160846.samplesheet.csv",
                         "path": "/21/569a8de33abe3551b41dac6272cb19/",
-                        "size": 1.535
+                        "sizeInBytes": 1.535
                     },
                     {
                         "link": "input",
                         "name": "DRX026011_DRR028935.samplesheet.csv",
                         "path": "/1f/20dba4d617147bf140964cb043e19d/",
-                        "size": 1.96
+                        "sizeInBytes": 1.96
                     },
                     {
                         "link": "input",
                         "name": "SRX6725035_SRR9984183.samplesheet.csv",
                         "path": "/b3/6fc3f7d7a881a220540cbef18ead83/",
-                        "size": 1.841
+                        "sizeInBytes": 1.841
                     },
                     {
                         "link": "input",
                         "name": "ERX1188904_ERR1109373.samplesheet.csv",
                         "path": "/c0/9fb06129eb281e755cbae3c82a7591/",
-                        "size": 2.262
+                        "sizeInBytes": 2.262
                     },
                     {
                         "link": "input",
                         "name": "DRX024467_DRR026872.samplesheet.csv",
                         "path": "/8f/840e1f854883c82d1f5871d16010f3/",
-                        "size": 1.576
+                        "sizeInBytes": 1.576
                     },
                     {
                         "link": "input",
                         "name": "SRX9626017_SRR13191702.samplesheet.csv",
                         "path": "/dd/2b1317e3db7eb5806599fd75b6d5f1/",
-                        "size": 2.145
+                        "sizeInBytes": 2.145
                     },
                     {
                         "link": "input",
                         "name": "SRX10940790_SRR14593545.samplesheet.csv",
                         "path": "/0e/3f00277e1a94043189897a8f514168/",
-                        "size": 1.362
+                        "sizeInBytes": 1.362
                     },
                     {
                         "link": "input",
                         "name": "SRX11047067_SRR14709033.samplesheet.csv",
                         "path": "/39/ebfd9c15f8bf73be8c667dd98e4f99/",
-                        "size": 1.275
+                        "sizeInBytes": 1.275
                     },
                     {
                         "link": "input",
                         "name": "SRX9315476_SRR12848126.samplesheet.csv",
                         "path": "/07/30cbfc3c8641a13705d4df4601c2cd/",
-                        "size": 1.469
+                        "sizeInBytes": 1.469
                     },
                     {
                         "link": "input",
                         "name": "ERX1234253_ERR1160846.mappings.csv",
                         "path": "/21/569a8de33abe3551b41dac6272cb19/",
-                        "size": 0.546
+                        "sizeInBytes": 0.546
                     },
                     {
                         "link": "input",
                         "name": "DRX026011_DRR028935.mappings.csv",
                         "path": "/1f/20dba4d617147bf140964cb043e19d/",
-                        "size": 0.638
+                        "sizeInBytes": 0.638
                     },
                     {
                         "link": "input",
                         "name": "SRX6725035_SRR9984183.mappings.csv",
                         "path": "/b3/6fc3f7d7a881a220540cbef18ead83/",
-                        "size": 0.729
+                        "sizeInBytes": 0.729
                     },
                     {
                         "link": "input",
                         "name": "ERX1188904_ERR1109373.mappings.csv",
                         "path": "/c0/9fb06129eb281e755cbae3c82a7591/",
-                        "size": 0.548
+                        "sizeInBytes": 0.548
                     },
                     {
                         "link": "input",
                         "name": "DRX024467_DRR026872.mappings.csv",
                         "path": "/8f/840e1f854883c82d1f5871d16010f3/",
-                        "size": 0.585
+                        "sizeInBytes": 0.585
                     },
                     {
                         "link": "input",
                         "name": "SRX9626017_SRR13191702.mappings.csv",
                         "path": "/dd/2b1317e3db7eb5806599fd75b6d5f1/",
-                        "size": 0.746
+                        "sizeInBytes": 0.746
                     },
                     {
                         "link": "input",
                         "name": "SRX10940790_SRR14593545.mappings.csv",
                         "path": "/0e/3f00277e1a94043189897a8f514168/",
-                        "size": 0.551
+                        "sizeInBytes": 0.551
                     },
                     {
                         "link": "input",
                         "name": "SRX11047067_SRR14709033.mappings.csv",
                         "path": "/39/ebfd9c15f8bf73be8c667dd98e4f99/",
-                        "size": 0.471
+                        "sizeInBytes": 0.471
                     },
                     {
                         "link": "input",
                         "name": "SRX9315476_SRR12848126.mappings.csv",
                         "path": "/07/30cbfc3c8641a13705d4df4601c2cd/",
-                        "size": 0.588
+                        "sizeInBytes": 0.588
                     },
                     {
                         "link": "output",
                         "name": "samplesheet.csv",
                         "path": "/a7/5aec5ec3a4e338e3a6535f9632b391/",
-                        "size": 10.594
+                        "sizeInBytes": 10.594
                     },
                     {
                         "link": "output",
                         "name": "id_mappings.csv",
                         "path": "/a7/5aec5ec3a4e338e3a6535f9632b391/",
-                        "size": 3.955
+                        "sizeInBytes": 3.955
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/a7/5aec5ec3a4e338e3a6535f9632b391/",
-                        "size": 0.058
+                        "sizeInBytes": 0.058
                     }
                 ],
-                "runtime": 0.11,
                 "avgCPU": 31.2,
                 "bytesRead": 254.843,
                 "bytesWritten": 17.871,
                 "inputFilesBytes": 20.827,
                 "outputFilesBytes": 14.607,
-                "memory": 0.0
+                "memory": 0.0,
+                "runtimeInSeconds": 0.11,
+                "readBytes": 254843.0,
+                "writtenBytes": 17871.0,
+                "memoryInBytes": 0.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.MULTIQC_MAPPINGS_CONFIG",
@@ -1779,34 +1901,37 @@
                         "link": "input",
                         "name": "id_mappings.csv",
                         "path": "/a7/5aec5ec3a4e338e3a6535f9632b391/",
-                        "size": 3.955
+                        "sizeInBytes": 3.955
                     },
                     {
                         "link": "output",
                         "name": "multiqc_config.yml",
                         "path": "/31/391d6511b98dc35998ed92b960ae1d/",
-                        "size": 4.172
+                        "sizeInBytes": 4.172
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/31/391d6511b98dc35998ed92b960ae1d/",
-                        "size": 0.065
+                        "sizeInBytes": 0.065
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/31/391d6511b98dc35998ed92b960ae1d/",
-                        "size": 0.065
+                        "sizeInBytes": 0.065
                     }
                 ],
-                "runtime": 0.0,
                 "avgCPU": 49.3,
                 "bytesRead": 238.541,
                 "bytesWritten": 4.533,
                 "inputFilesBytes": 3.955,
                 "outputFilesBytes": 4.3020000000000005,
-                "memory": 3624.96
+                "memory": 3624.96,
+                "runtimeInSeconds": 0.0,
+                "readBytes": 238541.0,
+                "writtenBytes": 4533.0,
+                "memoryInBytes": 3624960.0
             },
             {
                 "name": "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS",
@@ -1829,47 +1954,51 @@
                         "link": "input",
                         "name": "collated_versions.yml",
                         "path": "/3d/9e32b785a6f750aee25a0c0cb90124/",
-                        "size": 0.414
+                        "sizeInBytes": 0.414
                     },
                     {
                         "link": "output",
                         "name": "software_versions.yml",
                         "path": "/79/e4f4dabe3b14e0a5cef97ed17e71a8/",
-                        "size": 0.343
+                        "sizeInBytes": 0.343
                     },
                     {
                         "link": "output",
                         "name": "software_versions_mqc.yml",
                         "path": "/79/e4f4dabe3b14e0a5cef97ed17e71a8/",
-                        "size": 2.047
+                        "sizeInBytes": 2.047
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/79/e4f4dabe3b14e0a5cef97ed17e71a8/",
-                        "size": 0.08
+                        "sizeInBytes": 0.08
                     }
                 ],
-                "runtime": 0.231,
                 "avgCPU": 51.8,
                 "bytesRead": 860.487,
                 "bytesWritten": 2.686,
                 "inputFilesBytes": 0.414,
                 "outputFilesBytes": 2.47,
-                "memory": 7962.624
+                "memory": 7962.624,
+                "runtimeInSeconds": 0.231,
+                "readBytes": 860487.0,
+                "writtenBytes": 2686.0,
+                "memoryInBytes": 7962624.0
             }
         ],
         "machines": [
-                {
-                        "nodeName": "dirt02",
-                        "system": "Linux",
-                        "release": "5.15.0-48-generic",
-                        "architecture": "x86_64",
-                        "cpu": {
-                                "count": 1,
-                                "speed": 1400
-                        }
+            {
+                "nodeName": "dirt02",
+                "system": "Linux",
+                "release": "5.15.0-48-generic",
+                "architecture": "x86_64",
+                "cpu": {
+                    "count": 1,
+                    "speed": 1400
                 }
-        ]
+            }
+        ],
+        "makespanInSeconds": 246
     }
 }
