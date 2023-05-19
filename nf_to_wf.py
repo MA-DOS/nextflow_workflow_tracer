@@ -27,8 +27,7 @@ def parse_stdout(stdout, workflow):
 
         elif "Completed at" in line:
             x = line[line.find(":")+1:].strip() + " -1000"      #HST is -10 hours to UTC
-            y = datetime.strptime(x, "%d-%b-%Y %H:%
-:%S %z")
+            y = datetime.strptime(x, "%d-%b-%Y %H:%M:%S %z")
 
             #dunno if %d (zero-padded day of the month) or (%-d not zero-padded)
             #of if %H (zero-padded 24 hour clock hour) or (%-H not zero-padded)
@@ -269,6 +268,9 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
 
                                     else:
                                         print("{} exists! (but dunno what it is)".format(temp))
+
+        for f in files:
+            f["name"] = f["path"].replace("/", "_") + "_" + f["name"]
 
 #Parse filepath_dag file
 def parse_dag(filepath_dag, parents, children):
