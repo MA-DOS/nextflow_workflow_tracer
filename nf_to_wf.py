@@ -460,6 +460,12 @@ single_machine["release"] = str(completed_process.stdout).strip()
 completed_process = subprocess.run(["uname", "-m"], capture_output=True, encoding="utf-8")
 single_machine["architecture"] = str(completed_process.stdout).strip()
 
+cpu={}
+cpu["count"]=1
+cpu["speed"]=2400
+
+single_machine["cpu"]=cpu
+
 wfcommons["machines"].append(single_machine)
 
 
