@@ -46,12 +46,25 @@ for task in data["workflow"]["tasks"]:
         new_file["path"] = f["path"]
         fixed_size = int(float(f["size"])*1000.0)
         new_file["sizeInBytes"] = fixed_size
-        fixed_files.append(new_file)
+
+        # Check for duplicate
+        already_seen = False
+        for s in fixed_files:
+            if (s["name"] == new_file["name"]) and (s["path"] == new_file["path"]) and (s["link"] == new_file["link"]):
+                already_seen = True
+                break
+        # If not a duplicate, add it
+        if not already_seen:
+            fixed_files.append(new_file)
+
+
     task["files"] = fixed_files
+
+    
 
 
 # Save it
-with open(sys.argv[1]+".fixed", 'w') as file:
+with open("./fixed/"+sys.argv[1], 'w') as file:
       json.dump(data, file, indent=4)
 
 

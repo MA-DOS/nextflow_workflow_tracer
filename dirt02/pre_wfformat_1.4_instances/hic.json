@@ -2,7 +2,7 @@
     "name": "hic",
     "description": "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)",
     "createdAt": "2023-03-29T04:01:35.898087+00:00",
-    "schemaVersion": "1.4",
+    "schemaVersion": "1.3",
     "wms": {
         "name": "Nextflow",
         "url": "https://www.nextflow.io/"
@@ -11,6 +11,7 @@
         "repo": "https://github.com/nf-core/hic",
         "runName": "focused_newton",
         "executedAt": "2023-03-28T18:01:31-10:00",
+        "makespan": 1507,
         "tasks": [
             {
                 "name": "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK",
@@ -27,28 +28,28 @@
                         "link": "input",
                         "name": "samplesheet.csv",
                         "path": "/hic/assets/",
-                        "sizeInBytes": 194
+                        "size": 0.194
                     },
                     {
                         "link": "output",
                         "name": "samplesheet.valid.csv",
                         "path": "/85/87f3aa798384909507c3133e8e4b53/",
-                        "sizeInBytes": 213
+                        "size": 0.213
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/85/87f3aa798384909507c3133e8e4b53/",
-                        "sizeInBytes": 66
+                        "size": 0.066
                     }
                 ],
+                "runtime": 1.0,
                 "avgCPU": 28.2,
-                "inputFilesBytes": 194,
-                "outputFilesBytes": 279,
-                "memoryInBytes": 2822144,
-                "writtenBytes": 580,
-                "readBytes": 919661,
-                "runtimeInSeconds": 1.0
+                "bytesRead": 919.661,
+                "bytesWritten": 0.58,
+                "inputFilesBytes": 0.194,
+                "outputFilesBytes": 0.279,
+                "memory": 2822.144
             },
             {
                 "name": "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES",
@@ -68,34 +69,34 @@
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa",
                         "path": "/nf-core/test-datasets/raw/hic/reference/",
-                        "sizeInBytes": 11542637
+                        "size": 11542.637
                     },
                     {
                         "link": "output",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 8889
+                        "size": 8.889
                     },
                     {
                         "link": "output",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.fai",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 12249
+                        "size": 12.249
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 81
+                        "size": 0.081
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 40.9,
-                "inputFilesBytes": 11542637,
-                "outputFilesBytes": 21218,
-                "memoryInBytes": 3522560,
-                "writtenBytes": 26069,
-                "readBytes": 11666952,
-                "runtimeInSeconds": 0.0
+                "bytesRead": 11666.952,
+                "bytesWritten": 26.069,
+                "inputFilesBytes": 11542.637,
+                "outputFilesBytes": 21.218999999999998,
+                "memory": 3522.56
             },
             {
                 "name": "NFCORE_HIC.HIC.PREPARE_GENOME.GET_RESTRICTION_FRAGMENTS",
@@ -112,28 +113,28 @@
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa",
                         "path": "/nf-core/test-datasets/raw/hic/reference/",
-                        "sizeInBytes": 11542637
+                        "size": 11542.637
                     },
                     {
                         "link": "output",
                         "name": "restriction_fragments.bed",
                         "path": "/0b/313dd189c0ce9ff0b943b5fa234f56/",
-                        "sizeInBytes": 390905
+                        "size": 390.905
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/0b/313dd189c0ce9ff0b943b5fa234f56/",
-                        "sizeInBytes": 78
+                        "size": 0.078
                     }
                 ],
+                "runtime": 1.0,
                 "avgCPU": 90.3,
-                "inputFilesBytes": 11542637,
-                "outputFilesBytes": 390982,
-                "memoryInBytes": 33959936,
-                "writtenBytes": 399694,
-                "readBytes": 26991963,
-                "runtimeInSeconds": 1.0
+                "bytesRead": 26991.963,
+                "bytesWritten": 399.694,
+                "inputFilesBytes": 11542.637,
+                "outputFilesBytes": 390.98299999999995,
+                "memory": 33959.936
             },
             {
                 "name": "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
@@ -151,28 +152,28 @@
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa",
                         "path": "/nf-core/test-datasets/raw/hic/reference/",
-                        "sizeInBytes": 11542637
+                        "size": 11542.637
                     },
                     {
                         "link": "output",
                         "name": "bowtie2",
                         "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
-                        "sizeInBytes": 24532794
+                        "size": 24532.794
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
-                        "sizeInBytes": 66
+                        "size": 0.066
                     }
                 ],
+                "runtime": 20.0,
                 "avgCPU": 88.9,
-                "inputFilesBytes": 11542637,
-                "outputFilesBytes": 24532860,
-                "memoryInBytes": 59977728,
-                "writtenBytes": 24549507,
-                "readBytes": 47699597,
-                "runtimeInSeconds": 20.0
+                "bytesRead": 47699.597,
+                "bytesWritten": 24549.507,
+                "inputFilesBytes": 11542.637,
+                "outputFilesBytes": 24532.86,
+                "memory": 59977.728
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
@@ -190,28 +191,28 @@
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 8889
+                        "size": 8.889
                     },
                     {
                         "link": "output",
                         "name": "cooler_bins_1000.bed",
                         "path": "/c3/9d13c2126693b8724af96451d360fb/",
-                        "sizeInBytes": 505925
+                        "size": 505.925
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/c3/9d13c2126693b8724af96451d360fb/",
-                        "sizeInBytes": 60
+                        "size": 0.06
                     }
                 ],
+                "runtime": 3.9,
                 "avgCPU": 81.9,
-                "inputFilesBytes": 8889,
-                "outputFilesBytes": 505985,
-                "memoryInBytes": 84967424,
-                "writtenBytes": 506357,
-                "readBytes": 19638526,
-                "runtimeInSeconds": 3.9
+                "bytesRead": 19638.526,
+                "bytesWritten": 506.357,
+                "inputFilesBytes": 8.889,
+                "outputFilesBytes": 505.985,
+                "memory": 84967.424
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
@@ -229,28 +230,28 @@
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 8889
+                        "size": 8.889
                     },
                     {
                         "link": "output",
                         "name": "cooler_bins_2000.bed",
                         "path": "/da/cbe6b4cd9cc556da46f763d7a630f1/",
-                        "sizeInBytes": 255773
+                        "size": 255.773
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/da/cbe6b4cd9cc556da46f763d7a630f1/",
-                        "sizeInBytes": 60
+                        "size": 0.06
                     }
                 ],
+                "runtime": 3.914,
                 "avgCPU": 86.5,
-                "inputFilesBytes": 8889,
-                "outputFilesBytes": 255833,
-                "memoryInBytes": 82583552,
-                "writtenBytes": 256204,
-                "readBytes": 19638526,
-                "runtimeInSeconds": 3.914
+                "bytesRead": 19638.526,
+                "bytesWritten": 256.205,
+                "inputFilesBytes": 8.889,
+                "outputFilesBytes": 255.833,
+                "memory": 82583.552
             },
             {
                 "name": "NFCORE_HIC.HIC.FASTQC",
@@ -269,52 +270,52 @@
                         "link": "input",
                         "name": "SRR4292758_00_R1.fastq.gz",
                         "path": "/nf-core/test-datasets/raw/hic/data/",
-                        "sizeInBytes": 26066317
+                        "size": 26066.317
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_00_R2.fastq.gz",
                         "path": "/nf-core/test-datasets/raw/hic/data/",
-                        "sizeInBytes": 26201604
+                        "size": 26201.604
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_1_fastqc.html",
                         "path": "/48/cca69448ab94d6e6086249c75aee81/",
-                        "sizeInBytes": 584447
+                        "size": 584.447
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_2_fastqc.html",
                         "path": "/48/cca69448ab94d6e6086249c75aee81/",
-                        "sizeInBytes": 583231
+                        "size": 583.231
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_1_fastqc.zip",
                         "path": "/48/cca69448ab94d6e6086249c75aee81/",
-                        "sizeInBytes": 306974
+                        "size": 306.974
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_2_fastqc.zip",
                         "path": "/48/cca69448ab94d6e6086249c75aee81/",
-                        "sizeInBytes": 308165
+                        "size": 308.165
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/48/cca69448ab94d6e6086249c75aee81/",
-                        "sizeInBytes": 44
+                        "size": 0.044
                     }
                 ],
+                "runtime": 25.0,
                 "avgCPU": 91.5,
-                "inputFilesBytes": 52267921,
-                "outputFilesBytes": 1782860,
-                "memoryInBytes": 305795072,
-                "writtenBytes": 3525144,
-                "readBytes": 73983920,
-                "runtimeInSeconds": 25.0
+                "bytesRead": 73983.92,
+                "bytesWritten": 3525.144,
+                "inputFilesBytes": 52267.921,
+                "outputFilesBytes": 1782.8609999999999,
+                "memory": 305795.072
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
@@ -335,46 +336,46 @@
                         "link": "input",
                         "name": "SRR4292758_00_R2.fastq.gz",
                         "path": "/nf-core/test-datasets/raw/hic/data/",
-                        "sizeInBytes": 26201604
+                        "size": 26201.604
                     },
                     {
                         "link": "input",
                         "name": "bowtie2",
                         "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
-                        "sizeInBytes": 24532794
+                        "size": 24532.794
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2.bam",
                         "path": "/96/c0dee37e55a15a86730695f61755b9/",
-                        "sizeInBytes": 19374983
+                        "size": 19374.983
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2.bowtie2.log",
                         "path": "/96/c0dee37e55a15a86730695f61755b9/",
-                        "sizeInBytes": 211
+                        "size": 0.211
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2.unmapped.fastq.gz",
                         "path": "/96/c0dee37e55a15a86730695f61755b9/",
-                        "sizeInBytes": 6031893
+                        "size": 6031.893
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/96/c0dee37e55a15a86730695f61755b9/",
-                        "sizeInBytes": 109
+                        "size": 0.109
                     }
                 ],
+                "runtime": 89.0,
                 "avgCPU": 91.4,
-                "inputFilesBytes": 50734398,
-                "outputFilesBytes": 25407196,
-                "memoryInBytes": 54685696,
-                "writtenBytes": 391414350,
-                "readBytes": 414966142,
-                "runtimeInSeconds": 89.0
+                "bytesRead": 414966.142,
+                "bytesWritten": 391414.35,
+                "inputFilesBytes": 50734.398,
+                "outputFilesBytes": 25407.196,
+                "memory": 54685.696
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
@@ -395,46 +396,46 @@
                         "link": "input",
                         "name": "SRR4292758_00_R1.fastq.gz",
                         "path": "/nf-core/test-datasets/raw/hic/data/",
-                        "sizeInBytes": 26066317
+                        "size": 26066.317
                     },
                     {
                         "link": "input",
                         "name": "bowtie2",
                         "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
-                        "sizeInBytes": 24532794
+                        "size": 24532.794
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1.bam",
                         "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
-                        "sizeInBytes": 19423555
+                        "size": 19423.555
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1.bowtie2.log",
                         "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
-                        "sizeInBytes": 211
+                        "size": 0.211
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1.unmapped.fastq.gz",
                         "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
-                        "sizeInBytes": 5748941
+                        "size": 5748.941
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
-                        "sizeInBytes": 109
+                        "size": 0.109
                     }
                 ],
+                "runtime": 86.0,
                 "avgCPU": 92.4,
-                "inputFilesBytes": 50599111,
-                "outputFilesBytes": 25172816,
-                "memoryInBytes": 55005184,
-                "writtenBytes": 390705198,
-                "readBytes": 414356078,
-                "runtimeInSeconds": 86.0
+                "bytesRead": 414356.078,
+                "bytesWritten": 390705.198,
+                "inputFilesBytes": 50599.111000000004,
+                "outputFilesBytes": 25172.816,
+                "memory": 55005.184
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
@@ -453,28 +454,28 @@
                         "link": "input",
                         "name": "SRR4292758_0_R2.unmapped.fastq.gz",
                         "path": "/96/c0dee37e55a15a86730695f61755b9/",
-                        "sizeInBytes": 6031893
+                        "size": 6031.893
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2_trimmed.fastq.gz",
                         "path": "/84/5ea1584a885604a1b372b2e2ee65d0/",
-                        "sizeInBytes": 5300788
+                        "size": 5300.788
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/84/5ea1584a885604a1b372b2e2ee65d0/",
-                        "sizeInBytes": 66
+                        "size": 0.066
                     }
                 ],
+                "runtime": 3.254,
                 "avgCPU": 85.7,
-                "inputFilesBytes": 6031893,
-                "outputFilesBytes": 5300853,
-                "memoryInBytes": 4857856,
-                "writtenBytes": 53321502,
-                "readBytes": 54159949,
-                "runtimeInSeconds": 3.254
+                "bytesRead": 54159.949,
+                "bytesWritten": 53321.502,
+                "inputFilesBytes": 6031.893,
+                "outputFilesBytes": 5300.853999999999,
+                "memory": 4857.856
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
@@ -493,28 +494,28 @@
                         "link": "input",
                         "name": "SRR4292758_0_R1.unmapped.fastq.gz",
                         "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
-                        "sizeInBytes": 5748941
+                        "size": 5748.941
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1_trimmed.fastq.gz",
                         "path": "/22/a0bb25789655c145ba1424e6db0fca/",
-                        "sizeInBytes": 5037896
+                        "size": 5037.896
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/22/a0bb25789655c145ba1424e6db0fca/",
-                        "sizeInBytes": 66
+                        "size": 0.066
                     }
                 ],
+                "runtime": 3.099,
                 "avgCPU": 88.4,
-                "inputFilesBytes": 5748941,
-                "outputFilesBytes": 5037962,
-                "memoryInBytes": 4763648,
-                "writtenBytes": 50525206,
-                "readBytes": 51343587,
-                "runtimeInSeconds": 3.099
+                "bytesRead": 51343.587,
+                "bytesWritten": 50525.206,
+                "inputFilesBytes": 5748.941,
+                "outputFilesBytes": 5037.9619999999995,
+                "memory": 4763.648
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
@@ -534,40 +535,40 @@
                         "link": "input",
                         "name": "SRR4292758_0_R2_trimmed.fastq.gz",
                         "path": "/84/5ea1584a885604a1b372b2e2ee65d0/",
-                        "sizeInBytes": 5300788
+                        "size": 5300.788
                     },
                     {
                         "link": "input",
                         "name": "bowtie2",
                         "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
-                        "sizeInBytes": 24532794
+                        "size": 24532.794
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2_trimmed.bam",
                         "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
-                        "sizeInBytes": 4596947
+                        "size": 4596.947
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2_trimmed.bowtie2.log",
                         "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
-                        "sizeInBytes": 2090
+                        "size": 2.09
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
-                        "sizeInBytes": 117
+                        "size": 0.117
                     }
                 ],
+                "runtime": 13.0,
                 "avgCPU": 84.1,
-                "inputFilesBytes": 29833582,
-                "outputFilesBytes": 4599154,
-                "memoryInBytes": 49004544,
-                "writtenBytes": 21465475,
-                "readBytes": 44912379,
-                "runtimeInSeconds": 13.0
+                "bytesRead": 44912.379,
+                "bytesWritten": 21465.475,
+                "inputFilesBytes": 29833.582000000002,
+                "outputFilesBytes": 4599.154,
+                "memory": 49004.544
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
@@ -587,40 +588,40 @@
                         "link": "input",
                         "name": "SRR4292758_0_R1_trimmed.fastq.gz",
                         "path": "/22/a0bb25789655c145ba1424e6db0fca/",
-                        "sizeInBytes": 5037896
+                        "size": 5037.896
                     },
                     {
                         "link": "input",
                         "name": "bowtie2",
                         "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
-                        "sizeInBytes": 24532794
+                        "size": 24532.794
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1_trimmed.bam",
                         "path": "/00/a0fb6c13a979fce6c31543d3047891/",
-                        "sizeInBytes": 4394835
+                        "size": 4394.835
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1_trimmed.bowtie2.log",
                         "path": "/00/a0fb6c13a979fce6c31543d3047891/",
-                        "sizeInBytes": 2638
+                        "size": 2.638
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/00/a0fb6c13a979fce6c31543d3047891/",
-                        "sizeInBytes": 117
+                        "size": 0.117
                     }
                 ],
+                "runtime": 12.0,
                 "avgCPU": 85.1,
-                "inputFilesBytes": 29570690,
-                "outputFilesBytes": 4397590,
-                "memoryInBytes": 49143808,
-                "writtenBytes": 20400614,
-                "readBytes": 43786190,
-                "runtimeInSeconds": 12.0
+                "bytesRead": 43786.19,
+                "bytesWritten": 20400.614,
+                "inputFilesBytes": 29570.690000000002,
+                "outputFilesBytes": 4397.59,
+                "memory": 49143.808
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
@@ -641,40 +642,40 @@
                         "link": "input",
                         "name": "SRR4292758_0_R2.bam",
                         "path": "/96/c0dee37e55a15a86730695f61755b9/",
-                        "sizeInBytes": 19374983
+                        "size": 19374.983
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_0_R2_trimmed.bam",
                         "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
-                        "sizeInBytes": 4596947
+                        "size": 4596.947
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2_bwt2merged.bam",
                         "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
-                        "sizeInBytes": 24522069
+                        "size": 24522.069
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R2.mapstat",
                         "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
-                        "sizeInBytes": 83
+                        "size": 0.083
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
-                        "sizeInBytes": 76
+                        "size": 0.076
                     }
                 ],
+                "runtime": 12.0,
                 "avgCPU": 79.7,
-                "inputFilesBytes": 23971930,
-                "outputFilesBytes": 24522228,
-                "memoryInBytes": 135028736,
-                "writtenBytes": 48662069,
-                "readBytes": 121325397,
-                "runtimeInSeconds": 12.0
+                "bytesRead": 121325.397,
+                "bytesWritten": 48662.069,
+                "inputFilesBytes": 23971.93,
+                "outputFilesBytes": 24522.228,
+                "memory": 135028.736
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
@@ -695,40 +696,40 @@
                         "link": "input",
                         "name": "SRR4292758_0_R1.bam",
                         "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
-                        "sizeInBytes": 19423555
+                        "size": 19423.555
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_0_R1_trimmed.bam",
                         "path": "/00/a0fb6c13a979fce6c31543d3047891/",
-                        "sizeInBytes": 4394835
+                        "size": 4394.835
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1_bwt2merged.bam",
                         "path": "/e5/7ab5992e236515ce4850d01db96622/",
-                        "sizeInBytes": 24356153
+                        "size": 24356.153
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_R1.mapstat",
                         "path": "/e5/7ab5992e236515ce4850d01db96622/",
-                        "sizeInBytes": 83
+                        "size": 0.083
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/e5/7ab5992e236515ce4850d01db96622/",
-                        "sizeInBytes": 76
+                        "size": 0.076
                     }
                 ],
+                "runtime": 11.0,
                 "avgCPU": 80.9,
-                "inputFilesBytes": 23818390,
-                "outputFilesBytes": 24356311,
-                "memoryInBytes": 135204864,
-                "writtenBytes": 48344710,
-                "readBytes": 120535042,
-                "runtimeInSeconds": 11.0
+                "bytesRead": 120535.042,
+                "bytesWritten": 48344.71,
+                "inputFilesBytes": 23818.39,
+                "outputFilesBytes": 24356.311999999998,
+                "memory": 135204.864
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
@@ -749,34 +750,34 @@
                         "link": "input",
                         "name": "SRR4292758_0_R2.mapstat",
                         "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
-                        "sizeInBytes": 83
+                        "size": 0.083
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758",
                         "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
-                        "sizeInBytes": 64
+                        "size": 0.064
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.R2.mmapstat",
                         "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
-                        "sizeInBytes": 64
+                        "size": 0.064
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 32.3,
-                "inputFilesBytes": 83,
-                "outputFilesBytes": 184,
-                "memoryInBytes": 3133440,
-                "writtenBytes": 476,
-                "readBytes": 849155,
-                "runtimeInSeconds": 0.0
+                "bytesRead": 849.155,
+                "bytesWritten": 0.476,
+                "inputFilesBytes": 0.083,
+                "outputFilesBytes": 0.184,
+                "memory": 3133.44
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
@@ -796,40 +797,40 @@
                         "link": "input",
                         "name": "SRR4292758_0_R2_bwt2merged.bam",
                         "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
-                        "sizeInBytes": 24522069
+                        "size": 24522.069
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_0_R1_bwt2merged.bam",
                         "path": "/e5/7ab5992e236515ce4850d01db96622/",
-                        "sizeInBytes": 24356153
+                        "size": 24356.153
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.bam",
                         "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
-                        "sizeInBytes": 36531318
+                        "size": 36531.318
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.pairstat",
                         "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
-                        "sizeInBytes": 319
+                        "size": 0.319
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
-                        "sizeInBytes": 73
+                        "size": 0.073
                     }
                 ],
+                "runtime": 16.0,
                 "avgCPU": 87.3,
-                "inputFilesBytes": 48878221,
-                "outputFilesBytes": 36531710,
-                "memoryInBytes": 23412736,
-                "writtenBytes": 36532201,
-                "readBytes": 49943706,
-                "runtimeInSeconds": 16.0
+                "bytesRead": 49943.706,
+                "bytesWritten": 36532.201,
+                "inputFilesBytes": 48878.221999999994,
+                "outputFilesBytes": 36531.71,
+                "memory": 23412.736
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
@@ -850,34 +851,34 @@
                         "link": "input",
                         "name": "SRR4292758_0_R1.mapstat",
                         "path": "/e5/7ab5992e236515ce4850d01db96622/",
-                        "sizeInBytes": 83
+                        "size": 0.083
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758",
                         "path": "/f3/cec082c046449821fe9f8f3b759f68/",
-                        "sizeInBytes": 64
+                        "size": 0.064
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.R1.mmapstat",
                         "path": "/f3/cec082c046449821fe9f8f3b759f68/",
-                        "sizeInBytes": 64
+                        "size": 0.064
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/f3/cec082c046449821fe9f8f3b759f68/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 56.1,
-                "inputFilesBytes": 83,
-                "outputFilesBytes": 184,
-                "memoryInBytes": 8683520,
-                "writtenBytes": 491,
-                "readBytes": 849174,
-                "runtimeInSeconds": 0.0
+                "bytesRead": 849.174,
+                "bytesWritten": 0.491,
+                "inputFilesBytes": 0.083,
+                "outputFilesBytes": 0.184,
+                "memory": 8683.52
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
@@ -898,34 +899,34 @@
                         "link": "input",
                         "name": "SRR4292758_0_bwt2pairs.pairstat",
                         "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
-                        "sizeInBytes": 319
+                        "size": 0.319
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758",
                         "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
-                        "sizeInBytes": 319
+                        "size": 0.319
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.mpairstat",
                         "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
-                        "sizeInBytes": 319
+                        "size": 0.319
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 1.0,
                 "avgCPU": 61.7,
-                "inputFilesBytes": 319,
-                "outputFilesBytes": 694,
-                "memoryInBytes": 9670656,
-                "writtenBytes": 986,
-                "readBytes": 849651,
-                "runtimeInSeconds": 1.0
+                "bytesRead": 849.651,
+                "bytesWritten": 0.986,
+                "inputFilesBytes": 0.319,
+                "outputFilesBytes": 0.6940000000000001,
+                "memory": 9670.656
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
@@ -946,64 +947,64 @@
                         "link": "input",
                         "name": "SRR4292758_0_bwt2pairs.bam",
                         "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
-                        "sizeInBytes": 36531318
+                        "size": 36531.318
                     },
                     {
                         "link": "input",
                         "name": "restriction_fragments.bed",
                         "path": "/0b/313dd189c0ce9ff0b943b5fa234f56/",
-                        "sizeInBytes": 390905
+                        "size": 390.905
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.validPairs",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 5476826
+                        "size": 5476.826
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.DEPairs",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 45923673
+                        "size": 45923.673
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.SCPairs",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 427577
+                        "size": 427.577
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.REPairs",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 2401429
+                        "size": 2401.429
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.FiltPairs",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 9597107
+                        "size": 9597.107
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_0_bwt2pairs.RSstat",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 306
+                        "size": 0.306
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 66
+                        "size": 0.066
                     }
                 ],
+                "runtime": 24.0,
                 "avgCPU": 94.2,
-                "inputFilesBytes": 36922223,
-                "outputFilesBytes": 63826984,
-                "memoryInBytes": 25796608,
-                "writtenBytes": 64259480,
-                "readBytes": 38019923,
-                "runtimeInSeconds": 24.0
+                "bytesRead": 38019.923,
+                "bytesWritten": 64259.48,
+                "inputFilesBytes": 36922.223,
+                "outputFilesBytes": 63826.984000000004,
+                "memory": 25796.608
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
@@ -1023,40 +1024,40 @@
                         "link": "input",
                         "name": "SRR4292758_0_bwt2pairs.validPairs",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 5476826
+                        "size": 5476.826
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.allValidPairs",
                         "path": "/05/2262a0e79af44115958cbc490251f8/",
-                        "sizeInBytes": 5473293
+                        "size": 5473.293
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758",
                         "path": "/05/2262a0e79af44115958cbc490251f8/",
-                        "sizeInBytes": 138
+                        "size": 0.138
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_allValidPairs.mergestat",
                         "path": "/05/2262a0e79af44115958cbc490251f8/",
-                        "sizeInBytes": 138
+                        "size": 0.138
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/05/2262a0e79af44115958cbc490251f8/",
-                        "sizeInBytes": 64
+                        "size": 0.064
                     }
                 ],
+                "runtime": 0.772,
                 "avgCPU": 67.4,
-                "inputFilesBytes": 5476826,
-                "outputFilesBytes": 5473633,
-                "memoryInBytes": 14200832,
-                "writtenBytes": 27378272,
-                "readBytes": 43995581,
-                "runtimeInSeconds": 0.772
+                "bytesRead": 43995.581,
+                "bytesWritten": 27378.272,
+                "inputFilesBytes": 5476.826,
+                "outputFilesBytes": 5473.633,
+                "memory": 14200.832
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
@@ -1077,34 +1078,34 @@
                         "link": "input",
                         "name": "SRR4292758_0_bwt2pairs.RSstat",
                         "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
-                        "sizeInBytes": 306
+                        "size": 0.306
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758",
                         "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
-                        "sizeInBytes": 287
+                        "size": 0.287
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.mRSstat",
                         "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
-                        "sizeInBytes": 287
+                        "size": 0.287
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 1.0,
                 "avgCPU": 38.5,
-                "inputFilesBytes": 306,
-                "outputFilesBytes": 630,
-                "memoryInBytes": 6914048,
-                "writtenBytes": 922,
-                "readBytes": 849593,
-                "runtimeInSeconds": 1.0
+                "bytesRead": 849.593,
+                "bytesWritten": 0.922,
+                "inputFilesBytes": 0.306,
+                "outputFilesBytes": 0.63,
+                "memory": 6914.048
             },
             {
                 "name": "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
@@ -1124,40 +1125,40 @@
                         "link": "input",
                         "name": "SRR4292758.allValidPairs",
                         "path": "/05/2262a0e79af44115958cbc490251f8/",
-                        "sizeInBytes": 5473293
+                        "size": 5473.293
                     },
                     {
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 8889
+                        "size": 8.889
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_contacts.pairs.gz",
                         "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
-                        "sizeInBytes": 442410
+                        "size": 442.41
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_contacts.pairs.gz.px2",
                         "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
-                        "sizeInBytes": 123774
+                        "size": 123.774
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 0.0,
                 "avgCPU": 81.0,
-                "inputFilesBytes": 5482182,
-                "outputFilesBytes": 566240,
-                "memoryInBytes": 6955008,
-                "writtenBytes": 3441855,
-                "readBytes": 8872290,
-                "runtimeInSeconds": 0.0
+                "bytesRead": 8872.29,
+                "bytesWritten": 3441.855,
+                "inputFilesBytes": 5482.182,
+                "outputFilesBytes": 566.24,
+                "memory": 6955.008
             },
             {
                 "name": "NFCORE_HIC.HIC.MULTIQC",
@@ -1175,88 +1176,88 @@
                         "link": "input",
                         "name": "multiqc_config.yml",
                         "path": "/hic/assets/",
-                        "sizeInBytes": 465
+                        "size": 0.465
                     },
                     {
                         "link": "input",
                         "name": "workflow_summary_mqc.yaml",
                         "path": "/8c/bf8fe43a321ab4bff83dc140188a4b/",
-                        "sizeInBytes": 3800
+                        "size": 3.8
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_1_fastqc.zip",
                         "path": "/48/cca69448ab94d6e6086249c75aee81/",
-                        "sizeInBytes": 306974
+                        "size": 306.974
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_2_fastqc.zip",
                         "path": "/48/cca69448ab94d6e6086249c75aee81/",
-                        "sizeInBytes": 308165
+                        "size": 308.165
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758",
                         "path": "/05/2262a0e79af44115958cbc490251f8/",
-                        "sizeInBytes": 138
+                        "size": 0.138
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758",
                         "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
-                        "sizeInBytes": 64
+                        "size": 0.064
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758",
                         "path": "/f3/cec082c046449821fe9f8f3b759f68/",
-                        "sizeInBytes": 64
+                        "size": 0.064
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758",
                         "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
-                        "sizeInBytes": 319
+                        "size": 0.319
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758",
                         "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
-                        "sizeInBytes": 287
+                        "size": 0.287
                     },
                     {
                         "link": "output",
                         "name": "multiqc_report.html",
                         "path": "/d3/646abb1be0e2962177ef0034460e23/",
-                        "sizeInBytes": 1197397
+                        "size": 1197.397
                     },
                     {
                         "link": "output",
                         "name": "multiqc_data",
                         "path": "/d3/646abb1be0e2962177ef0034460e23/",
-                        "sizeInBytes": 161501
+                        "size": 161.501
                     },
                     {
                         "link": "output",
                         "name": "multiqc_plots",
                         "path": "/d3/646abb1be0e2962177ef0034460e23/",
-                        "sizeInBytes": 1121675
+                        "size": 1121.675
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/d3/646abb1be0e2962177ef0034460e23/",
-                        "sizeInBytes": 44
+                        "size": 0.044
                     }
                 ],
+                "runtime": 47.931,
                 "avgCPU": 88.0,
-                "inputFilesBytes": 620276,
-                "outputFilesBytes": 2480616,
-                "memoryInBytes": 154882048,
-                "writtenBytes": 4763049,
-                "readBytes": 534600493,
-                "runtimeInSeconds": 47.931
+                "bytesRead": 534600.494,
+                "bytesWritten": 4763.049,
+                "inputFilesBytes": 620.276,
+                "outputFilesBytes": 2480.6169999999997,
+                "memory": 154882.048
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
@@ -1277,40 +1278,40 @@
                         "link": "input",
                         "name": "SRR4292758_contacts.pairs.gz",
                         "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
-                        "sizeInBytes": 442410
+                        "size": 442.41
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_contacts.pairs.gz.px2",
                         "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
-                        "sizeInBytes": 123774
+                        "size": 123.774
                     },
                     {
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 8889
+                        "size": 8.889
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000.cool",
                         "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
-                        "sizeInBytes": 119521
+                        "size": 119.521
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
-                        "sizeInBytes": 57
+                        "size": 0.057
                     }
                 ],
+                "runtime": 5.206,
                 "avgCPU": 88.2,
-                "inputFilesBytes": 575073,
-                "outputFilesBytes": 119578,
-                "memoryInBytes": 95621120,
-                "writtenBytes": 243892,
-                "readBytes": 22701426,
-                "runtimeInSeconds": 5.206
+                "bytesRead": 22701.426,
+                "bytesWritten": 243.892,
+                "inputFilesBytes": 575.073,
+                "outputFilesBytes": 119.578,
+                "memory": 95621.12
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
@@ -1331,40 +1332,40 @@
                         "link": "input",
                         "name": "SRR4292758_contacts.pairs.gz",
                         "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
-                        "sizeInBytes": 442410
+                        "size": 442.41
                     },
                     {
                         "link": "input",
                         "name": "SRR4292758_contacts.pairs.gz.px2",
                         "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
-                        "sizeInBytes": 123774
+                        "size": 123.774
                     },
                     {
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 8889
+                        "size": 8.889
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000.cool",
                         "path": "/f9/32da3ac4c6b0b7d2c2ed314fa583e2/",
-                        "sizeInBytes": 108601
+                        "size": 108.601
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/f9/32da3ac4c6b0b7d2c2ed314fa583e2/",
-                        "sizeInBytes": 57
+                        "size": 0.057
                     }
                 ],
+                "runtime": 5.342,
                 "avgCPU": 88.6,
-                "inputFilesBytes": 575073,
-                "outputFilesBytes": 108658,
-                "memoryInBytes": 95010816,
-                "writtenBytes": 220908,
-                "readBytes": 22687654,
-                "runtimeInSeconds": 5.342
+                "bytesRead": 22687.654,
+                "bytesWritten": 220.908,
+                "inputFilesBytes": 575.073,
+                "outputFilesBytes": 108.658,
+                "memory": 95010.816
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
@@ -1387,28 +1388,28 @@
                         "link": "input",
                         "name": "SRR4292758.1000.cool",
                         "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
-                        "sizeInBytes": 119521
+                        "size": 119.521
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced.cool",
                         "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
-                        "sizeInBytes": 146949
+                        "size": 146.949
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
-                        "sizeInBytes": 59
+                        "size": 0.059
                     }
                 ],
+                "runtime": 3.371,
                 "avgCPU": 87.2,
-                "inputFilesBytes": 119521,
-                "outputFilesBytes": 147008,
-                "memoryInBytes": 79491072,
-                "writtenBytes": 150076,
-                "readBytes": 21564086,
-                "runtimeInSeconds": 3.371
+                "bytesRead": 21564.086,
+                "bytesWritten": 150.076,
+                "inputFilesBytes": 119.521,
+                "outputFilesBytes": 147.008,
+                "memory": 79491.072
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
@@ -1426,28 +1427,28 @@
                         "link": "input",
                         "name": "SRR4292758.1000.cool",
                         "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
-                        "sizeInBytes": 119521
+                        "size": 119.521
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.mcool",
                         "path": "/e3/60725657cb0c52a31ff0c49c4c1beb/",
-                        "sizeInBytes": 673010
+                        "size": 673.01
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/e3/60725657cb0c52a31ff0c49c4c1beb/",
-                        "sizeInBytes": 59
+                        "size": 0.059
                     }
                 ],
+                "runtime": 18.467,
                 "avgCPU": 90.3,
-                "inputFilesBytes": 119521,
-                "outputFilesBytes": 673069,
-                "memoryInBytes": 635326464,
-                "writtenBytes": 7870882,
-                "readBytes": 39573460,
-                "runtimeInSeconds": 18.467
+                "bytesRead": 39573.46,
+                "bytesWritten": 7870.882,
+                "inputFilesBytes": 119.521,
+                "outputFilesBytes": 673.069,
+                "memory": 635326.464
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
@@ -1470,28 +1471,28 @@
                         "link": "input",
                         "name": "SRR4292758.2000.cool",
                         "path": "/f9/32da3ac4c6b0b7d2c2ed314fa583e2/",
-                        "sizeInBytes": 108601
+                        "size": 108.601
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000_balanced.cool",
                         "path": "/40/3e3f51ab09064c9a27881a3802419f/",
-                        "sizeInBytes": 132689
+                        "size": 132.689
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/40/3e3f51ab09064c9a27881a3802419f/",
-                        "sizeInBytes": 59
+                        "size": 0.059
                     }
                 ],
+                "runtime": 3.269,
                 "avgCPU": 86.6,
-                "inputFilesBytes": 108601,
-                "outputFilesBytes": 132748,
-                "memoryInBytes": 82141184,
-                "writtenBytes": 135819,
-                "readBytes": 21403719,
-                "runtimeInSeconds": 3.269
+                "bytesRead": 21403.719,
+                "bytesWritten": 135.819,
+                "inputFilesBytes": 108.601,
+                "outputFilesBytes": 132.748,
+                "memory": 82141.184
             },
             {
                 "name": "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
@@ -1509,58 +1510,58 @@
                         "link": "input",
                         "name": "SRR4292758.1000_balanced.cool",
                         "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
-                        "sizeInBytes": 146949
+                        "size": 146.949
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced_hicfindtads_boundaries.bed",
                         "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
-                        "sizeInBytes": 0
+                        "size": 0.0
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced_hicfindtads_boundaries.gff",
                         "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
-                        "sizeInBytes": 0
+                        "size": 0.0
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced_hicfindtads_domains.bed",
                         "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
-                        "sizeInBytes": 0
+                        "size": 0.0
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced_hicfindtads_score.bedgraph",
                         "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
-                        "sizeInBytes": 17260
+                        "size": 17.26
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced_hicfindtads_tad_score.bm",
                         "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
-                        "sizeInBytes": 49364
+                        "size": 49.364
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced_hicfindtads_zscore_matrix.cool",
                         "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
-                        "sizeInBytes": 227065
+                        "size": 227.065
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
-                        "sizeInBytes": 60
+                        "size": 0.06
                     }
                 ],
+                "runtime": 22.0,
                 "avgCPU": 94.5,
-                "inputFilesBytes": 146949,
-                "outputFilesBytes": 293748,
-                "memoryInBytes": 123752448,
-                "writtenBytes": 294719,
-                "readBytes": 35560217,
-                "runtimeInSeconds": 22.0
+                "bytesRead": 35560.217,
+                "bytesWritten": 294.719,
+                "inputFilesBytes": 146.949,
+                "outputFilesBytes": 293.74899999999997,
+                "memory": 123752.448
             },
             {
                 "name": "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
@@ -1578,34 +1579,34 @@
                         "link": "input",
                         "name": "SRR4292758.1000_balanced.cool",
                         "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
-                        "sizeInBytes": 146949
+                        "size": 146.949
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_distcount.png",
                         "path": "/dc/f4ca3bcf97071f9d320f38c8d20c4a/",
-                        "sizeInBytes": 21281
+                        "size": 21.281
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758_distcount.txt",
                         "path": "/dc/f4ca3bcf97071f9d320f38c8d20c4a/",
-                        "sizeInBytes": 10588
+                        "size": 10.588
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/dc/f4ca3bcf97071f9d320f38c8d20c4a/",
-                        "sizeInBytes": 65
+                        "size": 0.065
                     }
                 ],
+                "runtime": 13.0,
                 "avgCPU": 91.1,
-                "inputFilesBytes": 146949,
-                "outputFilesBytes": 31934,
-                "memoryInBytes": 135925760,
-                "writtenBytes": 34627,
-                "readBytes": 40284692,
-                "runtimeInSeconds": 13.0
+                "bytesRead": 40284.692,
+                "bytesWritten": 34.627,
+                "inputFilesBytes": 146.949,
+                "outputFilesBytes": 31.934,
+                "memory": 135925.76
             },
             {
                 "name": "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION",
@@ -1623,28 +1624,28 @@
                         "link": "input",
                         "name": "SRR4292758.1000_balanced.cool",
                         "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
-                        "sizeInBytes": 146949
+                        "size": 146.949
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced_insulation.tsv",
                         "path": "/66/1ed45ffebfb381765c449f1a7d6733/",
-                        "sizeInBytes": 1604534
+                        "size": 1604.534
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/66/1ed45ffebfb381765c449f1a7d6733/",
-                        "sizeInBytes": 65
+                        "size": 0.065
                     }
                 ],
+                "runtime": 88.0,
                 "avgCPU": 97.4,
-                "inputFilesBytes": 146949,
-                "outputFilesBytes": 1604599,
-                "memoryInBytes": 256450560,
-                "writtenBytes": 1605054,
-                "readBytes": 60906680,
-                "runtimeInSeconds": 88.0
+                "bytesRead": 60906.68,
+                "bytesWritten": 1605.054,
+                "inputFilesBytes": 146.949,
+                "outputFilesBytes": 1604.5990000000002,
+                "memory": 256450.56
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
@@ -1663,28 +1664,28 @@
                         "link": "input",
                         "name": "SRR4292758.1000_balanced.cool",
                         "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
-                        "sizeInBytes": 146949
+                        "size": 146.949
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced.bedpe",
                         "path": "/99/ce07518ee82d12c9dffeb9cf4920b8/",
-                        "sizeInBytes": 525245
+                        "size": 525.245
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/99/ce07518ee82d12c9dffeb9cf4920b8/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 5.209,
                 "avgCPU": 59.2,
-                "inputFilesBytes": 146949,
-                "outputFilesBytes": 525301,
-                "memoryInBytes": 86978560,
-                "writtenBytes": 525684,
-                "readBytes": 19788443,
-                "runtimeInSeconds": 5.209
+                "bytesRead": 19788.443,
+                "bytesWritten": 525.684,
+                "inputFilesBytes": 146.949,
+                "outputFilesBytes": 525.301,
+                "memory": 86978.56
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
@@ -1703,28 +1704,28 @@
                         "link": "input",
                         "name": "SRR4292758.2000_balanced.cool",
                         "path": "/40/3e3f51ab09064c9a27881a3802419f/",
-                        "sizeInBytes": 132689
+                        "size": 132.689
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000_balanced.bedpe",
                         "path": "/96/eff5e1cc3b4d9c7f39a44240b97b03/",
-                        "sizeInBytes": 528371
+                        "size": 528.371
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/96/eff5e1cc3b4d9c7f39a44240b97b03/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 3.726,
                 "avgCPU": 84.0,
-                "inputFilesBytes": 132689,
-                "outputFilesBytes": 528427,
-                "memoryInBytes": 63025152,
-                "writtenBytes": 528810,
-                "readBytes": 19782624,
-                "runtimeInSeconds": 3.726
+                "bytesRead": 19782.624,
+                "bytesWritten": 528.81,
+                "inputFilesBytes": 132.689,
+                "outputFilesBytes": 528.427,
+                "memory": 63025.152
             },
             {
                 "name": "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
@@ -1743,52 +1744,52 @@
                         "link": "input",
                         "name": "SRR4292758.2000_balanced.cool",
                         "path": "/40/3e3f51ab09064c9a27881a3802419f/",
-                        "sizeInBytes": 132689
+                        "size": 132.689
                     },
                     {
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa",
                         "path": "/nf-core/test-datasets/raw/hic/reference/",
-                        "sizeInBytes": 11542637
+                        "size": 11542.637
                     },
                     {
                         "link": "input",
                         "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
                         "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
-                        "sizeInBytes": 8889
+                        "size": 8.889
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000_compartments.cis.bw",
                         "path": "/71/3a28474603c946958e763a212df777/",
-                        "sizeInBytes": 88499
+                        "size": 88.499
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000_compartments.cis.lam.txt",
                         "path": "/71/3a28474603c946958e763a212df777/",
-                        "sizeInBytes": 23855
+                        "size": 23.855
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000_compartments.cis.vecs.tsv",
                         "path": "/71/3a28474603c946958e763a212df777/",
-                        "sizeInBytes": 452733
+                        "size": 452.733
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/71/3a28474603c946958e763a212df777/",
-                        "sizeInBytes": 70
+                        "size": 0.07
                     }
                 ],
+                "runtime": 34.0,
                 "avgCPU": 95.5,
-                "inputFilesBytes": 11684215,
-                "outputFilesBytes": 565157,
-                "memoryInBytes": 284004352,
-                "writtenBytes": 1457656,
-                "readBytes": 163681937,
-                "runtimeInSeconds": 34.0
+                "bytesRead": 163681.937,
+                "bytesWritten": 1457.656,
+                "inputFilesBytes": 11684.215,
+                "outputFilesBytes": 565.157,
+                "memory": 284004.352
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
@@ -1806,34 +1807,34 @@
                         "link": "input",
                         "name": "SRR4292758.1000_balanced.bedpe",
                         "path": "/99/ce07518ee82d12c9dffeb9cf4920b8/",
-                        "sizeInBytes": 525245
+                        "size": 525.245
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_balanced.txt",
                         "path": "/8f/8c4158367f3fcd00513ba97aa02485/",
-                        "sizeInBytes": 470513
+                        "size": 470.513
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.1000_raw.txt",
                         "path": "/8f/8c4158367f3fcd00513ba97aa02485/",
-                        "sizeInBytes": 332336
+                        "size": 332.336
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/8f/8c4158367f3fcd00513ba97aa02485/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 0.071,
                 "avgCPU": 41.0,
-                "inputFilesBytes": 525245,
-                "outputFilesBytes": 802905,
-                "memoryInBytes": 0,
-                "writtenBytes": 1853705,
-                "readBytes": 2210714,
-                "runtimeInSeconds": 0.071
+                "bytesRead": 2210.714,
+                "bytesWritten": 1853.705,
+                "inputFilesBytes": 525.245,
+                "outputFilesBytes": 802.905,
+                "memory": 0.0
             },
             {
                 "name": "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
@@ -1851,34 +1852,34 @@
                         "link": "input",
                         "name": "SRR4292758.2000_balanced.bedpe",
                         "path": "/96/eff5e1cc3b4d9c7f39a44240b97b03/",
-                        "sizeInBytes": 528371
+                        "size": 528.371
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000_balanced.txt",
                         "path": "/8f/740708bf64996845ed92b2ae246d50/",
-                        "sizeInBytes": 475477
+                        "size": 475.477
                     },
                     {
                         "link": "output",
                         "name": "SRR4292758.2000_raw.txt",
                         "path": "/8f/740708bf64996845ed92b2ae246d50/",
-                        "sizeInBytes": 307708
+                        "size": 307.708
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/8f/740708bf64996845ed92b2ae246d50/",
-                        "sizeInBytes": 56
+                        "size": 0.056
                     }
                 ],
+                "runtime": 0.185,
                 "avgCPU": 40.6,
-                "inputFilesBytes": 528371,
-                "outputFilesBytes": 783241,
-                "memoryInBytes": 2830336,
-                "writtenBytes": 1840275,
-                "readBytes": 2223192,
-                "runtimeInSeconds": 0.185
+                "bytesRead": 2223.192,
+                "bytesWritten": 1840.275,
+                "inputFilesBytes": 528.371,
+                "outputFilesBytes": 783.241,
+                "memory": 2830.336
             },
             {
                 "name": "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
@@ -1916,48 +1917,43 @@
                         "link": "input",
                         "name": "collated_versions.yml",
                         "path": "/bb/d34d9288cab4d5301daf3247ca5302/",
-                        "sizeInBytes": 2383
+                        "size": 2.383
                     },
                     {
                         "link": "output",
                         "name": "software_versions.yml",
                         "path": "/4c/8ba455a29807f717f76feea2709e0b/",
-                        "sizeInBytes": 983
+                        "size": 0.983
                     },
                     {
                         "link": "output",
                         "name": "software_versions_mqc.yml",
                         "path": "/4c/8ba455a29807f717f76feea2709e0b/",
-                        "sizeInBytes": 5078
+                        "size": 5.078
                     },
                     {
                         "link": "output",
                         "name": "versions.yml",
                         "path": "/4c/8ba455a29807f717f76feea2709e0b/",
-                        "sizeInBytes": 75
+                        "size": 0.075
                     }
                 ],
+                "runtime": 0.383,
                 "avgCPU": 43.3,
-                "inputFilesBytes": 2383,
-                "outputFilesBytes": 6136,
-                "memoryInBytes": 8187904,
-                "writtenBytes": 6355,
-                "readBytes": 862405,
-                "runtimeInSeconds": 0.383
+                "bytesRead": 862.405,
+                "bytesWritten": 6.355,
+                "inputFilesBytes": 2.383,
+                "outputFilesBytes": 6.136,
+                "memory": 8187.904
             }
-        ],
-        "machines": [
-            {
-                "nodeName": "dirt02",
-                "system": "Linux",
-                "release": "5.15.0-48-generic",
-                "architecture": "x86_64",
-                "cpu": {
-                    "count": 1,
-                    "speed": 2400
-                }
-            }
-        ],
-        "makespanInSeconds": 1507
-    }
+        ]
+    },
+    "machines": [
+        {
+            "nodeName": "dirt02",
+            "system": "Linux",
+            "release": "5.15.0-48-generic",
+            "architecture": "x86_64"
+        }
+    ]
 }

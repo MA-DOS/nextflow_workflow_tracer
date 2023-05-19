@@ -117,7 +117,7 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
         files[i]     = []
         remote_files = {}   #stores (path, index in files) for files that are not stored locally on the computer
 
-        file_bytes_read [i] = 0.
+        file_bytes_read[i]  = 0.
         file_bytes_write[i] = 0.
 
         with open(filepath_log, "r") as fp:
@@ -268,6 +268,19 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
 
                                     else:
                                         print("{} exists! (but dunno what it is)".format(temp))
+
+        # Remove file duplicates if any
+        duplicate_free = []
+        for f in files[i]:
+            already_seen = False
+            for s in duplicate_free:
+                if (s["name"] == f["name"]) and (s["path"] == f["path"]) and (s["link"] == f["link"]):
+                    already_seen = True
+                    break
+            if not already_seen:
+                duplicate_free.append(f)
+        files[i] = duplicate_free
+
 
 #Parse filepath_dag file
 def parse_dag(filepath_dag, parents, children):
@@ -463,8 +476,7 @@ single_machine["architecture"] = str(completed_process.stdout).strip()
 cpu={}
 cpu["count"] = 1  # Has to be 1, see (trace_nextflow.config)
 
-# Get clock rate in 
-Hz
+# Get clock rate in Hz
 command = "cat /proc/cpuinfo | grep 'model name' | sed 's/.* //' | sed 's/G.*//' | sed 's/\.//' | sed 's/$/0/'"
 output = subprocess.check_output(command, shell=True)
 output = output.decode('utf-8').strip()  # Convert bytes to string and remove trailing newline
