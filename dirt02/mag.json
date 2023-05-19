@@ -11819,14 +11819,18 @@
                 "outputFilesBytes": 6229.704,
                 "memory": 161636.352
             }
+    	],
+        "machines": [
+                {
+                        "nodeName": "dirt02",
+                        "system": "Linux",
+                        "release": "5.15.0-48-generic",
+                        "architecture": "x86_64",
+                        "cpu": {
+                                "count": 1,
+                                "speed": 1400
+                        }
+                }
         ]
-    },
-    "machines": [
-        {
-            "nodeName": "dirt02",
-            "system": "Linux",
-            "release": "5.15.0-48-generic",
-            "architecture": "x86_64"
-        }
-    ]
+    }
 }

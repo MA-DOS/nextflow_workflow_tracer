@@ -444,24 +444,8 @@ for i in task_id:
 
 workflow["tasks"] = tasks
 
-
-#8. Create top level structures for WfCommons JSON output
-wfcommons                  = {}
-wfcommons["name"]          = workflow_name
-wfcommons["description"]   = "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)"
-wfcommons["createdAt"]     = str(datetime.now(tz=timezone.utc).isoformat())
-wfcommons["schemaVersion"] = "1.3"
-
-wms         = {}
-wms["name"] = "Nextflow"
-wms["url"]  = "https://www.nextflow.io/"
-
-wfcommons["wms"]      = wms
-wfcommons["workflow"] = workflow
-
-wfcommons["machines"] = []
-
-#Get machine info
+# Get machine info
+workflow["machines"] = []
 single_machine = {}
 
 completed_process = subprocess.run(["uname", "-n"], capture_output=True, encoding="utf-8")
@@ -477,6 +461,21 @@ completed_process = subprocess.run(["uname", "-m"], capture_output=True, encodin
 single_machine["architecture"] = str(completed_process.stdout).strip()
 
 wfcommons["machines"].append(single_machine)
+
+
+#8. Create top level structures for WfCommons JSON output
+wfcommons                  = {}
+wfcommons["name"]          = workflow_name
+wfcommons["description"]   = "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)"
+wfcommons["createdAt"]     = str(datetime.now(tz=timezone.utc).isoformat())
+wfcommons["schemaVersion"] = "1.3"
+
+wms         = {}
+wms["name"] = "Nextflow"
+wms["url"]  = "https://www.nextflow.io/"
+
+wfcommons["wms"]      = wms
+wfcommons["workflow"] = workflow
 
 
 #4. Write JSON to output file
