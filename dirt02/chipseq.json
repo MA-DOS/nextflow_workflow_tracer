@@ -13037,7 +13037,7 @@
                 "architecture": "x86_64",
                 "cpu": {
                     "count": 1,
-                    "speed": 1400
+                    "speed": 2400
                 }
             }
         ],
