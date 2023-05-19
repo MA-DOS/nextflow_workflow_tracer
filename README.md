@@ -1,12 +1,12 @@
-# WfCommons Nextflow workflow tracer
+# WfCommons NextFlow workflow tracer
 
-A tool to trace Nextflow workflow executions and produce WfFormat workflow instances.
+A tool to trace NextFlow workflow executions and produce WfFormat workflow instances.
 
-## Modifications to Nextflow
+## Modifications to NextFlow
 
-A few modifications to the Nextflow source code were made in order to trace the inputs and outputs for each task in the workflow.
+A few modifications to the NextFlow source code were made in order to trace the inputs and outputs for each task in the workflow.
 In particular, the file `TaskProcessor.groovy`, located in directory `/modules/nextflow/src/main/groovy/nextflow/processor/`, is modified. 
-We reference the latest Nextflow release version, v22.10.7:
+We reference the latest NextFlow release version, v22.10.7:
 * https://github.com/nextflow-io/nextflow/blob/v22.10.7/modules/nextflow/src/main/groovy/nextflow/processor/TaskProcessor.groovy
 
 1. In function 
@@ -212,50 +212,52 @@ List<Object> beforeRun(final DataflowProcessor processor, final List<Object> mes
 }
 ```
 
-### Build the modified Nextflow
+### Build the modified NextFlow
 
-Follow the Nextflow build from source instructions, i.e., `make compile`, after which `./launch.sh` can be used while in the Nextflow root directory to start the modified Nextflow.
-
-
-## Using parse.py
-
-The `parse.py` script requires several files in order to trace the execution of a Nextflow workflow. These files are generated via the following steps (we assume the `trace_nextflow.config` and `template-scriptlog.txt` files are in the Nextflow root directory, however, they can be located elsewhere if desired):
-
-1. Run the workflow
-```bash
-./launch.sh -log <log file> run nf-core/<workflow> -profile test,docker -c trace_nextflow.config --outdir <workflow output directory> > <stdout file>
-```
-This will create a *log* file (via command line argument), a *trace* file (via `trace_nextflow.config`), a *dot* file (via `trace_nextflow.config`), and a *stdout* file (via bash command line).
-
-2. Find the run name for the executed workflow
-```bash
-./launch.sh log
-```
-Alternatively, inspect the *stdout* file.
-
-3. Get the script commands for each task in the workflow
-```bash
-./launch.sh log <run name> -t template-scriptlog.txt > <scripts log file>
-```
-This creates a *scripts* file (via `template-scriptlog.txt`).
-
-4. Run `parse.py` with the workflow name, 5 files, and an output file name.
+Follow the NextFlow build from source instructions, i.e., `make compile`,
+after which `./launch.sh` can be used while in the NextFlow root directory
+to start the modified NextFlow.
 
 
-## Using nf_to_wf.py
+## Collecting workflow instances 
 
-The script `nf_to_wf.py` automates the previous process via `parse.py`.
-It first requires the variable `nextflow_path` on line 320 to be set to the Nextflow build directory.
-For example,
+The script `nf_to_wf.py` is used to both run the workflow using NextFlow and process log files to construct a JSON WfCommons workflow instance that complies with the WfFormat schema. 
+
+This script requires the variable `nextflow_path` on line 320 to be set to the NextFlow build directory, for example:
 ```groovy
 nextflow_path = "./nextflow-22.10.7/launch.sh"
 ```
-It takes 3 arguments, the workflow name, the work directory (where workflows can store files), and the JSON output file name.
+
+The script takes 3 arguments: the workflow name, the working directory (where workflows can store files), and the JSON output file name.
+
+
+
+This script operates as follows (it assumes the `trace_nextflow.config` and `template-scriptlog.txt` files are in the NextFlow root directory, however, they can be located elsewhere if desired): 
+
+1. It runs the workflow as follows
+```bash
+./launch.sh -log <log file> run nf-core/<workflow> -profile test,docker -c trace_nextflow.config --outdir <workflow output directory> > <stdout file>
+```
+which creates a *log* file (via command line argument), a *trace* file (via `trace_nextflow.config`), a *dot* file (via `trace_nextflow.config`), and a *stdout* file (via bash command line).
+
+2. It finds the run name for the executed workflow
+```bash
+./launch.sh log
+```
+(alternatively, it inspects the *stdout* file).
+
+3. It gets the script commands for each task in the workflow
+```bash
+./launch.sh log <run name> -t template-scriptlog.txt > <scripts log file>
+```
+which creates a *scripts* file (via `template-scriptlog.txt`).
+
+4. It parses the generated files to construct the WfCommons workflow instance.
 
 
 ## Notes
 
-* We assume that on completion of the workflow (i.e., `workflow.onComplete`) the workflow prints the summary to stdout using `NfcoreTemplate.summary()`. To our knowledge, all nf-core workflows output this summary.
+* It is assumed that on completion of the workflow (i.e., `workflow.onComplete`) the workflow prints the summary to stdout using `NfcoreTemplate.summary()`. To our knowledge, all nf-core workflows output this summary.
 
 * Each task in the workflow requests a single CPU (via `trace_nextflow.config`).
 

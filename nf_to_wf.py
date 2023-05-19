@@ -269,9 +269,6 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
                                     else:
                                         print("{} exists! (but dunno what it is)".format(temp))
 
-        for f in files:
-            f["name"] = f["path"].replace("/", "_") + "_" + f["name"]
-
 #Parse filepath_dag file
 def parse_dag(filepath_dag, parents, children):
     G = nx.nx_agraph.read_dot(filepath_dag)
