@@ -27,7 +27,8 @@ def parse_stdout(stdout, workflow):
 
         elif "Completed at" in line:
             x = line[line.find(":")+1:].strip() + " -1000"      #HST is -10 hours to UTC
-            y = datetime.strptime(x, "%d-%b-%Y %H:%M:%S %z")
+            y = datetime.strptime(x, "%d-%b-%Y %H:%
+:%S %z")
 
             #dunno if %d (zero-padded day of the month) or (%-d not zero-padded)
             #of if %H (zero-padded 24 hour clock hour) or (%-H not zero-padded)
@@ -143,13 +144,13 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
                                     if not os.path.exists(temp):
                                         curr_file["path"] = "/".join(x[:len(x)-1]) + "/"
                                         remote_files[temp] = len(files[i])        #input file pulled from nf-core test-datasets
-                                        curr_file["sizeInBytes"] = "Unknown file location"
+                                        curr_file["sizeInBytes"] = 0
                                     else:
                                         curr_file["path"] = "/" + "/".join(x[len(x)-3:len(x)-1]) + "/"
 
                                         if os.path.isfile(temp):
-                                            curr_file["sizeInBytes"] = float(os.path.getsize(temp))
-                                            file_bytes_read[i] += float(curr_file["sizeInBytes"])
+                                            curr_file["sizeInBytes"] = os.path.getsize(temp)
+                                            file_bytes_read[i] += curr_file["sizeInBytes"]
                                             
                                         elif os.path.isdir(temp):
                                             #print("{} is a directory".format(temp))
@@ -163,13 +164,13 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
                                                     elif os.path.islink(x):
                                                         total_size += os.path.getsize(os.readlink(x))
 
-                                            curr_file["sizeInBytes"] = float(total_size) 
-                                            file_bytes_read[i] += float(curr_file["sizeInBytes"])
+                                            curr_file["sizeInBytes"] = total_size
+                                            file_bytes_read[i] += curr_file["sizeInBytes"]
 
                                         elif os.path.islink(temp):
                                             #print("{} is a symbolic link".format(temp))
                                             curr_file["sizeInBytes"] = os.path.getsize(os.readlink(temp))
-                                            file_bytes_read[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_read[i] += curr_file["sizeInBytes"]
 
                                         else:
                                             print("{} exists! (but dunno what it is)".format(temp))
@@ -193,8 +194,8 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
                                     #note output files should always be written to tasks work dir (i.e., no remote files)
                                     if os.path.exists(temp):
                                         if os.path.isfile(temp):
-                                            curr_file["sizeInBytes"] = float(os.path.getsize(temp))
-                                            file_bytes_write[i] += float(curr_file["sizeInBytes"])
+                                            curr_file["sizeInBytes"] = os.path.getsize(temp)
+                                            file_bytes_write[i] += curr_file["sizeInBytes"]
                                             
                                         elif os.path.isdir(temp):
                                             #print("{} is a directory".format(temp))
@@ -208,13 +209,13 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
                                                     elif os.path.islink(x):
                                                         total_size += os.path.getsize(os.readlink(x))
 
-                                            curr_file["sizeInBytes"] = float(total_size)
-                                            file_bytes_write[i] += float(curr_file["sizeInBytes"])
+                                            curr_file["sizeInBytes"] = total_size
+                                            file_bytes_write[i] += curr_file["sizeInBytes"]
 
                                         elif os.path.islink(temp):
                                             #print("{} is a symbolic link".format(temp))
                                             curr_file["sizeInBytes"] = os.path.getsize(os.readlink(temp))
-                                            file_bytes_write[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_write[i] += curr_file["sizeInBytes"]
 
                                         else:
                                             print("{} exists! (but dunno what it is)".format(temp))
@@ -233,12 +234,12 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
 
                                 if os.path.exists(temp):
                                     if os.path.isfile(temp):
-                                        files[i][remote_files[rfile]]["sizeInBytes"] = float(os.path.getsize(temp))
+                                        files[i][remote_files[rfile]]["sizeInBytes"] = os.path.getsize(temp)
                                         
                                         if files[i][remote_files[rfile]]["link"] == "input":
-                                            file_bytes_read[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_read[i] += curr_file["sizeInBytes"]
                                         else:
-                                            file_bytes_write[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_write[i] += curr_file["sizeInBytes"]
 
                                     elif os.path.isdir(temp):
                                         #print("{} is a directory".format(temp))
@@ -252,19 +253,19 @@ def parse_log(filepath_log, task_id, processes, files, file_bytes_read, file_byt
                                                 elif os.path.islink(x):
                                                     total_size += os.path.getsize(os.readlink(x))
 
-                                        files[i][remote_files[rfile]]["sizeInBytes"] = float(total_size)
+                                        files[i][remote_files[rfile]]["sizeInBytes"] = total_size
                                         if files[i][remote_files[rfile]]["link"] == "input":
-                                            file_bytes_read[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_read[i] += curr_file["sizeInBytes"]
                                         else:
-                                            file_bytes_write[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_write[i] += curr_file["sizeInBytes"]
 
                                     elif os.path.islink(temp):
                                         #print("{} is a symbolic link".format(temp))
                                         files[i][remote_files[rfile]]["sizeInBytes"] = os.path.getsize(os.readlink(temp))
                                         if files[i][remote_files[rfile]]["link"] == "input":
-                                            file_bytes_read[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_read[i] += curr_file["sizeInBytes"]
                                         else:
-                                            file_bytes_write[i] += float(curr_file["sizeInBytes"])
+                                            file_bytes_write[i] += curr_file["sizeInBytes"]
 
                                     else:
                                         print("{} exists! (but dunno what it is)".format(temp))
@@ -421,10 +422,10 @@ for i in task_id:
     curr_task["parents"]          = rep_parents[processes[i]] #parents[processes[i]]
     curr_task["children"]         = rep_children[processes[i]] #children[processes[i]]
     curr_task["files"]            = files[i]
-    curr_task["runtimeInSeconds"] = float(realtime[i])/1000.         #in seconds
+    curr_task["runtimeInSeconds"] = float(realtime[i])/1000.0
     curr_task["avgCPU"]           = pct_cpu[i] #float(pct_cpu[i])
-    curr_task["bytesRead"]        = rchar[i]
-    curr_task["bytesWritten"]     = wchar[i]
+    curr_task["bytesRead"]        = int(rchar[i])
+    curr_task["bytesWritten"]     = int(wchar[i])
     
     sum_r = 0.
     sum_w = 0.
@@ -435,10 +436,10 @@ for i in task_id:
             else:
                 sum_w += file["sizeInBytes"]
 
-    curr_task["inputFilesBytes"]  = sum_r #float(file_bytes_read[i])
-    curr_task["outputFilesBytes"] = sum_w #float(file_bytes_write[i])
+    curr_task["inputFilesBytes"]  = sum_r 
+    curr_task["outputFilesBytes"] = sum_w 
 
-    curr_task["memory"]           = rss[i]/1000. #float(rss[i])/1000.              #in KB (not KiB!)
+    curr_task["memoryInBytes"]           = rss[i]
 
     tasks.append(curr_task)
 
@@ -461,9 +462,15 @@ completed_process = subprocess.run(["uname", "-m"], capture_output=True, encodin
 single_machine["architecture"] = str(completed_process.stdout).strip()
 
 cpu={}
-cpu["count"]=1
-cpu["speed"]=2400  # This is HARDCODED for now, which is not great
-                   # One option is:  cat /proc/cpuinfo | grep "model name" | sed "s/.* //" | sed "s/G.*//" | sed "s/\.//" | sed "s/$/0/"
+cpu["count"] = 1  # Has to be 1, see (trace_nextflow.config)
+
+# Get clock rate in 
+Hz
+command = "cat /proc/cpuinfo | grep 'model name' | sed 's/.* //' | sed 's/G.*//' | sed 's/\.//' | sed 's/$/0/'"
+output = subprocess.check_output(command, shell=True)
+output = output.decode('utf-8').strip()  # Convert bytes to string and remove trailing newline
+cpu["speed"]=int(output)
+
 single_machine["cpu"]=cpu
 workflow["machines"].append(single_machine)
 
@@ -473,7 +480,7 @@ wfcommons                  = {}
 wfcommons["name"]          = workflow_name
 wfcommons["description"]   = "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)"
 wfcommons["createdAt"]     = str(datetime.now(tz=timezone.utc).isoformat())
-wfcommons["schemaVersion"] = "1.3"
+wfcommons["schemaVersion"] = "1.4"
 
 wms         = {}
 wms["name"] = "Nextflow"
@@ -486,3 +493,4 @@ wfcommons["workflow"] = workflow
 #4. Write JSON to output file
 with open(outfile, "w") as fp:
     fp.write(json.dumps(wfcommons, indent=4))
+
