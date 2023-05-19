@@ -464,11 +464,8 @@ cpu={}
 cpu["count"]=1
 cpu["speed"]=2400  # This is HARDCODED for now, which is not great
                    # One option is:  cat /proc/cpuinfo | grep "model name" | sed "s/.* //" | sed "s/G.*//" | sed "s/\.//" | sed "s/$/0/"
-
-
 single_machine["cpu"]=cpu
-
-wfcommons["machines"].append(single_machine)
+workflow["machines"].append(single_machine)
 
 
 #8. Create top level structures for WfCommons JSON output
