@@ -495,6 +495,7 @@ wfcommons["schemaVersion"] = "1.4"
 
 wms         = {}
 wms["name"] = "Nextflow"
+wms["version"] = "23.04.1"
 wms["url"]  = "https://www.nextflow.io/"
 
 wfcommons["wms"]      = wms
