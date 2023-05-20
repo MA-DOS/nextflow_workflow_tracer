@@ -9,6 +9,8 @@ with open(sys.argv[1]) as file:
 # Fix Schema
 data["schemaVersion"]="1.4"
 
+# Fix version
+data["wms"]["version"] = "23.04.1"
 
 # Fix machines
 machines = data["machines"]
