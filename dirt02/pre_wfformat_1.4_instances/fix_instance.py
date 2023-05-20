@@ -32,6 +32,8 @@ for task in data["workflow"]["tasks"]:
     #new_command["arguments"] = []
     new_command["program"] = task["command"]
     new_command["arguments"] = []
+    task["parents"] = []
+    task["children"] = []
     task["command"] = new_command
     task["memoryInBytes"] = int(float(task["memory"])*1000.0)
     del task["memory"]
