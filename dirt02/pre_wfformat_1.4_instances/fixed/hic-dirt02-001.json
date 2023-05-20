@@ -1,0 +1,2078 @@
+{
+    "name": "hic",
+    "description": "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)",
+    "createdAt": "2023-03-29T04:01:35.898087+00:00",
+    "schemaVersion": "1.4",
+    "wms": {
+        "name": "Nextflow",
+        "url": "https://www.nextflow.io/",
+        "version": "23.04.1"
+    },
+    "workflow": {
+        "repo": "https://github.com/nf-core/hic",
+        "runName": "focused_newton",
+        "executedAt": "2023-03-28T18:01:31-10:00",
+        "tasks": [
+            {
+                "name": "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK",
+                "id": "4",
+                "type": "compute",
+                "command": {
+                    "program": "check_samplesheet.py \\\n        samplesheet.csv \\\n        samplesheet.valid.csv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:INPUT_CHECK:SAMPLESHEET_CHECK\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_HIC.HIC.FASTQC",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "samplesheet.csv",
+                        "path": "/hic/assets/",
+                        "sizeInBytes": 194
+                    },
+                    {
+                        "link": "output",
+                        "name": "samplesheet.valid.csv",
+                        "path": "/85/87f3aa798384909507c3133e8e4b53/",
+                        "sizeInBytes": 213
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/85/87f3aa798384909507c3133e8e4b53/",
+                        "sizeInBytes": 66
+                    }
+                ],
+                "avgCPU": 28.2,
+                "inputFilesBytes": 194,
+                "outputFilesBytes": 279,
+                "memoryInBytes": 2822144,
+                "writtenBytes": 580,
+                "readBytes": 919661,
+                "runtimeInSeconds": 1.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES",
+                "id": "1",
+                "type": "compute",
+                "command": {
+                    "program": "samtools faidx W303_SGD_2015_JRIU00000000.fsa\n    cut -f 1,2 W303_SGD_2015_JRIU00000000.fsa.fai > W303_SGD_2015_JRIU00000000.fsa.sizes\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:PREPARE_GENOME:CUSTOM_GETCHROMSIZES\":\n        getchromsizes: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
+                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa",
+                        "path": "/nf-core/test-datasets/raw/hic/reference/",
+                        "sizeInBytes": 11542637
+                    },
+                    {
+                        "link": "output",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 8889
+                    },
+                    {
+                        "link": "output",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.fai",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 12249
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 81
+                    }
+                ],
+                "avgCPU": 40.9,
+                "inputFilesBytes": 11542637,
+                "outputFilesBytes": 21218,
+                "memoryInBytes": 3522560,
+                "writtenBytes": 26069,
+                "readBytes": 11666952,
+                "runtimeInSeconds": 0.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.PREPARE_GENOME.GET_RESTRICTION_FRAGMENTS",
+                "id": "3",
+                "type": "compute",
+                "command": {
+                    "program": "digest_genome.py -r A^AGCTT -o restriction_fragments.bed W303_SGD_2015_JRIU00000000.fsa\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:PREPARE_GENOME:GET_RESTRICTION_FRAGMENTS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa",
+                        "path": "/nf-core/test-datasets/raw/hic/reference/",
+                        "sizeInBytes": 11542637
+                    },
+                    {
+                        "link": "output",
+                        "name": "restriction_fragments.bed",
+                        "path": "/0b/313dd189c0ce9ff0b943b5fa234f56/",
+                        "sizeInBytes": 390905
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/0b/313dd189c0ce9ff0b943b5fa234f56/",
+                        "sizeInBytes": 78
+                    }
+                ],
+                "avgCPU": 90.3,
+                "inputFilesBytes": 11542637,
+                "outputFilesBytes": 390982,
+                "memoryInBytes": 33959936,
+                "writtenBytes": 399694,
+                "readBytes": 26991963,
+                "runtimeInSeconds": 1.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
+                "id": "2",
+                "type": "compute",
+                "command": {
+                    "program": "mkdir bowtie2\n    bowtie2-build  --threads 1 W303_SGD_2015_JRIU00000000.fsa bowtie2/W303_SGD_2015_JRIU00000000\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:PREPARE_GENOME:BOWTIE2_BUILD\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa",
+                        "path": "/nf-core/test-datasets/raw/hic/reference/",
+                        "sizeInBytes": 11542637
+                    },
+                    {
+                        "link": "output",
+                        "name": "bowtie2",
+                        "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
+                        "sizeInBytes": 24532794
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
+                        "sizeInBytes": 66
+                    }
+                ],
+                "avgCPU": 88.9,
+                "inputFilesBytes": 11542637,
+                "outputFilesBytes": 24532860,
+                "memoryInBytes": 59977728,
+                "writtenBytes": 24549507,
+                "readBytes": 47699597,
+                "runtimeInSeconds": 20.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
+                "id": "6",
+                "type": "compute",
+                "command": {
+                    "program": "cooler makebins \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes \\\n        1000 > cooler_bins_1000.bed\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_MAKEBINS\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 8889
+                    },
+                    {
+                        "link": "output",
+                        "name": "cooler_bins_1000.bed",
+                        "path": "/c3/9d13c2126693b8724af96451d360fb/",
+                        "sizeInBytes": 505925
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/c3/9d13c2126693b8724af96451d360fb/",
+                        "sizeInBytes": 60
+                    }
+                ],
+                "avgCPU": 81.9,
+                "inputFilesBytes": 8889,
+                "outputFilesBytes": 505985,
+                "memoryInBytes": 84967424,
+                "writtenBytes": 506357,
+                "readBytes": 19638526,
+                "runtimeInSeconds": 3.9
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
+                "id": "5",
+                "type": "compute",
+                "command": {
+                    "program": "cooler makebins \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes \\\n        2000 > cooler_bins_2000.bed\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_MAKEBINS\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 8889
+                    },
+                    {
+                        "link": "output",
+                        "name": "cooler_bins_2000.bed",
+                        "path": "/da/cbe6b4cd9cc556da46f763d7a630f1/",
+                        "sizeInBytes": 255773
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/da/cbe6b4cd9cc556da46f763d7a630f1/",
+                        "sizeInBytes": 60
+                    }
+                ],
+                "avgCPU": 86.5,
+                "inputFilesBytes": 8889,
+                "outputFilesBytes": 255833,
+                "memoryInBytes": 82583552,
+                "writtenBytes": 256204,
+                "readBytes": 19638526,
+                "runtimeInSeconds": 3.914
+            },
+            {
+                "name": "NFCORE_HIC.HIC.FASTQC",
+                "id": "7",
+                "type": "compute",
+                "command": {
+                    "program": "printf \"%s %s\\n\" SRR4292758_00_R1.fastq.gz SRR4292758_1.gz SRR4292758_00_R2.fastq.gz SRR4292758_2.gz | while read old_name new_name; do\n        [ -f \"${new_name}\" ] || ln -s $old_name $new_name\n    done\n    fastqc  --threads 1 SRR4292758_1.gz SRR4292758_2.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
+                    "NFCORE_HIC.HIC.MULTIQC"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_00_R1.fastq.gz",
+                        "path": "/nf-core/test-datasets/raw/hic/data/",
+                        "sizeInBytes": 26066317
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_00_R2.fastq.gz",
+                        "path": "/nf-core/test-datasets/raw/hic/data/",
+                        "sizeInBytes": 26201604
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_1_fastqc.html",
+                        "path": "/48/cca69448ab94d6e6086249c75aee81/",
+                        "sizeInBytes": 584447
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_2_fastqc.html",
+                        "path": "/48/cca69448ab94d6e6086249c75aee81/",
+                        "sizeInBytes": 583231
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_1_fastqc.zip",
+                        "path": "/48/cca69448ab94d6e6086249c75aee81/",
+                        "sizeInBytes": 306974
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_2_fastqc.zip",
+                        "path": "/48/cca69448ab94d6e6086249c75aee81/",
+                        "sizeInBytes": 308165
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/48/cca69448ab94d6e6086249c75aee81/",
+                        "sizeInBytes": 44
+                    }
+                ],
+                "avgCPU": 91.5,
+                "inputFilesBytes": 52267921,
+                "outputFilesBytes": 1782860,
+                "memoryInBytes": 305795072,
+                "writtenBytes": 3525144,
+                "readBytes": 73983920,
+                "runtimeInSeconds": 25.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
+                "id": "9",
+                "type": "compute",
+                "command": {
+                    "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_00_R2.fastq.gz \\\n        --threads 1 \\\n        --un-gz SRR4292758_0_R2.unmapped.fastq.gz \\\n        --very-sensitive -L 30 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R2.bowtie2.log \\\n        | samtools view -F 4 --threads 1 -o SRR4292758_0_R2.bam -\n\n    if [ -f SRR4292758_0_R2.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R2.unmapped.fastq.1.gz SRR4292758_0_R2.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R2.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R2.unmapped.fastq.2.gz SRR4292758_0_R2.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
+                    "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_00_R2.fastq.gz",
+                        "path": "/nf-core/test-datasets/raw/hic/data/",
+                        "sizeInBytes": 26201604
+                    },
+                    {
+                        "link": "input",
+                        "name": "bowtie2",
+                        "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
+                        "sizeInBytes": 24532794
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2.bam",
+                        "path": "/96/c0dee37e55a15a86730695f61755b9/",
+                        "sizeInBytes": 19374983
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2.bowtie2.log",
+                        "path": "/96/c0dee37e55a15a86730695f61755b9/",
+                        "sizeInBytes": 211
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2.unmapped.fastq.gz",
+                        "path": "/96/c0dee37e55a15a86730695f61755b9/",
+                        "sizeInBytes": 6031893
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/96/c0dee37e55a15a86730695f61755b9/",
+                        "sizeInBytes": 109
+                    }
+                ],
+                "avgCPU": 91.4,
+                "inputFilesBytes": 50734398,
+                "outputFilesBytes": 25407196,
+                "memoryInBytes": 54685696,
+                "writtenBytes": 391414350,
+                "readBytes": 414966142,
+                "runtimeInSeconds": 89.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
+                "id": "8",
+                "type": "compute",
+                "command": {
+                    "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_00_R1.fastq.gz \\\n        --threads 1 \\\n        --un-gz SRR4292758_0_R1.unmapped.fastq.gz \\\n        --very-sensitive -L 30 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R1.bowtie2.log \\\n        | samtools view -F 4 --threads 1 -o SRR4292758_0_R1.bam -\n\n    if [ -f SRR4292758_0_R1.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R1.unmapped.fastq.1.gz SRR4292758_0_R1.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R1.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R1.unmapped.fastq.2.gz SRR4292758_0_R1.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
+                    "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_00_R1.fastq.gz",
+                        "path": "/nf-core/test-datasets/raw/hic/data/",
+                        "sizeInBytes": 26066317
+                    },
+                    {
+                        "link": "input",
+                        "name": "bowtie2",
+                        "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
+                        "sizeInBytes": 24532794
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1.bam",
+                        "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
+                        "sizeInBytes": 19423555
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1.bowtie2.log",
+                        "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
+                        "sizeInBytes": 211
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1.unmapped.fastq.gz",
+                        "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
+                        "sizeInBytes": 5748941
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
+                        "sizeInBytes": 109
+                    }
+                ],
+                "avgCPU": 92.4,
+                "inputFilesBytes": 50599111,
+                "outputFilesBytes": 25172816,
+                "memoryInBytes": 55005184,
+                "writtenBytes": 390705198,
+                "readBytes": 414356078,
+                "runtimeInSeconds": 86.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
+                "id": "10",
+                "type": "compute",
+                "command": {
+                    "program": "zcat SRR4292758_0_R2.unmapped.fastq.gz > tmp.fastq\n    cutsite_trimming --fastq tmp.fastq \\\n        --cutsite AAGCTAGCTT \\\n        --out SRR4292758_0_R2_trimmed.fastq\n    gzip SRR4292758_0_R2_trimmed.fastq\n    /bin/rm -f tmp.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:TRIM_READS\":\n        gzip: $(echo $(gzip --version 2>&1) | head -1 | cut -d\" \" -f2)\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R2.unmapped.fastq.gz",
+                        "path": "/96/c0dee37e55a15a86730695f61755b9/",
+                        "sizeInBytes": 6031893
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2_trimmed.fastq.gz",
+                        "path": "/84/5ea1584a885604a1b372b2e2ee65d0/",
+                        "sizeInBytes": 5300788
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/84/5ea1584a885604a1b372b2e2ee65d0/",
+                        "sizeInBytes": 66
+                    }
+                ],
+                "avgCPU": 85.7,
+                "inputFilesBytes": 6031893,
+                "outputFilesBytes": 5300853,
+                "memoryInBytes": 4857856,
+                "writtenBytes": 53321502,
+                "readBytes": 54159949,
+                "runtimeInSeconds": 3.254
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
+                "id": "11",
+                "type": "compute",
+                "command": {
+                    "program": "zcat SRR4292758_0_R1.unmapped.fastq.gz > tmp.fastq\n    cutsite_trimming --fastq tmp.fastq \\\n        --cutsite AAGCTAGCTT \\\n        --out SRR4292758_0_R1_trimmed.fastq\n    gzip SRR4292758_0_R1_trimmed.fastq\n    /bin/rm -f tmp.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:TRIM_READS\":\n        gzip: $(echo $(gzip --version 2>&1) | head -1 | cut -d\" \" -f2)\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R1.unmapped.fastq.gz",
+                        "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
+                        "sizeInBytes": 5748941
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1_trimmed.fastq.gz",
+                        "path": "/22/a0bb25789655c145ba1424e6db0fca/",
+                        "sizeInBytes": 5037896
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/22/a0bb25789655c145ba1424e6db0fca/",
+                        "sizeInBytes": 66
+                    }
+                ],
+                "avgCPU": 88.4,
+                "inputFilesBytes": 5748941,
+                "outputFilesBytes": 5037962,
+                "memoryInBytes": 4763648,
+                "writtenBytes": 50525206,
+                "readBytes": 51343587,
+                "runtimeInSeconds": 3.099
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
+                "id": "12",
+                "type": "compute",
+                "command": {
+                    "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_0_R2_trimmed.fastq.gz \\\n        --threads 1 \\\n         \\\n        --very-sensitive -L 20 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R2_trimmed.bowtie2.log \\\n        | samtools view  --threads 1 -o SRR4292758_0_R2_trimmed.bam -\n\n    if [ -f SRR4292758_0_R2_trimmed.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R2_trimmed.unmapped.fastq.1.gz SRR4292758_0_R2_trimmed.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R2_trimmed.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R2_trimmed.unmapped.fastq.2.gz SRR4292758_0_R2_trimmed.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN_TRIMMED\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R2_trimmed.fastq.gz",
+                        "path": "/84/5ea1584a885604a1b372b2e2ee65d0/",
+                        "sizeInBytes": 5300788
+                    },
+                    {
+                        "link": "input",
+                        "name": "bowtie2",
+                        "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
+                        "sizeInBytes": 24532794
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2_trimmed.bam",
+                        "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
+                        "sizeInBytes": 4596947
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2_trimmed.bowtie2.log",
+                        "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
+                        "sizeInBytes": 2090
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
+                        "sizeInBytes": 117
+                    }
+                ],
+                "avgCPU": 84.1,
+                "inputFilesBytes": 29833582,
+                "outputFilesBytes": 4599154,
+                "memoryInBytes": 49004544,
+                "writtenBytes": 21465475,
+                "readBytes": 44912379,
+                "runtimeInSeconds": 13.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
+                "id": "13",
+                "type": "compute",
+                "command": {
+                    "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_0_R1_trimmed.fastq.gz \\\n        --threads 1 \\\n         \\\n        --very-sensitive -L 20 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R1_trimmed.bowtie2.log \\\n        | samtools view  --threads 1 -o SRR4292758_0_R1_trimmed.bam -\n\n    if [ -f SRR4292758_0_R1_trimmed.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R1_trimmed.unmapped.fastq.1.gz SRR4292758_0_R1_trimmed.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R1_trimmed.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R1_trimmed.unmapped.fastq.2.gz SRR4292758_0_R1_trimmed.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN_TRIMMED\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R1_trimmed.fastq.gz",
+                        "path": "/22/a0bb25789655c145ba1424e6db0fca/",
+                        "sizeInBytes": 5037896
+                    },
+                    {
+                        "link": "input",
+                        "name": "bowtie2",
+                        "path": "/91/fe0694b427ce8596a46dedbb80ef45/",
+                        "sizeInBytes": 24532794
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1_trimmed.bam",
+                        "path": "/00/a0fb6c13a979fce6c31543d3047891/",
+                        "sizeInBytes": 4394835
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1_trimmed.bowtie2.log",
+                        "path": "/00/a0fb6c13a979fce6c31543d3047891/",
+                        "sizeInBytes": 2638
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/00/a0fb6c13a979fce6c31543d3047891/",
+                        "sizeInBytes": 117
+                    }
+                ],
+                "avgCPU": 85.1,
+                "inputFilesBytes": 29570690,
+                "outputFilesBytes": 4397590,
+                "memoryInBytes": 49143808,
+                "writtenBytes": 20400614,
+                "readBytes": 43786190,
+                "runtimeInSeconds": 12.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                "id": "14",
+                "type": "compute",
+                "command": {
+                    "program": "samtools merge -@ 1 \\\n        -f SRR4292758_0_R2_bwt2merged.bam \\\n        SRR4292758_0_R2.bam SRR4292758_0_R2_trimmed.bam\n\n    samtools sort -@ 1 -m 800M \\\n        -n \\\n        -o SRR4292758_0_R2_bwt2merged.sorted.bam \\\n        SRR4292758_0_R2_bwt2merged.bam\n\n    mv SRR4292758_0_R2_bwt2merged.sorted.bam SRR4292758_0_R2_bwt2merged.bam\n\n    echo \"## SRR4292758_0_R2\" > SRR4292758_0_R2.mapstat\n    echo -n \"total_R2\t\" >> SRR4292758_0_R2.mapstat\n    samtools view -c SRR4292758_0_R2_bwt2merged.bam >> SRR4292758_0_R2.mapstat\n    echo -n \"mapped_R2\t\" >> SRR4292758_0_R2.mapstat\n    samtools view -c -F 4 SRR4292758_0_R2_bwt2merged.bam >> SRR4292758_0_R2.mapstat\n    echo -n \"global_R2\t\" >> SRR4292758_0_R2.mapstat\n    samtools view -c -F 4 SRR4292758_0_R2.bam >> SRR4292758_0_R2.mapstat\n    echo -n \"local_R2\t\"  >> SRR4292758_0_R2.mapstat\n    samtools view -c -F 4 SRR4292758_0_R2_trimmed.bam >> SRR4292758_0_R2.mapstat\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:MERGE_BOWTIE2\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R2.bam",
+                        "path": "/96/c0dee37e55a15a86730695f61755b9/",
+                        "sizeInBytes": 19374983
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R2_trimmed.bam",
+                        "path": "/fd/1a43062958c22f2d5a9375d7c32e0a/",
+                        "sizeInBytes": 4596947
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2_bwt2merged.bam",
+                        "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
+                        "sizeInBytes": 24522069
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R2.mapstat",
+                        "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
+                        "sizeInBytes": 83
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
+                        "sizeInBytes": 76
+                    }
+                ],
+                "avgCPU": 79.7,
+                "inputFilesBytes": 23971930,
+                "outputFilesBytes": 24522228,
+                "memoryInBytes": 135028736,
+                "writtenBytes": 48662069,
+                "readBytes": 121325397,
+                "runtimeInSeconds": 12.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                "id": "15",
+                "type": "compute",
+                "command": {
+                    "program": "samtools merge -@ 1 \\\n        -f SRR4292758_0_R1_bwt2merged.bam \\\n        SRR4292758_0_R1.bam SRR4292758_0_R1_trimmed.bam\n\n    samtools sort -@ 1 -m 800M \\\n        -n \\\n        -o SRR4292758_0_R1_bwt2merged.sorted.bam \\\n        SRR4292758_0_R1_bwt2merged.bam\n\n    mv SRR4292758_0_R1_bwt2merged.sorted.bam SRR4292758_0_R1_bwt2merged.bam\n\n    echo \"## SRR4292758_0_R1\" > SRR4292758_0_R1.mapstat\n    echo -n \"total_R1\t\" >> SRR4292758_0_R1.mapstat\n    samtools view -c SRR4292758_0_R1_bwt2merged.bam >> SRR4292758_0_R1.mapstat\n    echo -n \"mapped_R1\t\" >> SRR4292758_0_R1.mapstat\n    samtools view -c -F 4 SRR4292758_0_R1_bwt2merged.bam >> SRR4292758_0_R1.mapstat\n    echo -n \"global_R1\t\" >> SRR4292758_0_R1.mapstat\n    samtools view -c -F 4 SRR4292758_0_R1.bam >> SRR4292758_0_R1.mapstat\n    echo -n \"local_R1\t\"  >> SRR4292758_0_R1.mapstat\n    samtools view -c -F 4 SRR4292758_0_R1_trimmed.bam >> SRR4292758_0_R1.mapstat\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:MERGE_BOWTIE2\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R1.bam",
+                        "path": "/8b/744c19cbad3dcde0256b6a9c6cf015/",
+                        "sizeInBytes": 19423555
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R1_trimmed.bam",
+                        "path": "/00/a0fb6c13a979fce6c31543d3047891/",
+                        "sizeInBytes": 4394835
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1_bwt2merged.bam",
+                        "path": "/e5/7ab5992e236515ce4850d01db96622/",
+                        "sizeInBytes": 24356153
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_R1.mapstat",
+                        "path": "/e5/7ab5992e236515ce4850d01db96622/",
+                        "sizeInBytes": 83
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/e5/7ab5992e236515ce4850d01db96622/",
+                        "sizeInBytes": 76
+                    }
+                ],
+                "avgCPU": 80.9,
+                "inputFilesBytes": 23818390,
+                "outputFilesBytes": 24356311,
+                "memoryInBytes": 135204864,
+                "writtenBytes": 48344710,
+                "readBytes": 120535042,
+                "runtimeInSeconds": 11.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                "id": "16",
+                "type": "compute",
+                "command": {
+                    "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_R2.mapstat > SRR4292758.R2.mmapstat\n    cp *R2.mmapstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
+                    "NFCORE_HIC.HIC.MULTIQC"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R2.mapstat",
+                        "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
+                        "sizeInBytes": 83
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758",
+                        "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
+                        "sizeInBytes": 64
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.R2.mmapstat",
+                        "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
+                        "sizeInBytes": 64
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 32.3,
+                "inputFilesBytes": 83,
+                "outputFilesBytes": 184,
+                "memoryInBytes": 3133440,
+                "writtenBytes": 476,
+                "readBytes": 849155,
+                "runtimeInSeconds": 0.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                "id": "17",
+                "type": "compute",
+                "command": {
+                    "program": "mergeSAM.py -f SRR4292758_0_R2_bwt2merged.bam -r SRR4292758_0_R1_bwt2merged.bam -o SRR4292758_0_bwt2pairs.bam -t  -q 10\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:COMBINE_MATES\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R2_bwt2merged.bam",
+                        "path": "/00/00bff8f14ad11ced396f3fe129d83a/",
+                        "sizeInBytes": 24522069
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R1_bwt2merged.bam",
+                        "path": "/e5/7ab5992e236515ce4850d01db96622/",
+                        "sizeInBytes": 24356153
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.bam",
+                        "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
+                        "sizeInBytes": 36531318
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.pairstat",
+                        "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
+                        "sizeInBytes": 319
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
+                        "sizeInBytes": 73
+                    }
+                ],
+                "avgCPU": 87.3,
+                "inputFilesBytes": 48878221,
+                "outputFilesBytes": 36531710,
+                "memoryInBytes": 23412736,
+                "writtenBytes": 36532201,
+                "readBytes": 49943706,
+                "runtimeInSeconds": 16.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                "id": "18",
+                "type": "compute",
+                "command": {
+                    "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_R1.mapstat > SRR4292758.R1.mmapstat\n    cp *R1.mmapstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
+                    "NFCORE_HIC.HIC.MULTIQC"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_R1.mapstat",
+                        "path": "/e5/7ab5992e236515ce4850d01db96622/",
+                        "sizeInBytes": 83
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758",
+                        "path": "/f3/cec082c046449821fe9f8f3b759f68/",
+                        "sizeInBytes": 64
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.R1.mmapstat",
+                        "path": "/f3/cec082c046449821fe9f8f3b759f68/",
+                        "sizeInBytes": 64
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/f3/cec082c046449821fe9f8f3b759f68/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 56.1,
+                "inputFilesBytes": 83,
+                "outputFilesBytes": 184,
+                "memoryInBytes": 8683520,
+                "writtenBytes": 491,
+                "readBytes": 849174,
+                "runtimeInSeconds": 0.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                "id": "20",
+                "type": "compute",
+                "command": {
+                    "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_bwt2pairs.pairstat > SRR4292758.mpairstat\n    cp *mpairstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
+                    "NFCORE_HIC.HIC.MULTIQC"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_bwt2pairs.pairstat",
+                        "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
+                        "sizeInBytes": 319
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758",
+                        "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
+                        "sizeInBytes": 319
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.mpairstat",
+                        "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
+                        "sizeInBytes": 319
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 61.7,
+                "inputFilesBytes": 319,
+                "outputFilesBytes": 694,
+                "memoryInBytes": 9670656,
+                "writtenBytes": 986,
+                "readBytes": 849651,
+                "runtimeInSeconds": 1.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
+                "id": "19",
+                "type": "compute",
+                "command": {
+                    "program": "mapped_2hic_fragments.py \\\n        -f restriction_fragments.bed \\\n        -r SRR4292758_0_bwt2pairs.bam \\\n        --all \\\n        -s 100  -l 600  -t 100  -m 100000\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:GET_VALID_INTERACTION\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.GET_RESTRICTION_FRAGMENTS"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_bwt2pairs.bam",
+                        "path": "/2e/a0f98201feb0bf286fac085bfb48d1/",
+                        "sizeInBytes": 36531318
+                    },
+                    {
+                        "link": "input",
+                        "name": "restriction_fragments.bed",
+                        "path": "/0b/313dd189c0ce9ff0b943b5fa234f56/",
+                        "sizeInBytes": 390905
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.validPairs",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 5476826
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.DEPairs",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 45923673
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.SCPairs",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 427577
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.REPairs",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 2401429
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.FiltPairs",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 9597107
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_0_bwt2pairs.RSstat",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 306
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 66
+                    }
+                ],
+                "avgCPU": 94.2,
+                "inputFilesBytes": 36922223,
+                "outputFilesBytes": 63826984,
+                "memoryInBytes": 25796608,
+                "writtenBytes": 64259480,
+                "readBytes": 38019923,
+                "runtimeInSeconds": 24.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
+                "id": "21",
+                "type": "compute",
+                "command": {
+                    "program": "hicpro_merge_validpairs.sh -d -p SRR4292758 SRR4292758_0_bwt2pairs.validPairs\n\n    ## For MultiQC\n    mkdir -p SRR4292758\n    cp SRR4292758_allValidPairs.mergestat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_VALID_INTERACTION\":\n        sort: $(echo $(sort --version 2>&1 | head -1 | awk '{print $NF}' 2>&1))\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
+                    "NFCORE_HIC.HIC.MULTIQC"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_bwt2pairs.validPairs",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 5476826
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.allValidPairs",
+                        "path": "/05/2262a0e79af44115958cbc490251f8/",
+                        "sizeInBytes": 5473293
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758",
+                        "path": "/05/2262a0e79af44115958cbc490251f8/",
+                        "sizeInBytes": 138
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_allValidPairs.mergestat",
+                        "path": "/05/2262a0e79af44115958cbc490251f8/",
+                        "sizeInBytes": 138
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/05/2262a0e79af44115958cbc490251f8/",
+                        "sizeInBytes": 64
+                    }
+                ],
+                "avgCPU": 67.4,
+                "inputFilesBytes": 5476826,
+                "outputFilesBytes": 5473633,
+                "memoryInBytes": 14200832,
+                "writtenBytes": 27378272,
+                "readBytes": 43995581,
+                "runtimeInSeconds": 0.772
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                "id": "22",
+                "type": "compute",
+                "command": {
+                    "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_bwt2pairs.RSstat > SRR4292758.mRSstat\n    cp *mRSstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
+                    "NFCORE_HIC.HIC.MULTIQC"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_0_bwt2pairs.RSstat",
+                        "path": "/57/cd5c942bc906ea3b03243472fb2ea6/",
+                        "sizeInBytes": 306
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758",
+                        "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
+                        "sizeInBytes": 287
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.mRSstat",
+                        "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
+                        "sizeInBytes": 287
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 38.5,
+                "inputFilesBytes": 306,
+                "outputFilesBytes": 630,
+                "memoryInBytes": 6914048,
+                "writtenBytes": 922,
+                "readBytes": 849593,
+                "runtimeInSeconds": 1.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
+                "id": "23",
+                "type": "compute",
+                "command": {
+                    "program": "##columns: readID chr1 pos1 chr2 pos2 strand1 strand2\n    awk '{OFS=\"\t\";print $1,$2,$3,$5,$6,$4,$7}' SRR4292758.allValidPairs | bgzip -c > SRR4292758_contacts.pairs.gz\n    ##sort -k2,2 -k4,4 -k3,3n -k5,5n SRR4292758_contacts.pairs | bgzip -c > SRR4292758_contacts.pairs.gz\n    pairix -f SRR4292758_contacts.pairs.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO2PAIRS\":\n        pairix: $(echo $(pairix 2>&1 | grep Version | sed -e 's/Version: //'))\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.allValidPairs",
+                        "path": "/05/2262a0e79af44115958cbc490251f8/",
+                        "sizeInBytes": 5473293
+                    },
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 8889
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_contacts.pairs.gz",
+                        "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
+                        "sizeInBytes": 442410
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_contacts.pairs.gz.px2",
+                        "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
+                        "sizeInBytes": 123774
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 81.0,
+                "inputFilesBytes": 5482182,
+                "outputFilesBytes": 566240,
+                "memoryInBytes": 6955008,
+                "writtenBytes": 3441855,
+                "readBytes": 8872290,
+                "runtimeInSeconds": 0.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.MULTIQC",
+                "id": "24",
+                "type": "compute",
+                "command": {
+                    "program": "multiqc -f  .\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:MULTIQC\":\n        multiqc: $( multiqc --version | sed -e \"s/multiqc, version //g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.FASTQC",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS"
+                ],
+                "children": [],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "multiqc_config.yml",
+                        "path": "/hic/assets/",
+                        "sizeInBytes": 465
+                    },
+                    {
+                        "link": "input",
+                        "name": "workflow_summary_mqc.yaml",
+                        "path": "/8c/bf8fe43a321ab4bff83dc140188a4b/",
+                        "sizeInBytes": 3800
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_1_fastqc.zip",
+                        "path": "/48/cca69448ab94d6e6086249c75aee81/",
+                        "sizeInBytes": 306974
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_2_fastqc.zip",
+                        "path": "/48/cca69448ab94d6e6086249c75aee81/",
+                        "sizeInBytes": 308165
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758",
+                        "path": "/05/2262a0e79af44115958cbc490251f8/",
+                        "sizeInBytes": 138
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758",
+                        "path": "/12/9956bb0568f5dbf4b42b2c3518e2d3/",
+                        "sizeInBytes": 64
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758",
+                        "path": "/f3/cec082c046449821fe9f8f3b759f68/",
+                        "sizeInBytes": 64
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758",
+                        "path": "/7a/297bd6d0b92ef8201f2b5b1a766645/",
+                        "sizeInBytes": 319
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758",
+                        "path": "/ed/9d8267493435eacf5d17eac986a0e7/",
+                        "sizeInBytes": 287
+                    },
+                    {
+                        "link": "output",
+                        "name": "multiqc_report.html",
+                        "path": "/d3/646abb1be0e2962177ef0034460e23/",
+                        "sizeInBytes": 1197397
+                    },
+                    {
+                        "link": "output",
+                        "name": "multiqc_data",
+                        "path": "/d3/646abb1be0e2962177ef0034460e23/",
+                        "sizeInBytes": 161501
+                    },
+                    {
+                        "link": "output",
+                        "name": "multiqc_plots",
+                        "path": "/d3/646abb1be0e2962177ef0034460e23/",
+                        "sizeInBytes": 1121675
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/d3/646abb1be0e2962177ef0034460e23/",
+                        "sizeInBytes": 44
+                    }
+                ],
+                "avgCPU": 88.0,
+                "inputFilesBytes": 620276,
+                "outputFilesBytes": 2480616,
+                "memoryInBytes": 154882048,
+                "writtenBytes": 4763049,
+                "readBytes": 534600493,
+                "runtimeInSeconds": 47.931
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
+                "id": "26",
+                "type": "compute",
+                "command": {
+                    "program": "cooler cload \\\n        pairs -c1 2 -p1 3 -c2 4 -p2 5 \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes:1000 \\\n        SRR4292758_contacts.pairs.gz \\\n        SRR4292758.1000.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_CLOAD\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_contacts.pairs.gz",
+                        "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
+                        "sizeInBytes": 442410
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_contacts.pairs.gz.px2",
+                        "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
+                        "sizeInBytes": 123774
+                    },
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 8889
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000.cool",
+                        "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
+                        "sizeInBytes": 119521
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
+                        "sizeInBytes": 57
+                    }
+                ],
+                "avgCPU": 88.2,
+                "inputFilesBytes": 575073,
+                "outputFilesBytes": 119578,
+                "memoryInBytes": 95621120,
+                "writtenBytes": 243892,
+                "readBytes": 22701426,
+                "runtimeInSeconds": 5.206
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
+                "id": "25",
+                "type": "compute",
+                "command": {
+                    "program": "cooler cload \\\n        pairs -c1 2 -p1 3 -c2 4 -p2 5 \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes:2000 \\\n        SRR4292758_contacts.pairs.gz \\\n        SRR4292758.2000.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_CLOAD\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_contacts.pairs.gz",
+                        "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
+                        "sizeInBytes": 442410
+                    },
+                    {
+                        "link": "input",
+                        "name": "SRR4292758_contacts.pairs.gz.px2",
+                        "path": "/d4/3ebf9d1d950031f974ef4cbee2e759/",
+                        "sizeInBytes": 123774
+                    },
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 8889
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000.cool",
+                        "path": "/f9/32da3ac4c6b0b7d2c2ed314fa583e2/",
+                        "sizeInBytes": 108601
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/f9/32da3ac4c6b0b7d2c2ed314fa583e2/",
+                        "sizeInBytes": 57
+                    }
+                ],
+                "avgCPU": 88.6,
+                "inputFilesBytes": 575073,
+                "outputFilesBytes": 108658,
+                "memoryInBytes": 95010816,
+                "writtenBytes": 220908,
+                "readBytes": 22687654,
+                "runtimeInSeconds": 5.342
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
+                "id": "27",
+                "type": "compute",
+                "command": {
+                    "program": "cp SRR4292758.1000.cool SRR4292758.1000_balanced.cool\n\n    cooler balance \\\n        --force \\\n        -p 1 \\\n        SRR4292758.1000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_BALANCE\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
+                    "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
+                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
+                    "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION",
+                    "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.1000.cool",
+                        "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
+                        "sizeInBytes": 119521
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced.cool",
+                        "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
+                        "sizeInBytes": 146949
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
+                        "sizeInBytes": 59
+                    }
+                ],
+                "avgCPU": 87.2,
+                "inputFilesBytes": 119521,
+                "outputFilesBytes": 147008,
+                "memoryInBytes": 79491072,
+                "writtenBytes": 150076,
+                "readBytes": 21564086,
+                "runtimeInSeconds": 3.371
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
+                "id": "28",
+                "type": "compute",
+                "command": {
+                    "program": "cooler zoomify \\\n        --balance \\\n        -n 1 \\\n        -o SRR4292758.mcool \\\n        SRR4292758.1000.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_ZOOMIFY\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.1000.cool",
+                        "path": "/19/6ffc7abe18cf5d3fb063dd31d15705/",
+                        "sizeInBytes": 119521
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.mcool",
+                        "path": "/e3/60725657cb0c52a31ff0c49c4c1beb/",
+                        "sizeInBytes": 673010
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/e3/60725657cb0c52a31ff0c49c4c1beb/",
+                        "sizeInBytes": 59
+                    }
+                ],
+                "avgCPU": 90.3,
+                "inputFilesBytes": 119521,
+                "outputFilesBytes": 673069,
+                "memoryInBytes": 635326464,
+                "writtenBytes": 7870882,
+                "readBytes": 39573460,
+                "runtimeInSeconds": 18.467
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
+                "id": "29",
+                "type": "compute",
+                "command": {
+                    "program": "cp SRR4292758.2000.cool SRR4292758.2000_balanced.cool\n\n    cooler balance \\\n        --force \\\n        -p 1 \\\n        SRR4292758.2000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_BALANCE\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
+                    "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
+                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
+                    "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION",
+                    "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.2000.cool",
+                        "path": "/f9/32da3ac4c6b0b7d2c2ed314fa583e2/",
+                        "sizeInBytes": 108601
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000_balanced.cool",
+                        "path": "/40/3e3f51ab09064c9a27881a3802419f/",
+                        "sizeInBytes": 132689
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/40/3e3f51ab09064c9a27881a3802419f/",
+                        "sizeInBytes": 59
+                    }
+                ],
+                "avgCPU": 86.6,
+                "inputFilesBytes": 108601,
+                "outputFilesBytes": 132748,
+                "memoryInBytes": 82141184,
+                "writtenBytes": 135819,
+                "readBytes": 21403719,
+                "runtimeInSeconds": 3.269
+            },
+            {
+                "name": "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
+                "id": "33",
+                "type": "compute",
+                "command": {
+                    "program": "hicFindTADs --matrix SRR4292758.1000_balanced.cool         --outPrefix SRR4292758.1000_balanced_hicfindtads         --correctForMultipleTesting fdr         --numberOfProcessors 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:TADS:HIC_FIND_TADS\":\n        hicexplorer: $(hicFindTADs --version 2>&1 | sed 's/hicFindTADs //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.1000_balanced.cool",
+                        "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
+                        "sizeInBytes": 146949
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced_hicfindtads_boundaries.bed",
+                        "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
+                        "sizeInBytes": 0
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced_hicfindtads_boundaries.gff",
+                        "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
+                        "sizeInBytes": 0
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced_hicfindtads_domains.bed",
+                        "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
+                        "sizeInBytes": 0
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced_hicfindtads_score.bedgraph",
+                        "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
+                        "sizeInBytes": 17260
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced_hicfindtads_tad_score.bm",
+                        "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
+                        "sizeInBytes": 49364
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced_hicfindtads_zscore_matrix.cool",
+                        "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
+                        "sizeInBytes": 227065
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/4b/7322bf8bcf7499071a33292208a0ca/",
+                        "sizeInBytes": 60
+                    }
+                ],
+                "avgCPU": 94.5,
+                "inputFilesBytes": 146949,
+                "outputFilesBytes": 293748,
+                "memoryInBytes": 123752448,
+                "writtenBytes": 294719,
+                "readBytes": 35560217,
+                "runtimeInSeconds": 22.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
+                "id": "31",
+                "type": "compute",
+                "command": {
+                    "program": "hicPlotDistVsCounts --matrices SRR4292758.1000_balanced.cool                         --plotFile SRR4292758_distcount.png                         --outFileData SRR4292758_distcount.txt\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HIC_PLOT_DIST_VS_COUNTS\":\n        hicexplorer: $(hicPlotDistVsCounts --version 2>&1 | sed 's/hicPlotDistVsCounts //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.1000_balanced.cool",
+                        "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
+                        "sizeInBytes": 146949
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_distcount.png",
+                        "path": "/dc/f4ca3bcf97071f9d320f38c8d20c4a/",
+                        "sizeInBytes": 21281
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758_distcount.txt",
+                        "path": "/dc/f4ca3bcf97071f9d320f38c8d20c4a/",
+                        "sizeInBytes": 10588
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/dc/f4ca3bcf97071f9d320f38c8d20c4a/",
+                        "sizeInBytes": 65
+                    }
+                ],
+                "avgCPU": 91.1,
+                "inputFilesBytes": 146949,
+                "outputFilesBytes": 31934,
+                "memoryInBytes": 135925760,
+                "writtenBytes": 34627,
+                "readBytes": 40284692,
+                "runtimeInSeconds": 13.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION",
+                "id": "32",
+                "type": "compute",
+                "command": {
+                    "program": "cooltools insulation SRR4292758.1000_balanced.cool 15 25 50 --window-pixels > SRR4292758.1000_balanced_insulation.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:TADS:COOLTOOLS_INSULATION\":\n        cooltools: $(cooltools --version 2>&1 | sed 's/cooltools, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.1000_balanced.cool",
+                        "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
+                        "sizeInBytes": 146949
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced_insulation.tsv",
+                        "path": "/66/1ed45ffebfb381765c449f1a7d6733/",
+                        "sizeInBytes": 1604534
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/66/1ed45ffebfb381765c449f1a7d6733/",
+                        "sizeInBytes": 65
+                    }
+                ],
+                "avgCPU": 97.4,
+                "inputFilesBytes": 146949,
+                "outputFilesBytes": 1604599,
+                "memoryInBytes": 256450560,
+                "writtenBytes": 1605054,
+                "readBytes": 60906680,
+                "runtimeInSeconds": 88.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
+                "id": "30",
+                "type": "compute",
+                "command": {
+                    "program": "cooler dump \\\n        --one-based-ids --balanced --na-rep 0 \\\n        -o SRR4292758.1000_balanced.bedpe \\\n        SRR4292758.1000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_DUMP\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.1000_balanced.cool",
+                        "path": "/fc/3eb41e1efe98edf23f2b1fb9fe21f8/",
+                        "sizeInBytes": 146949
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced.bedpe",
+                        "path": "/99/ce07518ee82d12c9dffeb9cf4920b8/",
+                        "sizeInBytes": 525245
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/99/ce07518ee82d12c9dffeb9cf4920b8/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 59.2,
+                "inputFilesBytes": 146949,
+                "outputFilesBytes": 525301,
+                "memoryInBytes": 86978560,
+                "writtenBytes": 525684,
+                "readBytes": 19788443,
+                "runtimeInSeconds": 5.209
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
+                "id": "34",
+                "type": "compute",
+                "command": {
+                    "program": "cooler dump \\\n        --one-based-ids --balanced --na-rep 0 \\\n        -o SRR4292758.2000_balanced.bedpe \\\n        SRR4292758.2000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_DUMP\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.2000_balanced.cool",
+                        "path": "/40/3e3f51ab09064c9a27881a3802419f/",
+                        "sizeInBytes": 132689
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000_balanced.bedpe",
+                        "path": "/96/eff5e1cc3b4d9c7f39a44240b97b03/",
+                        "sizeInBytes": 528371
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/96/eff5e1cc3b4d9c7f39a44240b97b03/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 84.0,
+                "inputFilesBytes": 132689,
+                "outputFilesBytes": 528427,
+                "memoryInBytes": 63025152,
+                "writtenBytes": 528810,
+                "readBytes": 19782624,
+                "runtimeInSeconds": 3.726
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
+                "id": "35",
+                "type": "compute",
+                "command": {
+                    "program": "cooltools genome binnify --all-names W303_SGD_2015_JRIU00000000.fsa.sizes 2000 > genome_bins.txt\n    cooltools genome gc genome_bins.txt W303_SGD_2015_JRIU00000000.fsa > genome_gc.txt\n    cooltools eigs-cis --bigwig -o SRR4292758.2000_compartments SRR4292758.2000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COMPARTMENTS:COOLTOOLS_EIGSCIS\":\n        cooltools: $(cooltools --version 2>&1 | grep version | sed 's/cooltools, version //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.2000_balanced.cool",
+                        "path": "/40/3e3f51ab09064c9a27881a3802419f/",
+                        "sizeInBytes": 132689
+                    },
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa",
+                        "path": "/nf-core/test-datasets/raw/hic/reference/",
+                        "sizeInBytes": 11542637
+                    },
+                    {
+                        "link": "input",
+                        "name": "W303_SGD_2015_JRIU00000000.fsa.sizes",
+                        "path": "/97/a908a7b50657bf930ebe0f9ab3c820/",
+                        "sizeInBytes": 8889
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000_compartments.cis.bw",
+                        "path": "/71/3a28474603c946958e763a212df777/",
+                        "sizeInBytes": 88499
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000_compartments.cis.lam.txt",
+                        "path": "/71/3a28474603c946958e763a212df777/",
+                        "sizeInBytes": 23855
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000_compartments.cis.vecs.tsv",
+                        "path": "/71/3a28474603c946958e763a212df777/",
+                        "sizeInBytes": 452733
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/71/3a28474603c946958e763a212df777/",
+                        "sizeInBytes": 70
+                    }
+                ],
+                "avgCPU": 95.5,
+                "inputFilesBytes": 11684215,
+                "outputFilesBytes": 565157,
+                "memoryInBytes": 284004352,
+                "writtenBytes": 1457656,
+                "readBytes": 163681937,
+                "runtimeInSeconds": 34.0
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
+                "id": "36",
+                "type": "compute",
+                "command": {
+                    "program": "cat SRR4292758.1000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$3}' > SRR4292758.1000_raw.txt\n    cat SRR4292758.1000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$4}' > SRR4292758.1000_balanced.txt\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:SPLIT_COOLER_DUMP\":\n        cooler: $(awk --version | head -1 | cut -f1 -d, | sed -e 's/GNU Awk //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.1000_balanced.bedpe",
+                        "path": "/99/ce07518ee82d12c9dffeb9cf4920b8/",
+                        "sizeInBytes": 525245
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_balanced.txt",
+                        "path": "/8f/8c4158367f3fcd00513ba97aa02485/",
+                        "sizeInBytes": 470513
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.1000_raw.txt",
+                        "path": "/8f/8c4158367f3fcd00513ba97aa02485/",
+                        "sizeInBytes": 332336
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/8f/8c4158367f3fcd00513ba97aa02485/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 41.0,
+                "inputFilesBytes": 525245,
+                "outputFilesBytes": 802905,
+                "memoryInBytes": 0,
+                "writtenBytes": 1853705,
+                "readBytes": 2210714,
+                "runtimeInSeconds": 0.071
+            },
+            {
+                "name": "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
+                "id": "37",
+                "type": "compute",
+                "command": {
+                    "program": "cat SRR4292758.2000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$3}' > SRR4292758.2000_raw.txt\n    cat SRR4292758.2000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$4}' > SRR4292758.2000_balanced.txt\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:SPLIT_COOLER_DUMP\":\n        cooler: $(awk --version | head -1 | cut -f1 -d, | sed -e 's/GNU Awk //')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP"
+                ],
+                "children": [
+                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "SRR4292758.2000_balanced.bedpe",
+                        "path": "/96/eff5e1cc3b4d9c7f39a44240b97b03/",
+                        "sizeInBytes": 528371
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000_balanced.txt",
+                        "path": "/8f/740708bf64996845ed92b2ae246d50/",
+                        "sizeInBytes": 475477
+                    },
+                    {
+                        "link": "output",
+                        "name": "SRR4292758.2000_raw.txt",
+                        "path": "/8f/740708bf64996845ed92b2ae246d50/",
+                        "sizeInBytes": 307708
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/8f/740708bf64996845ed92b2ae246d50/",
+                        "sizeInBytes": 56
+                    }
+                ],
+                "avgCPU": 40.6,
+                "inputFilesBytes": 528371,
+                "outputFilesBytes": 783241,
+                "memoryInBytes": 2830336,
+                "writtenBytes": 1840275,
+                "readBytes": 2223192,
+                "runtimeInSeconds": 0.185
+            },
+            {
+                "name": "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
+                "id": "38",
+                "type": "compute",
+                "command": {
+                    "program": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
+                    "arguments": []
+                },
+                "parents": [
+                    "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
+                    "NFCORE_HIC.HIC.FASTQC",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.GET_RESTRICTION_FRAGMENTS",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES",
+                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
+                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
+                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
+                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
+                    "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
+                    "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
+                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
+                    "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
+                    "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION"
+                ],
+                "children": [],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "collated_versions.yml",
+                        "path": "/bb/d34d9288cab4d5301daf3247ca5302/",
+                        "sizeInBytes": 2383
+                    },
+                    {
+                        "link": "output",
+                        "name": "software_versions.yml",
+                        "path": "/4c/8ba455a29807f717f76feea2709e0b/",
+                        "sizeInBytes": 983
+                    },
+                    {
+                        "link": "output",
+                        "name": "software_versions_mqc.yml",
+                        "path": "/4c/8ba455a29807f717f76feea2709e0b/",
+                        "sizeInBytes": 5078
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/4c/8ba455a29807f717f76feea2709e0b/",
+                        "sizeInBytes": 75
+                    }
+                ],
+                "avgCPU": 43.3,
+                "inputFilesBytes": 2383,
+                "outputFilesBytes": 6136,
+                "memoryInBytes": 8187904,
+                "writtenBytes": 6355,
+                "readBytes": 862405,
+                "runtimeInSeconds": 0.383
+            }
+        ],
+        "machines": [
+            {
+                "nodeName": "dirt02",
+                "system": "linux",
+                "release": "5.15.0-48-generic",
+                "architecture": "x86_64",
+                "cpu": {
+                    "count": 1,
+                    "speed": 2400
+                }
+            }
+        ],
+        "makespanInSeconds": 1507
+    }
+}

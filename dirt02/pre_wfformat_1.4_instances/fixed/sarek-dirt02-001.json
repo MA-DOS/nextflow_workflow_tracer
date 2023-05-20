@@ -1,0 +1,403 @@
+{
+    "name": "sarek",
+    "description": "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)",
+    "createdAt": "2023-03-21T23:21:11.240833+00:00",
+    "schemaVersion": "1.4",
+    "wms": {
+        "name": "Nextflow",
+        "url": "https://www.nextflow.io/",
+        "version": "23.04.1"
+    },
+    "workflow": {
+        "repo": "https://github.com/nf-core/sarek",
+        "runName": "marvelous_perlman",
+        "executedAt": "2023-03-21T13:21:06-10:00",
+        "tasks": [
+            {
+                "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.GATK4_CREATESEQUENCEDICTIONARY",
+                "id": "8",
+                "type": "compute",
+                "command": {
+                    "program": "gatk --java-options \"-Xmx6g\" CreateSequenceDictionary \\\n        --REFERENCE genome.fasta \\\n        --URI genome.fasta \\\n        --TMP_DIR . \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY\":\n        gatk4: $(echo $(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.GATK4_APPLYBQSR",
+                    "NFCORE_SAREK.SAREK.BAM_VARIANT_CALLING_GERMLINE_ALL.BAM_VARIANT_CALLING_SINGLE_STRELKA.MERGE_STRELKA"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "genome.fasta",
+                        "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
+                        "sizeInBytes": 40675
+                    },
+                    {
+                        "link": "output",
+                        "name": "genome.dict",
+                        "path": "/c7/fffe3aa55aea5327ee863512d16a8c/",
+                        "sizeInBytes": 85
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/c7/fffe3aa55aea5327ee863512d16a8c/",
+                        "sizeInBytes": 87
+                    }
+                ],
+                "avgCPU": 90.3,
+                "inputFilesBytes": 40675,
+                "outputFilesBytes": 172,
+                "memoryInBytes": 275070976,
+                "writtenBytes": 697570,
+                "readBytes": 105672936,
+                "runtimeInSeconds": 25.0
+            },
+            {
+                "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
+                "id": "6",
+                "type": "compute",
+                "command": {
+                    "program": "mkdir bwa\n    bwa \\\n        index \\\n         \\\n        -p bwa/genome \\\n        genome.fasta\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX\":\n        bwa: $(echo $(bwa 2>&1) | sed 's/^.*Version: //; s/Contact:.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP.BWAMEM1_MEM"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "genome.fasta",
+                        "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
+                        "sizeInBytes": 40675
+                    },
+                    {
+                        "link": "output",
+                        "name": "bwa",
+                        "path": "/23/b30127ac6112c96ba1201b711e2bae/",
+                        "sizeInBytes": 70212
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/23/b30127ac6112c96ba1201b711e2bae/",
+                        "sizeInBytes": 74
+                    }
+                ],
+                "avgCPU": 24.7,
+                "inputFilesBytes": 40675,
+                "outputFilesBytes": 70286,
+                "memoryInBytes": 2879488,
+                "writtenBytes": 113177,
+                "readBytes": 221412,
+                "runtimeInSeconds": 0.0
+            },
+            {
+                "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.SAMTOOLS_FAIDX",
+                "id": "9",
+                "type": "compute",
+                "command": {
+                    "program": "samtools \\\n        faidx \\\n         \\\n        genome.fasta\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.GATK4_APPLYBQSR",
+                    "NFCORE_SAREK.SAREK.BAM_VARIANT_CALLING_GERMLINE_ALL.BAM_VARIANT_CALLING_SINGLE_STRELKA.STRELKA_SINGLE"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "genome.fasta",
+                        "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/",
+                        "sizeInBytes": 40675
+                    },
+                    {
+                        "link": "output",
+                        "name": "genome.fasta.fai",
+                        "path": "/22/6faae149041906e9687df3b54bc96e/",
+                        "sizeInBytes": 20
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/22/6faae149041906e9687df3b54bc96e/",
+                        "sizeInBytes": 74
+                    }
+                ],
+                "avgCPU": 18.2,
+                "inputFilesBytes": 40675,
+                "outputFilesBytes": 94,
+                "memoryInBytes": 3497984,
+                "writtenBytes": 4921,
+                "readBytes": 148475,
+                "runtimeInSeconds": 0.0
+            },
+            {
+                "name": "NFCORE_SAREK.SAREK.PREPARE_GENOME.TABIX_KNOWN_INDELS",
+                "id": "2",
+                "type": "compute",
+                "command": {
+                    "program": "tabix  mills_and_1000G.indels.vcf.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS\":\n        tabix: $(echo $(tabix -h 2>&1) | sed 's/^.*Version: //; s/ .*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "mills_and_1000G.indels.vcf.gz",
+                        "path": "/nf-core/test-datasets/modules/data/genomics/homo_sapiens/genome/vcf/",
+                        "sizeInBytes": 4133
+                    },
+                    {
+                        "link": "output",
+                        "name": "mills_and_1000G.indels.vcf.gz.tbi",
+                        "path": "/ff/5265e7baec78fd1367e00bcd23e3f5/",
+                        "sizeInBytes": 132
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/ff/5265e7baec78fd1367e00bcd23e3f5/",
+                        "sizeInBytes": 72
+                    }
+                ],
+                "avgCPU": 33.9,
+                "inputFilesBytes": 4133,
+                "outputFilesBytes": 204,
+                "memoryInBytes": 3477504,
+                "writtenBytes": 3149,
+                "readBytes": 80802,
+                "runtimeInSeconds": 0.0
+            },
+            {
+                "name": "NFCORE_SAREK.SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED",
+                "id": "7",
+                "type": "compute",
+                "command": {
+                    "program": "gatk --java-options \"-Xmx6g\" IntervalListToBed \\\n        --INPUT genome.interval_list \\\n        --OUTPUT genome.bed \\\n        --TMP_DIR . \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED\":\n        gatk4: $(echo $(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [
+                    "NFCORE_SAREK.SAREK.PREPARE_REFERENCE_CNVKIT.CNVKIT_REFERENCE",
+                    "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.SAMTOOLS_VIEW_UNMAP_MAP",
+                    "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.SAMTOOLS_VIEW_MAP_UNMAP",
+                    "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.COLLATE_FASTQ_UNMAP",
+                    "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.COLLATE_FASTQ_MAP",
+                    "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP.BWAMEM1_MEM",
+                    "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.INDEX_MARKDUPLICATES",
+                    "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.GATK4_APPLYBQSR",
+                    "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.CRAM_MERGE_INDEX_SAMTOOLS.INDEX_CRAM",
+                    "NFCORE_SAREK.SAREK.BAM_VARIANT_CALLING_GERMLINE_ALL.BAM_VARIANT_CALLING_SINGLE_STRELKA.STRELKA_SINGLE"
+                ],
+                "children": [
+                    "NFCORE_SAREK.SAREK.MULTIQC"
+                ],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "collated_versions.yml",
+                        "path": "/64/a30bbef8b421303803b84ab9070263/",
+                        "sizeInBytes": 1849
+                    },
+                    {
+                        "link": "output",
+                        "name": "software_versions.yml",
+                        "path": "/f4/1b259656e5fe9f667d5268ada632da/",
+                        "sizeInBytes": 878
+                    },
+                    {
+                        "link": "output",
+                        "name": "software_versions_mqc.yml",
+                        "path": "/f4/1b259656e5fe9f667d5268ada632da/",
+                        "sizeInBytes": 4421
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/f4/1b259656e5fe9f667d5268ada632da/",
+                        "sizeInBytes": 79
+                    }
+                ],
+                "avgCPU": 34.1,
+                "inputFilesBytes": 1849,
+                "outputFilesBytes": 5378,
+                "memoryInBytes": 5328896,
+                "writtenBytes": 5594,
+                "readBytes": 861891,
+                "runtimeInSeconds": 0.569
+            },
+            {
+                "name": "NFCORE_SAREK.SAREK.MULTIQC",
+                "id": "35",
+                "type": "compute",
+                "command": {
+                    "program": "multiqc \\\n        --force \\\n         \\\n        --config multiqc_config.yml \\\n         \\\n        .\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SAREK:SAREK:MULTIQC\":\n        multiqc: $( multiqc --version | sed -e \"s/multiqc, version //g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [
+                ],
+                "children": [],
+                "files": [
+                    {
+                        "link": "input",
+                        "name": "methods_description_mqc.yaml",
+                        "path": "/77/269a87f67a3793184f22e617db9ac0/",
+                        "sizeInBytes": 4104
+                    },
+                    {
+                        "link": "input",
+                        "name": "workflow_summary_mqc.yaml",
+                        "path": "/f2/6f0818d7bd12f82271c0354cbeca64/",
+                        "sizeInBytes": 3660
+                    },
+                    {
+                        "link": "input",
+                        "name": "test-test_L1_test_1_fastqc.zip",
+                        "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
+                        "sizeInBytes": 333966
+                    },
+                    {
+                        "link": "input",
+                        "name": "test-test_L1_test_2_fastqc.zip",
+                        "path": "/aa/ed88648b57be3f0196e69fa3e7996f/",
+                        "sizeInBytes": 308677
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.md.cram.metrics",
+                        "path": "/49/a0a348931ee86adced192d3d932180/",
+                        "sizeInBytes": 1821
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.md.mosdepth.global.dist.txt",
+                        "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
+                        "sizeInBytes": 5840
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.md.mosdepth.region.dist.txt",
+                        "path": "/61/19ee3410afc9eecb99ef09cdfd368b/",
+                        "sizeInBytes": 1996
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.md.cram.stats",
+                        "path": "/8c/15c5e0f0aefb204d45065e98980f2b/",
+                        "sizeInBytes": 182809
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.recal.table",
+                        "path": "/6d/af9b1caa02c85b02641b93d40c746a/",
+                        "sizeInBytes": 160277
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.recal.mosdepth.global.dist.txt",
+                        "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
+                        "sizeInBytes": 5840
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.recal.mosdepth.region.dist.txt",
+                        "path": "/e0/e8ad2aa5310222ae4de64d4790fa65/",
+                        "sizeInBytes": 1996
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.recal.cram.stats",
+                        "path": "/4a/89a7a5d5726aade58235f74ee5b43e/",
+                        "sizeInBytes": 173721
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.strelka.variants.bcftools_stats.txt",
+                        "path": "/e6/7df0bde2b93a0699dd0f0e1176b153/",
+                        "sizeInBytes": 2842
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.strelka.variants.TsTv.count",
+                        "path": "/e8/c1dd5ec3aa54d120a7b3adb4d2954a/",
+                        "sizeInBytes": 55
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.strelka.variants.TsTv.qual",
+                        "path": "/ef/01f8490e1bcda218c8196f96d94515/",
+                        "sizeInBytes": 155
+                    },
+                    {
+                        "link": "input",
+                        "name": "test.strelka.variants.FILTER.summary",
+                        "path": "/18/264a7f3ff25558f36395be124ab32f/",
+                        "sizeInBytes": 172
+                    },
+                    {
+                        "link": "input",
+                        "name": "software_versions_mqc.yml",
+                        "path": "/f4/1b259656e5fe9f667d5268ada632da/",
+                        "sizeInBytes": 4421
+                    },
+                    {
+                        "link": "input",
+                        "name": "multiqc_config.yml",
+                        "path": "/sarek/assets/",
+                        "sizeInBytes": 1761
+                    },
+                    {
+                        "link": "output",
+                        "name": "multiqc_report.html",
+                        "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
+                        "sizeInBytes": 1257510
+                    },
+                    {
+                        "link": "output",
+                        "name": "multiqc_data",
+                        "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
+                        "sizeInBytes": 713401
+                    },
+                    {
+                        "link": "output",
+                        "name": "multiqc_plots",
+                        "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
+                        "sizeInBytes": 1605744
+                    },
+                    {
+                        "link": "output",
+                        "name": "versions.yml",
+                        "path": "/ef/5d4b305416f111da8e7d4fcbcf66bf/",
+                        "sizeInBytes": 48
+                    }
+                ],
+                "avgCPU": 92.9,
+                "inputFilesBytes": 1194113,
+                "outputFilesBytes": 3576702,
+                "memoryInBytes": 155283456,
+                "writtenBytes": 6895943,
+                "readBytes": 701418999,
+                "runtimeInSeconds": 72.657
+            }
+        ],
+        "machines": [
+            {
+                "nodeName": "dirt02",
+                "system": "linux",
+                "release": "5.15.0-48-generic",
+                "architecture": "x86_64",
+                "cpu": {
+                    "count": 1,
+                    "speed": 2400
+                }
+            }
+        ],
+        "makespanInSeconds": 518
+    }
+}
