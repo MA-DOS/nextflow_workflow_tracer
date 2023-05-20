@@ -28,6 +28,8 @@ for task in data["workflow"]["tasks"]:
     # Fix command
     command = task["command"]
     new_command = {}
+    #new_command["program"] = task["command"]
+    #new_command["arguments"] = []
     new_command["program"] = task["command"]
     new_command["arguments"] = []
     task["command"] = new_command
