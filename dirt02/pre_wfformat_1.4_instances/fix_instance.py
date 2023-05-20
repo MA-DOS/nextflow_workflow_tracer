@@ -14,6 +14,7 @@ data["wms"]["version"] = "23.04.1"
 
 # Fix machines
 machines = data["machines"]
+machines[0]["system"]="linux"
 machines[0]["cpu"]={"count":1,"speed":2400}
 data["workflow"]["machines"] = machines
 del data["machines"]
@@ -24,7 +25,12 @@ del data["workflow"]["makespan"]
 
 # Fix data sizes (multiply by 1000)
 for task in data["workflow"]["tasks"]:
-    # Fix memory
+    # Fix command
+    command = task["command"]
+    new_command = {}
+    new_command["program"] = task["command"]
+    new_command["arguments"] = []
+    task["command"] = new_command
     task["memoryInBytes"] = int(float(task["memory"])*1000.0)
     del task["memory"]
     task["writtenBytes"] = int(float(task["bytesWritten"])*1000.0)
@@ -66,7 +72,8 @@ for task in data["workflow"]["tasks"]:
 
 
 # Save it
-with open("./fixed/"+sys.argv[1], 'w') as file:
+output_file_name = sys.argv[1].split(".")[0] + "-dirt02-001.json"
+with open("./fixed/"+output_file_name, 'w') as file:
       json.dump(data, file, indent=4)
 
 

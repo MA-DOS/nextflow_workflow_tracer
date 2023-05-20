@@ -465,7 +465,7 @@ completed_process = subprocess.run(["uname", "-n"], capture_output=True, encodin
 single_machine["nodeName"] = str(completed_process.stdout).strip()
 
 completed_process = subprocess.run(["uname", "-s"], capture_output=True, encoding="utf-8")
-single_machine["system"] = str(completed_process.stdout).strip()
+single_machine["system"] = str(completed_process.stdout).strip().lower()
 
 completed_process = subprocess.run(["uname", "-r"], capture_output=True, encoding="utf-8")
 single_machine["release"] = str(completed_process.stdout).strip()
