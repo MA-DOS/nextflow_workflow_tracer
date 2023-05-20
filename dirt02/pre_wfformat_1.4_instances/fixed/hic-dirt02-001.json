@@ -22,10 +22,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_HIC.HIC.FASTQC",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -63,13 +60,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
-                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -113,10 +104,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -154,11 +142,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -195,12 +179,8 @@
                     "program": "cooler makebins \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes \\\n        1000 > cooler_bins_1000.bed\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_MAKEBINS\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -237,12 +217,8 @@
                     "program": "cooler makebins \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes \\\n        2000 > cooler_bins_2000.bed\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_MAKEBINS\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -279,13 +255,8 @@
                     "program": "printf \"%s %s\\n\" SRR4292758_00_R1.fastq.gz SRR4292758_1.gz SRR4292758_00_R2.fastq.gz SRR4292758_2.gz | while read old_name new_name; do\n        [ -f \"${new_name}\" ] || ln -s $old_name $new_name\n    done\n    fastqc  --threads 1 SRR4292758_1.gz SRR4292758_2.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_HIC.HIC.MULTIQC"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -346,15 +317,8 @@
                     "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_00_R2.fastq.gz \\\n        --threads 1 \\\n        --un-gz SRR4292758_0_R2.unmapped.fastq.gz \\\n        --very-sensitive -L 30 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R2.bowtie2.log \\\n        | samtools view -F 4 --threads 1 -o SRR4292758_0_R2.bam -\n\n    if [ -f SRR4292758_0_R2.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R2.unmapped.fastq.1.gz SRR4292758_0_R2.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R2.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R2.unmapped.fastq.2.gz SRR4292758_0_R2.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
-                    "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -409,15 +373,8 @@
                     "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_00_R1.fastq.gz \\\n        --threads 1 \\\n        --un-gz SRR4292758_0_R1.unmapped.fastq.gz \\\n        --very-sensitive -L 30 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R1.bowtie2.log \\\n        | samtools view -F 4 --threads 1 -o SRR4292758_0_R1.bam -\n\n    if [ -f SRR4292758_0_R1.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R1.unmapped.fastq.1.gz SRR4292758_0_R1.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R1.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R1.unmapped.fastq.2.gz SRR4292758_0_R1.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
-                    "NFCORE_HIC.HIC.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -472,13 +429,8 @@
                     "program": "zcat SRR4292758_0_R2.unmapped.fastq.gz > tmp.fastq\n    cutsite_trimming --fastq tmp.fastq \\\n        --cutsite AAGCTAGCTT \\\n        --out SRR4292758_0_R2_trimmed.fastq\n    gzip SRR4292758_0_R2_trimmed.fastq\n    /bin/rm -f tmp.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:TRIM_READS\":\n        gzip: $(echo $(gzip --version 2>&1) | head -1 | cut -d\" \" -f2)\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -515,13 +467,8 @@
                     "program": "zcat SRR4292758_0_R1.unmapped.fastq.gz > tmp.fastq\n    cutsite_trimming --fastq tmp.fastq \\\n        --cutsite AAGCTAGCTT \\\n        --out SRR4292758_0_R1_trimmed.fastq\n    gzip SRR4292758_0_R1_trimmed.fastq\n    /bin/rm -f tmp.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:TRIM_READS\":\n        gzip: $(echo $(gzip --version 2>&1) | head -1 | cut -d\" \" -f2)\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -558,14 +505,8 @@
                     "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_0_R2_trimmed.fastq.gz \\\n        --threads 1 \\\n         \\\n        --very-sensitive -L 20 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R2_trimmed.bowtie2.log \\\n        | samtools view  --threads 1 -o SRR4292758_0_R2_trimmed.bam -\n\n    if [ -f SRR4292758_0_R2_trimmed.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R2_trimmed.unmapped.fastq.1.gz SRR4292758_0_R2_trimmed.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R2_trimmed.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R2_trimmed.unmapped.fastq.2.gz SRR4292758_0_R2_trimmed.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN_TRIMMED\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -614,14 +555,8 @@
                     "program": "INDEX=`find -L ./ -name \"*.rev.1.bt2\" | sed \"s/\\.rev.1.bt2$//\"`\n    [ -z \"$INDEX\" ] && INDEX=`find -L ./ -name \"*.rev.1.bt2l\" | sed \"s/\\.rev.1.bt2l$//\"`\n    [ -z \"$INDEX\" ] && echo \"Bowtie2 index files not found\" 1>&2 && exit 1\n\n    bowtie2 \\\n        -x $INDEX \\\n        -U SRR4292758_0_R1_trimmed.fastq.gz \\\n        --threads 1 \\\n         \\\n        --very-sensitive -L 20 --score-min L,-0.6,-0.2 --end-to-end --reorder \\\n        2> SRR4292758_0_R1_trimmed.bowtie2.log \\\n        | samtools view  --threads 1 -o SRR4292758_0_R1_trimmed.bam -\n\n    if [ -f SRR4292758_0_R1_trimmed.unmapped.fastq.1.gz ]; then\n        mv SRR4292758_0_R1_trimmed.unmapped.fastq.1.gz SRR4292758_0_R1_trimmed.unmapped_1.fastq.gz\n    fi\n\n    if [ -f SRR4292758_0_R1_trimmed.unmapped.fastq.2.gz ]; then\n        mv SRR4292758_0_R1_trimmed.unmapped.fastq.2.gz SRR4292758_0_R1_trimmed.unmapped_2.fastq.gz\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:BOWTIE2_ALIGN_TRIMMED\":\n        bowtie2: $(echo $(bowtie2 --version 2>&1) | sed 's/^.*bowtie2-align-s version //; s/ .*$//')\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -670,15 +605,8 @@
                     "program": "samtools merge -@ 1 \\\n        -f SRR4292758_0_R2_bwt2merged.bam \\\n        SRR4292758_0_R2.bam SRR4292758_0_R2_trimmed.bam\n\n    samtools sort -@ 1 -m 800M \\\n        -n \\\n        -o SRR4292758_0_R2_bwt2merged.sorted.bam \\\n        SRR4292758_0_R2_bwt2merged.bam\n\n    mv SRR4292758_0_R2_bwt2merged.sorted.bam SRR4292758_0_R2_bwt2merged.bam\n\n    echo \"## SRR4292758_0_R2\" > SRR4292758_0_R2.mapstat\n    echo -n \"total_R2\t\" >> SRR4292758_0_R2.mapstat\n    samtools view -c SRR4292758_0_R2_bwt2merged.bam >> SRR4292758_0_R2.mapstat\n    echo -n \"mapped_R2\t\" >> SRR4292758_0_R2.mapstat\n    samtools view -c -F 4 SRR4292758_0_R2_bwt2merged.bam >> SRR4292758_0_R2.mapstat\n    echo -n \"global_R2\t\" >> SRR4292758_0_R2.mapstat\n    samtools view -c -F 4 SRR4292758_0_R2.bam >> SRR4292758_0_R2.mapstat\n    echo -n \"local_R2\t\"  >> SRR4292758_0_R2.mapstat\n    samtools view -c -F 4 SRR4292758_0_R2_trimmed.bam >> SRR4292758_0_R2.mapstat\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:MERGE_BOWTIE2\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -727,15 +655,8 @@
                     "program": "samtools merge -@ 1 \\\n        -f SRR4292758_0_R1_bwt2merged.bam \\\n        SRR4292758_0_R1.bam SRR4292758_0_R1_trimmed.bam\n\n    samtools sort -@ 1 -m 800M \\\n        -n \\\n        -o SRR4292758_0_R1_bwt2merged.sorted.bam \\\n        SRR4292758_0_R1_bwt2merged.bam\n\n    mv SRR4292758_0_R1_bwt2merged.sorted.bam SRR4292758_0_R1_bwt2merged.bam\n\n    echo \"## SRR4292758_0_R1\" > SRR4292758_0_R1.mapstat\n    echo -n \"total_R1\t\" >> SRR4292758_0_R1.mapstat\n    samtools view -c SRR4292758_0_R1_bwt2merged.bam >> SRR4292758_0_R1.mapstat\n    echo -n \"mapped_R1\t\" >> SRR4292758_0_R1.mapstat\n    samtools view -c -F 4 SRR4292758_0_R1_bwt2merged.bam >> SRR4292758_0_R1.mapstat\n    echo -n \"global_R1\t\" >> SRR4292758_0_R1.mapstat\n    samtools view -c -F 4 SRR4292758_0_R1.bam >> SRR4292758_0_R1.mapstat\n    echo -n \"local_R1\t\"  >> SRR4292758_0_R1.mapstat\n    samtools view -c -F 4 SRR4292758_0_R1_trimmed.bam >> SRR4292758_0_R1.mapstat\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:MERGE_BOWTIE2\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -784,15 +705,8 @@
                     "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_R2.mapstat > SRR4292758.R2.mmapstat\n    cp *R2.mmapstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_HIC.HIC.MULTIQC"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -835,14 +749,8 @@
                     "program": "mergeSAM.py -f SRR4292758_0_R2_bwt2merged.bam -r SRR4292758_0_R1_bwt2merged.bam -o SRR4292758_0_bwt2pairs.bam -t  -q 10\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO_MAPPING:COMBINE_MATES\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -891,15 +799,8 @@
                     "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_R1.mapstat > SRR4292758.R1.mmapstat\n    cp *R1.mmapstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_HIC.HIC.MULTIQC"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -942,15 +843,8 @@
                     "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_bwt2pairs.pairstat > SRR4292758.mpairstat\n    cp *mpairstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_HIC.HIC.MULTIQC"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -993,15 +887,8 @@
                     "program": "mapped_2hic_fragments.py \\\n        -f restriction_fragments.bed \\\n        -r SRR4292758_0_bwt2pairs.bam \\\n        --all \\\n        -s 100  -l 600  -t 100  -m 100000\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:GET_VALID_INTERACTION\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.GET_RESTRICTION_FRAGMENTS"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1074,14 +961,8 @@
                     "program": "hicpro_merge_validpairs.sh -d -p SRR4292758 SRR4292758_0_bwt2pairs.validPairs\n\n    ## For MultiQC\n    mkdir -p SRR4292758\n    cp SRR4292758_allValidPairs.mergestat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_VALID_INTERACTION\":\n        sort: $(echo $(sort --version 2>&1 | head -1 | awk '{print $NF}' 2>&1))\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_HIC.HIC.MULTIQC"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1130,15 +1011,8 @@
                     "program": "mkdir -p SRR4292758\n    merge_statfiles.py -f SRR4292758_0_bwt2pairs.RSstat > SRR4292758.mRSstat\n    cp *mRSstat SRR4292758/\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:MERGE_STATS\":\n        python: $(echo $(python --version 2>&1) | sed 's/Python //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_HIC.HIC.MULTIQC"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1181,14 +1055,8 @@
                     "program": "##columns: readID chr1 pos1 chr2 pos2 strand1 strand2\n    awk '{OFS=\"\t\";print $1,$2,$3,$5,$6,$4,$7}' SRR4292758.allValidPairs | bgzip -c > SRR4292758_contacts.pairs.gz\n    ##sort -k2,2 -k4,4 -k3,3n -k5,5n SRR4292758_contacts.pairs | bgzip -c > SRR4292758_contacts.pairs.gz\n    pairix -f SRR4292758_contacts.pairs.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HICPRO:HICPRO2PAIRS\":\n        pairix: $(echo $(pairix 2>&1 | grep Version | sed -e 's/Version: //'))\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1237,11 +1105,7 @@
                     "program": "multiqc -f  .\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:MULTIQC\":\n        multiqc: $( multiqc --version | sed -e \"s/multiqc, version //g\" )\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.FASTQC",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS"
-                ],
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -1339,15 +1203,8 @@
                     "program": "cooler cload \\\n        pairs -c1 2 -p1 3 -c2 4 -p2 5 \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes:1000 \\\n        SRR4292758_contacts.pairs.gz \\\n        SRR4292758.1000.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_CLOAD\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1396,15 +1253,8 @@
                     "program": "cooler cload \\\n        pairs -c1 2 -p1 3 -c2 4 -p2 5 \\\n         \\\n        W303_SGD_2015_JRIU00000000.fsa.sizes:2000 \\\n        SRR4292758_contacts.pairs.gz \\\n        SRR4292758.2000.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_CLOAD\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1453,17 +1303,8 @@
                     "program": "cp SRR4292758.1000.cool SRR4292758.1000_balanced.cool\n\n    cooler balance \\\n        --force \\\n        -p 1 \\\n        SRR4292758.1000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_BALANCE\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
-                    "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
-                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
-                    "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION",
-                    "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1500,12 +1341,8 @@
                     "program": "cooler zoomify \\\n        --balance \\\n        -n 1 \\\n        -o SRR4292758.mcool \\\n        SRR4292758.1000.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_ZOOMIFY\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1542,17 +1379,8 @@
                     "program": "cp SRR4292758.2000.cool SRR4292758.2000_balanced.cool\n\n    cooler balance \\\n        --force \\\n        -p 1 \\\n        SRR4292758.2000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_BALANCE\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
-                    "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
-                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
-                    "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION",
-                    "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1589,12 +1417,8 @@
                     "program": "hicFindTADs --matrix SRR4292758.1000_balanced.cool         --outPrefix SRR4292758.1000_balanced_hicfindtads         --correctForMultipleTesting fdr         --numberOfProcessors 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:TADS:HIC_FIND_TADS\":\n        hicexplorer: $(hicFindTADs --version 2>&1 | sed 's/hicFindTADs //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1661,12 +1485,8 @@
                     "program": "hicPlotDistVsCounts --matrices SRR4292758.1000_balanced.cool                         --plotFile SRR4292758_distcount.png                         --outFileData SRR4292758_distcount.txt\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:HIC_PLOT_DIST_VS_COUNTS\":\n        hicexplorer: $(hicPlotDistVsCounts --version 2>&1 | sed 's/hicPlotDistVsCounts //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1709,12 +1529,8 @@
                     "program": "cooltools insulation SRR4292758.1000_balanced.cool 15 25 50 --window-pixels > SRR4292758.1000_balanced_insulation.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:TADS:COOLTOOLS_INSULATION\":\n        cooltools: $(cooltools --version 2>&1 | sed 's/cooltools, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1751,13 +1567,8 @@
                     "program": "cooler dump \\\n        --one-based-ids --balanced --na-rep 0 \\\n        -o SRR4292758.1000_balanced.bedpe \\\n        SRR4292758.1000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_DUMP\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1794,13 +1605,8 @@
                     "program": "cooler dump \\\n        --one-based-ids --balanced --na-rep 0 \\\n        -o SRR4292758.2000_balanced.bedpe \\\n        SRR4292758.2000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:COOLER_DUMP\":\n        cooler: $(cooler --version 2>&1 | sed 's/cooler, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1837,13 +1643,8 @@
                     "program": "cooltools genome binnify --all-names W303_SGD_2015_JRIU00000000.fsa.sizes 2000 > genome_bins.txt\n    cooltools genome gc genome_bins.txt W303_SGD_2015_JRIU00000000.fsa > genome_gc.txt\n    cooltools eigs-cis --bigwig -o SRR4292758.2000_compartments SRR4292758.2000_balanced.cool\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COMPARTMENTS:COOLTOOLS_EIGSCIS\":\n        cooltools: $(cooltools --version 2>&1 | grep version | sed 's/cooltools, version //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1904,12 +1705,8 @@
                     "program": "cat SRR4292758.1000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$3}' > SRR4292758.1000_raw.txt\n    cat SRR4292758.1000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$4}' > SRR4292758.1000_balanced.txt\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:SPLIT_COOLER_DUMP\":\n        cooler: $(awk --version | head -1 | cut -f1 -d, | sed -e 's/GNU Awk //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1952,12 +1749,8 @@
                     "program": "cat SRR4292758.2000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$3}' > SRR4292758.2000_raw.txt\n    cat SRR4292758.2000_balanced.bedpe | awk '{OFS=\"\t\"; print $1,$2,$4}' > SRR4292758.2000_balanced.txt\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_HIC:HIC:COOLER:SPLIT_COOLER_DUMP\":\n        cooler: $(awk --version | head -1 | cut -f1 -d, | sed -e 's/GNU Awk //')\n    END_VERSIONS",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP"
-                ],
-                "children": [
-                    "NFCORE_HIC.HIC.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -2000,31 +1793,7 @@
                     "program": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_HIC.HIC.HIC_PLOT_DIST_VS_COUNTS",
-                    "NFCORE_HIC.HIC.FASTQC",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.GET_RESTRICTION_FRAGMENTS",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.CUSTOM_GETCHROMSIZES",
-                    "NFCORE_HIC.HIC.PREPARE_GENOME.BOWTIE2_BUILD",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO2PAIRS",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_STATS",
-                    "NFCORE_HIC.HIC.HICPRO.MERGE_VALID_INTERACTION",
-                    "NFCORE_HIC.HIC.HICPRO.GET_VALID_INTERACTION",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.COMBINE_MATES",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.MERGE_BOWTIE2",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN_TRIMMED",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.TRIM_READS",
-                    "NFCORE_HIC.HIC.HICPRO.HICPRO_MAPPING.BOWTIE2_ALIGN",
-                    "NFCORE_HIC.HIC.COOLER.SPLIT_COOLER_DUMP",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_DUMP",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_ZOOMIFY",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_BALANCE",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_CLOAD",
-                    "NFCORE_HIC.HIC.COOLER.COOLER_MAKEBINS",
-                    "NFCORE_HIC.HIC.COMPARTMENTS.COOLTOOLS_EIGSCIS",
-                    "NFCORE_HIC.HIC.TADS.HIC_FIND_TADS",
-                    "NFCORE_HIC.HIC.TADS.COOLTOOLS_INSULATION"
-                ],
+                "parents": [],
                 "children": [],
                 "files": [
                     {

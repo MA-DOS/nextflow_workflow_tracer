@@ -5,7 +5,8 @@
     "schemaVersion": "1.4",
     "wms": {
         "name": "Nextflow",
-        "url": "https://www.nextflow.io/"
+        "url": "https://www.nextflow.io/",
+        "version": "23.04.1"
     },
     "workflow": {
         "repo": "https://github.com/nf-core/bacass",
@@ -16,12 +17,12 @@
                 "name": "NFCORE_BACASS.BACASS.FASTQC",
                 "id": "2",
                 "type": "compute",
-                "command": "[ ! -f  ERR044595_1.fastq.gz ] && ln -s ERR044595_1M_1.fastq.gz ERR044595_1.fastq.gz\n        [ ! -f  ERR044595_2.fastq.gz ] && ln -s ERR044595_1M_2.fastq.gz ERR044595_2.fastq.gz\n        fastqc --quiet --threads 1 ERR044595_1.fastq.gz ERR044595_2.fastq.gz\n        fastqc --version | sed -e \"s/FastQC v//g\" > fastqc.version.txt",
+                "command": {
+                    "program": "[ ! -f  ERR044595_1.fastq.gz ] && ln -s ERR044595_1M_1.fastq.gz ERR044595_1.fastq.gz\n        [ ! -f  ERR044595_2.fastq.gz ] && ln -s ERR044595_1M_2.fastq.gz ERR044595_2.fastq.gz\n        fastqc --quiet --threads 1 ERR044595_1.fastq.gz ERR044595_2.fastq.gz\n        fastqc --version | sed -e \"s/FastQC v//g\" > fastqc.version.txt",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS",
-                    "NFCORE_BACASS.BACASS.MULTIQC"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -78,12 +79,12 @@
                 "name": "NFCORE_BACASS.BACASS.SKEWER",
                 "id": "1",
                 "type": "compute",
-                "command": "# loop over readunits in pairs per sample\n    pairno=0\n    echo \"ERR044595_1M_1.fastq.gz ERR044595_1M_2.fastq.gz\" | xargs -n2 | while read fq1 fq2; do\n        skewer -m pe -q 3 -n --quiet -t 1 $fq1 $fq2;\n    done\n\n    # gzip, because skewer's -z returns an error\n    gzip *.fastq\n\n    cat $(ls *trimmed-pair1.fastq.gz | sort) >> ERR044595_trm-cmb.R1.fastq.gz\n    cat $(ls *trimmed-pair2.fastq.gz | sort) >> ERR044595_trm-cmb.R2.fastq.gz\n\n    echo $(skewer --version 2>&1) | sed 's/^.*skewer version: //; s/ .*//' > skewer.version.txt",
+                "command": {
+                    "program": "# loop over readunits in pairs per sample\n    pairno=0\n    echo \"ERR044595_1M_1.fastq.gz ERR044595_1M_2.fastq.gz\" | xargs -n2 | while read fq1 fq2; do\n        skewer -m pe -q 3 -n --quiet -t 1 $fq1 $fq2;\n    done\n\n    # gzip, because skewer's -z returns an error\n    gzip *.fastq\n\n    cat $(ls *trimmed-pair1.fastq.gz | sort) >> ERR044595_trm-cmb.R1.fastq.gz\n    cat $(ls *trimmed-pair2.fastq.gz | sort) >> ERR044595_trm-cmb.R2.fastq.gz\n\n    echo $(skewer --version 2>&1) | sed 's/^.*skewer version: //; s/ .*//' > skewer.version.txt",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -134,12 +135,12 @@
                 "name": "NFCORE_BACASS.BACASS.FASTQC",
                 "id": "4",
                 "type": "compute",
-                "command": "[ ! -f  ERR064912_1.fastq.gz ] && ln -s ERR064912_1M_1.fastq.gz ERR064912_1.fastq.gz\n        [ ! -f  ERR064912_2.fastq.gz ] && ln -s ERR064912_1M_2.fastq.gz ERR064912_2.fastq.gz\n        fastqc --quiet --threads 1 ERR064912_1.fastq.gz ERR064912_2.fastq.gz\n        fastqc --version | sed -e \"s/FastQC v//g\" > fastqc.version.txt",
+                "command": {
+                    "program": "[ ! -f  ERR064912_1.fastq.gz ] && ln -s ERR064912_1M_1.fastq.gz ERR064912_1.fastq.gz\n        [ ! -f  ERR064912_2.fastq.gz ] && ln -s ERR064912_1M_2.fastq.gz ERR064912_2.fastq.gz\n        fastqc --quiet --threads 1 ERR064912_1.fastq.gz ERR064912_2.fastq.gz\n        fastqc --version | sed -e \"s/FastQC v//g\" > fastqc.version.txt",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS",
-                    "NFCORE_BACASS.BACASS.MULTIQC"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -196,12 +197,12 @@
                 "name": "NFCORE_BACASS.BACASS.SKEWER",
                 "id": "3",
                 "type": "compute",
-                "command": "# loop over readunits in pairs per sample\n    pairno=0\n    echo \"ERR064912_1M_1.fastq.gz ERR064912_1M_2.fastq.gz\" | xargs -n2 | while read fq1 fq2; do\n        skewer -m pe -q 3 -n --quiet -t 1 $fq1 $fq2;\n    done\n\n    # gzip, because skewer's -z returns an error\n    gzip *.fastq\n\n    cat $(ls *trimmed-pair1.fastq.gz | sort) >> ERR064912_trm-cmb.R1.fastq.gz\n    cat $(ls *trimmed-pair2.fastq.gz | sort) >> ERR064912_trm-cmb.R2.fastq.gz\n\n    echo $(skewer --version 2>&1) | sed 's/^.*skewer version: //; s/ .*//' > skewer.version.txt",
+                "command": {
+                    "program": "# loop over readunits in pairs per sample\n    pairno=0\n    echo \"ERR064912_1M_1.fastq.gz ERR064912_1M_2.fastq.gz\" | xargs -n2 | while read fq1 fq2; do\n        skewer -m pe -q 3 -n --quiet -t 1 $fq1 $fq2;\n    done\n\n    # gzip, because skewer's -z returns an error\n    gzip *.fastq\n\n    cat $(ls *trimmed-pair1.fastq.gz | sort) >> ERR064912_trm-cmb.R1.fastq.gz\n    cat $(ls *trimmed-pair2.fastq.gz | sort) >> ERR064912_trm-cmb.R2.fastq.gz\n\n    echo $(skewer --version 2>&1) | sed 's/^.*skewer version: //; s/ .*//' > skewer.version.txt",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -252,15 +253,12 @@
                 "name": "NFCORE_BACASS.BACASS.UNICYCLER",
                 "id": "5",
                 "type": "compute",
-                "command": "unicycler \\\n        --threads 1 \\\n         --no_correct --no_pilon \\\n        -1 ERR044595_trm-cmb.R1.fastq.gz -2 ERR044595_trm-cmb.R2.fastq.gz \\\n        --out ./\n\n    mv assembly.fasta ERR044595.scaffolds.fa\n    mv assembly.gfa ERR044595.assembly.gfa\n    mv unicycler.log ERR044595.unicycler.log\n\n    echo $(unicycler --version 2>&1) | sed 's/^.*Unicycler v//; s/ .*$//' > unicycler.version.txt",
-                "parents": [
-                    "NFCORE_BACASS.BACASS.SKEWER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.PROKKA",
-                    "NFCORE_BACASS.BACASS.QUAST",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "command": {
+                    "program": "unicycler \\\n        --threads 1 \\\n         --no_correct --no_pilon \\\n        -1 ERR044595_trm-cmb.R1.fastq.gz -2 ERR044595_trm-cmb.R2.fastq.gz \\\n        --out ./\n\n    mv assembly.fasta ERR044595.scaffolds.fa\n    mv assembly.gfa ERR044595.assembly.gfa\n    mv unicycler.log ERR044595.unicycler.log\n\n    echo $(unicycler --version 2>&1) | sed 's/^.*Unicycler v//; s/ .*$//' > unicycler.version.txt",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -311,15 +309,12 @@
                 "name": "NFCORE_BACASS.BACASS.UNICYCLER",
                 "id": "6",
                 "type": "compute",
-                "command": "unicycler \\\n        --threads 1 \\\n         --no_correct --no_pilon \\\n        -1 ERR064912_trm-cmb.R1.fastq.gz -2 ERR064912_trm-cmb.R2.fastq.gz \\\n        --out ./\n\n    mv assembly.fasta ERR064912.scaffolds.fa\n    mv assembly.gfa ERR064912.assembly.gfa\n    mv unicycler.log ERR064912.unicycler.log\n\n    echo $(unicycler --version 2>&1) | sed 's/^.*Unicycler v//; s/ .*$//' > unicycler.version.txt",
-                "parents": [
-                    "NFCORE_BACASS.BACASS.SKEWER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.PROKKA",
-                    "NFCORE_BACASS.BACASS.QUAST",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "command": {
+                    "program": "unicycler \\\n        --threads 1 \\\n         --no_correct --no_pilon \\\n        -1 ERR064912_trm-cmb.R1.fastq.gz -2 ERR064912_trm-cmb.R2.fastq.gz \\\n        --out ./\n\n    mv assembly.fasta ERR064912.scaffolds.fa\n    mv assembly.gfa ERR064912.assembly.gfa\n    mv unicycler.log ERR064912.unicycler.log\n\n    echo $(unicycler --version 2>&1) | sed 's/^.*Unicycler v//; s/ .*$//' > unicycler.version.txt",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -370,13 +365,12 @@
                 "name": "NFCORE_BACASS.BACASS.PROKKA",
                 "id": "7",
                 "type": "compute",
-                "command": "prokka \\\n          --fast \\\n        --cpus 1 \\\n        --prefix ERR044595 \\\n         \\\n         \\\n        ERR044595.scaffolds.fa\n\n    echo $(prokka --version 2>&1) | sed 's/^.*prokka //' > prokka.version.txt",
-                "parents": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "command": {
+                    "program": "prokka \\\n          --fast \\\n        --cpus 1 \\\n        --prefix ERR044595 \\\n         \\\n         \\\n        ERR044595.scaffolds.fa\n\n    echo $(prokka --version 2>&1) | sed 's/^.*prokka //' > prokka.version.txt",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -475,13 +469,12 @@
                 "name": "NFCORE_BACASS.BACASS.QUAST",
                 "id": "9",
                 "type": "compute",
-                "command": "quast.py \\\n        --output-dir other_files \\\n         \\\n         \\\n        --threads 1 \\\n         \\\n        ERR044595.scaffolds.fa ERR064912.scaffolds.fa\n    ln -s other_files/report.tsv\n    echo $(quast.py --version 2>&1) | sed 's/^.*QUAST v//; s/ .*$//' > quast.version.txt",
-                "parents": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "command": {
+                    "program": "quast.py \\\n        --output-dir other_files \\\n         \\\n         \\\n        --threads 1 \\\n         \\\n        ERR044595.scaffolds.fa ERR064912.scaffolds.fa\n    ln -s other_files/report.tsv\n    echo $(quast.py --version 2>&1) | sed 's/^.*QUAST v//; s/ .*$//' > quast.version.txt",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -526,13 +519,12 @@
                 "name": "NFCORE_BACASS.BACASS.PROKKA",
                 "id": "8",
                 "type": "compute",
-                "command": "prokka \\\n          --fast \\\n        --cpus 1 \\\n        --prefix ERR064912 \\\n         \\\n         \\\n        ERR064912.scaffolds.fa\n\n    echo $(prokka --version 2>&1) | sed 's/^.*prokka //' > prokka.version.txt",
-                "parents": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "command": {
+                    "program": "prokka \\\n          --fast \\\n        --cpus 1 \\\n        --prefix ERR064912 \\\n         \\\n         \\\n        ERR064912.scaffolds.fa\n\n    echo $(prokka --version 2>&1) | sed 's/^.*prokka //' > prokka.version.txt",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -631,18 +623,12 @@
                 "name": "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS",
                 "id": "10",
                 "type": "compute",
-                "command": "echo 2.0.0 > pipeline.version.txt\n    echo 22.10.7 > nextflow.version.txt\n    scrape_software_versions.py &> software_versions_mqc.yaml",
-                "parents": [
-                    "NFCORE_BACASS.BACASS.FASTQC",
-                    "NFCORE_BACASS.BACASS.SKEWER",
-                    "NFCORE_BACASS.BACASS.NANOPLOT",
-                    "NFCORE_BACASS.BACASS.UNICYCLER",
-                    "NFCORE_BACASS.BACASS.QUAST",
-                    "NFCORE_BACASS.BACASS.PROKKA"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.MULTIQC"
-                ],
+                "command": {
+                    "program": "echo 2.0.0 > pipeline.version.txt\n    echo 22.10.7 > nextflow.version.txt\n    scrape_software_versions.py &> software_versions_mqc.yaml",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -699,11 +685,11 @@
                 "name": "NFCORE_BACASS.BACASS.MULTIQC",
                 "id": "11",
                 "type": "compute",
-                "command": "multiqc -f  .\n    multiqc --version | sed -e \"s/multiqc, version //g\" > multiqc.version.txt",
-                "parents": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS",
-                    "NFCORE_BACASS.BACASS.FASTQC"
-                ],
+                "command": {
+                    "program": "multiqc -f  .\n    multiqc --version | sed -e \"s/multiqc, version //g\" > multiqc.version.txt",
+                    "arguments": []
+                },
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -785,7 +771,7 @@
         "machines": [
             {
                 "nodeName": "dirt02",
-                "system": "Linux",
+                "system": "linux",
                 "release": "5.15.0-48-generic",
                 "architecture": "x86_64",
                 "cpu": {

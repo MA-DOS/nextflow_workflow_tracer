@@ -5,7 +5,8 @@
     "schemaVersion": "1.4",
     "wms": {
         "name": "Nextflow",
-        "url": "https://www.nextflow.io/"
+        "url": "https://www.nextflow.io/",
+        "version": "23.04.1"
     },
     "workflow": {
         "repo": "https://github.com/nf-core/methylseq",
@@ -16,14 +17,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK",
                 "id": "1",
                 "type": "compute",
-                "command": "check_samplesheet.py \\\n        samplesheet_test.csv \\\n        samplesheet.valid.csv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:INPUT_CHECK:SAMPLESHEET_CHECK\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "check_samplesheet.py \\\n        samplesheet_test.csv \\\n        samplesheet.valid.csv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:INPUT_CHECK:SAMPLESHEET_CHECK\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.FASTQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -56,13 +55,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
                 "id": "2",
                 "type": "compute",
-                "command": "bismark_genome_preparation \\\n        --bowtie2 \\\n        BismarkIndex\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PREPARE_GENOME:BISMARK_GENOMEPREPARATION\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                "command": {
+                    "program": "bismark_genome_preparation \\\n        --bowtie2 \\\n        BismarkIndex\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PREPARE_GENOME:BISMARK_GENOMEPREPARATION\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -95,15 +93,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.FASTQC",
                 "id": "3",
                 "type": "compute",
-                "command": "printf \"%s\\n\" SRR389222_sub1.fastq.gz | while read f; do [[ $f =~ ^SRR389222_sub1.* ]] || ln -s $f SRR389222_sub1_$f ; done\n    fastqc --quiet --threads 1 SRR389222_sub1*\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "printf \"%s\\n\" SRR389222_sub1.fastq.gz | while read f; do [[ $f =~ ^SRR389222_sub1.* ]] || ln -s $f SRR389222_sub1_$f ; done\n    fastqc --quiet --threads 1 SRR389222_sub1*\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -142,16 +137,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE",
                 "id": "4",
                 "type": "compute",
-                "command": "[ ! -f  SRR389222_sub1.fastq.gz ] && ln -s SRR389222_sub1.fastq.gz SRR389222_sub1.fastq.gz\n        trim_galore \\\n            --fastqc \\\n            --cores 1 \\\n            --gzip \\\n            SRR389222_sub1.fastq.gz\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE\":\n            trimgalore: $(echo $(trim_galore --version 2>&1) | sed 's/^.*version //; s/Last.*$//')\n            cutadapt: $(cutadapt --version)\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "[ ! -f  SRR389222_sub1.fastq.gz ] && ln -s SRR389222_sub1.fastq.gz SRR389222_sub1.fastq.gz\n        trim_galore \\\n            --fastqc \\\n            --cores 1 \\\n            --gzip \\\n            SRR389222_sub1.fastq.gz\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE\":\n            trimgalore: $(echo $(trim_galore --version 2>&1) | sed 's/^.*version //; s/Last.*$//')\n            cutadapt: $(cutadapt --version)\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -202,15 +193,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.FASTQC",
                 "id": "6",
                 "type": "compute",
-                "command": "printf \"%s\\n\" Ecoli_10K_methylated_R1.fastq.gz Ecoli_10K_methylated_R2.fastq.gz | while read f; do [[ $f =~ ^Ecoli_10K_methylated.* ]] || ln -s $f Ecoli_10K_methylated_$f ; done\n    fastqc --quiet --threads 1 Ecoli_10K_methylated*\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "printf \"%s\\n\" Ecoli_10K_methylated_R1.fastq.gz Ecoli_10K_methylated_R2.fastq.gz | while read f; do [[ $f =~ ^Ecoli_10K_methylated.* ]] || ln -s $f Ecoli_10K_methylated_$f ; done\n    fastqc --quiet --threads 1 Ecoli_10K_methylated*\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -267,16 +255,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE",
                 "id": "7",
                 "type": "compute",
-                "command": "[ ! -f  Ecoli_10K_methylated_1.fastq.gz ] && ln -s Ecoli_10K_methylated_R1.fastq.gz Ecoli_10K_methylated_1.fastq.gz\n        [ ! -f  Ecoli_10K_methylated_2.fastq.gz ] && ln -s Ecoli_10K_methylated_R2.fastq.gz Ecoli_10K_methylated_2.fastq.gz\n        trim_galore \\\n            --fastqc \\\n            --cores 1 \\\n            --paired \\\n            --gzip \\\n            Ecoli_10K_methylated_1.fastq.gz \\\n            Ecoli_10K_methylated_2.fastq.gz\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE\":\n            trimgalore: $(echo $(trim_galore --version 2>&1) | sed 's/^.*version //; s/Last.*$//')\n            cutadapt: $(cutadapt --version)\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "[ ! -f  Ecoli_10K_methylated_1.fastq.gz ] && ln -s Ecoli_10K_methylated_R1.fastq.gz Ecoli_10K_methylated_1.fastq.gz\n        [ ! -f  Ecoli_10K_methylated_2.fastq.gz ] && ln -s Ecoli_10K_methylated_R2.fastq.gz Ecoli_10K_methylated_2.fastq.gz\n        trim_galore \\\n            --fastqc \\\n            --cores 1 \\\n            --paired \\\n            --gzip \\\n            Ecoli_10K_methylated_1.fastq.gz \\\n            Ecoli_10K_methylated_2.fastq.gz\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE\":\n            trimgalore: $(echo $(trim_galore --version 2>&1) | sed 's/^.*version //; s/Last.*$//')\n            cutadapt: $(cutadapt --version)\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -357,15 +341,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
                 "id": "5",
                 "type": "compute",
-                "command": "cat input1/SRR389222_sub2.fastq.gz input2/SRR389222_sub3.fastq.gz > SRR389222_sub2.merged.fastq.gz\n\n            cat <<-END_VERSIONS > versions.yml\n            \"NFCORE_METHYLSEQ:METHYLSEQ:CAT_FASTQ\":\n                cat: $(echo $(cat --version 2>&1) | sed 's/^.*coreutils) //; s/ .*$//')\n            END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.FASTQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "cat input1/SRR389222_sub2.fastq.gz input2/SRR389222_sub3.fastq.gz > SRR389222_sub2.merged.fastq.gz\n\n            cat <<-END_VERSIONS > versions.yml\n            \"NFCORE_METHYLSEQ:METHYLSEQ:CAT_FASTQ\":\n                cat: $(echo $(cat --version 2>&1) | sed 's/^.*coreutils) //; s/ .*$//')\n            END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -404,19 +385,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
                 "id": "8",
                 "type": "compute",
-                "command": "bismark \\\n        SRR389222_sub1_trimmed.fq.gz \\\n        --genome BismarkIndex \\\n        --bam \\\n        --bowtie2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark \\\n        SRR389222_sub1_trimmed.fq.gz \\\n        --genome BismarkIndex \\\n        --bam \\\n        --bowtie2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -461,19 +435,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
                 "id": "9",
                 "type": "compute",
-                "command": "bismark \\\n        -1 Ecoli_10K_methylated_1_val_1.fq.gz -2 Ecoli_10K_methylated_2_val_2.fq.gz \\\n        --genome BismarkIndex \\\n        --bam \\\n        --bowtie2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark \\\n        -1 Ecoli_10K_methylated_1_val_1.fq.gz -2 Ecoli_10K_methylated_2_val_2.fq.gz \\\n        --genome BismarkIndex \\\n        --bam \\\n        --bowtie2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -524,15 +491,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.FASTQC",
                 "id": "11",
                 "type": "compute",
-                "command": "printf \"%s\\n\" SRR389222_sub2.merged.fastq.gz | while read f; do [[ $f =~ ^SRR389222_sub2.* ]] || ln -s $f SRR389222_sub2_$f ; done\n    fastqc --quiet --threads 1 SRR389222_sub2*\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "printf \"%s\\n\" SRR389222_sub2.merged.fastq.gz | while read f; do [[ $f =~ ^SRR389222_sub2.* ]] || ln -s $f SRR389222_sub2_$f ; done\n    fastqc --quiet --threads 1 SRR389222_sub2*\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -571,16 +535,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE",
                 "id": "10",
                 "type": "compute",
-                "command": "[ ! -f  SRR389222_sub2.fastq.gz ] && ln -s SRR389222_sub2.merged.fastq.gz SRR389222_sub2.fastq.gz\n        trim_galore \\\n            --fastqc \\\n            --cores 1 \\\n            --gzip \\\n            SRR389222_sub2.fastq.gz\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE\":\n            trimgalore: $(echo $(trim_galore --version 2>&1) | sed 's/^.*version //; s/Last.*$//')\n            cutadapt: $(cutadapt --version)\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "[ ! -f  SRR389222_sub2.fastq.gz ] && ln -s SRR389222_sub2.merged.fastq.gz SRR389222_sub2.fastq.gz\n        trim_galore \\\n            --fastqc \\\n            --cores 1 \\\n            --gzip \\\n            SRR389222_sub2.fastq.gz\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE\":\n            trimgalore: $(echo $(trim_galore --version 2>&1) | sed 's/^.*version //; s/Last.*$//')\n            cutadapt: $(cutadapt --version)\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -631,18 +591,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
                 "id": "12",
                 "type": "compute",
-                "command": "deduplicate_bismark \\\n         \\\n        -s \\\n        --bam SRR389222_sub1_trimmed_bismark_bt2.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "deduplicate_bismark \\\n         \\\n        -s \\\n        --bam SRR389222_sub1_trimmed_bismark_bt2.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -681,14 +635,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED",
                 "id": "13",
                 "type": "compute",
-                "command": "samtools sort  -@ 1 -o SRR389222_sub1.sorted.bam -T SRR389222_sub1.sorted SRR389222_sub1_trimmed_bismark_bt2.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "samtools sort  -@ 1 -o SRR389222_sub1.sorted.bam -T SRR389222_sub1.sorted SRR389222_sub1_trimmed_bismark_bt2.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -721,14 +673,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED",
                 "id": "14",
                 "type": "compute",
-                "command": "samtools sort  -@ 1 -o Ecoli_10K_methylated.sorted.bam -T Ecoli_10K_methylated.sorted Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "samtools sort  -@ 1 -o Ecoli_10K_methylated.sorted.bam -T Ecoli_10K_methylated.sorted Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -761,18 +711,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
                 "id": "15",
                 "type": "compute",
-                "command": "deduplicate_bismark \\\n         \\\n        -p \\\n        --bam Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "deduplicate_bismark \\\n         \\\n        -p \\\n        --bam Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -811,19 +755,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
                 "id": "16",
                 "type": "compute",
-                "command": "bismark \\\n        SRR389222_sub2_trimmed.fq.gz \\\n        --genome BismarkIndex \\\n        --bam \\\n        --bowtie2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark \\\n        SRR389222_sub2_trimmed.fq.gz \\\n        --genome BismarkIndex \\\n        --bam \\\n        --bowtie2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -868,14 +805,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED",
                 "id": "18",
                 "type": "compute",
-                "command": "samtools sort  -@ 1 -o SRR389222_sub1.sorted.bam -T SRR389222_sub1.sorted SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "samtools sort  -@ 1 -o SRR389222_sub1.sorted.bam -T SRR389222_sub1.sorted SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -908,17 +843,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
                 "id": "17",
                 "type": "compute",
-                "command": "bismark_methylation_extractor \\\n        SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bam \\\n        --bedGraph \\\n        --counts \\\n        --gzip \\\n        --report \\\n        -s \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark_methylation_extractor \\\n        SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bam \\\n        --bedGraph \\\n        --counts \\\n        --gzip \\\n        --report \\\n        -s \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1011,14 +941,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP",
                 "id": "19",
                 "type": "compute",
-                "command": "preseq \\\n        lc_extrap \\\n         -verbose -bam \\\n         \\\n        -output SRR389222_sub1.lc_extrap.txt \\\n        SRR389222_sub1.sorted.bam\n    cp .command.err SRR389222_sub1.command.log\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP\":\n        preseq: $(echo $(preseq 2>&1) | sed 's/^.*Version: //; s/Usage:.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "preseq \\\n        lc_extrap \\\n         -verbose -bam \\\n         \\\n        -output SRR389222_sub1.lc_extrap.txt \\\n        SRR389222_sub1.sorted.bam\n    cp .command.err SRR389222_sub1.command.log\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP\":\n        preseq: $(echo $(preseq 2>&1) | sed 's/^.*Version: //; s/Usage:.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1039,14 +967,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP",
                 "id": "20",
                 "type": "compute",
-                "command": "preseq \\\n        lc_extrap \\\n         -verbose -bam \\\n        -pe \\\n        -output Ecoli_10K_methylated.lc_extrap.txt \\\n        Ecoli_10K_methylated.sorted.bam\n    cp .command.err Ecoli_10K_methylated.command.log\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP\":\n        preseq: $(echo $(preseq 2>&1) | sed 's/^.*Version: //; s/Usage:.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "preseq \\\n        lc_extrap \\\n         -verbose -bam \\\n        -pe \\\n        -output Ecoli_10K_methylated.lc_extrap.txt \\\n        Ecoli_10K_methylated.sorted.bam\n    cp .command.err Ecoli_10K_methylated.command.log\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP\":\n        preseq: $(echo $(preseq 2>&1) | sed 's/^.*Version: //; s/Usage:.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1067,14 +993,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED",
                 "id": "21",
                 "type": "compute",
-                "command": "samtools sort  -@ 1 -o Ecoli_10K_methylated.sorted.bam -T Ecoli_10K_methylated.sorted Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "samtools sort  -@ 1 -o Ecoli_10K_methylated.sorted.bam -T Ecoli_10K_methylated.sorted Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1107,17 +1031,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
                 "id": "22",
                 "type": "compute",
-                "command": "bismark_methylation_extractor \\\n        Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bam \\\n        --bedGraph \\\n        --counts \\\n        --gzip \\\n        --report \\\n        -p \\\n        --no_overlap --ignore_r2 2 --ignore_r2 2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark_methylation_extractor \\\n        Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bam \\\n        --bedGraph \\\n        --counts \\\n        --gzip \\\n        --report \\\n        -p \\\n        --no_overlap --ignore_r2 2 --ignore_r2 2\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1210,14 +1129,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED",
                 "id": "24",
                 "type": "compute",
-                "command": "samtools sort  -@ 1 -o SRR389222_sub2.sorted.bam -T SRR389222_sub2.sorted SRR389222_sub2_trimmed_bismark_bt2.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "samtools sort  -@ 1 -o SRR389222_sub2.sorted.bam -T SRR389222_sub2.sorted SRR389222_sub2_trimmed_bismark_bt2.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1250,18 +1167,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
                 "id": "23",
                 "type": "compute",
-                "command": "deduplicate_bismark \\\n         \\\n        -s \\\n        --bam SRR389222_sub2_trimmed_bismark_bt2.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "deduplicate_bismark \\\n         \\\n        -s \\\n        --bam SRR389222_sub2_trimmed_bismark_bt2.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1300,14 +1211,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
                 "id": "25",
                 "type": "compute",
-                "command": "unset DISPLAY\n    mkdir tmp\n    export _JAVA_OPTIONS=-Djava.io.tmpdir=./tmp\n    qualimap \\\n        --java-mem-size=6G \\\n        bamqc \\\n         \\\n        -bam SRR389222_sub1.sorted.bam \\\n         \\\n        -p non-strand-specific \\\n         \\\n        -outdir SRR389222_sub1 \\\n        -nt 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC\":\n        qualimap: $(echo $(qualimap 2>&1) | sed 's/^.*QualiMap v.//; s/Built.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "unset DISPLAY\n    mkdir tmp\n    export _JAVA_OPTIONS=-Djava.io.tmpdir=./tmp\n    qualimap \\\n        --java-mem-size=6G \\\n        bamqc \\\n         \\\n        -bam SRR389222_sub1.sorted.bam \\\n         \\\n        -p non-strand-specific \\\n         \\\n        -outdir SRR389222_sub1 \\\n        -nt 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC\":\n        qualimap: $(echo $(qualimap 2>&1) | sed 's/^.*QualiMap v.//; s/Built.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1340,16 +1249,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
                 "id": "26",
                 "type": "compute",
-                "command": "bismark2report \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark2report \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1400,14 +1305,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
                 "id": "27",
                 "type": "compute",
-                "command": "unset DISPLAY\n    mkdir tmp\n    export _JAVA_OPTIONS=-Djava.io.tmpdir=./tmp\n    qualimap \\\n        --java-mem-size=6G \\\n        bamqc \\\n         \\\n        -bam Ecoli_10K_methylated.sorted.bam \\\n         \\\n        -p non-strand-specific \\\n        --collect-overlap-pairs \\\n        -outdir Ecoli_10K_methylated \\\n        -nt 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC\":\n        qualimap: $(echo $(qualimap 2>&1) | sed 's/^.*QualiMap v.//; s/Built.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "unset DISPLAY\n    mkdir tmp\n    export _JAVA_OPTIONS=-Djava.io.tmpdir=./tmp\n    qualimap \\\n        --java-mem-size=6G \\\n        bamqc \\\n         \\\n        -bam Ecoli_10K_methylated.sorted.bam \\\n         \\\n        -p non-strand-specific \\\n        --collect-overlap-pairs \\\n        -outdir Ecoli_10K_methylated \\\n        -nt 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC\":\n        qualimap: $(echo $(qualimap 2>&1) | sed 's/^.*QualiMap v.//; s/Built.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1440,16 +1343,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
                 "id": "28",
                 "type": "compute",
-                "command": "bismark2report \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark2report \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1500,14 +1399,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP",
                 "id": "29",
                 "type": "compute",
-                "command": "preseq \\\n        lc_extrap \\\n         -verbose -bam \\\n         \\\n        -output SRR389222_sub2.lc_extrap.txt \\\n        SRR389222_sub2.sorted.bam\n    cp .command.err SRR389222_sub2.command.log\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP\":\n        preseq: $(echo $(preseq 2>&1) | sed 's/^.*Version: //; s/Usage:.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "preseq \\\n        lc_extrap \\\n         -verbose -bam \\\n         \\\n        -output SRR389222_sub2.lc_extrap.txt \\\n        SRR389222_sub2.sorted.bam\n    cp .command.err SRR389222_sub2.command.log\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP\":\n        preseq: $(echo $(preseq 2>&1) | sed 's/^.*Version: //; s/Usage:.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1528,14 +1425,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED",
                 "id": "30",
                 "type": "compute",
-                "command": "samtools sort  -@ 1 -o SRR389222_sub2.sorted.bam -T SRR389222_sub2.sorted SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "samtools sort  -@ 1 -o SRR389222_sub2.sorted.bam -T SRR389222_sub2.sorted SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bam\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED\":\n        samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1568,17 +1463,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
                 "id": "31",
                 "type": "compute",
-                "command": "bismark_methylation_extractor \\\n        SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bam \\\n        --bedGraph \\\n        --counts \\\n        --gzip \\\n        --report \\\n        -s \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark_methylation_extractor \\\n        SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bam \\\n        --bedGraph \\\n        --counts \\\n        --gzip \\\n        --report \\\n        -s \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1671,14 +1561,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
                 "id": "32",
                 "type": "compute",
-                "command": "unset DISPLAY\n    mkdir tmp\n    export _JAVA_OPTIONS=-Djava.io.tmpdir=./tmp\n    qualimap \\\n        --java-mem-size=6G \\\n        bamqc \\\n         \\\n        -bam SRR389222_sub2.sorted.bam \\\n         \\\n        -p non-strand-specific \\\n         \\\n        -outdir SRR389222_sub2 \\\n        -nt 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC\":\n        qualimap: $(echo $(qualimap 2>&1) | sed 's/^.*QualiMap v.//; s/Built.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "unset DISPLAY\n    mkdir tmp\n    export _JAVA_OPTIONS=-Djava.io.tmpdir=./tmp\n    qualimap \\\n        --java-mem-size=6G \\\n        bamqc \\\n         \\\n        -bam SRR389222_sub2.sorted.bam \\\n         \\\n        -p non-strand-specific \\\n         \\\n        -outdir SRR389222_sub2 \\\n        -nt 1\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC\":\n        qualimap: $(echo $(qualimap 2>&1) | sed 's/^.*QualiMap v.//; s/Built.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1711,16 +1599,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
                 "id": "33",
                 "type": "compute",
-                "command": "bismark2report \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark2report \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1771,16 +1655,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
                 "id": "34",
                 "type": "compute",
-                "command": "bismark2summary SRR389222_sub1_trimmed_bismark_bt2.bam Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.bam SRR389222_sub2_trimmed_bismark_bt2.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_SUMMARY\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "bismark2summary SRR389222_sub1_trimmed_bismark_bt2.bam Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.bam SRR389222_sub2_trimmed_bismark_bt2.bam\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_SUMMARY\":\n        bismark: $(echo $(bismark -v 2>&1) | sed 's/^.*Bismark Version: v//; s/Copyright.*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1885,26 +1765,12 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
                 "id": "35",
                 "type": "compute",
-                "command": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.INPUT_CHECK.SAMPLESHEET_CHECK",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PREPARE_GENOME.BISMARK_GENOMEPREPARATION",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CAT_FASTQ",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.FASTQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_DEDUPLICATED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.SAMTOOLS_SORT_ALIGNED",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP"
-                ],
-                "children": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1943,19 +1809,11 @@
                 "name": "NFCORE_METHYLSEQ.METHYLSEQ.MULTIQC",
                 "id": "36",
                 "type": "compute",
-                "command": "multiqc \\\n        --force \\\n         \\\n        --config multiqc_config.yml \\\n         \\\n        .\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:MULTIQC\":\n        multiqc: $( multiqc --version | sed -e \"s/multiqc, version //g\" )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_METHYLSEQ.METHYLSEQ.TRIMGALORE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_REPORT",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_SUMMARY",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_ALIGN",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_DEDUPLICATE",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.BISMARK.BISMARK_METHYLATIONEXTRACTOR",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.QUALIMAP_BAMQC",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.PRESEQ_LCEXTRAP",
-                    "NFCORE_METHYLSEQ.METHYLSEQ.FASTQC"
-                ],
+                "command": {
+                    "program": "multiqc \\\n        --force \\\n         \\\n        --config multiqc_config.yml \\\n         \\\n        .\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_METHYLSEQ:METHYLSEQ:MULTIQC\":\n        multiqc: $( multiqc --version | sed -e \"s/multiqc, version //g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -2187,7 +2045,7 @@
         "machines": [
             {
                 "nodeName": "dirt02",
-                "system": "Linux",
+                "system": "linux",
                 "release": "5.15.0-48-generic",
                 "architecture": "x86_64",
                 "cpu": {

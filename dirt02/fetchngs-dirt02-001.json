@@ -5,7 +5,8 @@
     "schemaVersion": "1.4",
     "wms": {
         "name": "Nextflow",
-        "url": "https://www.nextflow.io/"
+        "url": "https://www.nextflow.io/",
+        "version": "23.04.1"
     },
     "workflow": {
         "repo": "https://github.com/nf-core/fetchngs",
@@ -16,12 +17,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "4",
                 "type": "compute",
-                "command": "echo ERR1160846 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        ERR1160846.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo ERR1160846 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        ERR1160846.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -48,12 +49,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "9",
                 "type": "compute",
-                "command": "echo SRR14593545 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR14593545.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo SRR14593545 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR14593545.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -80,13 +81,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS",
                 "id": "1",
                 "type": "compute",
-                "command": "config = \"/LIBS/GUID = \\\"${UUID.randomUUID().toString()}\\\"\\\\n/libs/cloud/report_instance_identity = \\\"true\\\"\\\\n\"\ntemplate 'detect_ncbi_settings.sh'",
+                "command": {
+                    "program": "config = \"/LIBS/GUID = \\\"${UUID.randomUUID().toString()}\\\"\\\\n/libs/cloud/report_instance_identity = \\\"true\\\"\\\\n\"\ntemplate 'detect_ncbi_settings.sh'",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -113,12 +113,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "6",
                 "type": "compute",
-                "command": "echo DRR028935 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        DRR028935.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo DRR028935 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        DRR028935.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -145,12 +145,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "2",
                 "type": "compute",
-                "command": "echo SRR9984183 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR9984183.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo SRR9984183 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR9984183.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -177,12 +177,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "5",
                 "type": "compute",
-                "command": "echo ERR1109373 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        ERR1109373.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo ERR1109373 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        ERR1109373.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -209,12 +209,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "7",
                 "type": "compute",
-                "command": "echo DRR026872 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        DRR026872.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo DRR026872 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        DRR026872.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -241,12 +241,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "3",
                 "type": "compute",
-                "command": "echo SRR13191702 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR13191702.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo SRR13191702 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR13191702.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -273,12 +273,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "10",
                 "type": "compute",
-                "command": "echo SRR14709033 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR14709033.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo SRR14709033 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR14709033.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -305,12 +305,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
                 "id": "8",
                 "type": "compute",
-                "command": "echo SRR12848126 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR12848126.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "echo SRR12848126 > id.txt\n    sra_ids_to_runinfo.py \\\n        id.txt \\\n        SRR12848126.runinfo.tsv \\\n        \n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_IDS_TO_RUNINFO\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -337,15 +337,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "11",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        ERR1160846.runinfo.tsv \\\n        ERR1160846.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        ERR1160846.runinfo.tsv \\\n        ERR1160846.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -378,15 +375,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "12",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        SRR14593545.runinfo.tsv \\\n        SRR14593545.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        SRR14593545.runinfo.tsv \\\n        SRR14593545.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -419,15 +413,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "13",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        DRR028935.runinfo.tsv \\\n        DRR028935.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        DRR028935.runinfo.tsv \\\n        DRR028935.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -460,15 +451,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "14",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        SRR9984183.runinfo.tsv \\\n        SRR9984183.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        SRR9984183.runinfo.tsv \\\n        SRR9984183.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -501,15 +489,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "15",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        ERR1109373.runinfo.tsv \\\n        ERR1109373.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        ERR1109373.runinfo.tsv \\\n        ERR1109373.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -542,15 +527,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "16",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        DRR026872.runinfo.tsv \\\n        DRR026872.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        DRR026872.runinfo.tsv \\\n        DRR026872.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -583,15 +565,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "17",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        SRR13191702.runinfo.tsv \\\n        SRR13191702.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        SRR13191702.runinfo.tsv \\\n        SRR13191702.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -624,15 +603,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "18",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        SRR14709033.runinfo.tsv \\\n        SRR14709033.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        SRR14709033.runinfo.tsv \\\n        SRR14709033.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -665,15 +641,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
                 "id": "19",
                 "type": "compute",
-                "command": "sra_runinfo_to_ftp.py \\\n        SRR12848126.runinfo.tsv \\\n        SRR12848126.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "sra_runinfo_to_ftp.py \\\n        SRR12848126.runinfo.tsv \\\n        SRR12848126.runinfo_ftp.tsv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_RUNINFO_TO_FTP\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -706,14 +679,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
                 "id": "20",
                 "type": "compute",
-                "command": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/ERR116/006/ERR1160846/ERR1160846.fastq.gz \\\n            -o ERX1234253_ERR1160846.fastq.gz\n\n        echo \"5924f20ef547ebdfed7cad795bbab6e6  ERX1234253_ERR1160846.fastq.gz\" > ERX1234253_ERR1160846.fastq.gz.md5\n        md5sum -c ERX1234253_ERR1160846.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/ERR116/006/ERR1160846/ERR1160846.fastq.gz \\\n            -o ERX1234253_ERR1160846.fastq.gz\n\n        echo \"5924f20ef547ebdfed7cad795bbab6e6  ERX1234253_ERR1160846.fastq.gz\" > ERX1234253_ERR1160846.fastq.gz.md5\n        md5sum -c ERX1234253_ERR1160846.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -746,15 +717,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
                 "id": "21",
                 "type": "compute",
-                "command": "args = task.ext.args ?: ''\nargs2 = task.ext.args2 ?: '5 1 100'\ntemplate 'retry_with_backoff.sh'",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS",
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "args = task.ext.args ?: ''\nargs2 = task.ext.args2 ?: '5 1 100'\ntemplate 'retry_with_backoff.sh'",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -787,14 +755,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
                 "id": "22",
                 "type": "compute",
-                "command": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/DRR028/DRR028935/DRR028935_1.fastq.gz \\\n            -o DRX026011_DRR028935_1.fastq.gz\n\n        echo \"cc01df82a9354bb6b3be93483b20c35a  DRX026011_DRR028935_1.fastq.gz\" > DRX026011_DRR028935_1.fastq.gz.md5\n        md5sum -c DRX026011_DRR028935_1.fastq.gz.md5\n\n        curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/DRR028/DRR028935/DRR028935_2.fastq.gz \\\n            -o DRX026011_DRR028935_2.fastq.gz\n\n        echo \"941c9998d746416dad53c94c480ddf30  DRX026011_DRR028935_2.fastq.gz\" > DRX026011_DRR028935_2.fastq.gz.md5\n        md5sum -c DRX026011_DRR028935_2.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/DRR028/DRR028935/DRR028935_1.fastq.gz \\\n            -o DRX026011_DRR028935_1.fastq.gz\n\n        echo \"cc01df82a9354bb6b3be93483b20c35a  DRX026011_DRR028935_1.fastq.gz\" > DRX026011_DRR028935_1.fastq.gz.md5\n        md5sum -c DRX026011_DRR028935_1.fastq.gz.md5\n\n        curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/DRR028/DRR028935/DRR028935_2.fastq.gz \\\n            -o DRX026011_DRR028935_2.fastq.gz\n\n        echo \"941c9998d746416dad53c94c480ddf30  DRX026011_DRR028935_2.fastq.gz\" > DRX026011_DRR028935_2.fastq.gz.md5\n        md5sum -c DRX026011_DRR028935_2.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -839,14 +805,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
                 "id": "23",
                 "type": "compute",
-                "command": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/SRR998/003/SRR9984183/SRR9984183.fastq.gz \\\n            -o SRX6725035_SRR9984183.fastq.gz\n\n        echo \"0b512d2dc31685983456bd56fd836544  SRX6725035_SRR9984183.fastq.gz\" > SRX6725035_SRR9984183.fastq.gz.md5\n        md5sum -c SRX6725035_SRR9984183.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/SRR998/003/SRR9984183/SRR9984183.fastq.gz \\\n            -o SRX6725035_SRR9984183.fastq.gz\n\n        echo \"0b512d2dc31685983456bd56fd836544  SRX6725035_SRR9984183.fastq.gz\" > SRX6725035_SRR9984183.fastq.gz.md5\n        md5sum -c SRX6725035_SRR9984183.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -879,14 +843,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
                 "id": "24",
                 "type": "compute",
-                "command": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/ERR110/003/ERR1109373/ERR1109373_1.fastq.gz \\\n            -o ERX1188904_ERR1109373_1.fastq.gz\n\n        echo \"9fd57225d6c07a31843276d6df9b15c0  ERX1188904_ERR1109373_1.fastq.gz\" > ERX1188904_ERR1109373_1.fastq.gz.md5\n        md5sum -c ERX1188904_ERR1109373_1.fastq.gz.md5\n\n        curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/ERR110/003/ERR1109373/ERR1109373_2.fastq.gz \\\n            -o ERX1188904_ERR1109373_2.fastq.gz\n\n        echo \"5a62e8f785687dce890cfb4fe3e607f9  ERX1188904_ERR1109373_2.fastq.gz\" > ERX1188904_ERR1109373_2.fastq.gz.md5\n        md5sum -c ERX1188904_ERR1109373_2.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/ERR110/003/ERR1109373/ERR1109373_1.fastq.gz \\\n            -o ERX1188904_ERR1109373_1.fastq.gz\n\n        echo \"9fd57225d6c07a31843276d6df9b15c0  ERX1188904_ERR1109373_1.fastq.gz\" > ERX1188904_ERR1109373_1.fastq.gz.md5\n        md5sum -c ERX1188904_ERR1109373_1.fastq.gz.md5\n\n        curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/ERR110/003/ERR1109373/ERR1109373_2.fastq.gz \\\n            -o ERX1188904_ERR1109373_2.fastq.gz\n\n        echo \"5a62e8f785687dce890cfb4fe3e607f9  ERX1188904_ERR1109373_2.fastq.gz\" > ERX1188904_ERR1109373_2.fastq.gz.md5\n        md5sum -c ERX1188904_ERR1109373_2.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -931,14 +893,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
                 "id": "25",
                 "type": "compute",
-                "command": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/DRR026/DRR026872/DRR026872.fastq.gz \\\n            -o DRX024467_DRR026872.fastq.gz\n\n        echo \"515e5448c55e054113c4a22df5f62791  DRX024467_DRR026872.fastq.gz\" > DRX024467_DRR026872.fastq.gz.md5\n        md5sum -c DRX024467_DRR026872.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/DRR026/DRR026872/DRR026872.fastq.gz \\\n            -o DRX024467_DRR026872.fastq.gz\n\n        echo \"515e5448c55e054113c4a22df5f62791  DRX024467_DRR026872.fastq.gz\" > DRX024467_DRR026872.fastq.gz.md5\n        md5sum -c DRX024467_DRR026872.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -971,14 +931,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
                 "id": "26",
                 "type": "compute",
-                "command": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/002/SRR13191702/SRR13191702_1.fastq.gz \\\n            -o SRX9626017_SRR13191702_1.fastq.gz\n\n        echo \"89c5be920021a035084d8aeb74f32df7  SRX9626017_SRR13191702_1.fastq.gz\" > SRX9626017_SRR13191702_1.fastq.gz.md5\n        md5sum -c SRX9626017_SRR13191702_1.fastq.gz.md5\n\n        curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/002/SRR13191702/SRR13191702_2.fastq.gz \\\n            -o SRX9626017_SRR13191702_2.fastq.gz\n\n        echo \"56271be38a80db78ef3bdfc5d9909b98  SRX9626017_SRR13191702_2.fastq.gz\" > SRX9626017_SRR13191702_2.fastq.gz.md5\n        md5sum -c SRX9626017_SRR13191702_2.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/002/SRR13191702/SRR13191702_1.fastq.gz \\\n            -o SRX9626017_SRR13191702_1.fastq.gz\n\n        echo \"89c5be920021a035084d8aeb74f32df7  SRX9626017_SRR13191702_1.fastq.gz\" > SRX9626017_SRR13191702_1.fastq.gz.md5\n        md5sum -c SRX9626017_SRR13191702_1.fastq.gz.md5\n\n        curl \\\n            --retry 5 --continue-at - --max-time 1200 \\\n            -L ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/002/SRR13191702/SRR13191702_2.fastq.gz \\\n            -o SRX9626017_SRR13191702_2.fastq.gz\n\n        echo \"56271be38a80db78ef3bdfc5d9909b98  SRX9626017_SRR13191702_2.fastq.gz\" > SRX9626017_SRR13191702_2.fastq.gz.md5\n        md5sum -c SRX9626017_SRR13191702_2.fastq.gz.md5\n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_FETCHNGS:SRA:SRA_FASTQ_FTP\":\n            curl: $(echo $(curl --version | head -n 1 | sed 's/^curl //; s/ .*$//'))\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1023,15 +981,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
                 "id": "27",
                 "type": "compute",
-                "command": "args = task.ext.args ?: ''\nargs2 = task.ext.args2 ?: '5 1 100'\ntemplate 'retry_with_backoff.sh'",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS",
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "args = task.ext.args ?: ''\nargs2 = task.ext.args2 ?: '5 1 100'\ntemplate 'retry_with_backoff.sh'",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1064,15 +1019,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
                 "id": "28",
                 "type": "compute",
-                "command": "args = task.ext.args ?: ''\nargs2 = task.ext.args2 ?: '5 1 100'\ntemplate 'retry_with_backoff.sh'",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS",
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "args = task.ext.args ?: ''\nargs2 = task.ext.args2 ?: '5 1 100'\ntemplate 'retry_with_backoff.sh'",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1105,14 +1057,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "29",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1139,15 +1089,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
                 "id": "30",
                 "type": "compute",
-                "command": "export NCBI_SETTINGS=\"$PWD/user-settings.mkfg\"\n\n    fasterq-dump \\\n         \\\n        --threads 1 \\\n        --outfile SRX10940790_SRR14593545 \\\n        SRR14593545\n\n    pigz \\\n         \\\n        --no-name \\\n        --processes 1 \\\n        *.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS:SRATOOLS_FASTERQDUMP\":\n        sratools: $(fasterq-dump --version 2>&1 | grep -Eo '[0-9.]+')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "export NCBI_SETTINGS=\"$PWD/user-settings.mkfg\"\n\n    fasterq-dump \\\n         \\\n        --threads 1 \\\n        --outfile SRX10940790_SRR14593545 \\\n        SRR14593545\n\n    pigz \\\n         \\\n        --no-name \\\n        --processes 1 \\\n        *.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS:SRATOOLS_FASTERQDUMP\":\n        sratools: $(fasterq-dump --version 2>&1 | grep -Eo '[0-9.]+')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1192,14 +1139,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "31",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1226,14 +1171,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "32",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1260,14 +1203,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "33",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1294,14 +1235,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "34",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1328,14 +1267,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "35",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1362,15 +1299,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
                 "id": "36",
                 "type": "compute",
-                "command": "export NCBI_SETTINGS=\"$PWD/user-settings.mkfg\"\n\n    fasterq-dump \\\n         \\\n        --threads 1 \\\n        --outfile SRX11047067_SRR14709033.fastq \\\n        SRR14709033\n\n    pigz \\\n         \\\n        --no-name \\\n        --processes 1 \\\n        *.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS:SRATOOLS_FASTERQDUMP\":\n        sratools: $(fasterq-dump --version 2>&1 | grep -Eo '[0-9.]+')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "export NCBI_SETTINGS=\"$PWD/user-settings.mkfg\"\n\n    fasterq-dump \\\n         \\\n        --threads 1 \\\n        --outfile SRX11047067_SRR14709033.fastq \\\n        SRR14709033\n\n    pigz \\\n         \\\n        --no-name \\\n        --processes 1 \\\n        *.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS:SRATOOLS_FASTERQDUMP\":\n        sratools: $(fasterq-dump --version 2>&1 | grep -Eo '[0-9.]+')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1409,15 +1343,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP",
                 "id": "37",
                 "type": "compute",
-                "command": "export NCBI_SETTINGS=\"$PWD/user-settings.mkfg\"\n\n    fasterq-dump \\\n         \\\n        --threads 1 \\\n        --outfile SRX9315476_SRR12848126 \\\n        SRR12848126\n\n    pigz \\\n         \\\n        --no-name \\\n        --processes 1 \\\n        *.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS:SRATOOLS_FASTERQDUMP\":\n        sratools: $(fasterq-dump --version 2>&1 | grep -Eo '[0-9.]+')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "export NCBI_SETTINGS=\"$PWD/user-settings.mkfg\"\n\n    fasterq-dump \\\n         \\\n        --threads 1 \\\n        --outfile SRX9315476_SRR12848126 \\\n        SRR12848126\n\n    pigz \\\n         \\\n        --no-name \\\n        --processes 1 \\\n        *.fastq\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS:SRATOOLS_FASTERQDUMP\":\n        sratools: $(fasterq-dump --version 2>&1 | grep -Eo '[0-9.]+')\n        pigz: $( pigz --version 2>&1 | sed 's/pigz //g' )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1462,14 +1393,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "38",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1496,14 +1425,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "39",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1530,14 +1457,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET",
                 "id": "40",
                 "type": "compute",
-                "command": "-",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
+                "command": {
+                    "program": "-",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "output",
@@ -1564,14 +1489,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET",
                 "id": "41",
                 "type": "compute",
-                "command": "head -n 1 `ls ./samplesheets/* | head -n 1` > samplesheet.csv\n    for fileid in `ls ./samplesheets/*`; do\n        awk 'NR>1' $fileid >> samplesheet.csv\n    done\n\n    head -n 1 `ls ./mappings/* | head -n 1` > id_mappings.csv\n    for fileid in `ls ./mappings/*`; do\n        awk 'NR>1' $fileid >> id_mappings.csv\n    done\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_MERGE_SAMPLESHEET\":\n        sed: $(echo $(sed --version 2>&1) | sed 's/^.*GNU sed) //; s/ .*$//')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_TO_SAMPLESHEET"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.MULTIQC_MAPPINGS_CONFIG",
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "head -n 1 `ls ./samplesheets/* | head -n 1` > samplesheet.csv\n    for fileid in `ls ./samplesheets/*`; do\n        awk 'NR>1' $fileid >> samplesheet.csv\n    done\n\n    head -n 1 `ls ./mappings/* | head -n 1` > id_mappings.csv\n    for fileid in `ls ./mappings/*`; do\n        awk 'NR>1' $fileid >> id_mappings.csv\n    done\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:SRA_MERGE_SAMPLESHEET\":\n        sed: $(echo $(sed --version 2>&1) | sed 's/^.*GNU sed) //; s/ .*$//')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1712,13 +1635,12 @@
                 "name": "NFCORE_FETCHNGS.SRA.MULTIQC_MAPPINGS_CONFIG",
                 "id": "42",
                 "type": "compute",
-                "command": "multiqc_mappings_config.py \\\n        id_mappings.csv \\\n        multiqc_config.yml\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:MULTIQC_MAPPINGS_CONFIG\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET"
-                ],
-                "children": [
-                    "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "multiqc_mappings_config.py \\\n        id_mappings.csv \\\n        multiqc_config.yml\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_FETCHNGS:SRA:MULTIQC_MAPPINGS_CONFIG\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -1751,17 +1673,11 @@
                 "name": "NFCORE_FETCHNGS.SRA.CUSTOM_DUMPSOFTWAREVERSIONS",
                 "id": "43",
                 "type": "compute",
-                "command": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
-                "parents": [
-                    "NFCORE_FETCHNGS.SRA.MULTIQC_MAPPINGS_CONFIG",
-                    "NFCORE_FETCHNGS.SRA.SRA_MERGE_SAMPLESHEET",
-                    "NFCORE_FETCHNGS.SRA.SRA_IDS_TO_RUNINFO",
-                    "NFCORE_FETCHNGS.SRA.SRA_RUNINFO_TO_FTP",
-                    "NFCORE_FETCHNGS.SRA.SRA_FASTQ_FTP",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.CUSTOM_SRATOOLSNCBISETTINGS",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_PREFETCH",
-                    "NFCORE_FETCHNGS.SRA.FASTQ_DOWNLOAD_PREFETCH_FASTERQDUMP_SRATOOLS.SRATOOLS_FASTERQDUMP"
-                ],
+                "command": {
+                    "program": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
+                    "arguments": []
+                },
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -1801,7 +1717,7 @@
         "machines": [
             {
                 "nodeName": "dirt02",
-                "system": "Linux",
+                "system": "linux",
                 "release": "5.15.0-48-generic",
                 "architecture": "x86_64",
                 "cpu": {

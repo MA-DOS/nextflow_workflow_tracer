@@ -22,10 +22,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS",
-                    "NFCORE_BACASS.BACASS.MULTIQC"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -87,10 +84,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -146,10 +140,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS",
-                    "NFCORE_BACASS.BACASS.MULTIQC"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -211,10 +202,7 @@
                     "arguments": []
                 },
                 "parents": [],
-                "children": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -269,14 +257,8 @@
                     "program": "unicycler \\\n        --threads 1 \\\n         --no_correct --no_pilon \\\n        -1 ERR044595_trm-cmb.R1.fastq.gz -2 ERR044595_trm-cmb.R2.fastq.gz \\\n        --out ./\n\n    mv assembly.fasta ERR044595.scaffolds.fa\n    mv assembly.gfa ERR044595.assembly.gfa\n    mv unicycler.log ERR044595.unicycler.log\n\n    echo $(unicycler --version 2>&1) | sed 's/^.*Unicycler v//; s/ .*$//' > unicycler.version.txt",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_BACASS.BACASS.SKEWER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.PROKKA",
-                    "NFCORE_BACASS.BACASS.QUAST",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -331,14 +313,8 @@
                     "program": "unicycler \\\n        --threads 1 \\\n         --no_correct --no_pilon \\\n        -1 ERR064912_trm-cmb.R1.fastq.gz -2 ERR064912_trm-cmb.R2.fastq.gz \\\n        --out ./\n\n    mv assembly.fasta ERR064912.scaffolds.fa\n    mv assembly.gfa ERR064912.assembly.gfa\n    mv unicycler.log ERR064912.unicycler.log\n\n    echo $(unicycler --version 2>&1) | sed 's/^.*Unicycler v//; s/ .*$//' > unicycler.version.txt",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_BACASS.BACASS.SKEWER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.PROKKA",
-                    "NFCORE_BACASS.BACASS.QUAST",
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -393,12 +369,8 @@
                     "program": "prokka \\\n          --fast \\\n        --cpus 1 \\\n        --prefix ERR044595 \\\n         \\\n         \\\n        ERR044595.scaffolds.fa\n\n    echo $(prokka --version 2>&1) | sed 's/^.*prokka //' > prokka.version.txt",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -501,12 +473,8 @@
                     "program": "quast.py \\\n        --output-dir other_files \\\n         \\\n         \\\n        --threads 1 \\\n         \\\n        ERR044595.scaffolds.fa ERR064912.scaffolds.fa\n    ln -s other_files/report.tsv\n    echo $(quast.py --version 2>&1) | sed 's/^.*QUAST v//; s/ .*$//' > quast.version.txt",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -555,12 +523,8 @@
                     "program": "prokka \\\n          --fast \\\n        --cpus 1 \\\n        --prefix ERR064912 \\\n         \\\n         \\\n        ERR064912.scaffolds.fa\n\n    echo $(prokka --version 2>&1) | sed 's/^.*prokka //' > prokka.version.txt",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_BACASS.BACASS.UNICYCLER"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -663,16 +627,8 @@
                     "program": "echo 2.0.0 > pipeline.version.txt\n    echo 22.10.7 > nextflow.version.txt\n    scrape_software_versions.py &> software_versions_mqc.yaml",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_BACASS.BACASS.FASTQC",
-                    "NFCORE_BACASS.BACASS.SKEWER",
-                    "NFCORE_BACASS.BACASS.UNICYCLER",
-                    "NFCORE_BACASS.BACASS.QUAST",
-                    "NFCORE_BACASS.BACASS.PROKKA"
-                ],
-                "children": [
-                    "NFCORE_BACASS.BACASS.MULTIQC"
-                ],
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -733,10 +689,7 @@
                     "program": "multiqc -f  .\n    multiqc --version | sed -e \"s/multiqc, version //g\" > multiqc.version.txt",
                     "arguments": []
                 },
-                "parents": [
-                    "NFCORE_BACASS.BACASS.GET_SOFTWARE_VERSIONS",
-                    "NFCORE_BACASS.BACASS.FASTQC"
-                ],
+                "parents": [],
                 "children": [],
                 "files": [
                     {

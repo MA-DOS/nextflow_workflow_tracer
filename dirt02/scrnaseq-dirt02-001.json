@@ -5,7 +5,8 @@
     "schemaVersion": "1.4",
     "wms": {
         "name": "Nextflow",
-        "url": "https://www.nextflow.io/"
+        "url": "https://www.nextflow.io/",
+        "version": "23.04.1"
     },
     "workflow": {
         "repo": "https://github.com/nf-core/scrnaseq",
@@ -16,13 +17,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.INPUT_CHECK.SAMPLESHEET_CHECK",
                 "id": "2",
                 "type": "compute",
-                "command": "check_samplesheet.py \\\n        samplesheet-2-0.csv \\\n        samplesheet.valid.csv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:INPUT_CHECK:SAMPLESHEET_CHECK\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "check_samplesheet.py \\\n        samplesheet-2-0.csv \\\n        samplesheet.valid.csv\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:INPUT_CHECK:SAMPLESHEET_CHECK\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.FASTQC_CHECK.FASTQC",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -55,12 +55,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.GTF_GENE_FILTER",
                 "id": "1",
                 "type": "compute",
-                "command": "filter_gtf_for_genes_in_genome.py \\\n        --gtf gencode.vM19.annotation.chr19.gtf \\\n        --fasta GRCm38.p6.genome.chr19.fa \\\n        -o GRCm38.p6.genome.chr19_genes.gtf\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:GTF_GENE_FILTER\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                "command": {
+                    "program": "filter_gtf_for_genes_in_genome.py \\\n        --gtf gencode.vM19.annotation.chr19.gtf \\\n        --fasta GRCm38.p6.genome.chr19.fa \\\n        -o GRCm38.p6.genome.chr19_genes.gtf\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:GTF_GENE_FILTER\":\n        python: $(python --version | sed 's/Python //g')\n    END_VERSIONS",
+                    "arguments": []
+                },
                 "parents": [],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN"
-                ],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -99,15 +99,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE",
                 "id": "5",
                 "type": "compute",
-                "command": "samtools faidx GRCm38.p6.genome.chr19.fa\n        NUM_BASES=`gawk '{sum = sum + $2}END{if ((log(sum)/log(2))/2 - 1 > 14) {printf \"%.0f\", 14} else {printf \"%.0f\", (log(sum)/log(2))/2 - 1}}' GRCm38.p6.genome.chr19.fa.fai`\n\n        mkdir star\n        STAR \\\n            --runMode genomeGenerate \\\n            --genomeDir star/ \\\n            --genomeFastaFiles GRCm38.p6.genome.chr19.fa \\\n            --sjdbGTFfile GRCm38.p6.genome.chr19_genes.gtf \\\n            --runThreadN 1 \\\n            --genomeSAindexNbases $NUM_BASES \\\n            --limitGenomeGenerateRAM 6342450944 \\\n            \n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_SCRNASEQ:SCRNASEQ:STARSOLO:STAR_GENOMEGENERATE\":\n            star: $(STAR --version | sed -e \"s/STAR_//g\")\n            samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n            gawk: $(echo $(gawk --version 2>&1) | sed 's/^.*GNU Awk //; s/, .*$//')\n        END_VERSIONS",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.GTF_GENE_FILTER"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS"
-                ],
+                "command": {
+                    "program": "samtools faidx GRCm38.p6.genome.chr19.fa\n        NUM_BASES=`gawk '{sum = sum + $2}END{if ((log(sum)/log(2))/2 - 1 > 14) {printf \"%.0f\", 14} else {printf \"%.0f\", (log(sum)/log(2))/2 - 1}}' GRCm38.p6.genome.chr19.fa.fai`\n\n        mkdir star\n        STAR \\\n            --runMode genomeGenerate \\\n            --genomeDir star/ \\\n            --genomeFastaFiles GRCm38.p6.genome.chr19.fa \\\n            --sjdbGTFfile GRCm38.p6.genome.chr19_genes.gtf \\\n            --runThreadN 1 \\\n            --genomeSAindexNbases $NUM_BASES \\\n            --limitGenomeGenerateRAM 6342450944 \\\n            \n\n        cat <<-END_VERSIONS > versions.yml\n        \"NFCORE_SCRNASEQ:SCRNASEQ:STARSOLO:STAR_GENOMEGENERATE\":\n            star: $(STAR --version | sed -e \"s/STAR_//g\")\n            samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')\n            gawk: $(echo $(gawk --version 2>&1) | sed 's/^.*GNU Awk //; s/, .*$//')\n        END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -146,14 +143,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.FASTQC_CHECK.FASTQC",
                 "id": "3",
                 "type": "compute",
-                "command": "printf \"%s %s\\n\" Sample_X_S1_L001_R1_001.fastq.gz Sample_X_1.gz Sample_X_S1_L001_R2_001.fastq.gz Sample_X_2.gz | while read old_name new_name; do\n        [ -f \"${new_name}\" ] || ln -s $old_name $new_name\n    done\n    fastqc  --threads 1 Sample_X_1.gz Sample_X_2.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:FASTQC_CHECK:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "printf \"%s %s\\n\" Sample_X_S1_L001_R1_001.fastq.gz Sample_X_1.gz Sample_X_S1_L001_R2_001.fastq.gz Sample_X_2.gz | while read old_name new_name; do\n        [ -f \"${new_name}\" ] || ln -s $old_name $new_name\n    done\n    fastqc  --threads 1 Sample_X_1.gz Sample_X_2.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:FASTQC_CHECK:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -210,14 +205,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.FASTQC_CHECK.FASTQC",
                 "id": "4",
                 "type": "compute",
-                "command": "printf \"%s %s\\n\" Sample_Y_S1_L001_R1_001.fastq.gz Sample_Y_1.gz Sample_Y_S1_L001_R2_001.fastq.gz Sample_Y_2.gz Sample_Y_S1_L002_R1_001.fastq.gz Sample_Y_3.gz Sample_Y_S1_L002_R2_001.fastq.gz Sample_Y_4.gz | while read old_name new_name; do\n        [ -f \"${new_name}\" ] || ln -s $old_name $new_name\n    done\n    fastqc  --threads 1 Sample_Y_1.gz Sample_Y_2.gz Sample_Y_3.gz Sample_Y_4.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:FASTQC_CHECK:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.INPUT_CHECK.SAMPLESHEET_CHECK"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "printf \"%s %s\\n\" Sample_Y_S1_L001_R1_001.fastq.gz Sample_Y_1.gz Sample_Y_S1_L001_R2_001.fastq.gz Sample_Y_2.gz Sample_Y_S1_L002_R1_001.fastq.gz Sample_Y_3.gz Sample_Y_S1_L002_R2_001.fastq.gz Sample_Y_4.gz | while read old_name new_name; do\n        [ -f \"${new_name}\" ] || ln -s $old_name $new_name\n    done\n    fastqc  --threads 1 Sample_Y_1.gz Sample_Y_2.gz Sample_Y_3.gz Sample_Y_4.gz\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:FASTQC_CHECK:FASTQC\":\n        fastqc: $( fastqc --version | sed -e \"s/FastQC v//g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -310,18 +303,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
                 "id": "6",
                 "type": "compute",
-                "command": "STAR \\\n        --genomeDir star \\\n        --readFilesIn Sample_X_S1_L001_R2_001.fastq.gz Sample_X_S1_L001_R1_001.fastq.gz \\\n        --runThreadN 1 \\\n        --outFileNamePrefix Sample_X. \\\n        --soloCBwhitelist <(gzip -cdf 10x_V2_barcode_whitelist.txt.gz) \\\n        --soloType CB_UMI_Simple \\\n        --soloFeatures Gene \\\n        --soloUMIlen 10 \\\n         \\\n        --sjdbGTFfile GRCm38.p6.genome.chr19_genes.gtf \\\n        --outSAMattrRGline ID:Sample_X 'CN:Broad_Institute' 'SM:Sample_X' \\\n        --soloCellFilter CellRanger2.2 5000 0.99 10 \\\n        --readFilesCommand zcat --runDirPerm All_RWX --outWigType bedGraph --twopassMode Basic --outSAMtype BAM SortedByCoordinate \\\n\n    \n\n    if [ -f Sample_X.Unmapped.out.mate1 ]; then\n        mv Sample_X.Unmapped.out.mate1 Sample_X.unmapped_1.fastq\n        gzip Sample_X.unmapped_1.fastq\n    fi\n    if [ -f Sample_X.Unmapped.out.mate2 ]; then\n        mv Sample_X.Unmapped.out.mate2 Sample_X.unmapped_2.fastq\n        gzip Sample_X.unmapped_2.fastq\n    fi\n\n    if [ -d Sample_X.Solo.out ]; then\n        # Backslashes still need to be escaped (https://github.com/nextflow-io/nextflow/issues/67)\n        find Sample_X.Solo.out \\( -name \"*.tsv\" -o -name \"*.mtx\" \\) -exec gzip {} \\;\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:STARSOLO:STAR_ALIGN\":\n        star: $(STAR --version | sed -e \"s/STAR_//g\")\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.GTF_GENE_FILTER",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.INPUT_CHECK.SAMPLESHEET_CHECK",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_SEURAT",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "STAR \\\n        --genomeDir star \\\n        --readFilesIn Sample_X_S1_L001_R2_001.fastq.gz Sample_X_S1_L001_R1_001.fastq.gz \\\n        --runThreadN 1 \\\n        --outFileNamePrefix Sample_X. \\\n        --soloCBwhitelist <(gzip -cdf 10x_V2_barcode_whitelist.txt.gz) \\\n        --soloType CB_UMI_Simple \\\n        --soloFeatures Gene \\\n        --soloUMIlen 10 \\\n         \\\n        --sjdbGTFfile GRCm38.p6.genome.chr19_genes.gtf \\\n        --outSAMattrRGline ID:Sample_X 'CN:Broad_Institute' 'SM:Sample_X' \\\n        --soloCellFilter CellRanger2.2 5000 0.99 10 \\\n        --readFilesCommand zcat --runDirPerm All_RWX --outWigType bedGraph --twopassMode Basic --outSAMtype BAM SortedByCoordinate \\\n\n    \n\n    if [ -f Sample_X.Unmapped.out.mate1 ]; then\n        mv Sample_X.Unmapped.out.mate1 Sample_X.unmapped_1.fastq\n        gzip Sample_X.unmapped_1.fastq\n    fi\n    if [ -f Sample_X.Unmapped.out.mate2 ]; then\n        mv Sample_X.Unmapped.out.mate2 Sample_X.unmapped_2.fastq\n        gzip Sample_X.unmapped_2.fastq\n    fi\n\n    if [ -d Sample_X.Solo.out ]; then\n        # Backslashes still need to be escaped (https://github.com/nextflow-io/nextflow/issues/67)\n        find Sample_X.Solo.out \\( -name \"*.tsv\" -o -name \"*.mtx\" \\) -exec gzip {} \\;\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:STARSOLO:STAR_ALIGN\":\n        star: $(STAR --version | sed -e \"s/STAR_//g\")\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -408,18 +395,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
                 "id": "7",
                 "type": "compute",
-                "command": "STAR \\\n        --genomeDir star \\\n        --readFilesIn Sample_Y_S1_L001_R2_001.fastq.gz,Sample_Y_S1_L002_R2_001.fastq.gz Sample_Y_S1_L001_R1_001.fastq.gz,Sample_Y_S1_L002_R1_001.fastq.gz \\\n        --runThreadN 1 \\\n        --outFileNamePrefix Sample_Y. \\\n        --soloCBwhitelist <(gzip -cdf 10x_V2_barcode_whitelist.txt.gz) \\\n        --soloType CB_UMI_Simple \\\n        --soloFeatures Gene \\\n        --soloUMIlen 10 \\\n         \\\n        --sjdbGTFfile GRCm38.p6.genome.chr19_genes.gtf \\\n        --outSAMattrRGline ID:Sample_Y 'CN:CRG_Barcelona' 'SM:Sample_Y' \\\n        --soloCellFilter CellRanger2.2 5000 0.99 10 \\\n        --readFilesCommand zcat --runDirPerm All_RWX --outWigType bedGraph --twopassMode Basic --outSAMtype BAM SortedByCoordinate \\\n\n    \n\n    if [ -f Sample_Y.Unmapped.out.mate1 ]; then\n        mv Sample_Y.Unmapped.out.mate1 Sample_Y.unmapped_1.fastq\n        gzip Sample_Y.unmapped_1.fastq\n    fi\n    if [ -f Sample_Y.Unmapped.out.mate2 ]; then\n        mv Sample_Y.Unmapped.out.mate2 Sample_Y.unmapped_2.fastq\n        gzip Sample_Y.unmapped_2.fastq\n    fi\n\n    if [ -d Sample_Y.Solo.out ]; then\n        # Backslashes still need to be escaped (https://github.com/nextflow-io/nextflow/issues/67)\n        find Sample_Y.Solo.out \\( -name \"*.tsv\" -o -name \"*.mtx\" \\) -exec gzip {} \\;\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:STARSOLO:STAR_ALIGN\":\n        star: $(STAR --version | sed -e \"s/STAR_//g\")\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.GTF_GENE_FILTER",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.INPUT_CHECK.SAMPLESHEET_CHECK",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_SEURAT",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "STAR \\\n        --genomeDir star \\\n        --readFilesIn Sample_Y_S1_L001_R2_001.fastq.gz,Sample_Y_S1_L002_R2_001.fastq.gz Sample_Y_S1_L001_R1_001.fastq.gz,Sample_Y_S1_L002_R1_001.fastq.gz \\\n        --runThreadN 1 \\\n        --outFileNamePrefix Sample_Y. \\\n        --soloCBwhitelist <(gzip -cdf 10x_V2_barcode_whitelist.txt.gz) \\\n        --soloType CB_UMI_Simple \\\n        --soloFeatures Gene \\\n        --soloUMIlen 10 \\\n         \\\n        --sjdbGTFfile GRCm38.p6.genome.chr19_genes.gtf \\\n        --outSAMattrRGline ID:Sample_Y 'CN:CRG_Barcelona' 'SM:Sample_Y' \\\n        --soloCellFilter CellRanger2.2 5000 0.99 10 \\\n        --readFilesCommand zcat --runDirPerm All_RWX --outWigType bedGraph --twopassMode Basic --outSAMtype BAM SortedByCoordinate \\\n\n    \n\n    if [ -f Sample_Y.Unmapped.out.mate1 ]; then\n        mv Sample_Y.Unmapped.out.mate1 Sample_Y.unmapped_1.fastq\n        gzip Sample_Y.unmapped_1.fastq\n    fi\n    if [ -f Sample_Y.Unmapped.out.mate2 ]; then\n        mv Sample_Y.Unmapped.out.mate2 Sample_Y.unmapped_2.fastq\n        gzip Sample_Y.unmapped_2.fastq\n    fi\n\n    if [ -d Sample_Y.Solo.out ]; then\n        # Backslashes still need to be escaped (https://github.com/nextflow-io/nextflow/issues/67)\n        find Sample_Y.Solo.out \\( -name \"*.tsv\" -o -name \"*.mtx\" \\) -exec gzip {} \\;\n    fi\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:STARSOLO:STAR_ALIGN\":\n        star: $(STAR --version | sed -e \"s/STAR_//g\")\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -518,10 +499,11 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_SEURAT",
                 "id": "8",
                 "type": "compute",
-                "command": "mtx_to_seurat.R \\\n        *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        Sample_X/Sample_X_matrix.rds \\\n        star",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN"
-                ],
+                "command": {
+                    "program": "mtx_to_seurat.R \\\n        *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        Sample_X/Sample_X_matrix.rds \\\n        star",
+                    "arguments": []
+                },
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -555,14 +537,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD",
                 "id": "9",
                 "type": "compute",
-                "command": "# convert file types\n    mtx_to_h5ad.py \\\n        --task_process NFCORE_SCRNASEQ:SCRNASEQ:MTX_CONVERSION:MTX_TO_H5AD \\\n        --aligner star \\\n        --sample Sample_X \\\n        --input *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        --barcode *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        --feature *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        --txp2gene  \\\n        --star_index star \\\n        --out Sample_X/Sample_X_matrix.h5ad",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.CONCAT_H5AD"
-                ],
+                "command": {
+                    "program": "# convert file types\n    mtx_to_h5ad.py \\\n        --task_process NFCORE_SCRNASEQ:SCRNASEQ:MTX_CONVERSION:MTX_TO_H5AD \\\n        --aligner star \\\n        --sample Sample_X \\\n        --input *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        --barcode *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        --feature *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        --txp2gene  \\\n        --star_index star \\\n        --out Sample_X/Sample_X_matrix.h5ad",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -619,10 +599,11 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_SEURAT",
                 "id": "11",
                 "type": "compute",
-                "command": "mtx_to_seurat.R \\\n        *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        Sample_Y/Sample_Y_matrix.rds \\\n        star",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN"
-                ],
+                "command": {
+                    "program": "mtx_to_seurat.R \\\n        *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        Sample_Y/Sample_Y_matrix.rds \\\n        star",
+                    "arguments": []
+                },
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -656,14 +637,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD",
                 "id": "10",
                 "type": "compute",
-                "command": "# convert file types\n    mtx_to_h5ad.py \\\n        --task_process NFCORE_SCRNASEQ:SCRNASEQ:MTX_CONVERSION:MTX_TO_H5AD \\\n        --aligner star \\\n        --sample Sample_Y \\\n        --input *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        --barcode *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        --feature *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        --txp2gene  \\\n        --star_index star \\\n        --out Sample_Y/Sample_Y_matrix.h5ad",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.CONCAT_H5AD"
-                ],
+                "command": {
+                    "program": "# convert file types\n    mtx_to_h5ad.py \\\n        --task_process NFCORE_SCRNASEQ:SCRNASEQ:MTX_CONVERSION:MTX_TO_H5AD \\\n        --aligner star \\\n        --sample Sample_Y \\\n        --input *.Solo.out/Gene*/filtered/matrix.mtx.gz \\\n        --barcode *.Solo.out/Gene*/filtered/barcodes.tsv.gz \\\n        --feature *.Solo.out/Gene*/filtered/features.tsv.gz \\\n        --txp2gene  \\\n        --star_index star \\\n        --out Sample_Y/Sample_Y_matrix.h5ad",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -720,16 +699,12 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
                 "id": "12",
                 "type": "compute",
-                "command": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.FASTQC_CHECK.FASTQC",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.INPUT_CHECK.SAMPLESHEET_CHECK",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_GENOMEGENERATE"
-                ],
-                "children": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MULTIQC"
-                ],
+                "command": {
+                    "program": "def args = task.ext.args ?: ''\ntemplate 'dumpsoftwareversions.py'",
+                    "arguments": []
+                },
+                "parents": [],
+                "children": [],
                 "files": [
                     {
                         "link": "input",
@@ -768,10 +743,11 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.CONCAT_H5AD",
                 "id": "13",
                 "type": "compute",
-                "command": "concat_h5ad.py \\\n        --input samplesheet-2-0.csv \\\n        --out combined_matrix.h5ad \\\n        --suffix \"_matrix.h5ad\"",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.MTX_CONVERSION.MTX_TO_H5AD"
-                ],
+                "command": {
+                    "program": "concat_h5ad.py \\\n        --input samplesheet-2-0.csv \\\n        --out combined_matrix.h5ad \\\n        --suffix \"_matrix.h5ad\"",
+                    "arguments": []
+                },
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -811,12 +787,11 @@
                 "name": "NFCORE_SCRNASEQ.SCRNASEQ.MULTIQC",
                 "id": "14",
                 "type": "compute",
-                "command": "multiqc \\\n        --force \\\n         \\\n        --config multiqc_config.yml \\\n         \\\n        .\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:MULTIQC\":\n        multiqc: $( multiqc --version | sed -e \"s/multiqc, version //g\" )\n    END_VERSIONS",
-                "parents": [
-                    "NFCORE_SCRNASEQ.SCRNASEQ.CUSTOM_DUMPSOFTWAREVERSIONS",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.FASTQC_CHECK.FASTQC",
-                    "NFCORE_SCRNASEQ.SCRNASEQ.STARSOLO.STAR_ALIGN"
-                ],
+                "command": {
+                    "program": "multiqc \\\n        --force \\\n         \\\n        --config multiqc_config.yml \\\n         \\\n        .\n\n    cat <<-END_VERSIONS > versions.yml\n    \"NFCORE_SCRNASEQ:SCRNASEQ:MULTIQC\":\n        multiqc: $( multiqc --version | sed -e \"s/multiqc, version //g\" )\n    END_VERSIONS",
+                    "arguments": []
+                },
+                "parents": [],
                 "children": [],
                 "files": [
                     {
@@ -922,7 +897,7 @@
         "machines": [
             {
                 "nodeName": "dirt02",
-                "system": "Linux",
+                "system": "linux",
                 "release": "5.15.0-48-generic",
                 "architecture": "x86_64",
                 "cpu": {
