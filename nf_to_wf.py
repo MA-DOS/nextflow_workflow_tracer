@@ -361,6 +361,9 @@ print(f"Running /nf-core/{workflow_name}")
 completed_run = subprocess.run([str(os.path.abspath(nextflow_path)), "-log", filepath_log, "run", "nf-core/" + workflow_name, "-profile", "test,docker", "-c", "trace_nextflow.config", "--outdir", workflow_output], capture_output=True, encoding="utf-8")
 print(f"{completed_run.args} : {completed_run.stdout}")
 
+with open("stdout.txt", "w") as file:
+    file.write(completed_run.stdout)
+
 workflow = {}
 parse_stdout(completed_run.stdout, workflow)
 
@@ -479,7 +482,7 @@ cpu["count"] = 1  # Has to be 1, see (trace_nextflow.config)
 # Get clock rate in Hz
 command = "cat /proc/cpuinfo | grep 'model name' | sed 's/.* //' | sed 's/G.*//' | sed 's/\.//' | sed 's/$/0/'"
 output = subprocess.check_output(command, shell=True)
-output = output.decode('utf-8').strip()  # Convert bytes to string and remove trailing newline
+output = output.decode('utf-8').strip().split('\n')[0]  # Convert bytes to string and remove trailing newline
 cpu["speed"]=int(output)
 
 single_machine["cpu"]=cpu
