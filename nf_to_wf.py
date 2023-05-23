@@ -308,7 +308,6 @@ def parse_dag(filepath_dag, parents, children):
 
                 break
 
-
     for node in G:
         #print("\nnode {}: {}".format(node, G.nodes[node]))
         process = G.nodes[node]["label"]
@@ -433,19 +432,25 @@ for i in task_id:
     curr_task["name"]             = processes[i].replace(':', '.')
     curr_task["id"]               = i
     curr_task["type"]             = "compute"
-    curr_task["command"]          = scripts[i]                       #TODO: change to dictionary object?
-    curr_task["parents"]          = rep_parents[processes[i]] #parents[processes[i]]
-    curr_task["children"]         = rep_children[processes[i]] #children[processes[i]]
+    command = {"program": scripts[i], "arguments": []}
+    curr_task["command"]          = command
+
+    # No longer track parents/children (see README)
+    # curr_task["parents"]          = rep_parents[processes[i]]
+    # curr_task["children"]         = rep_children[processes[i]]
+    curr_task["parents"]          = []
+    curr_task["children"]         = []
+
     curr_task["files"]            = files[i]
     curr_task["runtimeInSeconds"] = float(realtime[i])/1000.0
-    curr_task["avgCPU"]           = pct_cpu[i] #float(pct_cpu[i])
+    curr_task["avgCPU"]           = pct_cpu[i]  #float(pct_cpu[i])
     curr_task["bytesRead"]        = int(rchar[i])
     curr_task["bytesWritten"]     = int(wchar[i])
     
     sum_r = 0.
     sum_w = 0.
     for file in files[i]:
-        if isinstance(file["sizeInBytes"], str) == False:
+        if not isinstance(file["sizeInBytes"], str):
             if file["link"] == "input":
                 sum_r += file["sizeInBytes"]
             else:

@@ -231,7 +231,6 @@ nextflow_path = "./nextflow-22.10.7/launch.sh"
 The script takes 3 arguments: the workflow name, the working directory (where workflows can store files), and the JSON output file name.
 
 
-
 This script operates as follows (it assumes the `trace_nextflow.config` and `template-scriptlog.txt` files are in the NextFlow root directory, however, they can be located elsewhere if desired): 
 
 1. It runs the workflow as follows
@@ -262,5 +261,9 @@ which creates a *scripts* file (via `template-scriptlog.txt`).
 * Each task in the workflow requests a single CPU (via `trace_nextflow.config`).
 
 * The *trace* and *dot* file locations are hard coded in `trace_nextflow.config` and are automatically overwritten after each execution.
+
+* A limitation is that it is difficult to determine parent-child relationships because multiple instances of a task can be spawned for the same process, which 
+  is why the generated instanced have empty `children` and `parents` lists (which is allowed by WfFormat).  As a result, the way to determine these relationships is to 
+  trace input/output files. A limitation now, however, is that if tasks have data-dependencies via data channels only, then these dependencies are lost. 
 
 
