@@ -1,7 +1,7 @@
 {
     "name": "sarek",
     "description": "Trace generated from Nextflow (via https://github.com/wfcommons/nextflow_workflow_tracer)",
-    "createdAt": "2025-07-20T11:27:47.908988+00:00",
+    "createdAt": "2025-07-20T11:35:50.609928+00:00",
     "schemaVersion": "1.5",
     "wms": {
         "name": "Nextflow",
@@ -12,34 +12,15 @@
         "specification": {
             "tasks": [
                 {
-                    "name": "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
-                    "id": "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
-                    "type": "compute",
-                    "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta"
-                    ],
-                    "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/bwa",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/versions.yml"
-                    ],
-                    "parents": [],
-                    "children": [
-                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM1_MEM",
-                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.SENTIEON_BWAMEM",
-                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM2_MEM",
-                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.DRAGMAP_ALIGN"
-                    ]
-                },
-                {
                     "name": "NFCORE_SAREK.PREPARE_INTERVALS.CREATE_INTERVALS_BED",
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.CREATE_INTERVALS_BED",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/de/578aa0d983156d06ba2ca8747d8fdc/genome.interval_list"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/98/4d3d477dce85138335559f6170e912/genome.interval_list"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ce/770d95e5fb896c14d17aa5f59ebad3/chr22_1-40001.bed",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ce/770d95e5fb896c14d17aa5f59ebad3/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e1/3bd5bca742d34c848b84d12f1beace/chr22_1-40001.bed",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e1/3bd5bca742d34c848b84d12f1beace/versions.yml"
                     ],
                     "parents": [],
                     "children": [
@@ -53,11 +34,11 @@
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/de/578aa0d983156d06ba2ca8747d8fdc/genome.interval_list"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/98/4d3d477dce85138335559f6170e912/genome.interval_list"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/genome.bed",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/genome.bed",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/versions.yml"
                     ],
                     "parents": [],
                     "children": [
@@ -68,26 +49,77 @@
                     ]
                 },
                 {
+                    "name": "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
+                    "id": "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
+                    "type": "compute",
+                    "inputFiles": [
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta"
+                    ],
+                    "outputFiles": [
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/bwa",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/versions.yml"
+                    ],
+                    "parents": [],
+                    "children": [
+                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM1_MEM",
+                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.SENTIEON_BWAMEM",
+                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM2_MEM",
+                        "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.DRAGMAP_ALIGN"
+                    ]
+                },
+                {
                     "name": "NFCORE_SAREK.SAREK.FASTQC",
                     "id": "NFCORE_SAREK.SAREK.FASTQC",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_1_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_2_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_1_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_2_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/versions.yml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_1_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_2_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_1_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_2_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_1_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_2_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_1_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_2_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/versions.yml",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_1_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_2_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_1_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_2_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/versions.yml"
+                    ],
+                    "parents": [
+                        "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.CAT_FASTQ",
+                        "NFCORE_SAREK.SAREK.SPRING_DECOMPRESS_TO_FQ_PAIR",
+                        "NFCORE_SAREK.SAREK.SPRING_DECOMPRESS_TO_R1_FQ",
+                        "NFCORE_SAREK.SAREK.SPRING_DECOMPRESS_TO_R2_FQ"
+                    ],
+                    "children": [
+                        "NFCORE_SAREK.SAREK.MULTIQC"
+                    ]
+                },
+                {
+                    "name": "NFCORE_SAREK.SAREK.FASTQC",
+                    "id": "NFCORE_SAREK.SAREK.FASTQC",
+                    "type": "compute",
+                    "inputFiles": [
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz"
+                    ],
+                    "outputFiles": [
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_1_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_2_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_1_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_2_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/versions.yml",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_1_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_2_fastqc.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_1_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_2_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.CAT_FASTQ",
@@ -104,12 +136,12 @@
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.TABIX_BGZIPTABIX_INTERVAL_SPLIT",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ce/770d95e5fb896c14d17aa5f59ebad3/chr22_1-40001.bed"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e1/3bd5bca742d34c848b84d12f1beace/chr22_1-40001.bed"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/chr22_1-40001.bed.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/chr22_1-40001.bed.gz.tbi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/chr22_1-40001.bed.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/chr22_1-40001.bed.gz.tbi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.CREATE_INTERVALS_BED"
@@ -120,48 +152,16 @@
                     ]
                 },
                 {
-                    "name": "NFCORE_SAREK.SAREK.FASTQC",
-                    "id": "NFCORE_SAREK.SAREK.FASTQC",
-                    "type": "compute",
-                    "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz"
-                    ],
-                    "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_1_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_2_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_1_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_2_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/versions.yml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_1_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_2_fastqc.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_1_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_2_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/versions.yml"
-                    ],
-                    "parents": [
-                        "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.CAT_FASTQ",
-                        "NFCORE_SAREK.SAREK.SPRING_DECOMPRESS_TO_FQ_PAIR",
-                        "NFCORE_SAREK.SAREK.SPRING_DECOMPRESS_TO_R1_FQ",
-                        "NFCORE_SAREK.SAREK.SPRING_DECOMPRESS_TO_R2_FQ"
-                    ],
-                    "children": [
-                        "NFCORE_SAREK.SAREK.MULTIQC"
-                    ]
-                },
-                {
                     "name": "NFCORE_SAREK.PREPARE_INTERVALS.TABIX_BGZIPTABIX_INTERVAL_COMBINED",
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.TABIX_BGZIPTABIX_INTERVAL_COMBINED",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/genome.bed"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/genome.bed"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/f8/f822a710be994cecadc520e7f285c5/genome.bed.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/f8/f822a710be994cecadc520e7f285c5/genome.bed.gz.tbi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/f8/f822a710be994cecadc520e7f285c5/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/49/3527f919ed65ed98b0eddfb5880fcf/genome.bed.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/49/3527f919ed65ed98b0eddfb5880fcf/genome.bed.gz.tbi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/49/3527f919ed65ed98b0eddfb5880fcf/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED"
@@ -173,18 +173,18 @@
                     "id": "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM1_MEM",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/bwa",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/bwa",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/bwa",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/bwa",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/5cddc9306bb6c8c6440bb9d29d3c7f/test-test_L2.sorted.bam",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/5cddc9306bb6c8c6440bb9d29d3c7f/versions.yml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c4/92b7c03f05a7c26a438bf40d14e489/test-test_L1.sorted.bam",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c4/92b7c03f05a7c26a438bf40d14e489/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/72/a9843f31c822611c0118a45412c231/test-test_L2.sorted.bam",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/72/a9843f31c822611c0118a45412c231/versions.yml",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/56/251591958419fcad0162072717cdb3/test-test_L1.sorted.bam",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/56/251591958419fcad0162072717cdb3/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
@@ -203,18 +203,18 @@
                     "id": "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM1_MEM",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/bwa",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/bwa",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/6f/504da5e11125edfb22959a009a94b4/test_1.fastq.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/d3/fbd30d439ee3688519f73f16df1faa/test_2.fastq.gz"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/bwa",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/bwa",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/4e/cac4028ff84ced413ce58ff745a79e/test_1.fastq.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/b5/7be329428e8160a5fdff6f5f9e5185/test_2.fastq.gz"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/5cddc9306bb6c8c6440bb9d29d3c7f/test-test_L2.sorted.bam",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/5cddc9306bb6c8c6440bb9d29d3c7f/versions.yml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c4/92b7c03f05a7c26a438bf40d14e489/test-test_L1.sorted.bam",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c4/92b7c03f05a7c26a438bf40d14e489/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/72/a9843f31c822611c0118a45412c231/test-test_L2.sorted.bam",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/72/a9843f31c822611c0118a45412c231/versions.yml",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/56/251591958419fcad0162072717cdb3/test-test_L1.sorted.bam",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/56/251591958419fcad0162072717cdb3/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
@@ -233,16 +233,16 @@
                     "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.GATK4_MARKDUPLICATES",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c4/92b7c03f05a7c26a438bf40d14e489/test-test_L1.sorted.bam",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/5cddc9306bb6c8c6440bb9d29d3c7f/test-test_L2.sorted.bam",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/20/628dd51ae0bfc26d8b1bebd8b7aba8/genome.fasta.fai"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/56/251591958419fcad0162072717cdb3/test-test_L1.sorted.bam",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/72/a9843f31c822611c0118a45412c231/test-test_L2.sorted.bam",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/e2/6dd25d5f5dd95cc8b019627addc36e/genome.fasta.fai"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.crai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.metrics",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.crai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.metrics",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.CONVERT_FASTQ_INPUT.CAT_FASTQ",
@@ -264,21 +264,17 @@
                     ]
                 },
                 {
-                    "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.MOSDEPTH",
-                    "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.MOSDEPTH",
+                    "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.SAMTOOLS_STATS",
+                    "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.SAMTOOLS_STATS",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.crai"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.crai"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.global.dist.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.summary.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.region.dist.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.regions.bed.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.regions.bed.gz.csi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ff/045bb132bc28f4e77dcd3f090986b8/test.md.cram.stats",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ff/045bb132bc28f4e77dcd3f090986b8/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.GATK4_MARKDUPLICATES"
@@ -288,17 +284,21 @@
                     ]
                 },
                 {
-                    "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.SAMTOOLS_STATS",
-                    "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.SAMTOOLS_STATS",
+                    "name": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.MOSDEPTH",
+                    "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.MOSDEPTH",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.crai"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.crai"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/bb/9656844e8f0434bd0aa0dcc0def5cc/test.md.cram.stats",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/bb/9656844e8f0434bd0aa0dcc0def5cc/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.global.dist.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.summary.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.region.dist.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.regions.bed.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.regions.bed.gz.csi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.GATK4_MARKDUPLICATES"
@@ -312,20 +312,20 @@
                     "id": "NFCORE_SAREK.SAREK.BAM_BASERECALIBRATOR.GATK4_BASERECALIBRATOR",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ce/770d95e5fb896c14d17aa5f59ebad3/chr22_1-40001.bed",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/37/b48e328b92c41348369aabf1d690d7/genome.dict",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/7e/f977b138088db15bc731f8f7547399/dbsnp_146.hg38.vcf.gz.tbi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.crai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/1b/aa6af54d4ec0b8837761c3fd73cde9/mills_and_1000G.indels.vcf.gz.tbi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/20/628dd51ae0bfc26d8b1bebd8b7aba8/genome.fasta.fai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/1d/dfea6c458457a009a0ab6997000a12/dbsnp_146.hg38.vcf.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/77/41da93e10f388414a6e809294c5e91/mills_and_1000G.indels.vcf.gz"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e1/3bd5bca742d34c848b84d12f1beace/chr22_1-40001.bed",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/5a/a99e1641e22b048a05e588f60307cf/genome.dict",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/78/02449e4503b90f6ac03926ab73c374/dbsnp_146.hg38.vcf.gz.tbi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.crai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/68/ffa3585c3c9254eb0153f06f137c34/mills_and_1000G.indels.vcf.gz.tbi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/e2/6dd25d5f5dd95cc8b019627addc36e/genome.fasta.fai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/53/43e5ad646a7ba879ec6a08d18bcb93/dbsnp_146.hg38.vcf.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/f4/93464f22039a850bf23868b5ec79c5/mills_and_1000G.indels.vcf.gz"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/64337d773d9f55b32ed2ccadffcafe/test.recal.table",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/64337d773d9f55b32ed2ccadffcafe/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/e4b53e761b096debbe57305b1a1787/test.recal.table",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/e4b53e761b096debbe57305b1a1787/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.CREATE_INTERVALS_BED",
@@ -342,17 +342,17 @@
                     "id": "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.GATK4_APPLYBQSR",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ce/770d95e5fb896c14d17aa5f59ebad3/chr22_1-40001.bed",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/37/b48e328b92c41348369aabf1d690d7/genome.dict",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.crai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/20/628dd51ae0bfc26d8b1bebd8b7aba8/genome.fasta.fai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/64337d773d9f55b32ed2ccadffcafe/test.recal.table"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e1/3bd5bca742d34c848b84d12f1beace/chr22_1-40001.bed",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/5a/a99e1641e22b048a05e588f60307cf/genome.dict",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.crai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/e2/6dd25d5f5dd95cc8b019627addc36e/genome.fasta.fai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/e4b53e761b096debbe57305b1a1787/test.recal.table"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/test.recal.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/test.recal.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.CREATE_INTERVALS_BED",
@@ -377,11 +377,11 @@
                     "id": "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.CRAM_MERGE_INDEX_SAMTOOLS.INDEX_CRAM",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/test.recal.cram"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/test.recal.cram"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1c/e90c9dc72c4baaaf9e76eb676723bc/test.recal.cram.crai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1c/e90c9dc72c4baaaf9e76eb676723bc/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/4b/c5e76d741b85dd78720bdfd15fc130/test.recal.cram.crai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/4b/c5e76d741b85dd78720bdfd15fc130/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.CRAM_MERGE_INDEX_SAMTOOLS.MERGE_CRAM",
@@ -402,13 +402,13 @@
                     "id": "NFCORE_SAREK.SAREK.CRAM_SAMPLEQC.CRAM_QC_RECAL.SAMTOOLS_STATS",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/test.recal.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1c/e90c9dc72c4baaaf9e76eb676723bc/test.recal.cram.crai"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/test.recal.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/4b/c5e76d741b85dd78720bdfd15fc130/test.recal.cram.crai"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/c4b0daae1115d33073aa17d18cdcaf/test.recal.cram.stats",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/c4b0daae1115d33073aa17d18cdcaf/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/34/d88648f38b1e709ea0ae36af2b06f5/test.recal.cram.stats",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/34/d88648f38b1e709ea0ae36af2b06f5/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.CRAM_MERGE_INDEX_SAMTOOLS.INDEX_CRAM",
@@ -422,17 +422,17 @@
                     "id": "NFCORE_SAREK.SAREK.CRAM_SAMPLEQC.CRAM_QC_RECAL.MOSDEPTH",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/test.recal.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1c/e90c9dc72c4baaaf9e76eb676723bc/test.recal.cram.crai"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/test.recal.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/4b/c5e76d741b85dd78720bdfd15fc130/test.recal.cram.crai"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.mosdepth.global.dist.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.mosdepth.summary.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.mosdepth.region.dist.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.regions.bed.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.regions.bed.gz.csi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.mosdepth.global.dist.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.mosdepth.summary.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.mosdepth.region.dist.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.regions.bed.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.regions.bed.gz.csi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.CRAM_MERGE_INDEX_SAMTOOLS.INDEX_CRAM",
@@ -446,19 +446,19 @@
                     "id": "NFCORE_SAREK.SAREK.BAM_VARIANT_CALLING_GERMLINE_ALL.BAM_VARIANT_CALLING_SINGLE_STRELKA.STRELKA_SINGLE",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/48/7f51e68be9625d9f33f52e7f513acd/genome.fasta",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/test.recal.cram",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-09d7e337-b31d-4cd0-9f4e-21c34e67d1a2/20/628dd51ae0bfc26d8b1bebd8b7aba8/genome.fasta.fai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1c/e90c9dc72c4baaaf9e76eb676723bc/test.recal.cram.crai",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/chr22_1-40001.bed.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/chr22_1-40001.bed.gz.tbi"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/7e/4d291e443b892dd63edfad65b70f96/genome.fasta",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/test.recal.cram",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/stage-132f1c36-6c99-495c-808e-c24b0dfb0f43/e2/6dd25d5f5dd95cc8b019627addc36e/genome.fasta.fai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/4b/c5e76d741b85dd78720bdfd15fc130/test.recal.cram.crai",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/chr22_1-40001.bed.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/chr22_1-40001.bed.gz.tbi"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz.tbi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.genome.vcf.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.genome.vcf.gz.tbi",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz.tbi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.genome.vcf.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.genome.vcf.gz.tbi",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.TABIX_BGZIPTABIX_INTERVAL_SPLIT",
@@ -481,11 +481,11 @@
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.BCFTOOLS_STATS",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/f9b9a9246f2a3415d41ae76c4146a6/test.strelka.variants.bcftools_stats.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/f9b9a9246f2a3415d41ae76c4146a6/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/0b29fc9a16ace681b7593720bd38ec/test.strelka.variants.bcftools_stats.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/0b29fc9a16ace681b7593720bd38ec/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.BAM_VARIANT_CALLING_SOMATIC_ALL.BAM_VARIANT_CALLING_SOMATIC_STRELKA.MERGE_STRELKA_INDELS",
@@ -503,12 +503,12 @@
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_SUMMARY",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/genome.bed"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/genome.bed"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e3/893d51b7b32c37d3f0bca6392ed106/test.strelka.variants.FILTER.summary",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e3/893d51b7b32c37d3f0bca6392ed106/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/25/50e3e1d8901ae6cef95917c10e9d4b/test.strelka.variants.FILTER.summary",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/25/50e3e1d8901ae6cef95917c10e9d4b/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED",
@@ -527,12 +527,12 @@
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_TSTV_COUNT",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/genome.bed"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/genome.bed"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/845b4965bcad4d23b3a258eb685577/test.strelka.variants.TsTv.count",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/845b4965bcad4d23b3a258eb685577/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/a0cf66a5db6cb38eec7518c20074cc/test.strelka.variants.TsTv.count",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/a0cf66a5db6cb38eec7518c20074cc/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED",
@@ -551,12 +551,12 @@
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_TSTV_QUAL",
                     "type": "compute",
                     "inputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/genome.bed"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/genome.bed"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ec/fd32a71a8ceb05d1cd3ff4113c7a70/test.strelka.variants.TsTv.qual",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ec/fd32a71a8ceb05d1cd3ff4113c7a70/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/04/c0d483cf2dcde8985f13024aeef07e/test.strelka.variants.TsTv.qual",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/04/c0d483cf2dcde8985f13024aeef07e/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED",
@@ -576,28 +576,28 @@
                     "type": "compute",
                     "inputFiles": [
                         "/storage/nf-core/exec/nextflow_workflow_tracer/output/pipeline_info/nf_core_sarek_software_mqc_versions.yml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_2_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_1_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ec/fd32a71a8ceb05d1cd3ff4113c7a70/test.strelka.variants.TsTv.qual",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/bb/9656844e8f0434bd0aa0dcc0def5cc/test.md.cram.stats",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.region.dist.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_2_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_1_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/04/c0d483cf2dcde8985f13024aeef07e/test.strelka.variants.TsTv.qual",
                         "/home/niklas/.nextflow/assets/nf-core/sarek/assets/multiqc_config.yml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/tmp/96/966acfe291601a7b50959998fb1dd8/workflow_summary_mqc.yaml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/64337d773d9f55b32ed2ccadffcafe/test.recal.table",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e3/893d51b7b32c37d3f0bca6392ed106/test.strelka.variants.FILTER.summary",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/tmp/4f/c41131f0e96c5a0ca29b3647e008e4/methods_description_mqc.yaml",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.metrics",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_1_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.global.dist.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/f9b9a9246f2a3415d41ae76c4146a6/test.strelka.variants.bcftools_stats.txt",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_2_fastqc.zip",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/845b4965bcad4d23b3a258eb685577/test.strelka.variants.TsTv.count"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/tmp/ad/8225342c429f984cc628abb3ffc3ac/workflow_summary_mqc.yaml",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.global.dist.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/e4b53e761b096debbe57305b1a1787/test.recal.table",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/25/50e3e1d8901ae6cef95917c10e9d4b/test.strelka.variants.FILTER.summary",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/tmp/8d/590ea1028f5f464164e121dde7122a/methods_description_mqc.yaml",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/ff/045bb132bc28f4e77dcd3f090986b8/test.md.cram.stats",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.metrics",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_1_fastqc.zip",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.region.dist.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/0b29fc9a16ace681b7593720bd38ec/test.strelka.variants.bcftools_stats.txt",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/a0cf66a5db6cb38eec7518c20074cc/test.strelka.variants.TsTv.count",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_2_fastqc.zip"
                     ],
                     "outputFiles": [
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/multiqc_report.html",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/multiqc_data",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/multiqc_plots",
-                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/versions.yml"
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/multiqc_report.html",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/multiqc_data",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/multiqc_plots",
+                        "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/versions.yml"
                     ],
                     "parents": [
                         "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_SUMMARY",
@@ -639,279 +639,279 @@
             ],
             "files": [
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/bwa",
-                    "sizeInBytes": 70212
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/73/e91d44829141a4195d33e1041ab67c/versions.yml",
-                    "sizeInBytes": 74
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ce/770d95e5fb896c14d17aa5f59ebad3/chr22_1-40001.bed",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e1/3bd5bca742d34c848b84d12f1beace/chr22_1-40001.bed",
                     "sizeInBytes": 14
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ce/770d95e5fb896c14d17aa5f59ebad3/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e1/3bd5bca742d34c848b84d12f1beace/versions.yml",
                     "sizeInBytes": 71
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/genome.bed",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/genome.bed",
                     "sizeInBytes": 22
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/fa/31a646a5cebbdbd5af231c435152e1/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/75/a5da2dbc3c785e3d854ef5e3e9804b/versions.yml",
                     "sizeInBytes": 77
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_1_fastqc.html",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/bwa",
+                    "sizeInBytes": 70212
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/87/c6a06878b3de0cb50f19af87e8d10a/versions.yml",
+                    "sizeInBytes": 74
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_1_fastqc.html",
                     "sizeInBytes": 600021
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_2_fastqc.html",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_2_fastqc.html",
                     "sizeInBytes": 583015
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_1_fastqc.zip",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_1_fastqc.zip",
                     "sizeInBytes": 353214
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/test-test_L2_2_fastqc.zip",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/test-test_L2_2_fastqc.zip",
                     "sizeInBytes": 326921
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/78/bd4ffab8e1479925fa53e029306e1a/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/1d/005288b1488603371c87aa37502fc2/versions.yml",
                     "sizeInBytes": 48
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_1_fastqc.html",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_1_fastqc.html",
                     "sizeInBytes": 600021
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_2_fastqc.html",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_2_fastqc.html",
                     "sizeInBytes": 583015
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_1_fastqc.zip",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_1_fastqc.zip",
                     "sizeInBytes": 353212
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/test-test_L1_2_fastqc.zip",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/test-test_L1_2_fastqc.zip",
                     "sizeInBytes": 326922
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/4d8d9aa9d3d93ec571df4e090a3b71/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/00/e444c37f239c01f3a63c5dc4cbcbc4/versions.yml",
                     "sizeInBytes": 48
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/chr22_1-40001.bed.gz",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/chr22_1-40001.bed.gz",
                     "sizeInBytes": 73
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/chr22_1-40001.bed.gz.tbi",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/chr22_1-40001.bed.gz.tbi",
                     "sizeInBytes": 107
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0e/72f75f6e1af3ac32bb459b41654beb/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/d965d754c412c7bf4bf34920981354/versions.yml",
                     "sizeInBytes": 82
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/5cddc9306bb6c8c6440bb9d29d3c7f/test-test_L2.sorted.bam",
-                    "sizeInBytes": 34383196
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/5cddc9306bb6c8c6440bb9d29d3c7f/versions.yml",
-                    "sizeInBytes": 124
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/c4/92b7c03f05a7c26a438bf40d14e489/test-test_L1.sorted.bam",
-                    "sizeInBytes": 34383322
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/c4/92b7c03f05a7c26a438bf40d14e489/versions.yml",
-                    "sizeInBytes": 124
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/f8/f822a710be994cecadc520e7f285c5/genome.bed.gz",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/49/3527f919ed65ed98b0eddfb5880fcf/genome.bed.gz",
                     "sizeInBytes": 81
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/f8/f822a710be994cecadc520e7f285c5/genome.bed.gz.tbi",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/49/3527f919ed65ed98b0eddfb5880fcf/genome.bed.gz.tbi",
                     "sizeInBytes": 107
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/f8/f822a710be994cecadc520e7f285c5/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/49/3527f919ed65ed98b0eddfb5880fcf/versions.yml",
                     "sizeInBytes": 85
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram",
-                    "sizeInBytes": 46112467
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/72/a9843f31c822611c0118a45412c231/test-test_L2.sorted.bam",
+                    "sizeInBytes": 34383196
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.crai",
-                    "sizeInBytes": 965
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/72/a9843f31c822611c0118a45412c231/versions.yml",
+                    "sizeInBytes": 124
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/test.md.cram.metrics",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/56/251591958419fcad0162072717cdb3/test-test_L1.sorted.bam",
+                    "sizeInBytes": 34383322
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/56/251591958419fcad0162072717cdb3/versions.yml",
+                    "sizeInBytes": 124
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram",
+                    "sizeInBytes": 46112468
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.crai",
+                    "sizeInBytes": 963
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/test.md.cram.metrics",
                     "sizeInBytes": 3613
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ae/5ef0ed8dd7cd43b3bd5c7bc121011e/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/14/ea4775ca2a49858905677ec3c2a707/versions.yml",
                     "sizeInBytes": 103
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/bb/9656844e8f0434bd0aa0dcc0def5cc/test.md.cram.stats",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ff/045bb132bc28f4e77dcd3f090986b8/test.md.cram.stats",
                     "sizeInBytes": 183228
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/bb/9656844e8f0434bd0aa0dcc0def5cc/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ff/045bb132bc28f4e77dcd3f090986b8/versions.yml",
                     "sizeInBytes": 102
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.global.dist.txt",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.global.dist.txt",
                     "sizeInBytes": 6950
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.summary.txt",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.summary.txt",
                     "sizeInBytes": 170
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.mosdepth.region.dist.txt",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.mosdepth.region.dist.txt",
                     "sizeInBytes": 2388
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.regions.bed.gz",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.regions.bed.gz",
                     "sizeInBytes": 519
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/test.md.regions.bed.gz.csi",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/test.md.regions.bed.gz.csi",
                     "sizeInBytes": 114
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/6d/baad92ac3d5f6f0e3db75acca3276e/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/b1/bcd49fe085fdff1fa37a6f161d1d4b/versions.yml",
                     "sizeInBytes": 96
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/64337d773d9f55b32ed2ccadffcafe/test.recal.table",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/e4b53e761b096debbe57305b1a1787/test.recal.table",
                     "sizeInBytes": 310693
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/64337d773d9f55b32ed2ccadffcafe/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/0d/e4b53e761b096debbe57305b1a1787/versions.yml",
                     "sizeInBytes": 85
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/test.recal.cram",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/test.recal.cram",
                     "sizeInBytes": 2062988
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/2c/a76d93b3da8bc7daab4f659ba0d4a6/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/12/49dfc0e8f27a21539f11834ad55392/versions.yml",
                     "sizeInBytes": 71
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/1c/e90c9dc72c4baaaf9e76eb676723bc/test.recal.cram.crai",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/4b/c5e76d741b85dd78720bdfd15fc130/test.recal.cram.crai",
                     "sizeInBytes": 98
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/1c/e90c9dc72c4baaaf9e76eb676723bc/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/4b/c5e76d741b85dd78720bdfd15fc130/versions.yml",
                     "sizeInBytes": 93
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/c4b0daae1115d33073aa17d18cdcaf/test.recal.cram.stats",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/34/d88648f38b1e709ea0ae36af2b06f5/test.recal.cram.stats",
                     "sizeInBytes": 174842
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/c9/c4b0daae1115d33073aa17d18cdcaf/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/34/d88648f38b1e709ea0ae36af2b06f5/versions.yml",
                     "sizeInBytes": 85
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.mosdepth.global.dist.txt",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.mosdepth.global.dist.txt",
                     "sizeInBytes": 6950
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.mosdepth.summary.txt",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.mosdepth.summary.txt",
                     "sizeInBytes": 170
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.mosdepth.region.dist.txt",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.mosdepth.region.dist.txt",
                     "sizeInBytes": 2388
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.regions.bed.gz",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.regions.bed.gz",
                     "sizeInBytes": 519
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/test.recal.regions.bed.gz.csi",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/test.recal.regions.bed.gz.csi",
                     "sizeInBytes": 114
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7f/f2219d0c5d3906b5a9ec3813101522/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/69/206a2744e6f1c21a488c2266b9a69b/versions.yml",
                     "sizeInBytes": 79
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz",
                     "sizeInBytes": 2277
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.variants.vcf.gz.tbi",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.variants.vcf.gz.tbi",
                     "sizeInBytes": 122
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.genome.vcf.gz",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.genome.vcf.gz",
                     "sizeInBytes": 4292
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/test.strelka.genome.vcf.gz.tbi",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/test.strelka.genome.vcf.gz.tbi",
                     "sizeInBytes": 115
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/26/bd10c2d60b0961369b5ce5178781bf/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/b7086cd352a20e29bb55d0e9255998/versions.yml",
                     "sizeInBytes": 125
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/f9b9a9246f2a3415d41ae76c4146a6/test.strelka.variants.bcftools_stats.txt",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/0b29fc9a16ace681b7593720bd38ec/test.strelka.variants.bcftools_stats.txt",
                     "sizeInBytes": 2927
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/f9b9a9246f2a3415d41ae76c4146a6/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/0b29fc9a16ace681b7593720bd38ec/versions.yml",
                     "sizeInBytes": 81
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e3/893d51b7b32c37d3f0bca6392ed106/test.strelka.variants.FILTER.summary",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/25/50e3e1d8901ae6cef95917c10e9d4b/test.strelka.variants.FILTER.summary",
                     "sizeInBytes": 133
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e3/893d51b7b32c37d3f0bca6392ed106/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/25/50e3e1d8901ae6cef95917c10e9d4b/versions.yml",
                     "sizeInBytes": 85
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ec/fd32a71a8ceb05d1cd3ff4113c7a70/test.strelka.variants.TsTv.qual",
-                    "sizeInBytes": 155
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/ec/fd32a71a8ceb05d1cd3ff4113c7a70/versions.yml",
-                    "sizeInBytes": 87
-                },
-                {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/845b4965bcad4d23b3a258eb685577/test.strelka.variants.TsTv.count",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/a0cf66a5db6cb38eec7518c20074cc/test.strelka.variants.TsTv.count",
                     "sizeInBytes": 55
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/7c/845b4965bcad4d23b3a258eb685577/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/e8/a0cf66a5db6cb38eec7518c20074cc/versions.yml",
                     "sizeInBytes": 88
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/multiqc_report.html",
-                    "sizeInBytes": 4829779
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/04/c0d483cf2dcde8985f13024aeef07e/test.strelka.variants.TsTv.qual",
+                    "sizeInBytes": 155
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/multiqc_data",
-                    "sizeInBytes": 1815788
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/04/c0d483cf2dcde8985f13024aeef07e/versions.yml",
+                    "sizeInBytes": 87
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/multiqc_plots",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/multiqc_report.html",
+                    "sizeInBytes": 4829778
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/multiqc_data",
+                    "sizeInBytes": 1815786
+                },
+                {
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/multiqc_plots",
                     "sizeInBytes": 8144999
                 },
                 {
-                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/47/5c965c865d15ed2da2d17e4aaa7f34/versions.yml",
+                    "id": "/storage/nf-core/exec/nextflow_workflow_tracer/work/a6/c87949f3736fb33737d9a980f2cacf/versions.yml",
                     "sizeInBytes": 50
                 }
             ]
@@ -926,219 +926,265 @@
                     "coreCount": 48,
                     "speedInMHz": 2550
                 },
-                "memoryInBytes": 189116048
+                "memoryInBytes": 189069688
             }
         ],
         "execution": {
-            "makespanInSeconds": 127,
-            "executedAt": "2025-07-20T11:27:47-10:00",
+            "makespanInSeconds": 132,
+            "executedAt": "2025-07-20T11:35:50-10:00",
             "tasks": [
-                {
-                    "id": "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
-                    "runtimeInSeconds": 0.0,
-                    "avgCPU": 137.1,
-                    "memoryInBytes": 3158016.0,
-                    "bytesRead": 275822,
-                    "bytesWritten": 113236,
-                    "machines": "siena01"
-                },
                 {
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.CREATE_INTERVALS_BED",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 121.5,
-                    "memoryInBytes": 2928640.0,
-                    "bytesRead": 54985,
-                    "bytesWritten": 1074,
-                    "machines": "siena01"
+                    "avgCPU": 61.5,
+                    "memoryInBytes": 2973696.0,
+                    "bytesRead": 54984,
+                    "bytesWritten": 1073,
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.GATK4_INTERVALLISTTOBED",
                     "runtimeInSeconds": 3.0,
-                    "avgCPU": 274.8,
-                    "memoryInBytes": 314564608.0,
-                    "bytesRead": 99558796,
+                    "avgCPU": 283.1,
+                    "memoryInBytes": 291602432.0,
+                    "bytesRead": 99558709,
                     "bytesWritten": 706218,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
+                },
+                {
+                    "id": "NFCORE_SAREK.PREPARE_GENOME.BWAMEM1_INDEX",
+                    "runtimeInSeconds": 0.0,
+                    "avgCPU": 130.6,
+                    "memoryInBytes": 3153920.0,
+                    "bytesRead": 275822,
+                    "bytesWritten": 113236,
+                    "machines": [
+                        "siena01"
+                    ]
+                },
+                {
+                    "id": "NFCORE_SAREK.SAREK.FASTQC",
+                    "runtimeInSeconds": 4.0,
+                    "avgCPU": 211.6,
+                    "memoryInBytes": 801947648.0,
+                    "bytesRead": 45049731,
+                    "bytesWritten": 3631544,
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.FASTQC",
                     "runtimeInSeconds": 3.0,
-                    "avgCPU": 247.8,
-                    "memoryInBytes": 645799936.0,
-                    "bytesRead": 45049019,
-                    "bytesWritten": 3631544,
-                    "machines": "siena01"
+                    "avgCPU": 237.5,
+                    "memoryInBytes": 638947328.0,
+                    "bytesRead": 45048687,
+                    "bytesWritten": 3631543,
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.TABIX_BGZIPTABIX_INTERVAL_SPLIT",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 49.0,
+                    "avgCPU": 110.8,
                     "memoryInBytes": 3354624.0,
                     "bytesRead": 116347,
-                    "bytesWritten": 3364,
-                    "machines": "siena01"
-                },
-                {
-                    "id": "NFCORE_SAREK.SAREK.FASTQC",
-                    "runtimeInSeconds": 4.0,
-                    "avgCPU": 209.3,
-                    "memoryInBytes": 796217344.0,
-                    "bytesRead": 45049800,
-                    "bytesWritten": 3631543,
-                    "machines": "siena01"
+                    "bytesWritten": 3365,
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.PREPARE_INTERVALS.TABIX_BGZIPTABIX_INTERVAL_COMBINED",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 109.9,
-                    "memoryInBytes": 3284992.0,
+                    "avgCPU": 124.1,
+                    "memoryInBytes": 3350528.0,
                     "bytesRead": 116347,
                     "bytesWritten": 3379,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM1_MEM",
                     "runtimeInSeconds": 6.0,
-                    "avgCPU": 367.3,
-                    "memoryInBytes": 390139904.0,
-                    "bytesRead": 183805108,
-                    "bytesWritten": 185237068,
-                    "machines": "siena01"
-                },
-                {
-                    "id": "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM1_MEM",
-                    "runtimeInSeconds": 6.0,
-                    "avgCPU": 364.1,
-                    "memoryInBytes": 190447616.0,
+                    "avgCPU": 367.8,
+                    "memoryInBytes": 377475072.0,
                     "bytesRead": 183805109,
+                    "bytesWritten": 185237068,
+                    "machines": [
+                        "siena01"
+                    ]
+                },
+                {
+                    "id": "NFCORE_SAREK.SAREK.FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP_SENTIEON.BWAMEM1_MEM",
+                    "runtimeInSeconds": 6.0,
+                    "avgCPU": 367.9,
+                    "memoryInBytes": 400879616.0,
+                    "bytesRead": 183805108,
                     "bytesWritten": 185237194,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.GATK4_MARKDUPLICATES",
                     "runtimeInSeconds": 14.0,
-                    "avgCPU": 206.8,
-                    "memoryInBytes": 5428641792.0,
-                    "bytesRead": 295039787,
-                    "bytesWritten": 123394983,
-                    "machines": "siena01"
+                    "avgCPU": 206.4,
+                    "memoryInBytes": 5437026304.0,
+                    "bytesRead": 295039703,
+                    "bytesWritten": 123394982,
+                    "machines": [
+                        "siena01"
+                    ]
+                },
+                {
+                    "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.SAMTOOLS_STATS",
+                    "runtimeInSeconds": 1.0,
+                    "avgCPU": 162.8,
+                    "memoryInBytes": 29323264.0,
+                    "bytesRead": 46332666,
+                    "bytesWritten": 188225,
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.MOSDEPTH",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 147.2,
-                    "memoryInBytes": 3244032.0,
-                    "bytesRead": 1448854,
+                    "avgCPU": 158.9,
+                    "memoryInBytes": 3166208.0,
+                    "bytesRead": 1448851,
                     "bytesWritten": 10584,
-                    "machines": "siena01"
-                },
-                {
-                    "id": "NFCORE_SAREK.SAREK.BAM_MARKDUPLICATES.CRAM_QC_MOSDEPTH_SAMTOOLS.SAMTOOLS_STATS",
-                    "runtimeInSeconds": 2.0,
-                    "avgCPU": 155.8,
-                    "memoryInBytes": 29663232.0,
-                    "bytesRead": 46332665,
-                    "bytesWritten": 188225,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.BAM_BASERECALIBRATOR.GATK4_BASERECALIBRATOR",
-                    "runtimeInSeconds": 5.0,
-                    "avgCPU": 367.3,
-                    "memoryInBytes": 516931584.0,
-                    "bytesRead": 102545934,
+                    "runtimeInSeconds": 4.0,
+                    "avgCPU": 376.4,
+                    "memoryInBytes": 561315840.0,
+                    "bytesRead": 102545419,
                     "bytesWritten": 1022362,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.GATK4_APPLYBQSR",
                     "runtimeInSeconds": 4.0,
-                    "avgCPU": 393.7,
-                    "memoryInBytes": 571785216.0,
-                    "bytesRead": 102766701,
+                    "avgCPU": 395.3,
+                    "memoryInBytes": 649539584.0,
+                    "bytesRead": 102766886,
                     "bytesWritten": 2772165,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.BAM_APPLYBQSR.CRAM_MERGE_INDEX_SAMTOOLS.INDEX_CRAM",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 75.6,
-                    "memoryInBytes": 3334144.0,
+                    "avgCPU": 105.1,
+                    "memoryInBytes": 3432448.0,
                     "bytesRead": 2201727,
-                    "bytesWritten": 5054,
-                    "machines": "siena01"
+                    "bytesWritten": 5055,
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.CRAM_SAMPLEQC.CRAM_QC_RECAL.SAMTOOLS_STATS",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 154.2,
-                    "memoryInBytes": 16879616.0,
+                    "avgCPU": 144.6,
+                    "memoryInBytes": 16621568.0,
                     "bytesRead": 2283139,
                     "bytesWritten": 179804,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.CRAM_SAMPLEQC.CRAM_QC_RECAL.MOSDEPTH",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 123.9,
-                    "memoryInBytes": 3317760.0,
+                    "avgCPU": 176.7,
+                    "memoryInBytes": 3055616.0,
                     "bytesRead": 2193082,
                     "bytesWritten": 10550,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.BAM_VARIANT_CALLING_GERMLINE_ALL.BAM_VARIANT_CALLING_SINGLE_STRELKA.STRELKA_SINGLE",
                     "runtimeInSeconds": 6.0,
-                    "avgCPU": 31.0,
-                    "memoryInBytes": 123912192.0,
-                    "bytesRead": 52996580,
+                    "avgCPU": 31.1,
+                    "memoryInBytes": 123887616.0,
+                    "bytesRead": 52996581,
                     "bytesWritten": 210612,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.BCFTOOLS_STATS",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 685.7,
-                    "memoryInBytes": 3108864.0,
+                    "avgCPU": 681.7,
+                    "memoryInBytes": 3194880.0,
                     "bytesRead": 123042,
                     "bytesWritten": 3590,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_SUMMARY",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 171.4,
-                    "memoryInBytes": 2891776.0,
+                    "avgCPU": 112.9,
+                    "memoryInBytes": 2887680.0,
                     "bytesRead": 52305,
                     "bytesWritten": 4163,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_TSTV_COUNT",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 160.0,
-                    "memoryInBytes": 2932736.0,
+                    "avgCPU": 115.7,
+                    "memoryInBytes": 2969600.0,
                     "bytesRead": 52313,
                     "bytesWritten": 4082,
-                    "machines": "siena01"
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.VCF_QC_BCFTOOLS_VCFTOOLS.VCFTOOLS_TSTV_QUAL",
                     "runtimeInSeconds": 0.0,
-                    "avgCPU": 60.0,
-                    "memoryInBytes": 2879488.0,
-                    "bytesRead": 52308,
-                    "bytesWritten": 4161,
-                    "machines": "siena01"
+                    "avgCPU": 123.1,
+                    "memoryInBytes": 2932736.0,
+                    "bytesRead": 52309,
+                    "bytesWritten": 4162,
+                    "machines": [
+                        "siena01"
+                    ]
                 },
                 {
                     "id": "NFCORE_SAREK.SAREK.MULTIQC",
-                    "runtimeInSeconds": 19.886,
-                    "avgCPU": 167.5,
-                    "memoryInBytes": 610897920.0,
-                    "bytesRead": 105767620,
-                    "bytesWritten": 48151951,
-                    "machines": "siena01"
+                    "runtimeInSeconds": 19.762,
+                    "avgCPU": 168.4,
+                    "memoryInBytes": 628260864.0,
+                    "bytesRead": 105767638,
+                    "bytesWritten": 48151952,
+                    "machines": [
+                        "siena01"
+                    ]
                 }
             ],
             "machines": [
@@ -1151,7 +1197,7 @@
                         "coreCount": 48,
                         "speedInMHz": 2550
                     },
-                    "memoryInBytes": 189116048
+                    "memoryInBytes": 189069688
                 }
             ]
         }

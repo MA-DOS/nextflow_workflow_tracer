@@ -340,7 +340,7 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
 
     node_name = workflow["machines"][0]["nodeName"]
     for exec_task in execution_tasks:
-        exec_task["machines"] = node_name
+        exec_task["machines"] = [node_name]
 
     workflow["execution"] = execution
 
