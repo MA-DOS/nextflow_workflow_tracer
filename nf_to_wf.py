@@ -60,7 +60,7 @@ def parse_stdout(stdout, workflow_meta):
 
             workflow_meta["makespanInSeconds"] = seconds
             
-    pprint.pprint(workflow_meta)
+    # pprint.pprint(workflow_meta)
     return workflow_meta
 
 # Parse scripts log
@@ -292,10 +292,10 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
     completed_process = subprocess.run(["uname", "-m"], capture_output=True, encoding="utf-8")
     single_machine["architecture"] = str(completed_process.stdout).strip()
 
-    core_command = "lscpu | grep 'CPU(s):' | awk '{print $2}'"
-    output = subprocess.check_output(core_command, shell=True).decode().strip()
-    cpu={}
-    cpu["coreCount"] = output
+    cpu = {}
+    core_command = "lscpu | awk '/^CPU\\(s\\):/ {print $2}'"
+    core_count = subprocess.check_output(core_command, shell=True).decode().strip()
+    cpu["coreCount"] = int(core_count)
 
     # Get clock rate in Hz
     # This does not work on all systems, for me it outputted only Processor 0.
