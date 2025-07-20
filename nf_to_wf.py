@@ -250,7 +250,7 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
             "avgCPU": pct_cpu[t],
             "memoryInBytes": rss[t],
             "bytesRead": int(rchar[t]),
-            "bytesWritten": int(wchar[t]),
+            "bytesWritten": int(wchar[t]), 
         }
         execution_tasks.append(exec_task)
 
@@ -292,8 +292,10 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
     completed_process = subprocess.run(["uname", "-m"], capture_output=True, encoding="utf-8")
     single_machine["architecture"] = str(completed_process.stdout).strip()
 
+    core_command = "lscpu | grep 'CPU(s):' | awk '{print $2}'"
+    output = subprocess.check_output(core_command, shell=True).decode().strip()
     cpu={}
-    cpu["count"] = 1  # Has to be 1, see (trace_nextflow.config)
+    cpu["coreCount"] = output
 
     # Get clock rate in Hz
     # This does not work on all systems, for me it outputted only Processor 0.
@@ -304,9 +306,14 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
     # Modified to work with my server.
     command = "lscpu | grep 'CPU max MHz' | awk '{print int($4)}'"
     output = subprocess.check_output(command, shell=True).decode().strip()
-    cpu["speed"] = int(output) * 1_000_000  # Hz
+    # cpu["speedInMHz"] = int(output) * 1_000_000  # Hz
+    cpu["speedInMHz"] = int(output) # MHz
+
+    mem_command = "free | awk '/Mem:/ {print $7}'"
+    output = subprocess.check_output(mem_command, shell=True).decode().strip()
 
     single_machine["cpu"]=cpu
+    single_machine["memoryInBytes"]=int(output)
     workflow["machines"].append(single_machine)
 
 
@@ -330,6 +337,10 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
         "tasks": execution_tasks,
         "machines": workflow["machines"]
     }
+
+    node_name = workflow["machines"][0]["nodeName"]
+    for exec_task in execution_tasks:
+        exec_task["machines"] = node_name
 
     workflow["execution"] = execution
 
