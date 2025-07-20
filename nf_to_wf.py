@@ -10,7 +10,7 @@ import pprint
 import csv
 
 # Parse stdout
-def parse_stdout(stdout, workflow):
+def parse_stdout(stdout, workflow_meta):
     lines = stdout.split('\n')
     for line in lines:
         #print(f"{line=}")
@@ -20,12 +20,12 @@ def parse_stdout(stdout, workflow):
 
         elif "Launching" in line:
             x = line.split("`")[1].strip()
-            workflow["repo"] = x
+            workflow_meta["repo"] = x
             print(f"Workflow repo:\n\t{x}")
 
         elif "runName" in line:
             x = line[line.find(":")+1:].strip()
-            workflow["runName"] = x
+            workflow_meta["runName"] = x
             print(f"runName:\n\t{x}")
 
         elif "Completed at" in line:
@@ -38,7 +38,8 @@ def parse_stdout(stdout, workflow):
             #print("executedAt:\n\t{}".format(x))
             #print("converted:\n\t{}".format(y.isoformat()))
 
-            workflow["executedAt"] = str(y.isoformat())
+            print(f"executedAt:\n\t{y.isoformat()}")
+            workflow_meta["executedAt"] = str(y.isoformat())
 
         elif "Duration" in line:
             x = line[line.find(":")+1:].strip()
@@ -54,10 +55,13 @@ def parse_stdout(stdout, workflow):
                 temp     = temp.split("m")[1].strip()
             if "s" in line:
                 seconds += int(temp.split("s")[0].strip())
-
-            workflow["makespanInSeconds"] = seconds
             
-    return workflow
+            print(f"makespan in seconds:\n\t{seconds}")
+
+            workflow_meta["makespanInSeconds"] = seconds
+            
+    pprint.pprint(workflow_meta)
+    return workflow_meta
 
 # Parse scripts log
 def parse_scripts(log, scripts):
@@ -197,7 +201,7 @@ def parse_outputs(csv_file="output.csv"):
 
     return process_outputs
 
-def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtime, pct_cpu, rss, rchar, wchar):
+def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtime, pct_cpu, rss, rchar, wchar, workflow_meta):
     #7. Create list of tasks for WfCommons JSON output
     #i. Replace : with . in parent/children elements
     rep_parents  = {}
@@ -321,8 +325,8 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
     wfcommons["workflow"] = workflow
 
     execution = {
-        "makespanInSeconds": workflow.get("makespanInSeconds", 0),
-        "executedAt": workflow.get("executedAt", ""),
+        "makespanInSeconds": workflow_meta.get("makespanInSeconds", 0),
+        "executedAt": workflow_meta.get("executedAt", ""),
         "tasks": execution_tasks,
         "machines": workflow["machines"]
     }
@@ -337,8 +341,8 @@ if __name__ == "__main__":
     
     # nextflow_path = "./nextflow-22.10.7/launch.sh"
     # nextflow_path = "/storage/nf-core/exec/nextflow-22.10.7/launch.sh"
-    nextflow_path = "/storage/nf-core/exec/nextflow/build/releases/nextflow-25.06.0-edge-dist"
-    # nextflow_path = "/home/niklas/.local/bin/nextflow"
+    # nextflow_path = "/storage/nf-core/exec/nextflow/build/releases/nextflow-25.06.0-edge-dist"
+    nextflow_path = "/home/niklas/.local/bin/nextflow"
 
     #1. Command line arguments
     argc = len(sys.argv)
@@ -364,11 +368,14 @@ if __name__ == "__main__":
 
     #2. Run Nextflow workflow
     print(f"Running /nf-core/{workflow_name}")
+    completed_run = subprocess.run([str(os.path.abspath(nextflow_path)), "-log", filepath_log, "run", "nf-core/" + workflow_name, "-profile", "test,docker", "-c", "trace_nextflow.config", "--outdir", workflow_output], capture_output=True, encoding="utf-8")
+    print(f"{completed_run.args} : {completed_run.stdout}")
+    
+    # Writing to stdout
+    with open("stdout.txt", "w") as file:
+        file.write(completed_run.stdout)
 
-    # completed_run = subprocess.run([str(os.path.abspath(nextflow_path)), "-log", filepath_log, "run", "nf-core/" + workflow_name, "-profile", "test,docker", "-c", "trace_nextflow.config", "--outdir", workflow_output], capture_output=True, encoding="utf-8")
-    # print(f"{completed_run.args} : {completed_run.stdout}")
-
-    #4. Parse filepath_trace
+    #3. Parse filepath_trace
     task_id     = []
     processes   = {}
     realtime    = {}
@@ -381,7 +388,7 @@ if __name__ == "__main__":
     work_dir    = {}
     parse_trace(filepath_trace, task_id, processes, realtime, pct_cpu, rss, rchar, wchar, read_bytes, write_bytes, work_dir)
 
-    #6. Parse filepath_dag
+    #4. Parse filepath_dag
     parents  = {}
     children = {}
     parse_dag(filepath_dag, parents, children)
@@ -393,7 +400,13 @@ if __name__ == "__main__":
     # pprint.pprint(input_files.keys())
     # pprint.pprint(output_files)
 
-    buildAndWriteJSONSchema(input_files, output_files, processes, task_id, realtime, pct_cpu, rss, rchar, wchar)
+    
+    #5. Get workflow metadata from stdout
+    workflow_meta = {}
+    workflow_meta = parse_stdout(completed_run.stdout, workflow_meta)
+
+    #6. Create WfFormat
+    buildAndWriteJSONSchema(input_files, output_files, processes, task_id, realtime, pct_cpu, rss, rchar, wchar, workflow_meta)
 
     
 
