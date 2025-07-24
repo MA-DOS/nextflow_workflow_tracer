@@ -1,0 +1,12 @@
+Module	Section	Sample Name	Source
+FastQC (raw)	all_sections	test-test_L1_2	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/6/test-test_L1_2_fastqc.zip
+FastQC (raw)	all_sections	test-test_L1_1	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/5/test-test_L1_1_fastqc.zip
+FastQC (raw)	all_sections	test-test_L2_2	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/4/test-test_L2_2_fastqc.zip
+FastQC (raw)	all_sections	test-test_L2_1	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/3/test-test_L2_1_fastqc.zip
+GATK4 MarkDuplicates	DuplicationMetrics	test-test_L2	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/7/test.md.cram.metrics
+Samtools Flagstat	stats	test.md	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/8/test.md.cram.stats
+Mosdepth	genome_results	test.md	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/9/test.md.mosdepth.region.dist.txt
+GATK4 BQSR	base_recalibrator	test.recal.table	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/11/test.recal.table
+Bcftools	stats	test.strelka.variants	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/12/test.strelka.variants.bcftools_stats.txt
+Vcftools	all_sections	TsTv by counts	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/14/test.strelka.variants.TsTv.count
+Vcftools	all_sections	TsTv by quality	/storage/nf-core/exec/nextflow_workflow_tracer/work/2a/0170958a947aa04a3d2e5f21fab04d/13/test.strelka.variants.TsTv.qual

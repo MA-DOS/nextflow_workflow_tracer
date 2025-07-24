@@ -1,0 +1,88 @@
+data: "<style>\n#nf-core-versions tbody:nth-child(even) {\n    background-color: #f2f2f2;\n\
+  }\n</style>\n<table class=\"table\" style=\"width:100%\" id=\"nf-core-versions\"\
+  >\n    <thead>\n        <tr>\n            <th> Process Name </th>\n            <th>\
+  \ Software </th>\n            <th> Version  </th>\n        </tr>\n    </thead>\n\
+  \n<tbody>\n<tr>\n    <td><samp>BAMTOOLS_FILTER</samp></td>\n    <td><samp>bamtools</samp></td>\n\
+  \    <td><samp>2.5.2</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n  \
+  \  <td><samp>samtools</samp></td>\n    <td><samp>1.15.1</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>BAM_REMOVE_ORPHANS</samp></td>\n    <td><samp>samtools</samp></td>\n\
+  \    <td><samp>1.15.1</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>BEDTOOLS_GENOMECOV</samp></td>\n\
+  \    <td><samp>bedtools</samp></td>\n    <td><samp>2.30.0</samp></td>\n</tr>\n\n\
+  </tbody>\n<tbody>\n<tr>\n    <td><samp>BWA_INDEX</samp></td>\n    <td><samp>bwa</samp></td>\n\
+  \    <td><samp>0.7.17-r1188</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>BWA_MEM</samp></td>\n\
+  \    <td><samp>bwa</samp></td>\n    <td><samp>0.7.17-r1188</samp></td>\n</tr>\n\n\
+  <tr>\n    <td><samp></samp></td>\n    <td><samp>samtools</samp></td>\n    <td><samp>1.16.1</samp></td>\n\
+  </tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>CUSTOM_DUMPSOFTWAREVERSIONS</samp></td>\n\
+  \    <td><samp>python</samp></td>\n    <td><samp>3.11.0</samp></td>\n</tr>\n\n<tr>\n\
+  \    <td><samp></samp></td>\n    <td><samp>yaml</samp></td>\n    <td><samp>6.0</samp></td>\n\
+  </tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>CUSTOM_GETCHROMSIZES</samp></td>\n\
+  \    <td><samp>getchromsizes</samp></td>\n    <td><samp>1.16.1</samp></td>\n</tr>\n\
+  \n</tbody>\n<tbody>\n<tr>\n    <td><samp>DEEPTOOLS_COMPUTEMATRIX_REFERENCE_POINT</samp></td>\n\
+  \    <td><samp>deeptools</samp></td>\n    <td><samp>3.5.1</samp></td>\n</tr>\n\n\
+  </tbody>\n<tbody>\n<tr>\n    <td><samp>DEEPTOOLS_COMPUTEMATRIX_SCALE_REGIONS</samp></td>\n\
+  \    <td><samp>deeptools</samp></td>\n    <td><samp>3.5.1</samp></td>\n</tr>\n\n\
+  </tbody>\n<tbody>\n<tr>\n    <td><samp>DEEPTOOLS_PLOTHEATMAP</samp></td>\n    <td><samp>deeptools</samp></td>\n\
+  \    <td><samp>3.5.1</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>DEEPTOOLS_PLOTPROFILE</samp></td>\n\
+  \    <td><samp>deeptools</samp></td>\n    <td><samp>3.5.1</samp></td>\n</tr>\n\n\
+  </tbody>\n<tbody>\n<tr>\n    <td><samp>DESEQ2_QC</samp></td>\n    <td><samp>bioconductor-deseq2</samp></td>\n\
+  \    <td><samp>1.28.0</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n \
+  \   <td><samp>r-base</samp></td>\n    <td><samp>4.0.3</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>FASTQC</samp></td>\n    <td><samp>fastqc</samp></td>\n\
+  \    <td><samp>0.11.9</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>FRIP_SCORE</samp></td>\n\
+  \    <td><samp>bedtools</samp></td>\n    <td><samp>2.30.0</samp></td>\n</tr>\n\n\
+  <tr>\n    <td><samp></samp></td>\n    <td><samp>samtools</samp></td>\n    <td><samp>1.15.1</samp></td>\n\
+  </tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>GENOME_BLACKLIST_REGIONS</samp></td>\n\
+  \    <td><samp>bedtools</samp></td>\n    <td><samp>2.30.0</samp></td>\n</tr>\n\n\
+  </tbody>\n<tbody>\n<tr>\n    <td><samp>GET_AUTOSOMES</samp></td>\n    <td><samp>python</samp></td>\n\
+  \    <td><samp>3.8.3</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>GTF2BED</samp></td>\n\
+  \    <td><samp>perl</samp></td>\n    <td><samp>5.26.2</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>HOMER_ANNOTATEPEAKS</samp></td>\n    <td><samp>homer</samp></td>\n\
+  \    <td><samp>4.11</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>IGV</samp></td>\n\
+  \    <td><samp>python</samp></td>\n    <td><samp>3.8.3</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>KHMER_UNIQUEKMERS</samp></td>\n    <td><samp>khmer</samp></td>\n\
+  \    <td><samp>3.0.0a3</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>MACS2_CALLPEAK</samp></td>\n\
+  \    <td><samp>macs2</samp></td>\n    <td><samp>2.2.7.1</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>MACS2_CONSENSUS</samp></td>\n    <td><samp>python</samp></td>\n\
+  \    <td><samp>3.10.0</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n \
+  \   <td><samp>r-base</samp></td>\n    <td><samp>4.1.1</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>MERGED_LIBRARY_ATAQV_ATAQV</samp></td>\n    <td><samp>ataqv</samp></td>\n\
+  \    <td><samp>1.3.1</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>MERGED_LIBRARY_ATAQV_MKARV</samp></td>\n\
+  \    <td><samp>ataqv</samp></td>\n    <td><samp>1.3.1</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>MERGED_LIBRARY_DEEPTOOLS_PLOTFINGERPRINT</samp></td>\n\
+  \    <td><samp>deeptools</samp></td>\n    <td><samp>3.5.1</samp></td>\n</tr>\n\n\
+  </tbody>\n<tbody>\n<tr>\n    <td><samp>MERGED_LIBRARY_PICARD_COLLECTMULTIPLEMETRICS</samp></td>\n\
+  \    <td><samp>picard</samp></td>\n    <td><samp>3.0.0</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>MULTIQC_CUSTOM_PEAKS</samp></td>\n    <td><samp>sed</samp></td>\n\
+  \    <td><samp>4.7</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>PICARD_MARKDUPLICATES</samp></td>\n\
+  \    <td><samp>picard</samp></td>\n    <td><samp>3.0.0</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>PICARD_MERGESAMFILES_LIBRARY</samp></td>\n    <td><samp>picard</samp></td>\n\
+  \    <td><samp>3.0.0</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>PICARD_MERGESAMFILES_REPLICATE</samp></td>\n\
+  \    <td><samp>picard</samp></td>\n    <td><samp>3.0.0</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>PLOT_HOMER_ANNOTATEPEAKS</samp></td>\n    <td><samp>r-base</samp></td>\n\
+  \    <td><samp>4.0.3</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>PLOT_MACS2_QC</samp></td>\n\
+  \    <td><samp>r-base</samp></td>\n    <td><samp>4.0.3</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>SAMPLESHEET_CHECK</samp></td>\n    <td><samp>python</samp></td>\n\
+  \    <td><samp>3.8.3</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>SAMTOOLS_FLAGSTAT</samp></td>\n\
+  \    <td><samp>samtools</samp></td>\n    <td><samp>1.17</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>SAMTOOLS_IDXSTATS</samp></td>\n    <td><samp>samtools</samp></td>\n\
+  \    <td><samp>1.17</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>SAMTOOLS_INDEX</samp></td>\n\
+  \    <td><samp>samtools</samp></td>\n    <td><samp>1.17</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>SAMTOOLS_SORT</samp></td>\n    <td><samp>samtools</samp></td>\n\
+  \    <td><samp>1.17</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>SAMTOOLS_STATS</samp></td>\n\
+  \    <td><samp>samtools</samp></td>\n    <td><samp>1.17</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>SUBREAD_FEATURECOUNTS</samp></td>\n    <td><samp>subread</samp></td>\n\
+  \    <td><samp>2.0.1</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>TRIMGALORE</samp></td>\n\
+  \    <td><samp>cutadapt</samp></td>\n    <td><samp>3.4</samp></td>\n</tr>\n\n<tr>\n\
+  \    <td><samp></samp></td>\n    <td><samp>trimgalore</samp></td>\n    <td><samp>0.6.7</samp></td>\n\
+  </tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>TSS_EXTRACT</samp></td>\n    <td><samp>sed</samp></td>\n\
+  \    <td><samp>4.7</samp></td>\n</tr>\n\n</tbody>\n<tbody>\n<tr>\n    <td><samp>UCSC_BEDGRAPHTOBIGWIG</samp></td>\n\
+  \    <td><samp>ucsc</samp></td>\n    <td><samp>445</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>Workflow</samp></td>\n    <td><samp>Nextflow</samp></td>\n\
+  \    <td><samp>24.10.6</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n\
+  \    <td><samp>nf-core/atacseq</samp></td>\n    <td><samp>2.1.2</samp></td>\n</tr>\n\
+  \n</tbody>\n</table>"
+description: are collected at run time from the software output.
+id: software_versions
+plot_type: html
+section_href: https://github.com/nf-core/atacseq
+section_name: nf-core/atacseq Software Versions

@@ -1,0 +1,4 @@
+[2025-07-20T13:20:47.143534Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] wrapperStart
+[2025-07-20T13:20:47.152253Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] taskStart
+[2025-07-20T13:20:47.192106Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] taskExitCode 0
+[2025-07-20T13:20:47.192575Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] [wrapperSignal] taskElapsedSec 0

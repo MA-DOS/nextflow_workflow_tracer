@@ -1,0 +1,53 @@
+Using GATK jar /usr/local/share/gatk4-4.5.0.0-0/gatk-package-4.5.0.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx3276M -XX:-UsePerfData -jar /usr/local/share/gatk4-4.5.0.0-0/gatk-package-4.5.0.0-local.jar BaseRecalibrator --input test.md.cram --output test.recal.table --reference genome.fasta --intervals chr22_1-40001.bed --known-sites dbsnp_146.hg38.vcf.gz --known-sites mills_and_1000G.indels.vcf.gz --tmp-dir .
+13:27:21.746 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/usr/local/share/gatk4-4.5.0.0-0/gatk-package-4.5.0.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+13:27:21.838 INFO  BaseRecalibrator - ------------------------------------------------------------
+13:27:21.841 INFO  BaseRecalibrator - The Genome Analysis Toolkit (GATK) v4.5.0.0
+13:27:21.841 INFO  BaseRecalibrator - For support and documentation go to https://software.broadinstitute.org/gatk/
+13:27:21.841 INFO  BaseRecalibrator - Executing as ?@0503792ba806 on Linux v5.15.0-143-generic amd64
+13:27:21.841 INFO  BaseRecalibrator - Java runtime: OpenJDK 64-Bit Server VM v17.0.10-internal+0-adhoc..src
+13:27:21.841 INFO  BaseRecalibrator - Start Date/Time: July 20, 2025 at 1:27:21 PM GMT
+13:27:21.841 INFO  BaseRecalibrator - ------------------------------------------------------------
+13:27:21.841 INFO  BaseRecalibrator - ------------------------------------------------------------
+13:27:21.842 INFO  BaseRecalibrator - HTSJDK Version: 4.1.0
+13:27:21.842 INFO  BaseRecalibrator - Picard Version: 3.1.1
+13:27:21.842 INFO  BaseRecalibrator - Built for Spark Version: 3.5.0
+13:27:21.842 INFO  BaseRecalibrator - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+13:27:21.842 INFO  BaseRecalibrator - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+13:27:21.842 INFO  BaseRecalibrator - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+13:27:21.843 INFO  BaseRecalibrator - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+13:27:21.843 INFO  BaseRecalibrator - Deflater: IntelDeflater
+13:27:21.843 INFO  BaseRecalibrator - Inflater: IntelInflater
+13:27:21.843 INFO  BaseRecalibrator - GCS max retries/reopens: 20
+13:27:21.843 INFO  BaseRecalibrator - Requester pays: disabled
+13:27:21.843 INFO  BaseRecalibrator - Initializing engine
+13:27:21.979 INFO  FeatureManager - Using codec VCFCodec to read file file:///storage/nf-core/exec/nextflow_workflow_tracer/work/79/32d25cc518e09391ffa58fbda17b3c/dbsnp_146.hg38.vcf.gz
+13:27:21.993 INFO  FeatureManager - Using codec VCFCodec to read file file:///storage/nf-core/exec/nextflow_workflow_tracer/work/79/32d25cc518e09391ffa58fbda17b3c/mills_and_1000G.indels.vcf.gz
+13:27:22.002 INFO  FeatureManager - Using codec BEDCodec to read file file:///storage/nf-core/exec/nextflow_workflow_tracer/work/79/32d25cc518e09391ffa58fbda17b3c/chr22_1-40001.bed
+13:27:22.005 INFO  IntervalArgumentCollection - Processing 40001 bp from intervals
+13:27:22.008 INFO  BaseRecalibrator - Done initializing engine
+13:27:22.011 INFO  BaseRecalibrationEngine - The covariates being used here: 
+13:27:22.011 INFO  BaseRecalibrationEngine - 	ReadGroupCovariate
+13:27:22.011 INFO  BaseRecalibrationEngine - 	QualityScoreCovariate
+13:27:22.011 INFO  BaseRecalibrationEngine - 	ContextCovariate
+13:27:22.011 INFO  BaseRecalibrationEngine - 	CycleCovariate
+13:27:22.012 INFO  ProgressMeter - Starting traversal
+13:27:22.013 INFO  ProgressMeter -        Current Locus  Elapsed Minutes       Reads Processed     Reads/Minute
+13:27:22.668 INFO  BaseRecalibrator - 21766 read(s) filtered by: MappingQualityNotZeroReadFilter 
+0 read(s) filtered by: MappingQualityAvailableReadFilter 
+0 read(s) filtered by: MappedReadFilter 
+0 read(s) filtered by: NotSecondaryAlignmentReadFilter 
+9787 read(s) filtered by: NotDuplicateReadFilter 
+0 read(s) filtered by: PassesVendorQualityCheckReadFilter 
+0 read(s) filtered by: WellformedReadFilter 
+31553 total reads filtered out of 37424 reads processed
+13:27:22.668 INFO  ProgressMeter -          chr22:28571              0.0                  5871         537801.5
+13:27:22.668 INFO  ProgressMeter - Traversal complete. Processed 5871 total reads in 0.0 minutes.
+13:27:22.700 INFO  BaseRecalibrator - Calculating quantized quality scores...
+13:27:22.707 INFO  BaseRecalibrator - Writing recalibration report...
+13:27:23.461 INFO  BaseRecalibrator - ...done!
+13:27:23.462 INFO  BaseRecalibrator - BaseRecalibrator was able to recalibrate 5871 reads
+13:27:23.462 INFO  BaseRecalibrator - Shutting down engine
+[July 20, 2025 at 1:27:23 PM GMT] org.broadinstitute.hellbender.tools.walkers.bqsr.BaseRecalibrator done. Elapsed time: 0.03 minutes.
+Runtime.totalMemory()=339738624

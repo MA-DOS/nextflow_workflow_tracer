@@ -1,0 +1,98 @@
+[2025-07-23T15:43:27.739631Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Initiating pyFlow run
+[2025-07-23T15:43:27.739973Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] pyFlowClientWorkflowClass: StrelkaGermlineWorkflow
+[2025-07-23T15:43:27.739991Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] pyFlowVersion: 1.1.20
+[2025-07-23T15:43:27.740001Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] pythonVersion: 2.7.15.final.0
+[2025-07-23T15:43:27.740012Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] WorkingDir: '/storage/nf-core/exec/nextflow_workflow_tracer/work/06/7fd7fe930b443787e69b33fd62a834'
+[2025-07-23T15:43:27.740024Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] ProcessCmdLine: 'strelka/runWorkflow.py -m local -j 4'
+[2025-07-23T15:43:27.740033Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] mode: local
+[2025-07-23T15:43:27.740042Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] nCores: 4
+[2025-07-23T15:43:27.740053Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] memMb: 192968
+[2025-07-23T15:43:27.740063Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] dataDir: /storage/nf-core/exec/nextflow_workflow_tracer/work/06/7fd7fe930b443787e69b33fd62a834/strelka/workspace/pyflow.data
+[2025-07-23T15:43:27.740073Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] isDryRun: False
+[2025-07-23T15:43:27.740082Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] isContinue: False
+[2025-07-23T15:43:27.740091Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] isForceContinue: True
+[2025-07-23T15:43:27.740101Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] [RunParameters] mailTo: ''
+[2025-07-23T15:43:27.740566Z] [d84a0d0f1d87] [94_1] [TaskRunner:masterWorkflow] Starting task specification for master workflow
+[2025-07-23T15:43:27.740725Z] [d84a0d0f1d87] [94_1] [StrelkaGermlineWorkflow] Initiating Strelka germline workflow version: 2.9.10
+[2025-07-23T15:43:27.741468Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'getChromDepth_makeTmpDir' to master workflow
+[2025-07-23T15:43:27.742166Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'getChromDepth_sample000_makeTmpDir' to master workflow
+[2025-07-23T15:43:27.742942Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'getChromDepth_makeTmpDir' from master workflow
+[2025-07-23T15:43:27.743252Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'getChromDepth_sample000_estimateChromDepth_000_chr22' to master workflow
+[2025-07-23T15:43:27.743626Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'getChromDepth_sample000_catChromDepth' to master workflow
+[2025-07-23T15:43:27.744082Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'getChromDepth_mergeChromDepth' to master workflow
+[2025-07-23T15:43:27.744561Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'getChromDepth_removeTmpDir' to master workflow
+[2025-07-23T15:43:27.747261Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding sub-workflow task 'CallGenome' to master workflow
+[2025-07-23T15:43:27.747532Z] [d84a0d0f1d87] [94_1] [TaskRunner:getChromDepth_makeTmpDir] Task initiated on local node
+[2025-07-23T15:43:27.747595Z] [d84a0d0f1d87] [94_1] [TaskRunner:masterWorkflow] Finished task specification for master workflow
+[2025-07-23T15:43:27.811465Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'getChromDepth_makeTmpDir' launched from master workflow
+[2025-07-23T15:43:27.811970Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'getChromDepth_sample000_makeTmpDir' from master workflow
+[2025-07-23T15:43:27.815670Z] [d84a0d0f1d87] [94_1] [TaskRunner:getChromDepth_sample000_makeTmpDir] Task initiated on local node
+[2025-07-23T15:43:27.876076Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'getChromDepth_sample000_makeTmpDir' launched from master workflow
+[2025-07-23T15:43:27.876638Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'getChromDepth_sample000_estimateChromDepth_000_chr22' from master workflow
+[2025-07-23T15:43:27.880444Z] [d84a0d0f1d87] [94_1] [TaskRunner:getChromDepth_sample000_estimateChromDepth_000_chr22] Task initiated on local node
+[2025-07-23T15:43:28.041158Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'getChromDepth_sample000_estimateChromDepth_000_chr22' launched from master workflow
+[2025-07-23T15:43:28.041753Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'getChromDepth_sample000_catChromDepth' from master workflow
+[2025-07-23T15:43:28.045688Z] [d84a0d0f1d87] [94_1] [TaskRunner:getChromDepth_sample000_catChromDepth] Task initiated on local node
+[2025-07-23T15:43:28.155960Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'getChromDepth_sample000_catChromDepth' launched from master workflow
+[2025-07-23T15:43:28.156371Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'getChromDepth_mergeChromDepth' from master workflow
+[2025-07-23T15:43:28.159568Z] [d84a0d0f1d87] [94_1] [TaskRunner:getChromDepth_mergeChromDepth] Task initiated on local node
+[2025-07-23T15:43:28.270643Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'getChromDepth_mergeChromDepth' launched from master workflow
+[2025-07-23T15:43:28.271131Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching sub-workflow task: 'CallGenome' from master workflow
+[2025-07-23T15:43:28.271439Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome] Starting task specification for sub-workflow
+[2025-07-23T15:43:28.272234Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+makeTmpDir' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.272748Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'getChromDepth_removeTmpDir' from master workflow
+[2025-07-23T15:43:28.273069Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+callGenomeSegment_chromId_000_chr22_0000' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.273348Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.273914Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.274974Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+makeTmpDir' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.275124Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+completedAllGenomeSegments' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.276395Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+variants_concat_vcf' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.279544Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+variants_index_vcf' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.281554Z] [d84a0d0f1d87] [94_1] [TaskRunner:getChromDepth_removeTmpDir] Task initiated on local node
+[2025-07-23T15:43:28.282503Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+gVCF_S1_concat_vcf' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.283378Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+makeTmpDir] Task initiated on local node
+[2025-07-23T15:43:28.283474Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+gVCF_S1_index_vcf' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.284299Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+addLegacyOutputLink' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.284594Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+mergeRunStats' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.284763Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Adding command task 'CallGenome+removeTmpDir' to sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.284885Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome] Finished task specification for sub-workflow
+[2025-07-23T15:43:28.349557Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'getChromDepth_removeTmpDir' launched from master workflow
+[2025-07-23T15:43:28.349657Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+makeTmpDir' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.350104Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+callGenomeSegment_chromId_000_chr22_0000' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:28.354496Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+callGenomeSegment_chromId_000_chr22_0000] Task initiated on local node
+[2025-07-23T15:43:29.066127Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+callGenomeSegment_chromId_000_chr22_0000' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.066800Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.067264Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.071489Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants] Task initiated on local node
+[2025-07-23T15:43:29.073452Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1] Task initiated on local node
+[2025-07-23T15:43:29.132213Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.132309Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.132563Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+completedAllGenomeSegments' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.132788Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+gVCF_S1_concat_vcf' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.133124Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+variants_concat_vcf' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.133569Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+mergeRunStats' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.137706Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+gVCF_S1_concat_vcf] Task initiated on local node
+[2025-07-23T15:43:29.139235Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+variants_concat_vcf] Task initiated on local node
+[2025-07-23T15:43:29.180312Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+mergeRunStats] Task initiated on local node
+[2025-07-23T15:43:29.201142Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+mergeRunStats' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.201229Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+gVCF_S1_concat_vcf' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.201263Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+variants_concat_vcf' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.201552Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+variants_index_vcf' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.201806Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+gVCF_S1_index_vcf' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.205245Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+variants_index_vcf] Task initiated on local node
+[2025-07-23T15:43:29.237258Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+gVCF_S1_index_vcf] Task initiated on local node
+[2025-07-23T15:43:29.267111Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+gVCF_S1_index_vcf' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.267234Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+variants_index_vcf' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.267667Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+removeTmpDir' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.268118Z] [d84a0d0f1d87] [94_1] [TaskManager] Launching command task: 'CallGenome+addLegacyOutputLink' from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.272223Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+removeTmpDir] Task initiated on local node
+[2025-07-23T15:43:29.273471Z] [d84a0d0f1d87] [94_1] [TaskRunner:CallGenome+addLegacyOutputLink] Task initiated on local node
+[2025-07-23T15:43:29.332304Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+removeTmpDir' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:29.332386Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed command task: 'CallGenome+addLegacyOutputLink' launched from sub-workflow 'CallGenome'
+[2025-07-23T15:43:31.000135Z] [d84a0d0f1d87] [94_1] [TaskManager] Completed sub-workflow task: 'CallGenome' launched from master workflow
+[2025-07-23T15:43:33.369830Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Strelka germline workflow successfully completed.
+[2025-07-23T15:43:33.369830Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] 
+[2025-07-23T15:43:33.369830Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] 	workflow version: 2.9.10
+[2025-07-23T15:43:33.369936Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] 
+[2025-07-23T15:43:33.369960Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Workflow successfully completed all tasks
+[2025-07-23T15:43:33.369980Z] [d84a0d0f1d87] [94_1] [WorkflowRunner] Elapsed time for full workflow: 5 sec

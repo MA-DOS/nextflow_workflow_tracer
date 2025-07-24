@@ -1,0 +1,1 @@
+/storage/nf-core/exec/nextflow_workflow_tracer/work/7a/5d5b89517c7ab6fb9286e8db7b18c8/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.plotFingerprint.raw.txt

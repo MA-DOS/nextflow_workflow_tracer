@@ -73,9 +73,9 @@ def parse_scripts(log, scripts):
 
 #Parse filepath_trace
 #Assumes the following trace fields
-#0,       1,       2,        3,    4,   5,     6,     7,          8,           9
-#task_id, process, realtime, %cpu, rss, rchar, wchar, read_bytes, write_bytes, workdir
-def parse_trace(filepath_trace, task_id, processes, realtime, pct_cpu, rss, rchar, wchar, read_bytes, write_bytes, work_dir):
+#0,       1,       2,        3,    4,   5,     6,     7,          8,           9        ,10
+#task_id, process, realtime, %cpu, rss, rchar, wchar, read_bytes, write_bytes, workdir, hash
+def parse_trace(filepath_trace, task_id, processes, realtime, pct_cpu, rss, rchar, wchar, read_bytes, write_bytes, work_dir,processMeta):
     def parse_field(curr_id, f_dict,  f_str):
         if "-" == f_str:
             f_dict[curr_id] = 0.
@@ -93,7 +93,14 @@ def parse_trace(filepath_trace, task_id, processes, realtime, pct_cpu, rss, rcha
             curr_id = fields[0].strip()
             task_id.append(curr_id)
 
-            processes[curr_id] = fields[1].strip()
+            # processes[curr_id] = fields[1].strip()
+            processes[curr_id] = fields[10].strip()
+            
+            # To assign inputs and outputs for the same tasks we need to match them by their workDir.add()
+            # processMeta[curr_id] = {
+            #     "process": fields[1].strip(),
+            #     "nextflow_name": fields[10]
+            # }
 
             parse_field(curr_id, realtime, fields[2].strip())
             parse_field(curr_id, pct_cpu,  fields[3].strip())
@@ -163,19 +170,29 @@ def parse_dag(filepath_dag, parents, children):
             for i, succ in enumerate(G.succ[node].keys()):
                 #print("succ {} = {}".format(succ, G.nodes[succ]["label"]))
                 children[process].append(G.nodes[succ]["label"])
+    
+    return parents, children
+
 
 # Parse input files of processes
-def parse_inputs(csv_file="input.csv"):
+def parse_inputs():
     process_inputs = {}
+    csv_file = "input.csv"
 
-    with open(csv_file, newline ='') as f:
-        reader = csv.DictReader(f, delimiter= ';')
+    with open(csv_file, newline='') as f:
+        reader = csv.DictReader(f, delimiter=';')
         for row in reader:
-            process = row['name'].replace(':', '.').split()[0]
+            # process = row['name'].replace(':', '.')
+            process = row['name'].strip()
             file_path = row['path']
             size = int(row['size'])
+
+            # Initialize the process key if not already present
             if process not in process_inputs:
                 process_inputs[process] = []
+
+
+            # If the process is already in process_inputs, we can append to it
             process_inputs[process].append({
                 'id': file_path,
                 'sizeInBytes': size if size else 0,
@@ -183,23 +200,34 @@ def parse_inputs(csv_file="input.csv"):
 
     return process_inputs
 
-def parse_outputs(csv_file="output.csv"):
+def parse_outputs():
     process_outputs = {}
+    csv_file = "output.csv"
 
-    with open(csv_file, newline ='') as f:
-        reader = csv.DictReader(f, delimiter= ';')
+    with open(csv_file, newline='') as f:
+        reader = csv.DictReader(f, delimiter=';')
         for row in reader:
-            process = row['name'].replace(':', '.').split()[0]
+            # process = row['name'].replace(':', '.')
+            process = row['name'].strip()
             file_path = row['path']
             size = int(row['size'])
+
+            # Initialize the process key if not already present
             if process not in process_outputs:
                 process_outputs[process] = []
+
+
+            # If the process is already in process_inputs, we can append to it
             process_outputs[process].append({
                 'id': file_path,
-                'sizeInBytes': size 
+                'sizeInBytes': size if size else 0,
             })
 
     return process_outputs
+
+# def deduplicate_preserve_order(seq):
+#     seen = set()
+#     return [x for x in seq if not (x in seen or seen.add(x))]
 
 def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtime, pct_cpu, rss, rchar, wchar, workflow_meta):
     #7. Create list of tasks for WfCommons JSON output
@@ -211,14 +239,17 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
         rep_children[processes[i]] = []
 
         for j in parents[processes[i]]:
-            rep_parents[processes[i]].append(j.replace(':', '.'))
+            # rep_parents[processes[i]].append(j.replace(':', '.'))
+            rep_parents[processes[i]].append(j)
 
         for j in children[processes[i]]:
-            rep_children[processes[i]].append(j.replace(':', '.'))
+            # rep_children[processes[i]].append(j.replace(':', '.'))
+            rep_children[processes[i]].append(j)
 
     # Create tasks
     tasks = []
     processes2 = []
+    # Source of truth for all executed tasks is the nextflow trace. So 2 of the same tasks are recorded there.
     for i in task_id:
         curr_task                     = {}
         curr_task["name"]             = processes[i].replace(':', '.')
@@ -226,12 +257,34 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
         curr_task["id"]               = processes[i].replace(':', '.')
         curr_task["type"]             = "compute"
         # command = {"program": scripts[i], "arguments": []}
-        # curr_task["command"]          = command
-        curr_process = processes[i].replace(':', '.')
+        # curr_task["command"]          = command 
+        
+        # The input and output file logic cuts of the ('some workflow information') after the process name. 
+        # Therefore if a task was seen all the inputs will be added to the already seen task eventhough its the second instance of the task.
+        # This is not a problem if the files per same task are the same. Then filtering out duplicates is fine.
+        # TODO: What if the files are different? Then it needs to be handled in the parse_inputs/outputs functions.
+        # UPDATE: It does not work. We need to match against the workDir in the trace file.
+        # curr_process = processes[i].replace(':', '.')
+        # curr_process = processes[i].replace(':', '.')
+        curr_process = processes[i]
         if curr_process in input_dict:
-            curr_task["inputFiles"] = [f["id"] for f in input_dict[curr_process]]
+                curr_task["inputFiles"] = [f["id"] for f in input_dict[curr_process]]
         if curr_process in output_dict:
             curr_task["outputFiles"] = [f["id"] for f in output_dict[curr_process]]
+
+        # curr_process = processes[i].replace(':', '.')
+        # if curr_process in input_dict:
+        #     curr_task["inputFiles"] = [
+        #         f["id"] 
+        #         for entry in input_dict[curr_process] 
+        #         for f in entry["files"]
+        #     ]
+        # if curr_process in output_dict:
+        #     curr_task["outputFiles"] = [
+        #         f["id"] 
+        #         for entry in output_dict[curr_process] 
+        #         for f in entry["files"]
+        #     ]
 
         # No longer track parents/children (see README)
         curr_task["parents"]          = rep_parents[processes[i]]
@@ -254,18 +307,66 @@ def buildAndWriteJSONSchema(input_dict, output_dict, processes, task_id, realtim
         }
         execution_tasks.append(exec_task)
 
+    # files_array = []
+    # all_files = {**input_dict, **output_dict}
+
+    # for processes, files in all_files.items():
+    #     for file_dict in files:
+    #         file_id = file_dict.get("id", file_dict.get("id"))
+    #         # if file_id not in seen:
+    #         files_array.append({
+    #         "id": file_id,
+    #         "sizeInBytes": file_dict["sizeInBytes"],
+    #     })
+
     files_array = []
-    all_files = {**input_dict, **output_dict}
+    seen_files = set()
 
-    for processes, files in all_files.items():
-        for file_dict in files:
-            file_id = file_dict.get("id", file_dict.get("id"))
-            # if file_id not in seen:
-            files_array.append({
-            "id": file_id,
-            "sizeInBytes": file_dict["sizeInBytes"],
-        })
+    # Collect all files from input_dict
+    for file_lists in input_dict.values():
+        for file_dict in file_lists:
+            file_id = file_dict["id"]
+            if file_id not in seen_files:
+                files_array.append({
+                    "id": file_id,
+                    "sizeInBytes": file_dict["sizeInBytes"],
+                })
+                seen_files.add(file_id)
 
+    # # Collect all files from output_dict
+    for file_lists in output_dict.values():
+        for file_dict in file_lists:
+            file_id = file_dict["id"]
+            if file_id not in seen_files:
+                files_array.append({
+                    "id": file_id,
+                    "sizeInBytes": file_dict["sizeInBytes"],
+                })
+                seen_files.add(file_id)
+
+    # # Collect all files from input_dict
+    # for file_lists in input_dict.values():
+    #     for entry in file_lists:  
+    #         for file_dict in entry["files"]:  
+    #             file_id = file_dict.get("id")  
+    #             if file_id and file_id not in seen_files:
+    #                 files_array.append({
+    #                     "id": file_id,
+    #                     "sizeInBytes": file_dict.get("sizeInBytes"), 
+    #                 })
+    #                 seen_files.add(file_id)
+
+    # # Collect all files from output_dict
+    # for file_lists in output_dict.values():
+    #     for entry in file_lists:  
+    #         for file_dict in entry["files"]:  
+    #             file_id = file_dict.get("id")  
+    #             if file_id and file_id not in seen_files:
+    #                 files_array.append({
+    #                     "id": file_id,
+    #                     "sizeInBytes": file_dict.get("sizeInBytes"), 
+    #                 })
+    #                 seen_files.add(file_id)
 
     # Create the specification
     specification = {}
@@ -379,12 +480,12 @@ if __name__ == "__main__":
 
     #2. Run Nextflow workflow
     print(f"Running /nf-core/{workflow_name}")
-    completed_run = subprocess.run([str(os.path.abspath(nextflow_path)), "-log", filepath_log, "run", "nf-core/" + workflow_name, "-profile", "test,docker", "-c", "trace_nextflow.config", "--outdir", workflow_output], capture_output=True, encoding="utf-8")
-    print(f"{completed_run.args} : {completed_run.stdout}")
+    # completed_run = subprocess.run([str(os.path.abspath(nextflow_path)), "-log", filepath_log, "run", "nf-core/" + workflow_name, "-profile", "test,docker", "-c", "trace_nextflow.config", "--outdir", workflow_output], capture_output=True, encoding="utf-8")
+    # print(f"{completed_run.args} : {completed_run.stdout}")
     
     # Writing to stdout
-    with open("stdout.txt", "w") as file:
-        file.write(completed_run.stdout)
+    # with open("stdout.txt", "w") as file:
+    #     file.write(completed_run.stdout)
 
     #3. Parse filepath_trace
     task_id     = []
@@ -397,27 +498,32 @@ if __name__ == "__main__":
     read_bytes  = {}
     write_bytes = {}
     work_dir    = {}
-    parse_trace(filepath_trace, task_id, processes, realtime, pct_cpu, rss, rchar, wchar, read_bytes, write_bytes, work_dir)
+    processMeta = {}
+    processes = parse_trace(filepath_trace, task_id, processes, realtime, pct_cpu, rss, rchar, wchar, read_bytes, write_bytes, work_dir, processMeta)
 
     #4. Parse filepath_dag
     parents  = {}
     children = {}
-    parse_dag(filepath_dag, parents, children)
+    parents, children = parse_dag(filepath_dag, parents, children)
+    pprint.pprint(parents)
+    pprint.pprint(children)
 
+    print("Updating input  and output files with task IDs...")
     print("Parsing input and output files...")
     input_files  = parse_inputs()
     output_files = parse_outputs()
 
-    # pprint.pprint(input_files.keys())
+    # pprint.pprint(input_files)
     # pprint.pprint(output_files)
+    # pprint.pprint(processes)
 
     
     #5. Get workflow metadata from stdout
     workflow_meta = {}
-    workflow_meta = parse_stdout(completed_run.stdout, workflow_meta)
+    # workflow_meta = parse_stdout(completed_run.stdout, workflow_meta)
 
     #6. Create WfFormat
-    buildAndWriteJSONSchema(input_files, output_files, processes, task_id, realtime, pct_cpu, rss, rchar, wchar, workflow_meta)
+    # buildAndWriteJSONSchema(input_files, output_files, processes, task_id, realtime, pct_cpu, rss, rchar, wchar, workflow_meta)
 
     
 

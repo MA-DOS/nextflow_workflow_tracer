@@ -1,0 +1,1 @@
+/storage/nf-core/exec/nextflow_workflow_tracer/work/7a/9bda8f136faed250ed82d6e8841d8d/genome.fa.autosomes.txt

@@ -1,0 +1,2 @@
+bwa/merged_replicate/macs2/broad_peak/OSMOTIC_STRESS_T0_PE.mRp.clN_peaks.broadPeak	0,0,178
+bwa/merged_replicate/macs2/broad_peak/OSMOTIC_STRESS_T100_SE.mRp.clN_peaks.broadPeak	0,0,178

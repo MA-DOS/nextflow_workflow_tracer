@@ -1,0 +1,1 @@
+/storage/nf-core/exec/nextflow_workflow_tracer/work/08/2b6cde66ed2f01269f57cf8b04a48d/test.strelka.variants.bcftools_stats.txt

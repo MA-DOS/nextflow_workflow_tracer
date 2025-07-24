@@ -1,0 +1,16 @@
+#id: 'mrep_deseq2_pca_1'
+#section_name: 'MERGED REP: consensus_peaks DESeq2 PCA plot'
+#description: "PCA plot of the samples in the experiment.
+#              These values are calculated using <a href='https://bioconductor.org/packages/release/bioc/html/DESeq2.html'>DESeq2</a>
+#              in the <a href='https://github.com/nf-core/atacseq/blob/master/bin/deseq2_qc.r'><code>deseq2_qc.r</code></a> script."
+#plot_type: 'scatter'
+#anchor: 'mrep_deseq2_pca_1'
+#pconfig:
+#    title: 'DESeq2: Principal component plot'
+#    xlab: PC1
+#    ylab: PC2
+"sample"	"PC1: 85% variance"	"PC2: 11% variance"
+"OSMOTIC_STRESS_T100_SE_REP1"	-3.16051249242171	-0.753365339585143
+"OSMOTIC_STRESS_T0_PE_REP1"	-2.7736515649698	0.869450644812104
+"OSMOTIC_STRESS_T100_SE_REP2"	2.8224516511169	-1.35433739975566
+"OSMOTIC_STRESS_T0_PE_REP2"	3.1117124062746	1.2382520945287

@@ -1,0 +1,3 @@
+Sample	Unique Pairs	Unique Unpaired
+OSMOTIC_STRESS_T0_PE	178646.0	0.0
+OSMOTIC_STRESS_T100_SE	0.0	84399.0

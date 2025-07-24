@@ -1,0 +1,64 @@
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XV:18446744073709549200-3585 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XV:18446744073709549953-4338 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XV:18446744073709550693-5078 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XVI:18446744073709549258-3643 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XVI:18446744073709550041-4426 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XIII:18446744073709549442-3827 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XIII:18446744073709550225-4610 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XIV:18446744073709549349-3734 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XIV:18446744073709550132-4517 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XI:18446744073709549066-3451 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XI:18446744073709550796-5181 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XI:18446744073709551004-5389 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region XII:18446744073709549458-3843 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region X:18446744073709549444-3829 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region VIII:18446744073709549426-3811 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region VI:18446744073709548668-3053 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region VI:18446744073709549451-3836[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region VII:18446744073709551405-5790 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+ in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region VI:18446744073709551230-5615 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region V:18446744073709549245-3630 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region IX:18446744073709549461-3846 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region III:18446744073709550007-4392 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region IV:18446744073709550417-4802 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region III:18446744073709550741-5126 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region III:18446744073709551439-5824 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region II:18446744073709551273-5658 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region II:18446744073709549261-3646 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region II:18446744073709551514-5899 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region I:18446744073709548950-3335 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region I:18446744073709549153-3538 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region I:18446744073709550784-5169 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.
+[E::hts_parse_region] Coordinates must be > 0
+Could not find TSS region I:18446744073709551095-5480 in your BAM file. Check that your TSS file's chromosome naming scheme matches your reference.

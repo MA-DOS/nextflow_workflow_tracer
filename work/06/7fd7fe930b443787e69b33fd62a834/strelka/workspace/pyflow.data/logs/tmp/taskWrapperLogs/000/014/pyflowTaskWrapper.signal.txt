@@ -1,0 +1,4 @@
+[2025-07-23T15:43:29.160958Z] [d84a0d0f1d87] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_concat_vcf] [wrapperSignal] wrapperStart
+[2025-07-23T15:43:29.168482Z] [d84a0d0f1d87] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_concat_vcf] [wrapperSignal] taskStart
+[2025-07-23T15:43:29.171562Z] [d84a0d0f1d87] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_concat_vcf] [wrapperSignal] taskExitCode 0
+[2025-07-23T15:43:29.171834Z] [d84a0d0f1d87] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_concat_vcf] [wrapperSignal] taskElapsedSec 0

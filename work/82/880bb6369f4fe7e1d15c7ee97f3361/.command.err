@@ -1,0 +1,37 @@
+INFO  @ Thu, 24 Jul 2025 14:31:00: 
+# Command line: callpeak --keep-dup all --nomodel --broad --broad-cutoff 0.1 --gsize 11624332 --format BAM --name OSMOTIC_STRESS_T150_SE_REP1.mLb.clN --treatment OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam
+# ARGUMENTS LIST:
+# name = OSMOTIC_STRESS_T150_SE_REP1.mLb.clN
+# format = BAM
+# ChIP-seq file = ['OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam']
+# control file = None
+# effective genome size = 1.16e+07
+# band width = 300
+# model fold = [5, 50]
+# qvalue cutoff for narrow/strong regions = 5.00e-02
+# qvalue cutoff for broad/weak regions = 1.00e-01
+# The maximum gap between significant sites is assigned as the read length/tag size.
+# The minimum length of peaks is assigned as the predicted fragment length "d".
+# Larger dataset will be scaled towards smaller dataset.
+# Range for calculating regional lambda is: 10000 bps
+# Broad region calling is on
+# Paired-End mode is off
+ 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #1 read tag files... 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #1 read treatment tags... 
+INFO  @ Thu, 24 Jul 2025 14:31:00: 113952 reads have been read. 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #1 tag size is determined as 60 bps 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #1 tag size = 60.0 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #1  total tags in treatment: 113952 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #1 finished! 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #2 Build Peak Model... 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #2 Skipped... 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #2 Use 200 as fragment length 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #3 Call peaks... 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #3 Call broad peaks with given level1 -log10qvalue cutoff and level2: 1.301030, 1.000000... 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #3 Pre-compute pvalue-qvalue table... 
+INFO  @ Thu, 24 Jul 2025 14:31:00: #3 Call peaks for each chromosome... 
+INFO  @ Thu, 24 Jul 2025 14:31:01: #4 Write output xls file... OSMOTIC_STRESS_T150_SE_REP1.mLb.clN_peaks.xls 
+INFO  @ Thu, 24 Jul 2025 14:31:01: #4 Write broad peak in broadPeak format file... OSMOTIC_STRESS_T150_SE_REP1.mLb.clN_peaks.broadPeak 
+INFO  @ Thu, 24 Jul 2025 14:31:01: #4 Write broad peak in bed12/gappedPeak format file... OSMOTIC_STRESS_T150_SE_REP1.mLb.clN_peaks.gappedPeak 
+INFO  @ Thu, 24 Jul 2025 14:31:01: Done! 

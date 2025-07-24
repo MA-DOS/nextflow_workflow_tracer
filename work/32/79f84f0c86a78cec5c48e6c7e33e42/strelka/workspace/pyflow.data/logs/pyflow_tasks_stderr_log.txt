@@ -1,0 +1,34 @@
+[2025-07-23T15:53:45.527877Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_makeTmpDir] Task: 'getChromDepth_makeTmpDir' exit code: '0'
+[2025-07-23T15:53:45.528131Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_makeTmpDir] Task: 'getChromDepth_makeTmpDir' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:45.563157Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_makeTmpDir] Task: 'getChromDepth_sample000_makeTmpDir' exit code: '0'
+[2025-07-23T15:53:45.563376Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_makeTmpDir] Task: 'getChromDepth_sample000_makeTmpDir' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:45.704113Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_estimateChromDepth_000_chr22] Task: 'getChromDepth_sample000_estimateChromDepth_000_chr22' exit code: '0'
+[2025-07-23T15:53:45.704420Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_estimateChromDepth_000_chr22] Task: 'getChromDepth_sample000_estimateChromDepth_000_chr22' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:45.757579Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_catChromDepth] Task: 'getChromDepth_sample000_catChromDepth' exit code: '0'
+[2025-07-23T15:53:45.757944Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_catChromDepth] Task: 'getChromDepth_sample000_catChromDepth' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:45.838133Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] Task: 'getChromDepth_mergeChromDepth' exit code: '0'
+[2025-07-23T15:53:45.838378Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_mergeChromDepth] Task: 'getChromDepth_mergeChromDepth' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:45.929404Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] Task: 'CallGenome+makeTmpDir' exit code: '0'
+[2025-07-23T15:53:45.929659Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] Task: 'CallGenome+makeTmpDir' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:45.934854Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_removeTmpDir] Task: 'getChromDepth_removeTmpDir' exit code: '0'
+[2025-07-23T15:53:45.935067Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:getChromDepth_removeTmpDir] Task: 'getChromDepth_removeTmpDir' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.630191Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+callGenomeSegment_chromId_000_chr22_0000] Task: 'CallGenome+callGenomeSegment_chromId_000_chr22_0000' exit code: '0'
+[2025-07-23T15:53:46.630519Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+callGenomeSegment_chromId_000_chr22_0000] Task: 'CallGenome+callGenomeSegment_chromId_000_chr22_0000' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.709773Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants] Task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants' exit code: '0'
+[2025-07-23T15:53:46.710018Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants] Task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_variants' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.713362Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1] Task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1' exit code: '0'
+[2025-07-23T15:53:46.713556Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1] Task: 'CallGenome+compressGenomeSegment_chromId_000_chr22_0000_gVCF_S1' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.755500Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] Task: 'CallGenome+mergeRunStats' exit code: '0'
+[2025-07-23T15:53:46.755705Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] Task: 'CallGenome+mergeRunStats' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.759456Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+variants_concat_vcf] Task: 'CallGenome+variants_concat_vcf' exit code: '0'
+[2025-07-23T15:53:46.759680Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+variants_concat_vcf] Task: 'CallGenome+variants_concat_vcf' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.763608Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_concat_vcf] Task: 'CallGenome+gVCF_S1_concat_vcf' exit code: '0'
+[2025-07-23T15:53:46.763789Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_concat_vcf] Task: 'CallGenome+gVCF_S1_concat_vcf' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.818632Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+variants_index_vcf] Task: 'CallGenome+variants_index_vcf' exit code: '0'
+[2025-07-23T15:53:46.818822Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+variants_index_vcf] Task: 'CallGenome+variants_index_vcf' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.819884Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_index_vcf] Task: 'CallGenome+gVCF_S1_index_vcf' exit code: '0'
+[2025-07-23T15:53:46.820070Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+gVCF_S1_index_vcf] Task: 'CallGenome+gVCF_S1_index_vcf' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.888772Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+addLegacyOutputLink] Task: 'CallGenome+addLegacyOutputLink' exit code: '0'
+[2025-07-23T15:53:46.889037Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+addLegacyOutputLink] Task: 'CallGenome+addLegacyOutputLink' complete. elapsedSec: 0 elapsedCoreSec: 0
+[2025-07-23T15:53:46.892562Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+removeTmpDir] Task: 'CallGenome+removeTmpDir' exit code: '0'
+[2025-07-23T15:53:46.892809Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+removeTmpDir] Task: 'CallGenome+removeTmpDir' complete. elapsedSec: 0 elapsedCoreSec: 0

@@ -1,0 +1,50 @@
+
+  /// MultiQC 🔍 | v1.13
+
+|           multiqc | MultiQC Version v1.30 now available!
+|           multiqc | Only using modules: custom_content, fastqc, cutadapt, samtools, picard, preseq, featureCounts, deeptools
+|           multiqc | Excluding modules 'general_stats'
+|           multiqc | Search path : /storage/nf-core/exec/nextflow_workflow_tracer/work/33/1c63e55587019c3c0f181ffc56d381
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 183/183  
+|    custom_content | nf-core-atacseq-summary: Found 1 sample (html)
+|    custom_content | software_versions: Found 1 sample (html)
+|    custom_content | mlib_deseq2_pca_1: Found 6 samples (scatter)
+|    custom_content | mlib_deseq2_clustering_1: Found 6 samples (heatmap)
+|    custom_content | mrep_peak_annotation: Found 2 samples (bargraph)
+|    custom_content | mrep_frip_score: Found 2 samples (bargraph)
+|    custom_content | mrep_peak_count: Found 2 samples (bargraph)
+|    custom_content | mlib_peak_annotation: Found 6 samples (bargraph)
+|    custom_content | mlib_frip_score: Found 6 samples (bargraph)
+|    custom_content | mlib_peak_count: Found 6 samples (bargraph)
+|    custom_content | mrep_deseq2_clustering_1: Found 4 samples (heatmap)
+|    custom_content | mrep_deseq2_pca_1: Found 4 samples (scatter)
+|            fastqc | Found 12 reports
+|          cutadapt | Found 12 reports
+|            fastqc | Found 12 reports
+|          samtools | Found 8 stats reports
+|          samtools | Found 8 flagstat reports
+|          samtools | Found 8 idxstats reports
+|          samtools | Found 6 stats reports
+|          samtools | Found 6 flagstat reports
+|          samtools | Found 6 idxstats reports
+|            picard | Found 6 MarkDuplicates reports
+|          samtools | Found 6 stats reports
+|          samtools | Found 6 flagstat reports
+|          samtools | Found 6 idxstats reports
+|            picard | Found 6 AlignmentSummaryMetrics reports
+|            picard | Found 9 BaseDistributionByCycleMetrics reports
+|            picard | Found 3 InsertSizeMetrics reports
+|            picard | Found 6 QualityByCycleMetrics reports
+|            picard | Found 6 QualityScoreDistributionMetrics reports
+|         deeptools | Found 12 total deepTools samples
+|    feature_counts | Found 6 reports
+|          samtools | Found 2 stats reports
+|          samtools | Found 2 flagstat reports
+|          samtools | Found 2 idxstats reports
+|            picard | Found 2 MarkDuplicates reports
+|    feature_counts | Found 4 reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : multiqc_report.html
+|           multiqc | Data        : multiqc_data
+|           multiqc | Plots       : multiqc_plots
+|           multiqc | MultiQC complete

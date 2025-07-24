@@ -1,0 +1,1 @@
+/storage/nf-core/exec/nextflow_workflow_tracer/work/14/2beb3813836e987b2f3e46edbc68eb/OSMOTIC_STRESS_T0_PE_REP2_T1_1.fastq.gz_trimming_report.txt

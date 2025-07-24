@@ -1,0 +1,4 @@
+[2025-07-20T13:20:48.219718Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+removeTmpDir] [wrapperSignal] wrapperStart
+[2025-07-20T13:20:48.227832Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+removeTmpDir] [wrapperSignal] taskStart
+[2025-07-20T13:20:48.230255Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+removeTmpDir] [wrapperSignal] taskExitCode 0
+[2025-07-20T13:20:48.230643Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+removeTmpDir] [wrapperSignal] taskElapsedSec 0

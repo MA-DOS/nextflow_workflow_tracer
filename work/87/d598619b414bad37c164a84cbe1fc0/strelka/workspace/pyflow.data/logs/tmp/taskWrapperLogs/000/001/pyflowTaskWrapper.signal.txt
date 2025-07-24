@@ -1,0 +1,4 @@
+[2025-07-20T13:20:46.792798Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_makeTmpDir] [wrapperSignal] wrapperStart
+[2025-07-20T13:20:46.799738Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_makeTmpDir] [wrapperSignal] taskStart
+[2025-07-20T13:20:46.802243Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_makeTmpDir] [wrapperSignal] taskExitCode 0
+[2025-07-20T13:20:46.802503Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:getChromDepth_sample000_makeTmpDir] [wrapperSignal] taskElapsedSec 0

@@ -1,4 +1,0 @@
-$task_id
-START_PROCESS_SCRIPT
-$script
-END_PROCESS_SCRIPT

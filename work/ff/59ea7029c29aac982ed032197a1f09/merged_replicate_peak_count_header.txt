@@ -1,0 +1,1 @@
+/home/niklas/.nextflow/assets/nf-core/atacseq/assets/multiqc/merged_replicate_peak_count_header.txt

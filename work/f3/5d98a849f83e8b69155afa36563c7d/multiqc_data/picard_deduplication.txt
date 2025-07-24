@@ -1,0 +1,2 @@
+Sample	Unique Pairs	Unique Unpaired	Duplicate Pairs Nonoptical	Duplicate Unpaired	Unmapped
+test-test_L1	2674.0	4665.0	394.0	12429.0	1046782.0

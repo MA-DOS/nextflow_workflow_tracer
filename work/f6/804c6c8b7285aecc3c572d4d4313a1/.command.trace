@@ -1,0 +1,17 @@
+nextflow.trace/v2
+realtime=0
+%cpu=1980
+cpu_model=AMD EPYC 8224P 24-Core Processor
+rchar=6179503
+wchar=4328884
+syscr=231
+syscw=22
+read_bytes=0
+write_bytes=4333568
+%mem=0
+vmem=1813320
+rss=33492
+peak_vmem=1813324
+peak_rss=33492
+vol_ctxt=30
+inv_ctxt=0

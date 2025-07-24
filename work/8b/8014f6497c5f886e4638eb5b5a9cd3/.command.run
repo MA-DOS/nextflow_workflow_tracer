@@ -1,0 +1,521 @@
+#!/bin/bash
+#SBATCH -J nf-NFCORE_ATACSEQ_ATACSEQ_MULTIQC_(1)
+#SBATCH -o /storage/nf-core/exec/nextflow_workflow_tracer/work/8b/8014f6497c5f886e4638eb5b5a9cd3/.command.log
+#SBATCH --no-requeue
+#SBATCH --signal B:USR2@30
+#SBATCH -c 2
+#SBATCH -t 06:00:00
+#SBATCH --mem 6144M
+NXF_CHDIR=/storage/nf-core/exec/nextflow_workflow_tracer/work/8b/8014f6497c5f886e4638eb5b5a9cd3
+### ---
+### name: 'NFCORE_ATACSEQ:ATACSEQ:MULTIQC (1)'
+### container: 'quay.io/biocontainers/multiqc:1.13--pyhdfd78af_0'
+### outputs:
+### - '*multiqc_report.html'
+### - '*_data'
+### - '*_plots'
+### - 'versions.yml'
+### ...
+set -e
+set -u
+NXF_DEBUG=${NXF_DEBUG:=0}; [[ $NXF_DEBUG > 1 ]] && set -x
+NXF_ENTRY=${1:-nxf_main}
+
+nxf_tree() {
+    local pid=$1
+
+    declare -a ALL_CHILDREN
+    while read P PP;do
+        ALL_CHILDREN[$PP]+=" $P"
+    done < <(ps -e -o pid= -o ppid=)
+
+    pstat() {
+        local x_pid=$1
+        local STATUS=$(2> /dev/null < /proc/$1/status grep -E 'Vm|ctxt')
+
+        if [ $? = 0 ]; then
+        local  x_vsz=$(echo "$STATUS" | grep VmSize | awk '{print $2}' || echo -n '0')
+        local  x_rss=$(echo "$STATUS" | grep VmRSS | awk '{print $2}' || echo -n '0')
+        local x_peak=$(echo "$STATUS" | grep -E 'VmPeak|VmHWM' | sed 's/^.*:\s*//' | sed 's/[\sa-zA-Z]*$//' | tr '\n' ' ' || echo -n '0 0')
+        local x_pmem=$(awk -v rss=$x_rss -v mem_tot=$mem_tot 'BEGIN {printf "%.0f", rss/mem_tot*100*10}' || echo -n '0')
+        local vol_ctxt=$(echo "$STATUS" | grep '\bvoluntary_ctxt_switches' | awk '{print $2}' || echo -n '0')
+        local inv_ctxt=$(echo "$STATUS" | grep '\bnonvoluntary_ctxt_switches' | awk '{print $2}' || echo -n '0')
+        cpu_stat[x_pid]="$x_pid $x_pmem $x_vsz $x_rss $x_peak $vol_ctxt $inv_ctxt"
+        fi
+    }
+
+    pwalk() {
+        pstat $1
+        for i in ${ALL_CHILDREN[$1]:=}; do pwalk $i; done
+    }
+
+    pwalk $1
+}
+
+nxf_stat() {
+    cpu_stat=()
+    nxf_tree $1
+
+    declare -a sum=(0 0 0 0 0 0 0 0)
+    local pid
+    local i
+    for pid in "${!cpu_stat[@]}"; do
+        local row=(${cpu_stat[pid]})
+        [ $NXF_DEBUG = 1 ] && echo "++ stat mem=${row[*]}"
+        for i in "${!row[@]}"; do
+        if [ $i != 0 ]; then
+            sum[i]=$((sum[i]+row[i]))
+        fi
+        done
+    done
+
+    [ $NXF_DEBUG = 1 ] && echo -e "++ stat SUM=${sum[*]}"
+
+    for i in {1..7}; do
+        if [ ${sum[i]} -lt ${cpu_peak[i]} ]; then
+            sum[i]=${cpu_peak[i]}
+        else
+            cpu_peak[i]=${sum[i]}
+        fi
+    done
+
+    [ $NXF_DEBUG = 1 ] && echo -e "++ stat PEAK=${sum[*]}\n"
+    nxf_stat_ret=(${sum[*]})
+}
+
+nxf_mem_watch() {
+    set -o pipefail
+    local pid=$1
+    local trace_file=.command.trace
+    local count=0;
+    declare -a cpu_stat=(0 0 0 0 0 0 0 0)
+    declare -a cpu_peak=(0 0 0 0 0 0 0 0)
+    local mem_tot=$(< /proc/meminfo grep MemTotal | awk '{print $2}')
+    local timeout
+    local DONE
+    local STOP=''
+
+    [ $NXF_DEBUG = 1 ] && nxf_sleep 0.2 && ps fx
+
+    while true; do
+        nxf_stat $pid
+        if [ $count -lt 10 ]; then timeout=1;
+        elif [ $count -lt 120 ]; then timeout=5;
+        else timeout=30;
+        fi
+        read -t $timeout -r DONE || true
+        [[ $DONE ]] && break
+        if [ ! -e /proc/$pid ]; then
+            [ ! $STOP ] && STOP=$(nxf_date)
+            [ $(($(nxf_date)-STOP)) -gt 10000 ] && break
+        fi
+        count=$((count+1))
+    done
+
+    echo "%mem=${nxf_stat_ret[1]}"      >> $trace_file
+    echo "vmem=${nxf_stat_ret[2]}"      >> $trace_file
+    echo "rss=${nxf_stat_ret[3]}"       >> $trace_file
+    echo "peak_vmem=${nxf_stat_ret[4]}" >> $trace_file
+    echo "peak_rss=${nxf_stat_ret[5]}"  >> $trace_file
+    echo "vol_ctxt=${nxf_stat_ret[6]}"  >> $trace_file
+    echo "inv_ctxt=${nxf_stat_ret[7]}"  >> $trace_file
+}
+
+nxf_write_trace() {
+    echo "nextflow.trace/v2"           > $trace_file
+    echo "realtime=$wall_time"         >> $trace_file
+    echo "%cpu=$ucpu"                  >> $trace_file
+    echo "cpu_model=$cpu_model"        >> $trace_file
+    echo "rchar=${io_stat1[0]}"        >> $trace_file
+    echo "wchar=${io_stat1[1]}"        >> $trace_file
+    echo "syscr=${io_stat1[2]}"        >> $trace_file
+    echo "syscw=${io_stat1[3]}"        >> $trace_file
+    echo "read_bytes=${io_stat1[4]}"   >> $trace_file
+    echo "write_bytes=${io_stat1[5]}"  >> $trace_file
+}
+
+nxf_trace_mac() {
+    local start_millis=$(nxf_date)
+
+    /bin/bash -euo pipefail /storage/nf-core/exec/nextflow_workflow_tracer/work/8b/8014f6497c5f886e4638eb5b5a9cd3/.command.sh
+
+    local end_millis=$(nxf_date)
+    local wall_time=$((end_millis-start_millis))
+    local ucpu=''
+    local cpu_model=''
+    local io_stat1=('' '' '' '' '' '')
+    nxf_write_trace
+}
+
+nxf_fd() {
+    local FD=11
+    while [ -e /proc/$$/fd/$FD ]; do FD=$((FD+1)); done
+    echo $FD
+}
+
+nxf_trace_linux() {
+    local pid=$$
+    command -v ps &>/dev/null || { >&2 echo "Command 'ps' required by nextflow to collect task metrics cannot be found"; exit 1; }
+    local num_cpus=$(< /proc/cpuinfo grep '^processor' -c)
+    local cpu_model=$(< /proc/cpuinfo grep '^model name' | head -n 1 | awk 'BEGIN{FS="\t: "} { print $2 }')
+    local tot_time0=$(grep '^cpu ' /proc/stat | awk '{sum=$2+$3+$4+$5+$6+$7+$8+$9; printf "%.0f",sum}')
+    local cpu_time0=$(2> /dev/null < /proc/$pid/stat awk '{printf "%.0f", ($16+$17)*10 }' || echo -n 'X')
+    local io_stat0=($(2> /dev/null < /proc/$pid/io sed 's/^.*:\s*//' | head -n 6 | tr '\n' ' ' || echo -n '0 0 0 0 0 0'))
+    local start_millis=$(nxf_date)
+    trap 'kill $mem_proc' ERR
+    
+    /bin/bash -euo pipefail /storage/nf-core/exec/nextflow_workflow_tracer/work/8b/8014f6497c5f886e4638eb5b5a9cd3/.command.sh &
+    local task=$!
+
+    mem_fd=$(nxf_fd)
+    eval "exec $mem_fd> >(nxf_mem_watch $task)"
+    local mem_proc=$!
+
+    wait $task
+
+    local end_millis=$(nxf_date)
+    local tot_time1=$(grep '^cpu ' /proc/stat | awk '{sum=$2+$3+$4+$5+$6+$7+$8+$9; printf "%.0f",sum}')
+    local cpu_time1=$(2> /dev/null < /proc/$pid/stat awk '{printf "%.0f", ($16+$17)*10 }' || echo -n 'X')
+    local ucpu=$(awk -v p1=$cpu_time1 -v p0=$cpu_time0 -v t1=$tot_time1 -v t0=$tot_time0 -v n=$num_cpus 'BEGIN { pct=(p1-p0)/(t1-t0)*100*n; printf("%.0f", pct>0 ? pct : 0) }' )
+
+    local io_stat1=($(2> /dev/null < /proc/$pid/io sed 's/^.*:\s*//' | head -n 6 | tr '\n' ' ' || echo -n '0 0 0 0 0 0'))
+    local i
+    for i in {0..5}; do
+        io_stat1[i]=$((io_stat1[i]-io_stat0[i]))
+    done
+
+    local wall_time=$((end_millis-start_millis))
+    [ $NXF_DEBUG = 1 ] && echo "+++ STATS %CPU=$ucpu TIME=$wall_time I/O=${io_stat1[*]}"
+
+    echo "nextflow.trace/v2"           > $trace_file
+    echo "realtime=$wall_time"         >> $trace_file
+    echo "%cpu=$ucpu"                  >> $trace_file
+    echo "cpu_model=$cpu_model"        >> $trace_file
+    echo "rchar=${io_stat1[0]}"        >> $trace_file
+    echo "wchar=${io_stat1[1]}"        >> $trace_file
+    echo "syscr=${io_stat1[2]}"        >> $trace_file
+    echo "syscw=${io_stat1[3]}"        >> $trace_file
+    echo "read_bytes=${io_stat1[4]}"   >> $trace_file
+    echo "write_bytes=${io_stat1[5]}"  >> $trace_file
+
+    [ -e /proc/$mem_proc ] && eval "echo 'DONE' >&$mem_fd" || true
+    wait $mem_proc 2>/dev/null || true
+    while [ -e /proc/$mem_proc ]; do nxf_sleep 0.1; done
+}
+
+nxf_trace() {
+    local trace_file=.command.trace
+    touch $trace_file
+    if [[ $(uname) = Darwin ]]; then
+        nxf_trace_mac
+    else
+        nxf_trace_linux
+    fi
+}
+nxf_container_env() {
+cat << EOF
+export PYTHONNOUSERSITE="1"
+export R_PROFILE_USER="/.Rprofile"
+export R_ENVIRON_USER="/.Renviron"
+export JULIA_DEPOT_PATH="/usr/local/share/julia"
+export PATH="\$PATH:/home/niklas/.nextflow/assets/nf-core/atacseq/bin"
+EOF
+}
+
+nxf_sleep() {
+  sleep $1 2>/dev/null || sleep 1;
+}
+
+nxf_date() {
+    local ts=$(date +%s%3N);
+    if [[ ${#ts} == 10 ]]; then echo ${ts}000
+    elif [[ $ts == *%3N ]]; then echo ${ts/\%3N/000}
+    elif [[ $ts == *3N ]]; then echo ${ts/3N/000}
+    elif [[ ${#ts} == 13 ]]; then echo $ts
+    else echo "Unexpected timestamp value: $ts"; exit 1
+    fi
+}
+
+nxf_env() {
+    echo '============= task environment ============='
+    env | sort | sed "s/\(.*\)AWS\(.*\)=\(.\{6\}\).*/\1AWS\2=\3xxxxxxxxxxxxx/"
+    echo '============= task output =================='
+}
+
+nxf_kill() {
+    declare -a children
+    while read P PP;do
+        children[$PP]+=" $P"
+    done < <(ps -e -o pid= -o ppid=)
+
+    kill_all() {
+        [[ $1 != $$ ]] && kill $1 2>/dev/null || true
+        for i in ${children[$1]:=}; do kill_all $i; done
+    }
+
+    kill_all $1
+}
+
+nxf_mktemp() {
+    local base=${1:-/tmp}
+    mkdir -p "$base"
+    if [[ $(uname) = Darwin ]]; then mktemp -d $base/nxf.XXXXXXXXXX
+    else TMPDIR="$base" mktemp -d -t nxf.XXXXXXXXXX
+    fi
+}
+
+nxf_fs_copy() {
+  local source=$1
+  local target=$2
+  local basedir=$(dirname $1)
+  mkdir -p $target/$basedir
+  cp -fRL $source $target/$basedir
+}
+
+nxf_fs_move() {
+  local source=$1
+  local target=$2
+  local basedir=$(dirname $1)
+  mkdir -p $target/$basedir
+  mv -f $source $target/$basedir
+}
+
+nxf_fs_rsync() {
+  rsync -rRl $1 $2
+}
+
+nxf_fs_rclone() {
+  rclone copyto $1 $2/$1
+}
+
+nxf_fs_fcp() {
+  fcp $1 $2/$1
+}
+
+on_exit() {
+    exit_status=${nxf_main_ret:=$?}
+    printf -- $exit_status > /storage/nf-core/exec/nextflow_workflow_tracer/work/8b/8014f6497c5f886e4638eb5b5a9cd3/.exitcode
+    set +u
+    docker rm $NXF_BOXID &>/dev/null || true
+    exit $exit_status
+}
+
+on_term() {
+    set +e
+    docker stop $NXF_BOXID
+}
+
+nxf_launch() {
+    docker run -i --cpu-shares 2048 --memory 6144m -e "NXF_TASK_WORKDIR" -e "NXF_DEBUG=${NXF_DEBUG:=0}" -v /storage/nf-core/exec/nextflow_workflow_tracer/work:/storage/nf-core/exec/nextflow_workflow_tracer/work -v /home/niklas/.nextflow/assets/nf-core/atacseq:/home/niklas/.nextflow/assets/nf-core/atacseq -w "$NXF_TASK_WORKDIR" --name $NXF_BOXID quay.io/biocontainers/multiqc:1.13--pyhdfd78af_0 /bin/bash -c "eval $(nxf_container_env); /bin/bash /storage/nf-core/exec/nextflow_workflow_tracer/work/8b/8014f6497c5f886e4638eb5b5a9cd3/.command.run nxf_trace"
+}
+
+nxf_stage() {
+    true
+    # stage input files
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/f7/c8d5ce60047a921463bc4e63218a51/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN_peaks.FRiP_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN_peaks.FRiP_mqc.tsv
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/83/b6d7f1ea0b7ec935ff13980541dfcc/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.sorted.bam.flagstat alignment/merged_library/filtered/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.sorted.bam.flagstat
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ac/c404e4d19837687a7817fe8d25a882/OSMOTIC_STRESS_T0_PE_REP2_T1.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T0_PE_REP2_T1.Lb.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/13/9a4823d666388de52045a6613ed998/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/27/90ed02b3670ca1f0bbd5ffafeb0806/OSMOTIC_STRESS_T0_PE_REP1_T1_2.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T0_PE_REP1_T1_2.fastq.gz_trimming_report.txt
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d8/ba39e1ddc6e98ccb72e2bf1293e6a7/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.bam.idxstats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e4/29392331b3a3174c3e5eb3ece4b2c5/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.bam.stats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.bam.stats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/66/4cee2808ecf3a416e0a19adb17473d/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.bam.idxstats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.bam.idxstats
+    mkdir -p alignment/merged_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/46/c91f5192c297c08bc93ab5687dfc64/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.bam.flagstat alignment/merged_replicate/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/10/22c83c365af38e6d46e17ea2bf8088/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.sorted.bam.stats alignment/merged_library/filtered/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.sorted.bam.stats
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/db/7536e44b81a2506366bf07bc882a71/OSMOTIC_STRESS_T150_SE_REP1_T1_fastqc.zip fastqc/OSMOTIC_STRESS_T150_SE_REP1_T1_fastqc.zip
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/00/de130899094e02513ba780158fbd83/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/60/8df5db275ae09e6c68e1d7dca05f21/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.plotFingerprint.raw.txt deeptools/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.plotFingerprint.raw.txt
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/16/505ed0834f4590cd9955c907083a4c/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.bam.stats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.bam.stats
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/1d/be6110c18a92f283d4a536e5931823/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.plotFingerprint.raw.txt deeptools/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.plotFingerprint.raw.txt
+    mkdir -p alignment/merged_library/unfiltered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/28/ca8d5f3c7a039ed30f7cde1578c1b5/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.MarkDuplicates.metrics.txt alignment/merged_library/unfiltered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.MarkDuplicates.metrics.txt
+    mkdir -p macs2/merged_replicate/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/32/bf9c63e42383d40f2623a26258b409/OSMOTIC_STRESS_T100_SE.mRp.clN_peaks.count_mqc.tsv macs2/merged_replicate/peaks/OSMOTIC_STRESS_T100_SE.mRp.clN_peaks.count_mqc.tsv
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2a/9692f7f65c7e2109c752310417674f/OSMOTIC_STRESS_T100_SE_REP2_T1_trimmed_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T100_SE_REP2_T1_trimmed_fastqc.zip
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/27/90ed02b3670ca1f0bbd5ffafeb0806/OSMOTIC_STRESS_T0_PE_REP1_T1_1.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T0_PE_REP1_T1_1.fastq.gz_trimming_report.txt
+    mkdir -p alignment/merged_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6c/6f8caa5d6308d84a1da8600a93a9b7/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.bam.stats alignment/merged_replicate/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/36/fcad0cfe1ea04ea82e9280754daa21/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.sorted.bam.idxstats alignment/merged_library/filtered/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/9b/4dce1c69fc128d4e721198703ec9ec/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.sorted.bam.idxstats alignment/merged_library/filtered/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d6/bec11feb5d4f17d08a52471c326c47/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.sorted.bam.idxstats alignment/merged_library/filtered/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.sorted.bam.idxstats
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2f/0c2b24a0c689595e7ef17be2650afb/OSMOTIC_STRESS_T100_SE_REP2_T1_fastqc.zip fastqc/OSMOTIC_STRESS_T100_SE_REP2_T1_fastqc.zip
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/76/779b98ff7455ebde2a66dba7e33bf6/OSMOTIC_STRESS_T15_PE_REP1_T1_1_fastqc.zip fastqc/OSMOTIC_STRESS_T15_PE_REP1_T1_1_fastqc.zip
+    mkdir -p deseq2_library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/50/fb0b5ad4ebc8554480a37b8506c6a9/consensus_peaks.mLb.clN.sample.dists_mqc.tsv deseq2_library/consensus_peaks.mLb.clN.sample.dists_mqc.tsv
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e3/22d46689494e59a6fc46155aee1870/OSMOTIC_STRESS_T0_PE_REP2_T1.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T0_PE_REP2_T1.Lb.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/60/aadbe5da8f3e1bf8a2833e204d6107/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.sorted.bam.idxstats alignment/merged_library/filtered/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.sorted.bam.idxstats
+    mkdir -p alignment/merged_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/36/ee253333ebe78ddd3275012cb01d64/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.bam.idxstats alignment/merged_replicate/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.bam.idxstats
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/a6/76a7fe63a34cee41dd985b59985b6b/OSMOTIC_STRESS_T0_PE_REP2_T1_2_val_2_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T0_PE_REP2_T1_2_val_2_fastqc.zip
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/15/e18c660d599abdb4574c4de1d2401f/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.bam.flagstat alignment/merged_library/unfiltered/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.bam.flagstat
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ef/2cf70cf666237d04bd6274812c400f/OSMOTIC_STRESS_T0_PE_REP2_T1.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T0_PE_REP2_T1.Lb.sorted.bam.idxstats
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2a/8c974a4669efa844e78ab2fa1923d7/OSMOTIC_STRESS_T150_SE_REP1_T1.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T150_SE_REP1_T1.fastq.gz_trimming_report.txt
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/7e/3b0daeb825d61775e558ae4a6da0a6/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ca/290a33797201d374b004ddda77d050/OSMOTIC_STRESS_T0_PE_REP1_T1_1_fastqc.zip fastqc/OSMOTIC_STRESS_T0_PE_REP1_T1_1_fastqc.zip
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e4/11673b1cc2f9e3d37eace4f6920b43/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.reference_point.plotProfile.tab deeptools/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.reference_point.plotProfile.tab
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/58/45c8755ea316c093d82edef8b56fd9/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN_peaks.FRiP_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN_peaks.FRiP_mqc.tsv
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/5a/76f33a36b1e04c17d8ad99c1a809d9/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.reference_point.plotProfile.tab deeptools/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.reference_point.plotProfile.tab
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/27/90ed02b3670ca1f0bbd5ffafeb0806/OSMOTIC_STRESS_T0_PE_REP1_T1_2_val_2_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T0_PE_REP1_T1_2_val_2_fastqc.zip
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d8/b2450385b3e18e80d7fd4a49242d6a/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.sorted.bam.flagstat alignment/merged_library/filtered/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.sorted.bam.flagstat
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/39/59e3036f6e0cab77945c7dd84d6843/OSMOTIC_STRESS_T150_SE_REP1_T2_trimmed_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T150_SE_REP1_T2_trimmed_fastqc.zip
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4f/d56ef29ab80a145f0a0faaeb8f99bd/OSMOTIC_STRESS_T15_PE_REP1_T1_2.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T15_PE_REP1_T1_2.fastq.gz_trimming_report.txt
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/a6/76a7fe63a34cee41dd985b59985b6b/OSMOTIC_STRESS_T0_PE_REP2_T1_1.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T0_PE_REP2_T1_1.fastq.gz_trimming_report.txt
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/cb/5474b47c6c175583b50b6492f1b664/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/0d/288de8b802a9ef5756c4c2d54e27b1/OSMOTIC_STRESS_T100_SE_REP1_T1.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T100_SE_REP1_T1.Lb.sorted.bam.flagstat
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/28/9d40ad504d572834ba967cd5a2ae2b/OSMOTIC_STRESS_T15_PE_REP1_T2.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T15_PE_REP1_T2.Lb.sorted.bam.stats
+    mkdir -p macs2/merged_library/featurecounts && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/78/ca7ffde4ed4a014636f19e66c6cd9c/consensus_peaks.mLb.clN.featureCounts.txt.summary macs2/merged_library/featurecounts/consensus_peaks.mLb.clN.featureCounts.txt.summary
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/9c/b4fc25903d0f5fd5593281c77e630f/OSMOTIC_STRESS_T150_SE_REP1_T2.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T150_SE_REP1_T2.Lb.sorted.bam.flagstat
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/c7/200a0add2e0d4f39debcc2943e2157/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.reference_point.plotProfile.tab deeptools/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.reference_point.plotProfile.tab
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6a/b91e4a62d0ac217c4a3cf37357a275/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/b3/2caa5aa1f903b091d42a966e3c47c0/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.bam.idxstats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.bam.idxstats
+    mkdir -p alignment/merged_replicate/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ee/ae9d59c2ac795c4f4798b449353d2f/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.MarkDuplicates.metrics.txt alignment/merged_replicate/picard_metrics/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.MarkDuplicates.metrics.txt
+    mkdir -p macs2/merged_replicate/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/32/bf9c63e42383d40f2623a26258b409/OSMOTIC_STRESS_T100_SE.mRp.clN_peaks.FRiP_mqc.tsv macs2/merged_replicate/peaks/OSMOTIC_STRESS_T100_SE.mRp.clN_peaks.FRiP_mqc.tsv
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/9c/fe02439528c2fbd206c71cdaf27a09/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.sorted.bam.stats alignment/merged_library/filtered/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.sorted.bam.stats
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ba/9950dc5d9a753548b5c8173159e013/OSMOTIC_STRESS_T100_SE_REP1_T1_fastqc.zip fastqc/OSMOTIC_STRESS_T100_SE_REP1_T1_fastqc.zip
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d4/1d6b6de7336dbbc5548ffc2e4ccc6b/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/9b/ec3c0f3144b1b6c1e6fdbb17714fbd/OSMOTIC_STRESS_T0_PE_REP1_T1.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T0_PE_REP1_T1.Lb.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/13/9a4823d666388de52045a6613ed998/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics
+    mkdir -p alignment/merged_library/unfiltered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/32/a30153c855eb8d3e8d398462138926/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt alignment/merged_library/unfiltered/picard_metrics/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/fa/a5e95b3ab4590d5dc933e4f844c270/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.sorted.bam.flagstat alignment/merged_library/filtered/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/13/9a4823d666388de52045a6613ed998/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ba/5aed89f2e90a097b36801abfb647f5/OSMOTIC_STRESS_T150_SE_REP1_T1.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T150_SE_REP1_T1.Lb.sorted.bam.stats
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e2/7edc7626012c94a11131e9baefc8a6/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.plotFingerprint.raw.txt deeptools/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.plotFingerprint.raw.txt
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d9/fe40055e85e0e921b45237cfde72be/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN_peaks.FRiP_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN_peaks.FRiP_mqc.tsv
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/13/9a4823d666388de52045a6613ed998/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d4/1d6b6de7336dbbc5548ffc2e4ccc6b/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.insert_size_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.insert_size_metrics
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/5e/058935382876ad2ce46bae742e6ef9/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.bam.flagstat alignment/merged_library/unfiltered/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e9/0485b5cc8d2bc8c8e2bd090a0367fe/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.bam.flagstat alignment/merged_library/unfiltered/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/cb/5474b47c6c175583b50b6492f1b664/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/83/a44dd730a51e3717e718bb335a4a95/OSMOTIC_STRESS_T15_PE_REP1_T2_1_val_1_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T15_PE_REP1_T2_1_val_1_fastqc.zip
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4f/d56ef29ab80a145f0a0faaeb8f99bd/OSMOTIC_STRESS_T15_PE_REP1_T1_1.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T15_PE_REP1_T1_1.fastq.gz_trimming_report.txt
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6a/b91e4a62d0ac217c4a3cf37357a275/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/b1/e668905854c6b0f07abe8e6102fd61/OSMOTIC_STRESS_T150_SE_REP1_T1.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T150_SE_REP1_T1.Lb.sorted.bam.flagstat
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/18/61e42f9d74e28f30bca7ccf94a488b/OSMOTIC_STRESS_T100_SE_REP1_T1_trimmed_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T100_SE_REP1_T1_trimmed_fastqc.zip
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/b0/748d21edcea2158efb58e2eb51888a/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.reference_point.plotProfile.tab deeptools/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.reference_point.plotProfile.tab
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2a/d956b760b1f7182ce43443ef17df05/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN_peaks.FRiP_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN_peaks.FRiP_mqc.tsv
+    ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/tmp/d5/0f55965c13e2d42286eb838e7b768e/workflow_summary_mqc.yaml workflow_summary_mqc.yaml
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d4/1d6b6de7336dbbc5548ffc2e4ccc6b/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2a/d956b760b1f7182ce43443ef17df05/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN_peaks.count_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN_peaks.count_mqc.tsv
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ce/43093b7aea330ac0a1c14b75c737b5/OSMOTIC_STRESS_T150_SE_REP1_T2.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T150_SE_REP1_T2.Lb.sorted.bam.stats
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/b5/572efac65b61e6cb898e2fc78f9397/OSMOTIC_STRESS_T15_PE_REP1_T1.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T15_PE_REP1_T1.Lb.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/b0/f9b38b484e57499122a1a0740a70a3/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.bam.flagstat alignment/merged_library/unfiltered/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.bam.flagstat
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/3d/f57b94363bf32d2c060390d27990d3/OSMOTIC_STRESS_T100_SE_REP2_T1.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T100_SE_REP2_T1.Lb.sorted.bam.flagstat
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/83/a44dd730a51e3717e718bb335a4a95/OSMOTIC_STRESS_T15_PE_REP1_T2_1.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T15_PE_REP1_T2_1.fastq.gz_trimming_report.txt
+    ln -s /home/niklas/.nextflow/assets/nf-core/atacseq/assets/multiqc_config.yml multiqc_config.yml
+    mkdir -p macs2/merged_replicate/annotation && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/9c/da2b6e4f530554f0e8cd35ae2894ad/macs2_annotatePeaks.mRp.clN.summary_mqc.tsv macs2/merged_replicate/annotation/macs2_annotatePeaks.mRp.clN.summary_mqc.tsv
+    mkdir -p macs2/merged_replicate/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/32/8b7debef19dd7d8cbb881cc9665b07/OSMOTIC_STRESS_T0_PE.mRp.clN_peaks.FRiP_mqc.tsv macs2/merged_replicate/peaks/OSMOTIC_STRESS_T0_PE.mRp.clN_peaks.FRiP_mqc.tsv
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/27/90ed02b3670ca1f0bbd5ffafeb0806/OSMOTIC_STRESS_T0_PE_REP1_T1_1_val_1_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T0_PE_REP1_T1_1_val_1_fastqc.zip
+    mkdir -p deseq2_library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/50/fb0b5ad4ebc8554480a37b8506c6a9/consensus_peaks.mLb.clN.pca.vals_mqc.tsv deseq2_library/consensus_peaks.mLb.clN.pca.vals_mqc.tsv
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/21/fdaa348b90b90f6079a8625a503624/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN_peaks.count_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN_peaks.count_mqc.tsv
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6a/b91e4a62d0ac217c4a3cf37357a275/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.insert_size_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.insert_size_metrics
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/83/a44dd730a51e3717e718bb335a4a95/OSMOTIC_STRESS_T15_PE_REP1_T2_2.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T15_PE_REP1_T2_2.fastq.gz_trimming_report.txt
+    mkdir -p alignment/merged_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4d/62949a8ead585ef243a1900d29009a/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.bam.idxstats alignment/merged_replicate/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/54/6ad8feefa20e00ff04fb4dd57c94d8/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.sorted.bam.stats alignment/merged_library/filtered/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.sorted.bam.stats
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/76/779b98ff7455ebde2a66dba7e33bf6/OSMOTIC_STRESS_T15_PE_REP1_T1_2_fastqc.zip fastqc/OSMOTIC_STRESS_T15_PE_REP1_T1_2_fastqc.zip
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/dd/4369191cb3141598c6103c4f030cfc/OSMOTIC_STRESS_T15_PE_REP1_T2.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T15_PE_REP1_T2.Lb.sorted.bam.flagstat
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e1/1d32119c2230e5288ea046a7040ab1/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.plotFingerprint.raw.txt deeptools/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.plotFingerprint.raw.txt
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4f/bf3d3090eff95e585a5eaaa8825a70/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.reference_point.plotProfile.tab deeptools/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.reference_point.plotProfile.tab
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/3c/27f162e25a40531865add8921a78af/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN_peaks.FRiP_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN_peaks.FRiP_mqc.tsv
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4f/d56ef29ab80a145f0a0faaeb8f99bd/OSMOTIC_STRESS_T15_PE_REP1_T1_1_val_1_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T15_PE_REP1_T1_1_val_1_fastqc.zip
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/f5/23b5d1592aa765677e41eba5fdd4ae/OSMOTIC_STRESS_T15_PE_REP1_T2.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T15_PE_REP1_T2.Lb.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/unfiltered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/60/ccdd9437fda6a68fac05b6ae1bc39f/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt alignment/merged_library/unfiltered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/18/61e42f9d74e28f30bca7ccf94a488b/OSMOTIC_STRESS_T100_SE_REP1_T1.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T100_SE_REP1_T1.fastq.gz_trimming_report.txt
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/f7/c8d5ce60047a921463bc4e63218a51/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN_peaks.count_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN_peaks.count_mqc.tsv
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d4/1d6b6de7336dbbc5548ffc2e4ccc6b/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/21/fdaa348b90b90f6079a8625a503624/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN_peaks.FRiP_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN_peaks.FRiP_mqc.tsv
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/83/147f8393117d2c518d3e59495e4d0e/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam.idxstats alignment/merged_library/filtered/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam.idxstats
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/79/bcf8e0d09c4cff1ecb51d5c39a7982/OSMOTIC_STRESS_T0_PE_REP1_T1.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T0_PE_REP1_T1.Lb.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/7e/3b0daeb825d61775e558ae4a6da0a6/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/83/a44dd730a51e3717e718bb335a4a95/OSMOTIC_STRESS_T15_PE_REP1_T2_2_val_2_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T15_PE_REP1_T2_2_val_2_fastqc.zip
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/0b/81c1186389a5b16b61627ccbf643dc/OSMOTIC_STRESS_T100_SE_REP1_T1.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T100_SE_REP1_T1.Lb.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/00/de130899094e02513ba780158fbd83/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/7e/3b0daeb825d61775e558ae4a6da0a6/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/00/de130899094e02513ba780158fbd83/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.alignment_summary_metrics
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/7e/3b0daeb825d61775e558ae4a6da0a6/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/00/de130899094e02513ba780158fbd83/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2d/eaee406f5d2def339840143cf21215/OSMOTIC_STRESS_T100_SE_REP2_T1.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T100_SE_REP2_T1.Lb.sorted.bam.idxstats
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/7c/ae3651d4fc5dd12c6bdb249a8b7b7b/OSMOTIC_STRESS_T15_PE_REP1_T2_1_fastqc.zip fastqc/OSMOTIC_STRESS_T15_PE_REP1_T2_1_fastqc.zip
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/82/90931ee80ffae01224bb9a48420cb4/OSMOTIC_STRESS_T15_PE_REP1_T1.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T15_PE_REP1_T1.Lb.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e9/0c518142e4a913b19ac0048af15fa1/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.sorted.bam.idxstats alignment/merged_library/filtered/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.sorted.bam.idxstats
+    mkdir -p macs2/merged_library/annotation && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/45/8affa4a9f6d892488c124eae3f6861/macs2_annotatePeaks.mLb.clN.summary_mqc.tsv macs2/merged_library/annotation/macs2_annotatePeaks.mLb.clN.summary_mqc.tsv
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d9/fe40055e85e0e921b45237cfde72be/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN_peaks.count_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN_peaks.count_mqc.tsv
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e2/f73eb5fa89620ce253dc385756639e/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.bam.idxstats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.bam.idxstats
+    mkdir -p deseq2_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2d/2e3713cb235526433255dd2745b287/consensus_peaks.mRp.clN.pca.vals_mqc.tsv deseq2_replicate/consensus_peaks.mRp.clN.pca.vals_mqc.tsv
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ca/290a33797201d374b004ddda77d050/OSMOTIC_STRESS_T0_PE_REP1_T1_2_fastqc.zip fastqc/OSMOTIC_STRESS_T0_PE_REP1_T1_2_fastqc.zip
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2a/8c974a4669efa844e78ab2fa1923d7/OSMOTIC_STRESS_T150_SE_REP1_T1_trimmed_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T150_SE_REP1_T1_trimmed_fastqc.zip
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/50/47bbb17218b485c340b44db8e88a60/OSMOTIC_STRESS_T0_PE_REP1_T1.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T0_PE_REP1_T1.Lb.sorted.bam.idxstats
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/21/58a0f4628612021045fc322b280abe/OSMOTIC_STRESS_T100_SE_REP2_T1.Lb.sorted.bam.stats alignment/library/OSMOTIC_STRESS_T100_SE_REP2_T1.Lb.sorted.bam.stats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ee/d1e328814d1cc602035d1023615dc3/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.bam.stats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.bam.stats
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e7/100b58f0cc0bb6147c8e4dfa7da74b/OSMOTIC_STRESS_T150_SE_REP1_T2_fastqc.zip fastqc/OSMOTIC_STRESS_T150_SE_REP1_T2_fastqc.zip
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/e4/57eb4a696ab42019080c68b205cadd/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.reference_point.plotProfile.tab deeptools/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.reference_point.plotProfile.tab
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/3c/27f162e25a40531865add8921a78af/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN_peaks.count_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN_peaks.count_mqc.tsv
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/16/d3fb89a0dde1a695cf2165498bac12/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.sorted.bam.flagstat alignment/merged_library/filtered/OSMOTIC_STRESS_T100_SE_REP2.mLb.clN.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/27/128d238bf29b360407c3ef69eba703/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.sorted.bam.flagstat alignment/merged_library/filtered/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.sorted.bam.flagstat
+    mkdir -p macs2/merged_library/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/58/45c8755ea316c093d82edef8b56fd9/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN_peaks.count_mqc.tsv macs2/merged_library/peaks/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN_peaks.count_mqc.tsv
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2a/9692f7f65c7e2109c752310417674f/OSMOTIC_STRESS_T100_SE_REP2_T1.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T100_SE_REP2_T1.fastq.gz_trimming_report.txt
+    mkdir -p deseq2_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/2d/2e3713cb235526433255dd2745b287/consensus_peaks.mRp.clN.sample.dists_mqc.tsv deseq2_replicate/consensus_peaks.mRp.clN.sample.dists_mqc.tsv
+    ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4b/ea645a9d389148953d87a05dfb9f6d/software_versions_mqc.yml software_versions_mqc.yml
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6e/086c76ee498779a60efa96cddfd2fa/OSMOTIC_STRESS_T150_SE_REP1_T1.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T150_SE_REP1_T1.Lb.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/unfiltered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/c6/0133b993d902c5f7f5ec15388bc007/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt alignment/merged_library/unfiltered/picard_metrics/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/cb/5474b47c6c175583b50b6492f1b664/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/f9/2711bb124c9f9133d7974837089319/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam.stats alignment/merged_library/filtered/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam.stats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/57/60e71b79e4e2277000b2beaa167153/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.bam.stats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.bam.stats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/f1/371337fd88d16f5d2e109a3a4236fb/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.bam.stats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T150_SE_REP1.mLb.mkD.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/fd/7f3f11df047cfb362c156b72350002/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.sorted.bam.stats alignment/merged_library/filtered/OSMOTIC_STRESS_T100_SE_REP1.mLb.clN.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/cb/5474b47c6c175583b50b6492f1b664/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.insert_size_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.insert_size_metrics
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ec/40a8c1c7195697d1254c6a813cd9ed/OSMOTIC_STRESS_T100_SE_REP1_T1.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T100_SE_REP1_T1.Lb.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/unfiltered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4c/a5ccaad3227dcb8f4ba3056c03f397/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.MarkDuplicates.metrics.txt alignment/merged_library/unfiltered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.MarkDuplicates.metrics.txt
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/7c/ae3651d4fc5dd12c6bdb249a8b7b7b/OSMOTIC_STRESS_T15_PE_REP1_T2_2_fastqc.zip fastqc/OSMOTIC_STRESS_T15_PE_REP1_T2_2_fastqc.zip
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4f/d56ef29ab80a145f0a0faaeb8f99bd/OSMOTIC_STRESS_T15_PE_REP1_T1_2_val_2_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T15_PE_REP1_T1_2_val_2_fastqc.zip
+    mkdir -p alignment/merged_library/unfiltered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/c0/7a932ddfd4345691aae52892c1e116/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt alignment/merged_library/unfiltered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6c/5fa45aab59f879d5294bdf6a85d13c/OSMOTIC_STRESS_T0_PE_REP2_T1_1_fastqc.zip fastqc/OSMOTIC_STRESS_T0_PE_REP2_T1_1_fastqc.zip
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/4e/797424e8ed50994a5f13c71f394b4a/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.sorted.bam.stats alignment/merged_library/filtered/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6a/b91e4a62d0ac217c4a3cf37357a275/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_by_cycle_metrics
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/30/5e02a7093b901ac3c1af04c4fe860f/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.plotFingerprint.raw.txt deeptools/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.plotFingerprint.raw.txt
+    mkdir -p alignment/merged_replicate/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/18/e2e277440302e599fcab34ad666312/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.MarkDuplicates.metrics.txt alignment/merged_replicate/picard_metrics/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.MarkDuplicates.metrics.txt
+    mkdir -p deeptools && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/3a/4c26bff901be93485a676e99693803/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.plotFingerprint.raw.txt deeptools/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.plotFingerprint.raw.txt
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/39/59e3036f6e0cab77945c7dd84d6843/OSMOTIC_STRESS_T150_SE_REP1_T2.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T150_SE_REP1_T2.fastq.gz_trimming_report.txt
+    mkdir -p alignment/merged_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/1a/f26ca05581a0cc21ef2279225f5d61/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.bam.stats alignment/merged_replicate/OSMOTIC_STRESS_T0_PE.mRp.clN.sorted.bam.stats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/da/0f2a6e5f481871044b53e033aea42a/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.bam.flagstat alignment/merged_library/unfiltered/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/cb/5474b47c6c175583b50b6492f1b664/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP1.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics
+    mkdir -p trimgalore/fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/a6/76a7fe63a34cee41dd985b59985b6b/OSMOTIC_STRESS_T0_PE_REP2_T1_1_val_1_fastqc.zip trimgalore/fastqc/OSMOTIC_STRESS_T0_PE_REP2_T1_1_val_1_fastqc.zip
+    mkdir -p alignment/merged_replicate && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/83/143e186f3b51c21201c37a902e9b7f/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.bam.flagstat alignment/merged_replicate/OSMOTIC_STRESS_T100_SE.mRp.clN.sorted.bam.flagstat
+    mkdir -p macs2/merged_replicate/featurecounts && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/84/47ef8637aab405c72026d50ffb4897/consensus_peaks.mRp.clN.featureCounts.txt.summary macs2/merged_replicate/featurecounts/consensus_peaks.mRp.clN.featureCounts.txt.summary
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6f/27bd25f0903a383cca9e0716d5207c/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.bam.flagstat alignment/merged_library/unfiltered/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.bam.flagstat
+    mkdir -p macs2/merged_replicate/peaks && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/32/8b7debef19dd7d8cbb881cc9665b07/OSMOTIC_STRESS_T0_PE.mRp.clN_peaks.count_mqc.tsv macs2/merged_replicate/peaks/OSMOTIC_STRESS_T0_PE.mRp.clN_peaks.count_mqc.tsv
+    mkdir -p fastqc && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6c/5fa45aab59f879d5294bdf6a85d13c/OSMOTIC_STRESS_T0_PE_REP2_T1_2_fastqc.zip fastqc/OSMOTIC_STRESS_T0_PE_REP2_T1_2_fastqc.zip
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/07/b0d99b5eac397c6e97d205227195fd/OSMOTIC_STRESS_T150_SE_REP1_T2.Lb.sorted.bam.idxstats alignment/library/OSMOTIC_STRESS_T150_SE_REP1_T2.Lb.sorted.bam.idxstats
+    mkdir -p trimgalore && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/a6/76a7fe63a34cee41dd985b59985b6b/OSMOTIC_STRESS_T0_PE_REP2_T1_2.fastq.gz_trimming_report.txt trimgalore/OSMOTIC_STRESS_T0_PE_REP2_T1_2.fastq.gz_trimming_report.txt
+    mkdir -p alignment/library && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/5b/4ebef72cde9dd33923e949de23fd8e/OSMOTIC_STRESS_T15_PE_REP1_T1.Lb.sorted.bam.flagstat alignment/library/OSMOTIC_STRESS_T15_PE_REP1_T1.Lb.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/6a/b91e4a62d0ac217c4a3cf37357a275/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T15_PE_REP1.mLb.clN.CollectMultipleMetrics.base_distribution_by_cycle_metrics
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/ae/31478239e70edf4ba2f8bff08604ec/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.bam.stats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T100_SE_REP2.mLb.mkD.sorted.bam.stats
+    mkdir -p alignment/merged_library/filtered/picard_metrics && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/d4/1d6b6de7336dbbc5548ffc2e4ccc6b/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics alignment/merged_library/filtered/picard_metrics/OSMOTIC_STRESS_T0_PE_REP2.mLb.clN.CollectMultipleMetrics.quality_distribution_metrics
+    mkdir -p alignment/merged_library/filtered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/31/6d4bcd7d33be8483550c7be0fe0a9b/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam.flagstat alignment/merged_library/filtered/OSMOTIC_STRESS_T150_SE_REP1.mLb.clN.sorted.bam.flagstat
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/04/c8a30914ef3c95741109027afc1c67/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.bam.idxstats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T15_PE_REP1.mLb.mkD.sorted.bam.idxstats
+    mkdir -p alignment/merged_library/unfiltered && ln -s /storage/nf-core/exec/nextflow_workflow_tracer/work/64/6ac33beb0806f76908628722b7dfdd/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.bam.idxstats alignment/merged_library/unfiltered/OSMOTIC_STRESS_T0_PE_REP2.mLb.mkD.sorted.bam.idxstats
+}
+
+nxf_unstage() {
+    true
+    [[ ${nxf_main_ret:=0} != 0 ]] && return
+}
+
+nxf_main() {
+    trap on_exit EXIT
+    trap on_term TERM INT USR2
+    trap '' USR1
+
+    [[ "${NXF_CHDIR:-}" ]] && cd "$NXF_CHDIR"
+    export NXF_BOXID="nxf-$(dd bs=18 count=1 if=/dev/urandom 2>/dev/null | base64 | tr +/ 0A | tr -d '\r\n')"
+    NXF_SCRATCH=''
+    [[ $NXF_DEBUG > 0 ]] && nxf_env
+    touch /storage/nf-core/exec/nextflow_workflow_tracer/work/8b/8014f6497c5f886e4638eb5b5a9cd3/.command.begin
+    set +u
+    set -u
+    [[ $NXF_SCRATCH ]] && cd $NXF_SCRATCH
+    export NXF_TASK_WORKDIR="$PWD"
+    nxf_stage
+
+    set +e
+    (set -o pipefail; (nxf_launch | tee .command.out) 3>&1 1>&2 2>&3 | tee .command.err) &
+    pid=$!
+    wait $pid || nxf_main_ret=$?
+    nxf_unstage
+}
+
+$NXF_ENTRY

@@ -1,0 +1,1 @@
+/storage/nf-core/exec/nextflow_workflow_tracer/work/a1/6f819f2de0bf4375716266690bb35b/OSMOTIC_STRESS_T100_SE.mRp.clN_peaks.annotatePeaks.txt

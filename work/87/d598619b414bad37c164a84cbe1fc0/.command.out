@@ -1,0 +1,5 @@
+
+Successfully created workflow run script.
+To execute the workflow, run the following script and set appropriate options:
+
+/storage/nf-core/exec/nextflow_workflow_tracer/work/87/d598619b414bad37c164a84cbe1fc0/strelka/runWorkflow.py
