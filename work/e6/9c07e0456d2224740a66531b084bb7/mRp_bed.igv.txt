@@ -1,1 +1,0 @@
-bwa/merged_replicate/macs2/broad_peak/consensus/consensus_peaks.mRp.clN.bed	0,0,0

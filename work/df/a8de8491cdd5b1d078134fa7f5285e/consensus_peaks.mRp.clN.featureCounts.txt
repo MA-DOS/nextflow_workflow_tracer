@@ -1,1 +1,0 @@
-/storage/nf-core/exec/nextflow_workflow_tracer/work/01/cf859a4f2a82b1afa5b70f84a636bd/consensus_peaks.mRp.clN.featureCounts.txt

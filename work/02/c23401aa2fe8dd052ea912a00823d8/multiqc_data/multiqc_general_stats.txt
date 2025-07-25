@@ -1,8 +1,0 @@
-Sample	fastqc_raw-percent_duplicates	fastqc_raw-percent_gc	fastqc_raw-avg_sequence_length	fastqc_raw-median_sequence_length	fastqc_raw-percent_fails	fastqc_raw-total_sequences	gatk4_markduplicates_mark_duplicates-PERCENT_DUPLICATION	samtools_flagstat_stats-error_rate	samtools_flagstat_stats-non_primary_alignments	samtools_flagstat_stats-reads_mapped	samtools_flagstat_stats-reads_mapped_percent	samtools_flagstat_stats-reads_properly_paired_percent	samtools_flagstat_stats-reads_MQ0_percent	samtools_flagstat_stats-raw_total_sequences	mosdepth-1_x_pc	mosdepth-5_x_pc	mosdepth-10_x_pc	mosdepth-30_x_pc	mosdepth-50_x_pc	mosdepth-median_coverage	bcftools_stats-number_of_records	bcftools_stats-number_of_SNPs	bcftools_stats-number_of_indels	bcftools_stats-tstv	bcftools_stats-number_of_MNPs	bcftools_stats-number_of_multiallelic_sites	bcftools_stats-number_of_multiallelic_SNP_sites
-test-test_L1_1	1.7720375527608212	50.0	100.05205146661868	100	40.0	0.266736																					
-test-test_L1_2	0.9935368127944884	48.0	100.05091551196689	100	20.0	0.266736																					
-test-test_L2							63.599799999999995																				
-test-test_L2_1	1.7720375527608212	50.0	100.05205146661868	100	40.0	0.266736																					
-test-test_L2_2	0.9935368127944884	48.0	100.05091551196689	100	20.0	0.266736																					
-test.md								8.332056999999999	0.0	0.020162	1.8896961789934619	0.17470457681002938	0.4330124167716394	1.066944	44.0	37.0	31.0	15.0	6.0	0							
-test.strelka.variants																					11	0	11	0.0	0	0	0

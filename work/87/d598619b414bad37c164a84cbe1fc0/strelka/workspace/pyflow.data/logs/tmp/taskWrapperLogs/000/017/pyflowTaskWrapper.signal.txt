@@ -1,4 +1,0 @@
-[2025-07-20T13:20:48.098519Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] wrapperStart
-[2025-07-20T13:20:48.107445Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] taskStart
-[2025-07-20T13:20:48.110983Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] taskExitCode 0
-[2025-07-20T13:20:48.111261Z] [bf2014ddabea] [94_1] [pyflowTaskWrapper:CallGenome+mergeRunStats] [wrapperSignal] taskElapsedSec 0

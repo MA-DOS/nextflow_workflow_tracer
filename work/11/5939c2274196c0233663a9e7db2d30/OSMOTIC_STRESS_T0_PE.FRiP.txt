@@ -1,1 +1,0 @@
-/storage/nf-core/exec/nextflow_workflow_tracer/work/71/b85663cd9c7478cbe7f5571f34669c/OSMOTIC_STRESS_T0_PE.FRiP.txt

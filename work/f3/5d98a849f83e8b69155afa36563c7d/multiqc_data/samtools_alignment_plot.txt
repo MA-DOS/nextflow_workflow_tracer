@@ -1,2 +1,0 @@
-Sample	Mapped (with MQ>0)	MQ0	Unmapped
-test.md	15542.0	4620.0	1046782.0

@@ -1,2 +1,0 @@
-Sample	chr22
-test.md	10.99

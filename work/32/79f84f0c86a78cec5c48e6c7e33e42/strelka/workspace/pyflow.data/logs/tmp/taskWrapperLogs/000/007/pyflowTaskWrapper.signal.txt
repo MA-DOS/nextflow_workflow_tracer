@@ -1,4 +1,0 @@
-[2025-07-23T15:53:45.918628Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] wrapperStart
-[2025-07-23T15:53:45.926525Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] taskStart
-[2025-07-23T15:53:45.929159Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] taskExitCode 0
-[2025-07-23T15:53:45.929555Z] [7e50626946ac] [94_1] [pyflowTaskWrapper:CallGenome+makeTmpDir] [wrapperSignal] taskElapsedSec 0

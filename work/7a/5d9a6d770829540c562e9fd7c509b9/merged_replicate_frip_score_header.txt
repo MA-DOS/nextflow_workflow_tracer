@@ -1,1 +1,0 @@
-/home/niklas/.nextflow/assets/nf-core/atacseq/assets/multiqc/merged_replicate_frip_score_header.txt

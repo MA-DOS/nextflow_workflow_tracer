@@ -1,3 +1,0 @@
-"NFCORE_ATACSEQ:ATACSEQ:MERGED_LIBRARY_CONSENSUS_PEAKS:DESEQ2_QC":
-    r-base: 4.0.3
-    bioconductor-deseq2: 1.28.0

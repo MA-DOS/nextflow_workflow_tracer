@@ -1,1 +1,0 @@
-/home/niklas/.nextflow/assets/nf-core/atacseq/assets/multiqc/merged_library_deseq2_pca_header.txt

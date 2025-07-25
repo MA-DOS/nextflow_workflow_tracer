@@ -1,1 +1,0 @@
-/storage/nf-core/exec/nextflow_workflow_tracer/work/21/b7cebaabe2337d570c8046986c360c/OSMOTIC_STRESS_T100_SE_REP1.mLb.mkD.sorted.MarkDuplicates.metrics.txt

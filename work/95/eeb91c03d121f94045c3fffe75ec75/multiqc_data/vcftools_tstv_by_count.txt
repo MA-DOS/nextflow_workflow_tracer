@@ -1,2 +1,0 @@
-Sample	0	1
-test.strelka.variants.TsTv.count	(0.0, nan)	(1.0, nan)

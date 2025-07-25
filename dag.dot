@@ -764,12 +764,12 @@ v173 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
 v166 -> v173 [label="ch_versions"];
 
 v167 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
-v174 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
-v167 -> v174;
-
-v167 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
 v184 [label="NFCORE_ATACSEQ:ATACSEQ:MERGED_LIBRARY_FILTER_BAM:SAMTOOLS_SORT"];
 v167 -> v184;
+
+v167 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="branch"];
+v174 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v167 -> v174;
 
 v168 [shape=point,label="",fixedsize=true,width=0.1];
 v169 [label="NFCORE_ATACSEQ:ATACSEQ:MERGED_LIBRARY_FILTER_BAM:SAMTOOLS_INDEX"];
@@ -1783,13 +1783,13 @@ v383 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
 v392 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
 v383 -> v392 [label="ch_versions"];
 
-v138 [label="NFCORE_ATACSEQ:ATACSEQ:MERGED_LIBRARY_MARKDUPLICATES_PICARD:PICARD_MARKDUPLICATES"];
-v384 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
-v138 -> v384 [label="bam"];
-
 v142 [label="NFCORE_ATACSEQ:ATACSEQ:MERGED_LIBRARY_MARKDUPLICATES_PICARD:SAMTOOLS_INDEX"];
 v384 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
 v142 -> v384 [label="bai"];
+
+v138 [label="NFCORE_ATACSEQ:ATACSEQ:MERGED_LIBRARY_MARKDUPLICATES_PICARD:PICARD_MARKDUPLICATES"];
+v384 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v138 -> v384 [label="bam"];
 
 v384 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
 v385 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
@@ -2459,13 +2459,13 @@ v529 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
 v539 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
 v529 -> v539 [label="ch_versions"];
 
-v471 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="filter"];
-v530 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
-v471 -> v530 [label="ch_peaks"];
-
 v425 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
 v530 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
 v425 -> v530 [label="ch_bams"];
+
+v471 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="filter"];
+v530 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+v471 -> v530 [label="ch_peaks"];
 
 v530 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
 v531 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
